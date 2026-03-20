@@ -90,7 +90,7 @@ def fetch_all(account_id):
     if isinstance(camp_insights, dict): camp_insights = []
 
     ads = meta_get(f"act_{account_id}/ads", {
-        "fields": "name,status,effective_status,campaign_id,adset_id,creative{id,title,body,call_to_action_type,object_story_spec,asset_feed_spec,thumbnail_url}",
+        "fields": "name,status,effective_status,campaign_id,adset_id,creative{id,title,body,call_to_action_type,object_story_spec,asset_feed_spec,thumbnail_url,effective_object_story_id},preview_shareable_link",
         "limit": 100,
     })
     if isinstance(ads, dict): ads = []
@@ -137,13 +137,29 @@ def fetch_all(account_id):
 
 
 def get_ad_creative_info(ad):
-    """Extrai copy, título, descrição e thumbnail do anúncio."""
+    """Extrai copy, título, descrição, thumbnail e permalink do anúncio."""
     creative = ad.get("creative", {})
     body = creative.get("body", "")
     title = creative.get("title", "")
     thumbnail = creative.get("thumbnail_url", "")
     cta = creative.get("call_to_action_type", "")
     description = ""
+    permalink = ad.get("preview_shareable_link", "")
+
+    # Build permalink from effective_object_story_id (page_id_post_id)
+    story_id = creative.get("effective_object_story_id", "")
+    if story_id and not permalink:
+        parts = story_id.split("_")
+        if len(parts) == 2:
+            permalink = f"https://www.facebook.com/{parts[0]}/posts/{parts[1]}"
+
+    # Improve thumbnail resolution — append dimension param if Meta URL
+    if thumbnail and "fbcdn" in thumbnail:
+        # Request higher resolution
+        if "?" in thumbnail:
+            thumbnail += "&width=480"
+        else:
+            thumbnail += "?width=480"
 
     oss = creative.get("object_story_spec", {})
     if oss:
@@ -152,11 +168,16 @@ def get_ad_creative_info(ad):
             body = body or vd.get("message", "")
             title = title or vd.get("title", "")
             description = vd.get("link_description", "")
+            # Video thumbnail from image_url is usually higher res
+            if vd.get("image_url"):
+                thumbnail = vd["image_url"]
         ld = oss.get("link_data", {})
         if ld:
             body = body or ld.get("message", "")
             title = title or ld.get("name", "")
             description = description or ld.get("description", "")
+            if ld.get("picture") and not thumbnail:
+                thumbnail = ld["picture"]
 
     afs = creative.get("asset_feed_spec", {})
     if afs:
@@ -169,6 +190,12 @@ def get_ad_creative_info(ad):
             title = titles[0].get("text", "")
         if descs and not description:
             description = descs[0].get("text", "")
+        # Asset feed may have images/videos with better thumbnails
+        images = afs.get("images", [])
+        if images and (not thumbnail or "fbcdn" in thumbnail):
+            img_url = images[0].get("url", "")
+            if img_url:
+                thumbnail = img_url
 
     return {
         "body": body,
@@ -176,6 +203,7 @@ def get_ad_creative_info(ad):
         "description": description,
         "thumbnail": thumbnail,
         "cta": cta,
+        "permalink": permalink,
     }
 
 
@@ -315,6 +343,7 @@ def process(data):
             "description": creative.get("description", ""),
             "thumbnail": creative.get("thumbnail", ""),
             "cta": creative.get("cta", ""),
+            "permalink": creative.get("permalink", ""),
         })
 
     # Daily
@@ -809,6 +838,8 @@ def generate_html(slug, unit, p):
                     <div class="am"><span class="am-v highlight">{ad['conversations']}</span><span class="am-l">Conversas</span></div>
                     <div class="am"><span class="am-v">{'R$ '+f'{ad["cpl"]:.2f}' if ad["cpl"]>0 else '—'}</span><span class="am-l">CPL</span></div>"""
 
+            permalink_btn = f'<a class="ad-link" href="{ad["permalink"]}" target="_blank" rel="noopener">Ver publicação ↗</a>' if ad.get("permalink") else ''
+
             creative_html += f"""
             <div class="ad-card">
                 <div class="ad-top">
@@ -817,6 +848,7 @@ def generate_html(slug, unit, p):
                         <div class="ad-name">{esc(ad['name'])}</div>
                         {f'<div class="ad-title">{title_text}</div>' if title_text else ''}
                         {f'<div class="ad-desc">{desc_text}</div>' if desc_text else ''}
+                        {permalink_btn}
                     </div>
                 </div>
                 {f'<div class="ad-body">{body_preview}</div>' if body_preview else ''}
@@ -1033,6 +1065,8 @@ body::before{{content:'';position:fixed;top:50%;left:50%;transform:translate(-50
 .ad-top{{display:flex;gap:14px;margin-bottom:10px;align-items:flex-start}}
 .ad-thumb{{width:80px;height:80px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#eee}}
 .ad-thumb-placeholder{{width:80px;height:80px;border-radius:10px;background:#eee;flex-shrink:0}}
+.ad-link{{display:inline-block;margin-top:6px;font-size:11px;font-weight:600;color:#00A19A;text-decoration:none;padding:3px 10px;border:1px solid #00A19A;border-radius:6px;transition:all .15s}}
+.ad-link:hover{{background:#00A19A;color:#fff}}
 .ad-info{{flex:1;min-width:0}}
 .ad-name{{font-size:14px;font-weight:700;color:#184341;margin-bottom:3px}}
 .ad-title{{font-size:12px;font-weight:600;color:var(--sc);margin-bottom:2px}}
