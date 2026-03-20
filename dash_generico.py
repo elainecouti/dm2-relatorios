@@ -330,6 +330,106 @@ def esc(text):
     return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;").replace("\n", "<br>")
 
 
+def generate_optimization_section(camps, ads, summary):
+    """Gera seção de análise e recomendações de otimização."""
+    avg_cpl = summary["cpl"]
+    if avg_cpl <= 0:
+        return ""
+
+    # --- Campanhas para escalar (CPL < 70% da média) ---
+    scale = [c for c in camps if c["conversions"] >= 5 and c["cpl"] < avg_cpl * 0.7 and c["cpl"] > 0]
+    scale.sort(key=lambda x: x["cpl"])
+
+    # --- Campanhas para pausar (CPL > 3x média ou 0 conversões com gasto > 5% do total) ---
+    pause = [c for c in camps if
+        (c["conversions"] == 0 and c["spend"] > summary["spend"] * 0.03) or
+        (c["cpl"] > avg_cpl * 3 and c["conversions"] > 0)]
+    pause.sort(key=lambda x: -x["spend"])
+
+    # --- Campanhas para otimizar (CPL entre 1.5x e 3x da média) ---
+    optimize = [c for c in camps if c["conversions"] >= 3 and avg_cpl * 1.5 < c["cpl"] <= avg_cpl * 3]
+    optimize.sort(key=lambda x: -x["cpl"])
+
+    # --- Top criativos ---
+    top_ads = [a for a in ads if a["conversions"] >= 3 and a["cpl"] > 0]
+    top_ads.sort(key=lambda x: x["cpl"])
+
+    # --- Criativos desperdiçando ---
+    waste_ads = [a for a in ads if a["conversions"] == 0 and a["spend"] > avg_cpl * 2]
+    waste_ads.sort(key=lambda x: -x["spend"])
+    total_waste = sum(a["spend"] for a in waste_ads)
+
+    # --- Criativos com CPA alto ---
+    high_cpa_ads = [a for a in ads if a["cpl"] > avg_cpl * 2 and a["conversions"] >= 2]
+    high_cpa_ads.sort(key=lambda x: -x["cpl"])
+
+    # Build HTML
+    html = '<h3 class="section-header">Análise &amp; Otimizações</h3>'
+
+    # Summary cards
+    waste_pct = (total_waste / summary["spend"] * 100) if summary["spend"] > 0 else 0
+    best_cpl = top_ads[0]["cpl"] if top_ads else 0
+    html += f"""
+    <div class="opt-summary">
+        <div class="opt-card opt-green"><span class="opt-v">R$ {avg_cpl:.1f}</span><span class="opt-l">CPL Médio</span></div>
+        <div class="opt-card opt-green"><span class="opt-v">R$ {best_cpl:.1f}</span><span class="opt-l">Melhor CPL</span></div>
+        <div class="opt-card opt-red"><span class="opt-v">R$ {total_waste:.0f}</span><span class="opt-l">Gasto sem conversão</span></div>
+        <div class="opt-card opt-red"><span class="opt-v">{waste_pct:.1f}%</span><span class="opt-l">% desperdiçado</span></div>
+    </div>"""
+
+    # Scale table
+    if scale:
+        html += '<div class="opt-block"><h4 class="opt-title opt-title-green">🟢 Escalar — CPL abaixo da média</h4>'
+        html += '<table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>CTR</th></tr></thead><tbody>'
+        for c in scale[:5]:
+            html += f'<tr><td>{esc(c["name"][:50])}</td><td>R$ {c["spend"]:.0f}</td><td><strong>{c["conversions"]}</strong></td><td class="cpl-good">R$ {c["cpl"]:.1f}</td><td>{c["ctr"]:.2f}%</td></tr>'
+        html += '</tbody></table></div>'
+
+    # Pause table
+    if pause:
+        html += '<div class="opt-block"><h4 class="opt-title opt-title-red">🔴 Pausar — CPL muito alto ou sem conversão</h4>'
+        html += '<table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Motivo</th></tr></thead><tbody>'
+        for c in pause[:5]:
+            reason = "Sem conversões" if c["conversions"] == 0 else f"CPL {c['cpl']/avg_cpl:.1f}x a média"
+            cpl_str = f"R$ {c['cpl']:.1f}" if c["cpl"] > 0 else "—"
+            html += f'<tr><td>{esc(c["name"][:50])}</td><td>R$ {c["spend"]:.0f}</td><td>{c["conversions"]}</td><td class="cpl-bad">{cpl_str}</td><td>{reason}</td></tr>'
+        html += '</tbody></table></div>'
+
+    # Optimize table
+    if optimize:
+        html += '<div class="opt-block"><h4 class="opt-title opt-title-yellow">🟡 Otimizar — CPL acima da média</h4>'
+        html += '<table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th></tr></thead><tbody>'
+        for c in optimize[:5]:
+            html += f'<tr><td>{esc(c["name"][:50])}</td><td>R$ {c["spend"]:.0f}</td><td>{c["conversions"]}</td><td class="cpl-warn">R$ {c["cpl"]:.1f}</td></tr>'
+        html += '</tbody></table></div>'
+
+    # Top 5 criativos
+    if top_ads:
+        html += '<div class="opt-block"><h4 class="opt-title opt-title-green">🏆 Top Criativos — Menor CPL</h4>'
+        html += '<table class="camp-table"><thead><tr><th>Criativo</th><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>CTR</th></tr></thead><tbody>'
+        for a in top_ads[:8]:
+            html += f'<tr><td>{esc(a["name"][:35])}</td><td>{esc(a["campaign"][:30])}</td><td>R$ {a["spend"]:.0f}</td><td><strong>{a["conversions"]}</strong></td><td class="cpl-good">R$ {a["cpl"]:.1f}</td><td>{a["ctr"]:.2f}%</td></tr>'
+        html += '</tbody></table></div>'
+
+    # Waste ads
+    if waste_ads:
+        html += f'<div class="opt-block"><h4 class="opt-title opt-title-red">💸 Criativos sem conversão (gasto > R$ {avg_cpl*2:.0f})</h4>'
+        html += '<table class="camp-table"><thead><tr><th>Criativo</th><th>Campanha</th><th>Gasto</th><th>Clicks</th></tr></thead><tbody>'
+        for a in waste_ads[:8]:
+            html += f'<tr><td>{esc(a["name"][:35])}</td><td>{esc(a["campaign"][:30])}</td><td class="cpl-bad">R$ {a["spend"]:.0f}</td><td>{a["clicks"]}</td></tr>'
+        html += '</tbody></table></div>'
+
+    # High CPA ads
+    if high_cpa_ads:
+        html += f'<div class="opt-block"><h4 class="opt-title opt-title-yellow">⚠️ Criativos com CPL alto (> R$ {avg_cpl*2:.0f})</h4>'
+        html += '<table class="camp-table"><thead><tr><th>Criativo</th><th>Gasto</th><th>Conv</th><th>CPL</th></tr></thead><tbody>'
+        for a in high_cpa_ads[:5]:
+            html += f'<tr><td>{esc(a["name"][:40])}</td><td>R$ {a["spend"]:.0f}</td><td>{a["conversions"]}</td><td class="cpl-bad">R$ {a["cpl"]:.1f}</td></tr>'
+        html += '</tbody></table></div>'
+
+    return html
+
+
 def generate_html(slug, client_info, p):
     now = datetime.now(timezone(timedelta(hours=-3))).strftime("%d/%m/%Y %H:%M")
     s = p["summary"]
@@ -340,6 +440,10 @@ def generate_html(slug, client_info, p):
 
     nome = client_info.get("nome", slug)
     subtitle = client_info.get("subtitle", "")
+
+    # Campaign + ad rows for optimization section (need before HTML)
+    camps_sorted = sorted(camps, key=lambda x: x["spend"], reverse=True)
+    opt_html = generate_optimization_section(camps_sorted, ads, s)
 
     chart_labels = json.dumps([d["date"] for d in daily])
     chart_spend = json.dumps([d["spend"] for d in daily])
@@ -361,8 +465,7 @@ def generate_html(slug, client_info, p):
     for label, val in kpis:
         kpi_html += f'<div class="kpi"><span class="kpi-v">{val}</span><span class="kpi-l">{label}</span></div>'
 
-    # Campaign table rows
-    camps_sorted = sorted(camps, key=lambda x: x["spend"], reverse=True)
+    # Campaign table rows (camps_sorted already computed above for opt section)
     camp_rows_html = ""
     for c in camps_sorted:
         status_dot = "active" if c["status"] == "ACTIVE" else "paused"
@@ -478,6 +581,21 @@ body{{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-s
 .bal-bar{{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}}
 .bal-fill{{height:100%;border-radius:4px;transition:width .5s}}
 
+.opt-summary{{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px}}
+.opt-card{{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}}
+.opt-card.opt-green{{border-left:4px solid #22c55e}}
+.opt-card.opt-red{{border-left:4px solid #ef4444}}
+.opt-v{{display:block;font-size:20px;font-weight:800;color:#184341}}
+.opt-l{{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}}
+.opt-block{{margin-bottom:20px}}
+.opt-title{{font-size:14px;font-weight:700;margin-bottom:10px}}
+.opt-title-green{{color:#16a34a}}
+.opt-title-red{{color:#dc2626}}
+.opt-title-yellow{{color:#d97706}}
+.cpl-good{{color:#16a34a;font-weight:700}}
+.cpl-bad{{color:#dc2626;font-weight:700}}
+.cpl-warn{{color:#d97706;font-weight:700}}
+
 .footer{{text-align:center;padding:32px;font-size:11px;color:#bbb}}
 
 .table-wrap{{overflow-x:auto;margin-bottom:32px}}
@@ -533,6 +651,8 @@ body{{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-s
 
     <h3 class="section-header">Top Criativos</h3>
     <div class="creatives-grid">{creatives_html}</div>
+
+    {opt_html}
 
     <div class="footer">
         <div>seven midas · marketing digital · atualizado em {now}</div>
