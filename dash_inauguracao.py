@@ -1129,32 +1129,9 @@ body::before{{content:'';position:fixed;top:50%;left:50%;transform:translate(-50
 
     .footer{{padding:20px 14px;font-size:10px}}
 }}
-#auth-gate{{position:fixed;inset:0;background:#F7F8FA;z-index:999;display:flex;align-items:center;justify-content:center}}
-.auth-box{{text-align:center;max-width:340px;padding:24px}}
-.auth-box h2{{font-size:20px;font-weight:800;margin-bottom:6px}}
-.auth-box p{{font-size:13px;color:#7a7a7a;margin-bottom:24px}}
-.auth-box input{{width:100%;padding:12px 16px;border:2px solid #e0e0e0;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:14px;outline:none;text-align:center;transition:border-color .2s}}
-.auth-box input:focus{{border-color:#00A19A}}
-.auth-box input.error{{border-color:#ef4444;animation:shake .3s}}
-.auth-box button{{width:100%;margin-top:12px;padding:12px;background:#184341;color:#fff;border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s}}
-.auth-box button:hover{{background:#00A19A}}
-@keyframes shake{{0%,100%{{transform:translateX(0)}}25%{{transform:translateX(-6px)}}75%{{transform:translateX(6px)}}}}
-#main-content{{display:none}}
 </style>
 </head>
 <body>
-<div id="auth-gate">
-  <div class="auth-box">
-    <svg viewBox="0 0 40 40" width="48" height="48" style="margin-bottom:16px"><path d="M20 4L8 24h10l-2 12 14-20H20l2-12z" fill="#00A19A"/></svg>
-    <h2>Seven Midas</h2>
-    <p>Digite a senha para acessar</p>
-    <form id="auth-form">
-      <input type="password" id="auth-input" placeholder="Senha" autocomplete="off">
-      <button type="submit">Entrar</button>
-    </form>
-  </div>
-</div>
-<div id="main-content">
 <div class="topbar">
     <div class="logo">
         <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
@@ -1264,7 +1241,6 @@ new Chart(document.getElementById('chart'),{{
     }},
 }});
 </script>
-</div>
 <script>
 function switchTab(id, el) {{
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -1272,16 +1248,6 @@ function switchTab(id, el) {{
     document.getElementById('tab-'+id).classList.add('active');
     el.classList.add('active');
 }}
-(function(){{
-  var k='seven_auth',h='a]3#kQ9x';
-  if(sessionStorage.getItem(k)===h){{document.getElementById('auth-gate').style.display='none';document.getElementById('main-content').style.display='block'}}
-  document.getElementById('auth-form').addEventListener('submit',function(e){{
-    e.preventDefault();
-    var inp=document.getElementById('auth-input');
-    if(inp.value==='seven2026'){{sessionStorage.setItem(k,h);document.getElementById('auth-gate').style.display='none';document.getElementById('main-content').style.display='block'}}
-    else{{inp.classList.add('error');inp.value='';setTimeout(function(){{inp.classList.remove('error')}},400)}}
-  }});
-}})();
 </script>
 </body>
 </html>"""
