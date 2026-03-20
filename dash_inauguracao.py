@@ -5,7 +5,7 @@ Dashboards separados, funil por jornada do paciente, criativos com copy.
 
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 import requests
@@ -659,7 +659,7 @@ def _build_report_html(unit, p, now):
 
 
 def generate_html(slug, unit, p):
-    now = datetime.now().strftime("%d/%m/%Y %H:%M")
+    now = datetime.now(timezone(timedelta(hours=-3))).strftime("%d/%m/%Y %H:%M")
     s = p["summary"]
     b = p["balance"]
     funnel = p["funnel"]
