@@ -3,17 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seven Midas - Relatórios</title>
+<title>Seven Midas — Relatórios</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-body{font-family:'Montserrat',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;background:#F7F8FA;color:#184341;text-align:center}
-h1{font-size:24px;font-weight:800;margin-bottom:8px}
-p{color:#7a7a7a;font-size:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Montserrat',sans-serif;background:#F7F8FA;color:#184341;min-height:100vh}
+.topbar{background:#184341;display:flex;align-items:center;padding:0 32px;height:60px}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo svg{width:28px;height:28px}
+.logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.container{max-width:900px;margin:0 auto;padding:48px 24px}
+h1{font-size:28px;font-weight:800;margin-bottom:8px}
+.subtitle{color:#7a7a7a;font-size:14px;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:transform .15s,box-shadow .15s;text-decoration:none;color:inherit;display:block}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.card-badge{display:inline-block;font-size:11px;font-weight:700;color:#fff;padding:4px 12px;border-radius:20px;margin-bottom:14px}
+.card h2{font-size:18px;font-weight:700;margin-bottom:6px}
+.card p{font-size:13px;color:#7a7a7a;line-height:1.5}
+.card-arrow{margin-top:16px;font-size:13px;font-weight:600;color:#00A19A}
+.inaug{background:linear-gradient(135deg,#00A19A,#184341)}
 </style>
 </head>
 <body>
-<div>
-<h1>Seven Midas Marketing</h1>
-<p>Relatórios de performance. Em breve.</p>
+<div class="topbar">
+  <a class="logo" href="/">
+    <svg viewBox="0 0 40 40"><path d="M20 4L8 24h10l-2 12 14-20H20l2-12z" fill="#38bdf8"/></svg>
+    <span class="logo-text">seven</span>
+  </a>
+</div>
+<div class="container">
+  <h1>Relatórios de Performance</h1>
+  <p class="subtitle">Doutor DM2 — Dashboards atualizados automaticamente</p>
+  <div class="grid">
+    <a class="card" href="cuiaba/">
+      <span class="card-badge inaug">INAUGURAÇÃO</span>
+      <h2>Cuiabá — MT</h2>
+      <p>Dashboard de campanhas de inauguração. Funil completo, criativos e análise.</p>
+      <div class="card-arrow">Ver dashboard →</div>
+    </a>
+    <a class="card" href="parauapebas-inaug/">
+      <span class="card-badge inaug">INAUGURAÇÃO</span>
+      <h2>Parauapebas — PA</h2>
+      <p>Dashboard de campanhas de inauguração. Funil completo, criativos e análise.</p>
+      <div class="card-arrow">Ver dashboard →</div>
+    </a>
+  </div>
 </div>
 </body>
 </html>

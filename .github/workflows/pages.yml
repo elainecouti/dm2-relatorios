@@ -1,19 +1,54 @@
-name: Deploy to GitHub Pages
+name: Atualizar Dashboards
+
 on:
+  schedule:
+    - cron: '0 */3 * * *'
   push:
     branches: [main]
+  workflow_dispatch: {}
+
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
+
 jobs:
+  update:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install requests python-dotenv
+
+      - name: Gerar dashboards
+        env:
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+        run: python generate_all.py
+
+      - name: Commit e push
+        run: |
+          git config user.name "Seven Bot"
+          git config user.email "bot@seven.com"
+          git add cuiaba/ parauapebas-inaug/
+          git diff --staged --quiet || (git commit -m "Auto-update $(date -u '+%d/%m/%Y %H:%M UTC')" && git push)
+
   deploy:
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [update]
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
         with:
