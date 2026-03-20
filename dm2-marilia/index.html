@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seven · DM2 Marília</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-serif}
+
+.topbar{background:#184341;display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:60px;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo svg{width:28px;height:28px}
+.logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.topbar-right{display:flex;align-items:center;gap:12px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.topbar-label{font-size:12px;color:rgba(255,255,255,.6)}
+
+.container{max-width:1100px;margin:0 auto;padding:32px 24px}
+.hero h1{font-size:26px;font-weight:800;margin-bottom:4px}
+.hero .sub{font-size:14px;color:#7a7a7a;margin-bottom:24px}
+.hero .info{font-size:12px;color:#999;margin-bottom:24px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-bottom:32px}
+.kpi{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.kpi-v{display:block;font-size:18px;font-weight:800;color:#184341}
+.kpi-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+
+.section-header{font-size:16px;font-weight:700;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid #e8e8e8}
+
+.camp-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.camp-table th{background:#184341;color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+.camp-table td{padding:10px 12px;border-bottom:1px solid #f0f0f0}
+.camp-table tr:last-child td{border-bottom:none}
+.camp-table tr:hover td{background:#f8fafa}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
+.dot.active{background:#22c55e}
+.dot.paused{background:#d1d5db}
+.obj-tag{font-size:10px;font-weight:700;color:#fff;padding:2px 8px;border-radius:8px}
+
+.chart-container{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px}
+.chart-container canvas{max-height:280px}
+
+.creatives-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.ad-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ad-top{display:flex;gap:12px;align-items:flex-start}
+.ad-thumb{width:80px;height:80px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#eee}
+.ad-thumb-placeholder{width:80px;height:80px;border-radius:10px;background:#eee;flex-shrink:0}
+.ad-info{flex:1;min-width:0}
+.ad-name{font-size:12px;font-weight:700;margin-bottom:4px;word-break:break-word}
+.ad-meta{font-size:11px;color:#7a7a7a;margin-bottom:2px}
+.ad-cpl{font-size:11px;font-weight:700;color:#22c55e;margin-bottom:4px}
+.ad-link{display:inline-block;margin-top:4px;font-size:11px;font-weight:600;color:#00A19A;text-decoration:none;padding:3px 10px;border:1px solid #00A19A;border-radius:6px;transition:all .15s}
+.ad-link:hover{background:#00A19A;color:#fff}
+.ad-body{font-size:11px;color:#666;margin-top:10px;line-height:1.5;padding-top:10px;border-top:1px solid #f0f0f0}
+
+.balance-section{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px;max-width:400px}
+.bal-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.bal-row.highlight{font-weight:700;font-size:14px;margin-top:8px}
+.bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
+.bal-fill{height:100%;border-radius:4px;transition:width .5s}
+
+.footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
+
+.table-wrap{overflow-x:auto;margin-bottom:32px}
+
+@media(max-width:768px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .creatives-grid{grid-template-columns:1fr}
+    .camp-table{font-size:11px}
+    .camp-table th,.camp-table td{padding:8px 6px}
+    .ad-thumb{width:100%;height:160px;border-radius:8px}
+    .ad-top{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
+        <span class="logo-text">seven</span>
+    </div>
+    <div class="topbar-right">
+        <div class="live-dot"></div>
+        <span class="topbar-label">Atualizado 20/03/2026 17:09</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="hero">
+        <h1>DM2 Marília</h1>
+        <p class="sub">Doutor DM2 Diabetes · Dashboard de Performance Meta Ads</p>
+        <p class="info">46 campanhas (5 ativas) · Conta: CA01 - MARILIA</p>
+    </div>
+
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 104,176.93</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">592,440</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">116,923</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.47%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.89</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 13.11</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">6,906</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 15.08</span><span class="kpi-l">Custo/Conv</span></div></div>
+
+    
+        <div class="balance-section">
+            <div class="bal-row"><span>Limite da conta</span><span>R$ 105,274.99</span></div>
+            <div class="bal-row"><span>Gasto total</span><span>R$ 104,176.49</span></div>
+            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#22c55e">R$ 1,098.50</span></div>
+            <div class="bal-bar"><div class="bal-fill" style="width:99%;background:#22c55e"></div></div>
+        </div>
+
+    <h3 class="section-header">Últimos 7 dias</h3>
+    <div class="chart-container">
+        <canvas id="dailyChart"></canvas>
+    </div>
+
+    <h3 class="section-header">Campanhas</h3>
+    <div class="table-wrap">
+        <table class="camp-table">
+            <thead><tr>
+                <th>Campanha</th><th>Objetivo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>CTR</th><th>Conv</th><th>Custo/Conv</th>
+            </tr></thead>
+            <tbody><tr>
+            <td><span class="dot active"></span>28/07 [vendas] [wpp] [marilia] [44-65+] CBO</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 10945.67</td>
+            <td>168,627</td>
+            <td>12,418</td>
+            <td>1.32%</td>
+            <td><strong>589</strong></td>
+            <td>R$ 18.58</td>
+        </tr><tr>
+            <td><span class="dot active"></span>28/07 [vendas] [wpp] [marilia] [44-65+] CBO</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 10125.08</td>
+            <td>151,694</td>
+            <td>12,115</td>
+            <td>1.65%</td>
+            <td><strong>592</strong></td>
+            <td>R$ 17.10</td>
+        </tr><tr>
+            <td><span class="dot active"></span>28/07 [vendas] [wpp] [pompeia] [44-64] CBO 1-</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 10114.43</td>
+            <td>120,080</td>
+            <td>12,836</td>
+            <td>1.74%</td>
+            <td><strong>711</strong></td>
+            <td>R$ 14.23</td>
+        </tr><tr>
+            <td><span class="dot active"></span>28/07 [vendas] [wpp] [marilia][rmk-180D][40-6</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 10091.30</td>
+            <td>45,922</td>
+            <td>13,495</td>
+            <td>2.12%</td>
+            <td><strong>762</strong></td>
+            <td>R$ 13.24</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[MSG] [marilia]- VENDAS_06-10</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 7870.47</td>
+            <td>192,614</td>
+            <td>8,505</td>
+            <td>1.46%</td>
+            <td><strong>651</strong></td>
+            <td>R$ 12.09</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08/05 [vendas] [wpp] [marilia] [44-65+] CBO</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 5226.57</td>
+            <td>103,264</td>
+            <td>4,971</td>
+            <td>1.20%</td>
+            <td><strong>438</strong></td>
+            <td>R$ 11.93</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[VENDAS] - Marília &amp; GARÇA</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 4515.18</td>
+            <td>102,562</td>
+            <td>4,533</td>
+            <td>1.18%</td>
+            <td><strong>339</strong></td>
+            <td>R$ 13.32</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08/05 [vendas] [wpp] [marilia][rmk-180D][44-6</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 3458.00</td>
+            <td>22,023</td>
+            <td>4,496</td>
+            <td>1.84%</td>
+            <td><strong>282</strong></td>
+            <td>R$ 12.26</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>26/01 [engajamento] [wpp] [mix-cidades] [novo</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 3410.04</td>
+            <td>77,631</td>
+            <td>3,575</td>
+            <td>1.23%</td>
+            <td><strong>285</strong></td>
+            <td>R$ 11.97</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01 [captacao] [whatsapp] [marilia] [35-65] [a</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 3086.82</td>
+            <td>63,411</td>
+            <td>3,360</td>
+            <td>1.45%</td>
+            <td><strong>317</strong></td>
+            <td>R$ 9.74</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>05/06 [vendas] [whatsapp] [marilia] [45-65+] </td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 3046.31</td>
+            <td>59,678</td>
+            <td>2,979</td>
+            <td>1.21%</td>
+            <td><strong>245</strong></td>
+            <td>R$ 12.43</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08/05  - 🧊 [CAP] [ENGAJAMENTO] [WPP] [PUBLICO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 2253.95</td>
+            <td>49,984</td>
+            <td>2,975</td>
+            <td>1.42%</td>
+            <td><strong>160</strong></td>
+            <td>R$ 14.09</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>04/07 - 🔥 [RMK] [engajamento] [wpp] ABO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1886.64</td>
+            <td>5,126</td>
+            <td>1,556</td>
+            <td>2.15%</td>
+            <td><strong>57</strong></td>
+            <td>R$ 33.10</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>02 [captacao] [whatsapp] [marilia] [35-65] [a</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1881.04</td>
+            <td>51,491</td>
+            <td>2,119</td>
+            <td>1.26%</td>
+            <td><strong>162</strong></td>
+            <td>R$ 11.61</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>22/05 - 🔥 [RMK] - [engajamento] [wpp] [Marili</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1836.67</td>
+            <td>4,859</td>
+            <td>1,316</td>
+            <td>1.29%</td>
+            <td><strong>91</strong></td>
+            <td>R$ 20.18</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>14/06 [vendas] [wpp] [marilia] [44-65+] CBO</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1718.89</td>
+            <td>42,198</td>
+            <td>1,603</td>
+            <td>1.31%</td>
+            <td><strong>129</strong></td>
+            <td>R$ 13.32</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>04/07 [vendas] [whatsapp] [outras-cidades] [4</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1586.75</td>
+            <td>31,771</td>
+            <td>1,377</td>
+            <td>1.06%</td>
+            <td><strong>89</strong></td>
+            <td>R$ 17.83</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>28/04 [vendas] [wpp] [criativo-jose] [validad</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1528.71</td>
+            <td>21,107</td>
+            <td>1,109</td>
+            <td>1.41%</td>
+            <td><strong>40</strong></td>
+            <td>R$ 38.22</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>14/06 [captacao] [whatsapp] [marilia] [35-65]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1346.44</td>
+            <td>34,256</td>
+            <td>1,172</td>
+            <td>1.39%</td>
+            <td><strong>62</strong></td>
+            <td>R$ 21.72</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>24/05💲🙍🏻‍♂[venda] [homem] [wpp] [marilia] [fb</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1335.69</td>
+            <td>29,145</td>
+            <td>1,165</td>
+            <td>1.12%</td>
+            <td><strong>82</strong></td>
+            <td>R$ 16.29</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>03 [captacao] [whatsapp] [marilia] [35-65] [q</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1263.04</td>
+            <td>20,853</td>
+            <td>1,099</td>
+            <td>1.15%</td>
+            <td><strong>85</strong></td>
+            <td>R$ 14.86</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>27/06 [vendas] [wpp] [pompeia] [44-64] CBO 1-</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1249.44</td>
+            <td>28,094</td>
+            <td>1,454</td>
+            <td>1.42%</td>
+            <td><strong>64</strong></td>
+            <td>R$ 19.52</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>15/01 [Vendas] [Criativos Novos] [Wpp] ABO 1-</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1220.43</td>
+            <td>43,066</td>
+            <td>1,099</td>
+            <td>1.10%</td>
+            <td><strong>97</strong></td>
+            <td>R$ 12.58</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>06-10_[MSG]__Vídeos_Teste</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1209.26</td>
+            <td>29,756</td>
+            <td>974</td>
+            <td>1.40%</td>
+            <td><strong>67</strong></td>
+            <td>R$ 18.05</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>24/04 marilia_fundo_vendas_wpp_2404_protocolo</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1140.36</td>
+            <td>20,191</td>
+            <td>661</td>
+            <td>1.04%</td>
+            <td><strong>30</strong></td>
+            <td>R$ 38.01</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>26/01 [trafego] [wpp] [rmk180D] [criativos-no</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 1127.50</td>
+            <td>16,513</td>
+            <td>1,442</td>
+            <td>1.94%</td>
+            <td><strong>52</strong></td>
+            <td>R$ 21.68</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>28/10 [TOFU] [trafego-perfil] [marilia-km] [4</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 1108.10</td>
+            <td>22,448</td>
+            <td>2,886</td>
+            <td>3.59%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 1108.10</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01/06 - [vendas] [wpp] [44-65] [teste-criativ</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 914.75</td>
+            <td>33,441</td>
+            <td>623</td>
+            <td>1.14%</td>
+            <td><strong>44</strong></td>
+            <td>R$ 20.79</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>05/04 [vendas] [wpp] Criativos Validados - 5k</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 891.84</td>
+            <td>37,170</td>
+            <td>474</td>
+            <td>0.78%</td>
+            <td><strong>37</strong></td>
+            <td>R$ 24.10</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>05/04 [vendas] [wpp] Teste Criativos / Copy -</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 888.62</td>
+            <td>17,281</td>
+            <td>394</td>
+            <td>1.11%</td>
+            <td><strong>31</strong></td>
+            <td>R$ 28.67</td>
+        </tr><tr>
+            <td><span class="dot active"></span>10/01 [vendas] [wpp] [40+] [ourinhos] teste 1</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 872.05</td>
+            <td>28,904</td>
+            <td>1,677</td>
+            <td>2.02%</td>
+            <td><strong>107</strong></td>
+            <td>R$ 8.15</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>26/01 [vendas] [wi-fi] [wpp] [estatico-novo] </td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 822.92</td>
+            <td>33,141</td>
+            <td>836</td>
+            <td>1.23%</td>
+            <td><strong>79</strong></td>
+            <td>R$ 10.42</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>05/04 [engajamento] [wpp] [marilia] [40+] [ab</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 688.63</td>
+            <td>20,330</td>
+            <td>462</td>
+            <td>1.41%</td>
+            <td><strong>34</strong></td>
+            <td>R$ 20.25</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>24/04 marilia_meio_leads_lp_conversao_sintoma</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 662.22</td>
+            <td>11,310</td>
+            <td>964</td>
+            <td>2.78%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 331.11</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>19/03 [engajamento] [wpp] [marilia40km] [45+]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 588.84</td>
+            <td>11,791</td>
+            <td>433</td>
+            <td>1.76%</td>
+            <td><strong>38</strong></td>
+            <td>R$ 15.50</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>19/03 [engajamento] [wpp] [marilia] [45+] [ab</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 420.01</td>
+            <td>13,795</td>
+            <td>425</td>
+            <td>1.45%</td>
+            <td><strong>23</strong></td>
+            <td>R$ 18.26</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>26/01 [reconhecimento] [rmk-180D] [marilia] C</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 417.03</td>
+            <td>13,654</td>
+            <td>963</td>
+            <td>0.40%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01/06 - [engajamento] [wpp] [rmk] [44-65] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 325.07</td>
+            <td>6,995</td>
+            <td>446</td>
+            <td>3.58%</td>
+            <td><strong>8</strong></td>
+            <td>R$ 40.63</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>09/03 [trafego] [rmk90D] [criativos-novos] CB</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 253.56</td>
+            <td>3,397</td>
+            <td>257</td>
+            <td>1.97%</td>
+            <td><strong>6</strong></td>
+            <td>R$ 42.26</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[RMKT] - Depoimento_SR-JOSÉ</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 205.61</td>
+            <td>3,150</td>
+            <td>368</td>
+            <td>3.64%</td>
+            <td><strong>15</strong></td>
+            <td>R$ 13.71</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>31/03 [vendas] Diabetes - Teste de Copys / Cr</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 165.77</td>
+            <td>8,260</td>
+            <td>173</td>
+            <td>1.31%</td>
+            <td><strong>3</strong></td>
+            <td>R$ 55.26</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>20/03 - 🔥 [engajamento] [marilia] [aberto] [f</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 119.58</td>
+            <td>19,094</td>
+            <td>252</td>
+            <td>0.72%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>20/03 - 🔥 [engajamento] [marilia] [aberto] [f</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 119.38</td>
+            <td>15,177</td>
+            <td>327</td>
+            <td>1.05%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>20/03 - 🔥 [engajamento] [marilia] [aberto] [f</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 119.33</td>
+            <td>19,055</td>
+            <td>282</td>
+            <td>0.95%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>20/03 - 🔥 [engajamento] [marilia] [aberto] [f</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 118.94</td>
+            <td>21,756</td>
+            <td>277</td>
+            <td>0.85%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr></tbody>
+        </table>
+    </div>
+
+    <h3 class="section-header">Top Criativos</h3>
+    <div class="creatives-grid">
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-1.xx.fbcdn.net/v/t15.13418-10/506270153_1760759201219985_1395267473215875249_n.jpg?_nc_cat=103&ccb=1-7&_nc_eui2=AeF1qdUbuPNBdbOGYOd5qE8C0c1WmerIUXjRzVaZ6shReNAdfWBwMW6ZF3WPHPtZbymbVuV1eC7IeZIVpaqC2xog&_nc_ohc=NDZiXYJhLq8Q7kNvwEswZvE&_nc_oc=AdoO71P_hYD4xLL9H7CR_78wDyQhLCMXAxpeDDAYhJR4R60ueB-7vdOoZ5MpFOpKaPY&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=dbBUp2Lq_Y1PwhQXIEZMeQ&_nc_tpa=Q5bMBQGTHLV2OXgbiBr5UpV-4z8GVdMaOOHb0WP-KwPozqmz-mAyV6hj0B0HRXvmxvffpqhN444oBMOPIg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfyHx0rdywO1SO2QfDQqoWVM8sTQBNiVG3fgSA1nr584_g&oe=69C37C2C&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads marilia</div>
+                    <div class="ad-meta">R$ 4480.14 · 5656 cliques · 336 conv · CTR 1.75%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 13.33</div>
+                    <a class="ad-link" href="https://fb.me/2dF5BCubvEgYp9V" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">📍 MARÍLIA | Remissão em 90 dias é possível<br><br>Chegou em Marília o método que tem transformado a vida de pessoas com diabet</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLgXb_-EBjq5o8S0or0z_9TuX8IubT-3PlVj54a0gN3-dXLNZx_UJQtxjPKPvz2sf5mAgeHReI8t-BUkh13mFlaOf0ylDAWMQx-2CHnevqQ-XthC740Qk63kOYD9dYvIgtzP4lgJUZ3QFZX8jPfrOHJ" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads video novo rodoviaria</div>
+                    <div class="ad-meta">R$ 4256.11 · 4479 cliques · 258 conv · CTR 1.08%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 16.50</div>
+                    <a class="ad-link" href="https://fb.me/281HKy5TChXd8ga" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">⚠️🔔 Mesmo com medicação, você não consegue controlar sua glicemia? <br><br>Agende uma consulta com a Doutor DM2 Diabetes Maril</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/524743586_1281178463796247_3195359974047562986_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeHmyjGAdbHKLAjbu7GdgYbj46gTwJXY96_jqBPAldj3r-q90W1iJhJDENw7h80equ6DC2ym4eddAlPZQlObbTKQ&_nc_ohc=cjT7--maQJIQ7kNvwFX4eiE&_nc_oc=Ado4k5xG_ddg2kkyEDLSQzA1zARufdOchcTiG8HgaOFMi5psfy8rY215F2EJjSDkjuU&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=dbBUp2Lq_Y1PwhQXIEZMeQ&_nc_tpa=Q5bMBQEAxdj0ZoNHlnJh1JLNVsIG1k2mOA6Anx1EMzNH3EvlUyIb3u0w51BinG-RvHc_KDUVHU5WONmTag&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afw8ZP7xjXo1Hj01xXDAK-ZpEagOHBHjh3KN3MJw58MXzw&oe=69C36858&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads gilvan</div>
+                    <div class="ad-meta">R$ 4187.67 · 5408 cliques · 338 conv · CTR 2.17%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 12.39</div>
+                    <a class="ad-link" href="https://fb.me/1Z9V1I4FUu2eVlk" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Hoje eu me sinto realizado. Consegui alcançar a remissão da diabetes tipo 2.”<br>Essa foi a frase do Gilvan — e também o ma</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/469301193_918284026927752_2149677377906929819_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeGvuamc7uAAD8DHf7RVFEusgSbxdEBPqu2BJvF0QE-q7b-qAKY6QUbdPmHRWx0_C7G7Qddof9fqCN-Fsp9a3-_L&_nc_ohc=C4V8tVF0inoQ7kNvwGnweXd&_nc_oc=AdoqIMbS-eQSxbNzZoTQAgAn4FTqbjOKrbbOacqbNh7uBDL-NCRiVY4sSTX1lNIMKLw&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=dbBUp2Lq_Y1PwhQXIEZMeQ&_nc_tpa=Q5bMBQEkZHGtoIZbKHI5J5CPBP2lACUjMb_n753jWDX9Q16g4cJHkfHOUeaF06Azc9lGFwZo5xIOeO04FQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=d2b52d&_nc_sid=58080a&oh=00_Afy1fxnVNwXIHMK-44iAwIKIfqpIE42Owb1hOIpi9r4naQ&oe=69C36299&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads marilia</div>
+                    <div class="ad-meta">R$ 3836.45 · 3340 cliques · 330 conv · CTR 1.08%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 11.63</div>
+                    <a class="ad-link" href="https://fb.me/2dXkc0GwF1DpHqP" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Você é de Marília e luta contra a Diabetes? 🤔<br><br>A Doutor DM2 Diabetes é referência máxima no combate da Diabetes tipo II,</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIyKQdnPjLG4MFQSIG18YbxUvu3SreKICUvzbPPKlxFemIoIoLPLSqCBn-nOjHkCJDEdY6a6jn0Aj7U7PKk3uKszE6z8110y1-X5_3II_tz9Be0MwFvwhFEJRXe0QlvkhgeHhyrTIhyCOOq-qsDBFwe" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">DM2 ñ tem cura - Mentira</div>
+                    <div class="ad-meta">R$ 3464.80 · 4353 cliques · 350 conv · CTR 1.58%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 9.90</div>
+                    <a class="ad-link" href="https://fb.me/299pR6s4KCoWgXT" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Diabetes Tipo 2 não tem cura? 😱 Isso é o que querem que você acredite... mas a verdade é outra!<br><br>Imagine uma vida livre </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-1.xx.fbcdn.net/v/t15.13418-10/506270153_1760759201219985_1395267473215875249_n.jpg?_nc_cat=103&ccb=1-7&_nc_eui2=AeF1qdUbuPNBdbOGYOd5qE8C0c1WmerIUXjRzVaZ6shReNAdfWBwMW6ZF3WPHPtZbymbVuV1eC7IeZIVpaqC2xog&_nc_ohc=NDZiXYJhLq8Q7kNvwEswZvE&_nc_oc=AdoO71P_hYD4xLL9H7CR_78wDyQhLCMXAxpeDDAYhJR4R60ueB-7vdOoZ5MpFOpKaPY&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=dbBUp2Lq_Y1PwhQXIEZMeQ&_nc_tpa=Q5bMBQEDJh2iZaOAojYnPKLvyWl3d3weJW3o8k6CDZ5U3i84ARmM0wvj1gl3Ag_zhOXpSh59ILovJoCn1A&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_Afyl5GQHOpOV3c5Fq_tgOWwug305m1q8o5GAX0YUImVCKg&oe=69C37C2C&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads marilia</div>
+                    <div class="ad-meta">R$ 3390.47 · 4805 cliques · 308 conv · CTR 1.94%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 11.01</div>
+                    <a class="ad-link" href="https://fb.me/1QlkkMmwclJr4rL" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">📍 MARÍLIA | Remissão em 90 dias é possível<br><br>Chegou em Marília o método que tem transformado a vida de pessoas com diabet</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-2.xx.fbcdn.net/v/t15.13418-10/446042745_720659863405778_601900237586734996_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeFkn8M9smlOaCiKAVodFLelLhFLppSIxx8uEUumlIjHHwCjNpklFnh401kPyPskFyCRCL_M1-aN02nritbpdx5T&_nc_ohc=Vsv8AAM7dDwQ7kNvwH3WGzn&_nc_oc=Ado8x00s6Kgya7ja0O_jvYPfEmcsr77tVMFwNe9PFf4XYN0AB69L0z4S_jVIh-Ficsw&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=MCHPiTrGhhNHy-YXS5sxpA&_nc_tpa=Q5bMBQF_uB2BdRTtQQbYDLXwjlRqUtyWXumMYFk-88BqDrrfze97lhDq1LgZY4ydGS7e2jdkJBjMgIF4lg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfzdueNRhOdNbs6F_oCuOx0TDkgkMvwpHjF_EDfDhn9CXw&oe=69C3976A&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads se vc tem dm2</div>
+                    <div class="ad-meta">R$ 2351.60 · 2329 cliques · 196 conv · CTR 1.20%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 12.00</div>
+                    <a class="ad-link" href="https://fb.me/23pCuCMg4THrGQa" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Marília e região 🚨<br>Sofre com a Diabetes tipo II e quer conhecer um tratamento alternativo? <br><br>A Doutor DM2 chegou com uma</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQK8zwg5zlichKR6kWCqX18tDhWWDkf4xfUgsgUKC8qR5-WKh-c6svTh0ykUUgdmBzJ1O8cdlFIHeFvBzZYpfE7qNWfd57Fvzkv7Xoe33QqCrLmjdQhoarQ37HzjhqKmhSbqrWeaRgAWIBSzH9TX_w4U" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads marilia — Cópia</div>
+                    <div class="ad-meta">R$ 2217.74 · 1882 cliques · 115 conv · CTR 1.38%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 19.28</div>
+                    <a class="ad-link" href="https://fb.me/28aaTiLvuGhXNrd" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">📍 MARÍLIA | Remissão em 90 dias é possível<br><br>Chegou em Marília o método que tem transformado a vida de pessoas com diabet</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://external-atl3-1.xx.fbcdn.net/emg1/v/t13/16305640031917556553?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJuRyvq2X2GMQHu_0-HGx-JdDgfeHaOGhAsA3OOR1v7QFkBOohLpuTFTnFXF1SC97yA3MK9BWxxC4C2TSHNHb_4pIDZvH4oYENhanBdTjYtIQx7EwQjOKPp2D34a5F4IWwpJ3mT2qIjY-MMNqpvmoav&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=dbBUp2Lq_Y1PwhQXIEZMeQ&_nc_eui2=AeGMAub_MJLVFNTMJcicX8KOFl6mSd6zZtYWXqZJ3rNm1lJ9oP9uwo-lkGyKvkDEnjxBQsAMLvT13J-9k32O7t-Y&_nc_oc=AdoU1yuemroZPf5RBxoiSEk851XSXVlYvMGv7Gtgc-cmKgR8F8XCN7C-_i8WnCcrsas&ccb=13-1&oh=06_Q3-9AWMC2PrQcOE64WMpiFj8ycV3rOJgljRripTLbtF-sUQc&oe=69BF9634&_nc_sid=58080a&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads noticia</div>
+                    <div class="ad-meta">R$ 2005.34 · 1880 cliques · 141 conv · CTR 1.40%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 14.22</div>
+                    <a class="ad-link" href="https://fb.me/xZAEwyYh6kEmr83" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Marília e região 🚨<br>Sofre com a Diabetes tipo II e quer conhecer um tratamento alternativo? A Doutor DM2 chegou com uma s</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLXehC0QLDz6puOUKVFaKz6J98qRmrhoG_bgYCcAXmvCyHm62Uet1YUh2gN8kS2O41UdYDPJYZsjch777SQM0feh8Cot5Jr2wmwKm496PSAa6_pTHOBTwBhmZZ3aGymNOLbwvlmFCtijwXOvHRZf3EV" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads voce tem dm2</div>
+                    <div class="ad-meta">R$ 1975.78 · 1896 cliques · 208 conv · CTR 1.39%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 9.50</div>
+                    <a class="ad-link" href="https://fb.me/1SX12nUg8G93bd0" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">⚠️🔔 Mesmo com medicação, você não consegue controlar sua glicemia? <br><br>Agende uma consulta com a Doutor DM2 Diabetes Maril</div>
+        </div></div>
+
+    <div class="footer">
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 17:09</div>
+    </div>
+</div>
+
+<script>
+new Chart(document.getElementById('dailyChart'),{
+    type:'bar',
+    data:{
+        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
+        datasets:[
+            {label:'Gasto (R$)',data:[111.54, 162.71, 116.62, 228.79, 191.76, 154.33, 137.42],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[146, 183, 125, 221, 215, 196, 185],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[6, 11, 11, 15, 16, 7, 17],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+        ]
+    },
+    options:{
+        responsive:true,
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{position:'bottom',labels:{font:{family:'Montserrat',size:11}}}},
+        scales:{
+            y:{beginAtZero:true,grid:{color:'#f0f0f0'},ticks:{font:{family:'Montserrat',size:11},callback:v=>'R$ '+v}},
+            y1:{position:'right',beginAtZero:true,grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}},
+            x:{grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}}
+        }
+    }
+});
+</script>
+
+</body>
+</html>

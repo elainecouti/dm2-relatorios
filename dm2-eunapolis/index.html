@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seven · DM2 Eunápolis</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-serif}
+
+.topbar{background:#184341;display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:60px;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo svg{width:28px;height:28px}
+.logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.topbar-right{display:flex;align-items:center;gap:12px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.topbar-label{font-size:12px;color:rgba(255,255,255,.6)}
+
+.container{max-width:1100px;margin:0 auto;padding:32px 24px}
+.hero h1{font-size:26px;font-weight:800;margin-bottom:4px}
+.hero .sub{font-size:14px;color:#7a7a7a;margin-bottom:24px}
+.hero .info{font-size:12px;color:#999;margin-bottom:24px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-bottom:32px}
+.kpi{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.kpi-v{display:block;font-size:18px;font-weight:800;color:#184341}
+.kpi-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+
+.section-header{font-size:16px;font-weight:700;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid #e8e8e8}
+
+.camp-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.camp-table th{background:#184341;color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+.camp-table td{padding:10px 12px;border-bottom:1px solid #f0f0f0}
+.camp-table tr:last-child td{border-bottom:none}
+.camp-table tr:hover td{background:#f8fafa}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
+.dot.active{background:#22c55e}
+.dot.paused{background:#d1d5db}
+.obj-tag{font-size:10px;font-weight:700;color:#fff;padding:2px 8px;border-radius:8px}
+
+.chart-container{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px}
+.chart-container canvas{max-height:280px}
+
+.creatives-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.ad-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ad-top{display:flex;gap:12px;align-items:flex-start}
+.ad-thumb{width:80px;height:80px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#eee}
+.ad-thumb-placeholder{width:80px;height:80px;border-radius:10px;background:#eee;flex-shrink:0}
+.ad-info{flex:1;min-width:0}
+.ad-name{font-size:12px;font-weight:700;margin-bottom:4px;word-break:break-word}
+.ad-meta{font-size:11px;color:#7a7a7a;margin-bottom:2px}
+.ad-cpl{font-size:11px;font-weight:700;color:#22c55e;margin-bottom:4px}
+.ad-link{display:inline-block;margin-top:4px;font-size:11px;font-weight:600;color:#00A19A;text-decoration:none;padding:3px 10px;border:1px solid #00A19A;border-radius:6px;transition:all .15s}
+.ad-link:hover{background:#00A19A;color:#fff}
+.ad-body{font-size:11px;color:#666;margin-top:10px;line-height:1.5;padding-top:10px;border-top:1px solid #f0f0f0}
+
+.balance-section{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px;max-width:400px}
+.bal-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.bal-row.highlight{font-weight:700;font-size:14px;margin-top:8px}
+.bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
+.bal-fill{height:100%;border-radius:4px;transition:width .5s}
+
+.footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
+
+.table-wrap{overflow-x:auto;margin-bottom:32px}
+
+@media(max-width:768px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .creatives-grid{grid-template-columns:1fr}
+    .camp-table{font-size:11px}
+    .camp-table th,.camp-table td{padding:8px 6px}
+    .ad-thumb{width:100%;height:160px;border-radius:8px}
+    .ad-top{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
+        <span class="logo-text">seven</span>
+    </div>
+    <div class="topbar-right">
+        <div class="live-dot"></div>
+        <span class="topbar-label">Atualizado 20/03/2026 17:07</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="hero">
+        <h1>DM2 Eunápolis</h1>
+        <p class="sub">Doutor DM2 Diabetes · Dashboard de Performance Meta Ads</p>
+        <p class="info">52 campanhas (3 ativas) · Conta: CA - DM2 EUNÁPOLIS</p>
+    </div>
+
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 108,462.33</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">753,141</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">100,740</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.27%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 1.08</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 13.63</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">8,243</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 13.16</span><span class="kpi-l">Custo/Conv</span></div></div>
+
+    
+        <div class="balance-section">
+            <div class="bal-row"><span>Limite da conta</span><span>R$ 108,457.14</span></div>
+            <div class="bal-row"><span>Gasto total</span><span>R$ 108,441.28</span></div>
+            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#ef4444">R$ 15.86</span></div>
+            <div class="bal-bar"><div class="bal-fill" style="width:100%;background:#ef4444"></div></div>
+        </div>
+
+    <h3 class="section-header">Últimos 7 dias</h3>
+    <div class="chart-container">
+        <canvas id="dailyChart"></canvas>
+    </div>
+
+    <h3 class="section-header">Campanhas</h3>
+    <div class="table-wrap">
+        <table class="camp-table">
+            <thead><tr>
+                <th>Campanha</th><th>Objetivo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>CTR</th><th>Conv</th><th>Custo/Conv</th>
+            </tr></thead>
+            <tbody><tr>
+            <td><span class="dot paused"></span>09/02 [engajamento] [wpp] [mix-cidades] [cria</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 24225.76</td>
+            <td>235,656</td>
+            <td>18,451</td>
+            <td>1.10%</td>
+            <td><strong>1714</strong></td>
+            <td>R$ 14.13</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>10 - [CAP] [HOSPITAIS E CLINICAS</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 7860.20</td>
+            <td>146,359</td>
+            <td>8,966</td>
+            <td>1.35%</td>
+            <td><strong>1099</strong></td>
+            <td>R$ 7.15</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>24/10 [vendas] [mix-cidades] [45+] ABO - test</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 6658.21</td>
+            <td>74,162</td>
+            <td>6,763</td>
+            <td>2.15%</td>
+            <td><strong>378</strong></td>
+            <td>R$ 17.61</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>12/09 [engajamento] [rmk90d] [eunapolis] [40+</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 6608.56</td>
+            <td>28,217</td>
+            <td>5,367</td>
+            <td>1.47%</td>
+            <td><strong>371</strong></td>
+            <td>R$ 17.81</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>21/08 - [Vendas] [Wpp] [Aberto] [Eunápolis] C</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 5840.92</td>
+            <td>109,735</td>
+            <td>5,366</td>
+            <td>1.15%</td>
+            <td><strong>387</strong></td>
+            <td>R$ 15.09</td>
+        </tr><tr>
+            <td><span class="dot active"></span>19/01 [vendas] [eunapolis 40km] [30+] [LL% ag</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 4778.42</td>
+            <td>100,436</td>
+            <td>4,777</td>
+            <td>1.26%</td>
+            <td><strong>467</strong></td>
+            <td>R$ 10.23</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[CAMP][REGIÃO][CAP]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 4078.06</td>
+            <td>75,233</td>
+            <td>4,477</td>
+            <td>1.19%</td>
+            <td><strong>313</strong></td>
+            <td>R$ 13.03</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>17/11 [engajamento] [wpp] [itabela] [aberto] </td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 3682.84</td>
+            <td>95,411</td>
+            <td>3,050</td>
+            <td>1.12%</td>
+            <td><strong>343</strong></td>
+            <td>R$ 10.74</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>14/06 [vendas] [wpp] [eunapolis] [aberto 45+]</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 3552.45</td>
+            <td>53,313</td>
+            <td>2,906</td>
+            <td>1.16%</td>
+            <td><strong>190</strong></td>
+            <td>R$ 18.70</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01/02 [engajamento] [região-eunapolis] [wpp] </td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 3539.23</td>
+            <td>30,547</td>
+            <td>3,073</td>
+            <td>1.62%</td>
+            <td><strong>266</strong></td>
+            <td>R$ 13.31</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>09/03 [engajamento] [wpp] [eunapolis17km] [rm</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 3462.84</td>
+            <td>33,842</td>
+            <td>3,132</td>
+            <td>2.06%</td>
+            <td><strong>162</strong></td>
+            <td>R$ 21.38</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>09/12 [engajamento] [wpp] [eunapolis] [aberto</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 3422.86</td>
+            <td>59,181</td>
+            <td>2,541</td>
+            <td>0.99%</td>
+            <td><strong>164</strong></td>
+            <td>R$ 20.87</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01/06 - [vendas] [wpp] [44-65] [teste-criativ</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 3356.63</td>
+            <td>43,886</td>
+            <td>2,086</td>
+            <td>1.14%</td>
+            <td><strong>165</strong></td>
+            <td>R$ 20.34</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>10 - [CAP] [HOSPITAIS E CLINICAS — Cópia</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 2804.34</td>
+            <td>83,928</td>
+            <td>2,526</td>
+            <td>1.29%</td>
+            <td><strong>317</strong></td>
+            <td>R$ 8.85</td>
+        </tr><tr>
+            <td><span class="dot active"></span>06/02 [engajamento] [rmk90d] [eunapolis] [40+</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 2573.43</td>
+            <td>18,051</td>
+            <td>2,795</td>
+            <td>2.04%</td>
+            <td><strong>244</strong></td>
+            <td>R$ 10.55</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01/06 -  [engajamento] [wpp] [rmk] [44-65] CB</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 2553.33</td>
+            <td>11,099</td>
+            <td>2,727</td>
+            <td>2.33%</td>
+            <td><strong>137</strong></td>
+            <td>R$ 18.64</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>09/12 [engajamento] [wpp] [rmk] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 2425.60</td>
+            <td>36,985</td>
+            <td>1,990</td>
+            <td>0.89%</td>
+            <td><strong>157</strong></td>
+            <td>R$ 15.45</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>12 -  [captação] [vendas][faseII] [mix public</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 2155.33</td>
+            <td>48,032</td>
+            <td>2,241</td>
+            <td>1.04%</td>
+            <td><strong>234</strong></td>
+            <td>R$ 9.21</td>
+        </tr><tr>
+            <td><span class="dot active"></span>11/12 [trafego-perfil] [eunapolis] [objecoes-</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 2148.11</td>
+            <td>15,855</td>
+            <td>2,072</td>
+            <td>1.81%</td>
+            <td><strong>172</strong></td>
+            <td>R$ 12.49</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>09 -  [captação] [engajamento][faseII] [bairr</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1841.05</td>
+            <td>44,188</td>
+            <td>1,928</td>
+            <td>1.13%</td>
+            <td><strong>181</strong></td>
+            <td>R$ 10.17</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>20/07 [vendas] [wpp] [rmk-14 dias] [teste-cri</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1766.51</td>
+            <td>7,167</td>
+            <td>1,357</td>
+            <td>1.99%</td>
+            <td><strong>55</strong></td>
+            <td>R$ 32.12</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>16/08 [vendas] [wpp] [rmk-365 dias] [teste-cr</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1146.88</td>
+            <td>13,389</td>
+            <td>946</td>
+            <td>1.40%</td>
+            <td><strong>43</strong></td>
+            <td>R$ 26.67</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01/02 [engajamento] [wpp] [eunapolis] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1084.44</td>
+            <td>29,035</td>
+            <td>976</td>
+            <td>1.29%</td>
+            <td><strong>88</strong></td>
+            <td>R$ 12.32</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[CAMP][REG][NOVO][AGOSTO]</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 747.24</td>
+            <td>25,091</td>
+            <td>2,193</td>
+            <td>3.67%</td>
+            <td><strong>19</strong></td>
+            <td>R$ 39.33</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>06 -  [captação] [engajamento][faseII] [mix-p</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 710.50</td>
+            <td>22,972</td>
+            <td>903</td>
+            <td>1.25%</td>
+            <td><strong>121</strong></td>
+            <td>R$ 5.87</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>17/11 [engajamento] [wpp] [rmk] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 659.20</td>
+            <td>17,325</td>
+            <td>613</td>
+            <td>1.31%</td>
+            <td><strong>79</strong></td>
+            <td>R$ 8.34</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08 -  [captação] [engajamento][faseII] [mix-p</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 640.85</td>
+            <td>23,362</td>
+            <td>702</td>
+            <td>1.16%</td>
+            <td><strong>87</strong></td>
+            <td>R$ 7.37</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01/02 [engajamento] [wpp] [porto-seguro] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 364.37</td>
+            <td>12,864</td>
+            <td>322</td>
+            <td>1.34%</td>
+            <td><strong>34</strong></td>
+            <td>R$ 10.72</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01/02 [engajamento] [wpp] [vitoria-da-conquis</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 362.33</td>
+            <td>9,000</td>
+            <td>316</td>
+            <td>1.57%</td>
+            <td><strong>39</strong></td>
+            <td>R$ 9.29</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>23/08 [trafego-perfil] [eunapolis] CBO</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 345.38</td>
+            <td>10,836</td>
+            <td>828</td>
+            <td>3.17%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>07 -  [captação] [vendas][faseII] [mix-public</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 343.87</td>
+            <td>16,436</td>
+            <td>344</td>
+            <td>1.18%</td>
+            <td><strong>44</strong></td>
+            <td>R$ 7.82</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>05 -  [captação] [engajamento][faseII] [mix-p</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 312.11</td>
+            <td>11,449</td>
+            <td>442</td>
+            <td>1.79%</td>
+            <td><strong>53</strong></td>
+            <td>R$ 5.89</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01- [aquecimento][faseI][eunapolis][engajamen</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 254.10</td>
+            <td>22,464</td>
+            <td>566</td>
+            <td>0.77%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01 - [CAP] [ABO] [WHATSAPP]</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 249.69</td>
+            <td>8,116</td>
+            <td>313</td>
+            <td>1.57%</td>
+            <td><strong>4</strong></td>
+            <td>R$ 62.42</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Nova campanha de Engajamento</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 235.78</td>
+            <td>14,483</td>
+            <td>980</td>
+            <td>3.55%</td>
+            <td><strong>34</strong></td>
+            <td>R$ 6.93</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Nova campanha de Reconhecimento</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 215.01</td>
+            <td>116,862</td>
+            <td>137</td>
+            <td>0.09%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>09/03 [trafego] [perfil ] [rmk90D] [eunapolis</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 180.94</td>
+            <td>866</td>
+            <td>45</td>
+            <td>1.53%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 90.47</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[CAMP]REGIÃO][SJ]</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 165.13</td>
+            <td>104,365</td>
+            <td>138</td>
+            <td>0.12%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>10 -  [captação] [engajamento][faseII] [segme</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 157.94</td>
+            <td>10,388</td>
+            <td>206</td>
+            <td>1.25%</td>
+            <td><strong>16</strong></td>
+            <td>R$ 9.87</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>02 - [alcance][faseI][cidade][Thuplay]</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 141.07</td>
+            <td>6,695</td>
+            <td>97</td>
+            <td>0.77%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[CAMP]RECONHECIMENTO[REGIÃO][SJ]</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 127.56</td>
+            <td>72,523</td>
+            <td>75</td>
+            <td>0.10%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 127.56</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>11/12 [alcance] [rmk] [familia] [90D] ABO</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 115.22</td>
+            <td>10,077</td>
+            <td>175</td>
+            <td>1.10%</td>
+            <td><strong>4</strong></td>
+            <td>R$ 28.80</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>11 -  [captação] [vendas][faseII] [outras cid</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 114.07</td>
+            <td>5,400</td>
+            <td>185</td>
+            <td>1.85%</td>
+            <td><strong>33</strong></td>
+            <td>R$ 3.46</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[ABERTO][VENDAS][REGIONAL]</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 102.91</td>
+            <td>5,831</td>
+            <td>136</td>
+            <td>1.46%</td>
+            <td><strong>13</strong></td>
+            <td>R$ 7.92</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Nova campanha de Reconhecimento</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 86.92</td>
+            <td>47,698</td>
+            <td>108</td>
+            <td>0.21%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 86.92</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>14/03 - [engajamento] [wpp] [eunápolis] [carn</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 74.81</td>
+            <td>3,913</td>
+            <td>73</td>
+            <td>1.15%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 37.41</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Nova campanha de Reconhecimento</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 55.60</td>
+            <td>42,000</td>
+            <td>76</td>
+            <td>0.18%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>03- [aquecimento][faseI][outras-cidade][engaj</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 43.47</td>
+            <td>5,926</td>
+            <td>117</td>
+            <td>1.06%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Nova campanha de Reconhecimento</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 40.07</td>
+            <td>27,545</td>
+            <td>34</td>
+            <td>0.12%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 40.07</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>04 -  [captação] [engajamento][faseII] [outra</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 37.10</td>
+            <td>1,679</td>
+            <td>77</td>
+            <td>2.98%</td>
+            <td><strong>9</strong></td>
+            <td>R$ 4.12</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>13/11 [trafego-perfil] [blitz-dm2] [porto-seg</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 13.09</td>
+            <td>1,079</td>
+            <td>26</td>
+            <td>2.21%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr></tbody>
+        </table>
+    </div>
+
+    <h3 class="section-header">Top Criativos</h3>
+    <div class="creatives-grid">
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-1.xx.fbcdn.net/v/t15.13418-10/421273007_1036118877498304_3327682891493433811_n.jpg?_nc_cat=103&ccb=1-7&_nc_eui2=AeHc3orNLGrN96Hu038yw8JtJ2LMXGK5VNUnYsxcYrlU1X2pBUdgZuoYrqxf1k9M7TGWll9UnXVgeD_qYs4Jci7g&_nc_ohc=R5enBh5FQEQQ7kNvwGVa-Ul&_nc_oc=Ado7CIeaN6wDGpqTVPi1bkDd0cGPDsSlWqQBFP0ijUfMKagv5M81cwssYM9R5cUgUgs&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=kZmBWnNO7dDmNUBdHynkcQ&_nc_tpa=Q5bMBQGA_lQr0Z2sXohfNE9ON7JAQh0CT2LT7fx-Y3dAWGpn_pjFSdpBiHI2LNfdtcN-REzukzPNfNbFEA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfynSz_rlsXjyQclIZ_iIXURwOA-jx0ZuAS-25v_K0E9hg&oe=69C387F0&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ad diabetes nao tem cura</div>
+                    <div class="ad-meta">R$ 6326.70 · 7323 cliques · 976 conv · CTR 1.36%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 6.48</div>
+                    <a class="ad-link" href="https://fb.me/23FhjdOxotnDHdq" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Conheça a Doutor DM2 Diabetes Eunápolis-BA e descubra novas abordagens e tratamentos de Diabetes Tipo 2  🩺💪<br><br>Sua saúde é</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-1.xx.fbcdn.net/v/t15.13418-10/506924314_1944772159593503_6409725701330435910_n.jpg?_nc_cat=103&ccb=1-7&_nc_eui2=AeG3Hcoo9WzE-30nRhEgK4uvEFKJ7ic9hBQQUonuJz2EFLZ7gxAfd9FPiBbMxV_xh1BMmVsmLmER9FFhAjzWbt0j&_nc_ohc=II2AG6-QnNoQ7kNvwEuE3Ff&_nc_oc=Adqx3laFuEwqGE1lSS8kZoo-lboqRIcWghGSBDszX6rRiMiNyAVnWVpYDEHmmdw3GUA&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=bYJdS9GTcJ8Fxfv8OoWYnA&_nc_tpa=Q5bMBQGBEnIFySiXHaAC19cmpzhTxbx_DJj5Pio51lUgwpS_hvZ6oMynshOfJFW4S7KVN7tMfcX0pTfs9w&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfyFKNbFVTXrdShl5o_xbPYCoEvl-nqqWQF81W0EKranMg&oe=69C38EE5&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads eunapolis \</div>
+                    <div class="ad-meta">R$ 3909.95 · 3508 cliques · 274 conv · CTR 1.06%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 14.27</div>
+                    <a class="ad-link" href="https://fb.me/y1vAiHUosik5KP1" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🎯 Diabetes tipo 2? Pré-diabetes? Você mora em Eunápolis?<br><br>🚨 Cansado de só trocar remédio e não ver resultado? Aqui é dif</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQL-1GDRhhP3T4gnoFrGvNz5qhddAkI8IZSuP850AogQkoR2xTB5urkZyZ-WQwPEG3Z5cXMkregXqQnlVJz3IpK4TLJ9eA6RQyP2FjTMnFB8AZzpKMo1F_zEOpq8JR419OdndLhdJhV6KhtKMKJCBO7T" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads porto seguro cta</div>
+                    <div class="ad-meta">R$ 3044.63 · 2405 cliques · 291 conv · CTR 1.03%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 10.46</div>
+                    <a class="ad-link" href="https://fb.me/2bdryGjEFmZFYZx" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Conheça a Doutor DM2 Diabetes Eunápolis e descubra novas abordagens e tratamentos de Diabetes Tipo 2 💪<br><br>Sua saúde é uma </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJ4YT2GizyOowygow6NzfanR2D2POBbJiz1csUitwmMckx2ZBDdmqgvZI0KI46wDM411Q-A62mOw0Nrg647WI9FJi5DLCa3kv-TbSf0bldPvWCRFrV8kt415Jo6zBkX3HYkeeygsfj2aoaSS2ykesud" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads prova social marilene</div>
+                    <div class="ad-meta">R$ 3006.15 · 2767 cliques · 143 conv · CTR 2.07%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 21.02</div>
+                    <a class="ad-link" href="https://fb.me/1QZh34qTrvHFSbu" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Quem Disse Que Você Precisa Conviver Com a Diabetes Para Sempre?<br><br>&quot;Eu achava que nunca ia controlar minha glicose, mas e</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKVjo2z1LcX1OS0Ai13inCLjuUhOX3bA6pflOHB_NYvwuz-0UcXnHlUdEx21N2Mm8_Fsoj3j7nDnuXYLJZQ5lo8Hk7u-8c_C82MMkiFkyHCtdB3dTXc1XklRznOLEgQLdzyl3LfaGq02k8Ja7AjjbUx" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ANUNCIO ITABELA</div>
+                    <div class="ad-meta">R$ 2902.24 · 3331 cliques · 189 conv · CTR 1.18%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 15.36</div>
+                    <a class="ad-link" href="https://fb.me/1Pn4kCiCwpiPDW8" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🌟 Descubra uma vida mais saudável com o Doutor DM2 Diabetes Eunápolis! 🌟<br><br>Você ou alguém que você conhece tem diabetes t</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-1.xx.fbcdn.net/v/t15.13418-10/421273007_1036118877498304_3327682891493433811_n.jpg?_nc_cat=103&ccb=1-7&_nc_eui2=AeHc3orNLGrN96Hu038yw8JtJ2LMXGK5VNUnYsxcYrlU1X2pBUdgZuoYrqxf1k9M7TGWll9UnXVgeD_qYs4Jci7g&_nc_ohc=R5enBh5FQEQQ7kNvwGVa-Ul&_nc_oc=Ado7CIeaN6wDGpqTVPi1bkDd0cGPDsSlWqQBFP0ijUfMKagv5M81cwssYM9R5cUgUgs&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=kZmBWnNO7dDmNUBdHynkcQ&_nc_tpa=Q5bMBQF2vuSV1lBACP8WTuUDAo-lieHTm6FG6r3fHbUxl6tn3BxFJrAGprn_cQFyQT4I3ERqQsXXI2tI7A&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfwNAxyjQqDIBfcvnl0BKLVe8pD7997uYEgm3Q_t4ZmtKw&oe=69C387F0&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ad diabetes nao tem cura — Cópia</div>
+                    <div class="ad-meta">R$ 2804.34 · 2526 cliques · 317 conv · CTR 1.29%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 8.85</div>
+                    <a class="ad-link" href="https://fb.me/25DXphEJOdBD9YV" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Conheça a Doutor DM2 Diabetes Eunápolis-BA e descubra novas abordagens e tratamentos de Diabetes Tipo 2  🩺💪<br><br>Sua saúde é</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/475782478_9080826525317015_4850492689623705504_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeFChnJDH2dG-6XO2UeX6Rcdx7Mcx0XRMXPHsxzHRdExc8GLlXTDSLa4DI0SrG5TnKVOc4xlm4v9Jyl1601lN7_n&_nc_ohc=Aamc0Q-oVdMQ7kNvwE7GWuU&_nc_oc=Ado63f9mJvMazw71ixmNF8F2CZHu5KEjgEHx4P7exxD_Q5kVVpXXWrrMA8vucDdt6lI&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=kZmBWnNO7dDmNUBdHynkcQ&_nc_tpa=Q5bMBQEm2MBdaQ1vgB_MD7vFLfjghvPtPy9Z9QTplNAUt1Qm4bvP16e1ynUlawV2fy29MYUEPQoaJrUgtw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afxeg6YVFcIIxpnq4JVfJoNvIdBOGRJaLY-tIKvsXpKpLg&oe=69C386A6&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads prova social cely</div>
+                    <div class="ad-meta">R$ 2663.52 · 2414 cliques · 216 conv · CTR 1.71%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 12.33</div>
+                    <a class="ad-link" href="https://fb.me/2elHsCDgllDg1AJ" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Conheça a Doutor DM2 Diabetes Eunápolis e descubra novas abordagens e tratamentos de Diabetes Tipo 2 💪<br><br>Sua saúde é uma </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJIonO387hsXFYcsMveYJlbfjI2iyniMtbSO3igJukJaAHnNhm46JQvDjun0btwN6tnf_SK-TF39E36JLNcseKbXKzaa2mztmM4RdGuc9vm7D1kooF8ngKgSwbEgMQR4yQd_7xhoRCCui6TSUTqxb9w" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads arraial cta</div>
+                    <div class="ad-meta">R$ 2609.65 · 1922 cliques · 197 conv · CTR 1.20%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 13.25</div>
+                    <a class="ad-link" href="https://fb.me/1SIYVZY6p7Z7qWP" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Conheça a Doutor DM2 Diabetes Eunápolis e descubra novas abordagens e tratamentos de Diabetes Tipo 2 💪<br><br>Sua saúde é uma </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJpR7cMeSSIdWf1OZ2FEXgyXNVe0bWvu2mzWseJGPlzpt0b-20uCl0YNjpFVxU1mqhiDjof-V5Ra3NgSbZxV3vSlmz6YQR_VfGQqBxXQvyZWBIBRm2dgxBArjCoM4ynXQ8uW0vFFhk7gWJ_fYOWNwiS" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads aposentado porto seguro</div>
+                    <div class="ad-meta">R$ 2342.38 · 2015 cliques · 149 conv · CTR 2.26%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 15.72</div>
+                    <a class="ad-link" href="https://fb.me/1Ze1hRFFAYskD65" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">VOCÊ É APOSENTADO (A) E TEM DIABETES TIPO 2?<br>Você cuidou da família a vida toda…<br>E agora que podia viver com calma, a di</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKgVovnRGqnN2GvQkPcfRnS-qBKt73fCVOFuD_D_hx4bwBbeBbZgcS7KibXiv8HP7t56_yFSAbQ3D5KkUGA9QJS4C-t3wrXKHCDBI2sMyxQBgfVOSeRL3JbIClFDDpNW_rNwITsQKAaw99c90nkwrwB" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads eunapolis cta — Cópia</div>
+                    <div class="ad-meta">R$ 2256.30 · 1698 cliques · 148 conv · CTR 1.03%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 15.25</div>
+                    <a class="ad-link" href="https://fb.me/20tKcaDIF9Z2qgG" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Conheça a Doutor DM2 Diabetes Eunápolis e descubra novas abordagens e tratamentos de Diabetes Tipo 2 💪<br><br>Sua saúde é uma </div>
+        </div></div>
+
+    <div class="footer">
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 17:07</div>
+    </div>
+</div>
+
+<script>
+new Chart(document.getElementById('dailyChart'),{
+    type:'bar',
+    data:{
+        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
+        datasets:[
+            {label:'Gasto (R$)',data:[133.33, 207.18, 115.87, 158.91, 268.02, 217.9, 210.07],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[168, 275, 148, 197, 345, 271, 244],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[19, 31, 14, 15, 33, 33, 40],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+        ]
+    },
+    options:{
+        responsive:true,
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{position:'bottom',labels:{font:{family:'Montserrat',size:11}}}},
+        scales:{
+            y:{beginAtZero:true,grid:{color:'#f0f0f0'},ticks:{font:{family:'Montserrat',size:11},callback:v=>'R$ '+v}},
+            y1:{position:'right',beginAtZero:true,grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}},
+            x:{grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}}
+        }
+    }
+});
+</script>
+
+</body>
+</html>

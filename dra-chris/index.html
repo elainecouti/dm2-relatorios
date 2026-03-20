@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seven · Dra. Chris Barros</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-serif}
+
+.topbar{background:#184341;display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:60px;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo svg{width:28px;height:28px}
+.logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.topbar-right{display:flex;align-items:center;gap:12px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.topbar-label{font-size:12px;color:rgba(255,255,255,.6)}
+
+.container{max-width:1100px;margin:0 auto;padding:32px 24px}
+.hero h1{font-size:26px;font-weight:800;margin-bottom:4px}
+.hero .sub{font-size:14px;color:#7a7a7a;margin-bottom:24px}
+.hero .info{font-size:12px;color:#999;margin-bottom:24px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-bottom:32px}
+.kpi{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.kpi-v{display:block;font-size:18px;font-weight:800;color:#184341}
+.kpi-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+
+.section-header{font-size:16px;font-weight:700;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid #e8e8e8}
+
+.camp-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.camp-table th{background:#184341;color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+.camp-table td{padding:10px 12px;border-bottom:1px solid #f0f0f0}
+.camp-table tr:last-child td{border-bottom:none}
+.camp-table tr:hover td{background:#f8fafa}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
+.dot.active{background:#22c55e}
+.dot.paused{background:#d1d5db}
+.obj-tag{font-size:10px;font-weight:700;color:#fff;padding:2px 8px;border-radius:8px}
+
+.chart-container{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px}
+.chart-container canvas{max-height:280px}
+
+.creatives-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.ad-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ad-top{display:flex;gap:12px;align-items:flex-start}
+.ad-thumb{width:80px;height:80px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#eee}
+.ad-thumb-placeholder{width:80px;height:80px;border-radius:10px;background:#eee;flex-shrink:0}
+.ad-info{flex:1;min-width:0}
+.ad-name{font-size:12px;font-weight:700;margin-bottom:4px;word-break:break-word}
+.ad-meta{font-size:11px;color:#7a7a7a;margin-bottom:2px}
+.ad-cpl{font-size:11px;font-weight:700;color:#22c55e;margin-bottom:4px}
+.ad-link{display:inline-block;margin-top:4px;font-size:11px;font-weight:600;color:#00A19A;text-decoration:none;padding:3px 10px;border:1px solid #00A19A;border-radius:6px;transition:all .15s}
+.ad-link:hover{background:#00A19A;color:#fff}
+.ad-body{font-size:11px;color:#666;margin-top:10px;line-height:1.5;padding-top:10px;border-top:1px solid #f0f0f0}
+
+.balance-section{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px;max-width:400px}
+.bal-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.bal-row.highlight{font-weight:700;font-size:14px;margin-top:8px}
+.bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
+.bal-fill{height:100%;border-radius:4px;transition:width .5s}
+
+.footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
+
+.table-wrap{overflow-x:auto;margin-bottom:32px}
+
+@media(max-width:768px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .creatives-grid{grid-template-columns:1fr}
+    .camp-table{font-size:11px}
+    .camp-table th,.camp-table td{padding:8px 6px}
+    .ad-thumb{width:100%;height:160px;border-radius:8px}
+    .ad-top{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
+        <span class="logo-text">seven</span>
+    </div>
+    <div class="topbar-right">
+        <div class="live-dot"></div>
+        <span class="topbar-label">Atualizado 20/03/2026 17:15</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="hero">
+        <h1>Dra. Chris Barros</h1>
+        <p class="sub">Tráfego Médico · Dashboard de Performance Meta Ads</p>
+        <p class="info">1 campanhas (1 ativas) · Conta: CA 01 - DRA CRHIS BARROS</p>
+    </div>
+
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 2,417.35</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">151,161</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">7,655</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">2.78%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.32</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 8.77</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">0</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">—</span><span class="kpi-l">Custo/Conv</span></div></div>
+
+    
+
+    <h3 class="section-header">Últimos 7 dias</h3>
+    <div class="chart-container">
+        <canvas id="dailyChart"></canvas>
+    </div>
+
+    <h3 class="section-header">Campanhas</h3>
+    <div class="table-wrap">
+        <table class="camp-table">
+            <thead><tr>
+                <th>Campanha</th><th>Objetivo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>CTR</th><th>Conv</th><th>Custo/Conv</th>
+            </tr></thead>
+            <tbody><tr>
+            <td><span class="dot active"></span>03/12 [trafego-perfil] [mulheres] [35+] [inte</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 2417.35</td>
+            <td>151,161</td>
+            <td>7,655</td>
+            <td>2.78%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr></tbody>
+        </table>
+    </div>
+
+    <h3 class="section-header">Top Criativos</h3>
+    <div class="creatives-grid">
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://external-atl3-1.xx.fbcdn.net/emg1/v/t13/13457944120116683102?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLlzhH2GL16OoiUZZB4NjtR9F4bAOxgMSSrTZf5yw7WyfK1iBTPkqFSpr9q9mbh7WrBqPL-eoKw3ZggMc9byFH87116ZlU9antyUtyRW1bFObPxyX0SEUfk2P0tLYuYqt-4-_JGwsrmlwJAcPvUPzu9&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=QtIv6OZzOxaH5Uz__EK0NQ&_nc_eui2=AeFc9xYHlqgVFag3G9rTO-AiTIpnJh-IAYVMimcmH4gBhSFQI2R5-RCsYt5H2O3O4EzbULP9MCv4GF7_eT6fnuIY&_nc_oc=AdrehoNqgUrKfzy6Ll_AxOYj8G0tdIMLHKQXj17tNIN8yqKrVQ7fAsf4-knMVytPNVI&ccb=13-1&oh=06_Q3-9AZslFtlL3My_bYJ37zut37G2YCoct07YqLvKdt3f3-tK&oe=69BF7D97&_nc_sid=58080a&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads tto flacidez intima</div>
+                    <div class="ad-meta">R$ 1908.26 · 6652 cliques · 0 conv · CTR 2.87%</div>
+                    
+                    <a class="ad-link" href="https://fb.me/1Tib0ZSdK9d186u" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Você sabia que a região íntima também pode sofrer com a perda de colágeno ao longo do tempo?<br>A flacidez vulvar é comum a</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://external-atl3-1.xx.fbcdn.net/emg1/v/t13/16781338261347689849?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKR-Og8FO9XGht_3n2Znuev-F33rf8kAx-BHiTtdAS_RHgi2LH4OrYRDgvmPlyKy0-oUa-oiNsgOZwx6cMUpDRG4DsTfnFhFlIpnbvHYlN5tuKp5pnUCC4E-jO9vjXflPLHag1O1tp2qNxwhkNx64fh&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=QtIv6OZzOxaH5Uz__EK0NQ&_nc_eui2=AeFLVZcmBsBissvwVS4oBGov_V2FQVU2eM79XYVBVTZ4zjzqukiWpPAoQeAekCXHAJExqtpVIecE6EqwxDC0gfJa&_nc_oc=AdqKDdXdqZtFKxaOVfo2rTVUG4csfQDpByHypjduiqkudUVOpoOiY4JyULNe1_jbbGw&ccb=13-1&oh=06_Q3-9AS_tTgPyd2McWT5ZCtllRLWYpMt4NyycrTbjlcPYW24D&oe=69BF9069&_nc_sid=58080a&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads estetica intima</div>
+                    <div class="ad-meta">R$ 215.34 · 385 cliques · 0 conv · CTR 2.19%</div>
+                    
+                    <a class="ad-link" href="https://fb.me/1PTUCU1TZSasOob" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">A estética íntima feminina tem uma relação direta com autocuidado, pois vai muito além da aparência: ela envolve saúde, </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-1.xx.fbcdn.net/v/t15.5256-10/595837424_1414744323329832_4699339997088742399_n.jpg?_nc_cat=103&ccb=1-7&_nc_eui2=AeGxGKv6a_-j8qgkllvoX7P_LzfK_fyagRwvN8r9_JqBHKX53DQC6zNwgE3JvNix35L7Hm-ZfYSOZQ-g4Nyl0F06&_nc_ohc=GVwpxyGik4gQ7kNvwFDsqFK&_nc_oc=AdrS8DUXx04_Ey3wLUmX01_yeRTnvqWMy0t3aNbTqLyzDyauX54dDm6PjcInKal2X7o&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=QtIv6OZzOxaH5Uz__EK0NQ&_nc_tpa=Q5bMBQGi12eChyY8m4ki0YtKz5hpVQpOygkhWwwa-BkqMSkSeJ_6umRKHEbBSx-2qv0uuVKa_It6xWUSBQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfzDwJxmCGMfXozI-ByKtTc8hiVQP0ElKfNQ9VjLmPu3pg&oe=69C39554&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads o que é saude intima</div>
+                    <div class="ad-meta">R$ 151.38 · 269 cliques · 0 conv · CTR 1.91%</div>
+                    
+                    <a class="ad-link" href="https://fb.me/1T5OCLBjq8OlOqu" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Você já parou para pensar no quanto a estética íntima influencia a nossa autoestima?<br>Eu decidi abrir essa conversa de fo</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/615971849_1363309098904961_1677086064484587871_n.jpg?_nc_cat=107&ccb=1-7&_nc_eui2=AeEhyApE8bpR_yv96AAFQobW9v3Tw3rJt3f2_dPDesm3dyPvf8R5sKjYcw7oBcwIotUPz4ANKgMxPKXBR36qwblT&_nc_ohc=JlsEvBhni0IQ7kNvwHZRDEN&_nc_oc=AdqnnzEhgX-z3YS2ShkW2exUNDEpwipr3Ko93rP6sD0EYtetGsYiL992biQoec8qV8c&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=QtIv6OZzOxaH5Uz__EK0NQ&_nc_tpa=Q5bMBQH1KKdwqt_hRoSDZrw3gsrza4hKyH1oy9R6PjxuetKHeyzea87vLPXU6AE1Q5M_PE8xW0UNSYn0_w&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfyytqyFABKSPlcT4mGr9bPpsTQycD_qVYRBVRiQKldmOw&oe=69C38617&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads flor da saude</div>
+                    <div class="ad-meta">R$ 107.83 · 307 cliques · 0 conv · CTR 2.96%</div>
+                    
+                    <a class="ad-link" href="https://fb.me/1Qc0LJNywH4IY19" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Eu sou a Dra Chris Barroso e trabalho com tecnologias modernas como a radiofrequência não ablativa, uma excelente aliada</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/594280896_1524510315522176_6682610886058629296_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeHlExjCV3L34tCCqOX7OqbIz3uGLO3z0yzPe4Ys7fPTLL2qhjxTQmNLcomeVjPyRNsdlU8UOZO81sBa5aWHg0pt&_nc_ohc=EmPaukLnwlYQ7kNvwEshyHx&_nc_oc=AdqiIUrQtN48cOCmsT295vPPvOp04-soIapEOeXpT7ChBjWJ4vRzbNO7XtgfKVUwNNU&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=QtIv6OZzOxaH5Uz__EK0NQ&_nc_tpa=Q5bMBQHZeMhbeJ-P-QO0cSknT5L-iLifi5DcdDGsLYBKXwCz7D9yAkOU9oQcHkx43vC1tNM-_tKzZ8QdzA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfyZEd30gh6XSo-mxENlVTzPaijVQgG1BFfE8ZnOFHTo8A&oe=69C3869C&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads radiofrequencia</div>
+                    <div class="ad-meta">R$ 19.81 · 24 cliques · 0 conv · CTR 3.30%</div>
+                    
+                    <a class="ad-link" href="https://fb.me/2c7dwXILkUWpPBH" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">💠 RADIOFREQUÊNCIA NÃO ABLATIVA – EFICIÊNCIA E SEGURANÇA COM TONE MED SPECTRA MEDIC 💠<br><br>A radiofrequência não ablativa é u</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-2.xx.fbcdn.net/v/t15.5256-10/595709544_727148729948435_3968004550323344662_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeGKfhqvLiFR15dVPdjb9nB4-fzoxs0Iw4j5_OjGzQjDiCyYxT89OeMZMNLE-YPDxGwzc3Ywc5WZyJ8eIRZqF7Yd&_nc_ohc=XWHq0MqwoN8Q7kNvwFHSlTt&_nc_oc=Adp7yGVdvLqI5XYktEBQrCBtcGsrE8c7rYkQ0OdEfUsRMcnUpiR-jP62Jnu1ZaGXBYQ&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=QtIv6OZzOxaH5Uz__EK0NQ&_nc_tpa=Q5bMBQG-bUy7l6WNuwl2VWfTrY3r6hTJQa8-6BchpFCs2ZAMGcFBicurpp6Qlqpz63KnHy1T7SXFE_0hPQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afx_6vwIY8dNy27_mbhFQ4EyI1eaNl4KaaCBkWkEIAhoKQ&oe=69C38512&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads diferenca entre procedimentos</div>
+                    <div class="ad-meta">R$ 10.23 · 15 cliques · 0 conv · CTR 3.20%</div>
+                    
+                    <a class="ad-link" href="https://fb.me/1ScxCueQ1YHcYUA" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Muita gente confunde bioestimulador com preenchedor, mas existe uma diferença importante que quase ninguém explica direi</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-2.xx.fbcdn.net/v/t15.5256-10/615970228_1214068637516485_1587083654459301022_n.jpg?_nc_cat=102&ccb=1-7&_nc_eui2=AeGOkJzg7PKsxlldHPxJQmvx9KOwPVl9tjj0o7A9WX22OMV0PzkR6F4ThD1iytJBsMrdHKTYVczFkXg9DJieBFfM&_nc_ohc=aKSsm8bCEiAQ7kNvwFAL-k8&_nc_oc=AdpZMCOcK1tppzepKF_CB37kZyG3K3Qbq2qUWPnxwUWu5bdMXOhbDB9xWIz2hLKpapE&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=QtIv6OZzOxaH5Uz__EK0NQ&_nc_tpa=Q5bMBQErZ0kahF-eN01_B5QRIzGc8DiDU1xtTHz-WVaWUQxpEL7_k7a9OABWu8i-ug2peyDY7ehuJXqO3Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afyal46mOJ9oSav8MaP0BtTGAkwcFjio3FEVdrO9IBm9iA&oe=69C36846&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads vergonha</div>
+                    <div class="ad-meta">R$ 2.56 · 2 cliques · 0 conv · CTR 0.95%</div>
+                    
+                    <a class="ad-link" href="https://fb.me/23LULTWZyWlw7Mw" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Você já perdeu urina ao rir, tossir ou se movimentar… e achou que isso era normal?<br><br>A incontinência urinária é mais comu</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-1.xx.fbcdn.net/v/t15.5256-10/593930414_879695417926722_1027957277364687909_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeFyRQuyzcg4wfk4YokMFnhtALXP2gaMi7cAtc_aBoyLt72mSfjlQYEwVqhUt-kGBi40OXZND8QvkHVM4cUFAISF&_nc_ohc=DOj-cY_ER_4Q7kNvwGXaoB7&_nc_oc=Adq7ohzCu4FjB_185gsx6w_NsePmIo1trJWOGjTkVIZAG2PatH-1hK1hgwdDbSyrLGY&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=QtIv6OZzOxaH5Uz__EK0NQ&_nc_tpa=Q5bMBQHoAYSLa8EacBrZEDgV3z5_fEobujst8RqmgAHcFK2rKSua1zqYEo3csWUT0WhUwmVC0QoBs1wuDg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afwkjl8aL2kvM1MDkqAvHJ4hGs5SiVAFd4i0zyRAcpobkg&oe=69C372F7&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads saude da mulher</div>
+                    <div class="ad-meta">R$ 1.06 · 1 cliques · 0 conv · CTR 2.56%</div>
+                    
+                    <a class="ad-link" href="https://fb.me/1SkAQGMpn0jmksw" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Quando falamos em saúde da mulher estamos falando de autocuidado e em gostar do que se vê também!!!! Seja por estética o</div>
+        </div></div>
+
+    <div class="footer">
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 17:15</div>
+    </div>
+</div>
+
+<script>
+new Chart(document.getElementById('dailyChart'),{
+    type:'bar',
+    data:{
+        labels:[],
+        datasets:[
+            {label:'Gasto (R$)',data:[],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+        ]
+    },
+    options:{
+        responsive:true,
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{position:'bottom',labels:{font:{family:'Montserrat',size:11}}}},
+        scales:{
+            y:{beginAtZero:true,grid:{color:'#f0f0f0'},ticks:{font:{family:'Montserrat',size:11},callback:v=>'R$ '+v}},
+            y1:{position:'right',beginAtZero:true,grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}},
+            x:{grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}}
+        }
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seven · DM2 Cachoeiro</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-serif}
+
+.topbar{background:#184341;display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:60px;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo svg{width:28px;height:28px}
+.logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.topbar-right{display:flex;align-items:center;gap:12px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.topbar-label{font-size:12px;color:rgba(255,255,255,.6)}
+
+.container{max-width:1100px;margin:0 auto;padding:32px 24px}
+.hero h1{font-size:26px;font-weight:800;margin-bottom:4px}
+.hero .sub{font-size:14px;color:#7a7a7a;margin-bottom:24px}
+.hero .info{font-size:12px;color:#999;margin-bottom:24px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-bottom:32px}
+.kpi{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.kpi-v{display:block;font-size:18px;font-weight:800;color:#184341}
+.kpi-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+
+.section-header{font-size:16px;font-weight:700;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid #e8e8e8}
+
+.camp-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.camp-table th{background:#184341;color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+.camp-table td{padding:10px 12px;border-bottom:1px solid #f0f0f0}
+.camp-table tr:last-child td{border-bottom:none}
+.camp-table tr:hover td{background:#f8fafa}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
+.dot.active{background:#22c55e}
+.dot.paused{background:#d1d5db}
+.obj-tag{font-size:10px;font-weight:700;color:#fff;padding:2px 8px;border-radius:8px}
+
+.chart-container{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px}
+.chart-container canvas{max-height:280px}
+
+.creatives-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.ad-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ad-top{display:flex;gap:12px;align-items:flex-start}
+.ad-thumb{width:80px;height:80px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#eee}
+.ad-thumb-placeholder{width:80px;height:80px;border-radius:10px;background:#eee;flex-shrink:0}
+.ad-info{flex:1;min-width:0}
+.ad-name{font-size:12px;font-weight:700;margin-bottom:4px;word-break:break-word}
+.ad-meta{font-size:11px;color:#7a7a7a;margin-bottom:2px}
+.ad-cpl{font-size:11px;font-weight:700;color:#22c55e;margin-bottom:4px}
+.ad-link{display:inline-block;margin-top:4px;font-size:11px;font-weight:600;color:#00A19A;text-decoration:none;padding:3px 10px;border:1px solid #00A19A;border-radius:6px;transition:all .15s}
+.ad-link:hover{background:#00A19A;color:#fff}
+.ad-body{font-size:11px;color:#666;margin-top:10px;line-height:1.5;padding-top:10px;border-top:1px solid #f0f0f0}
+
+.balance-section{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px;max-width:400px}
+.bal-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.bal-row.highlight{font-weight:700;font-size:14px;margin-top:8px}
+.bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
+.bal-fill{height:100%;border-radius:4px;transition:width .5s}
+
+.footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
+
+.table-wrap{overflow-x:auto;margin-bottom:32px}
+
+@media(max-width:768px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .creatives-grid{grid-template-columns:1fr}
+    .camp-table{font-size:11px}
+    .camp-table th,.camp-table td{padding:8px 6px}
+    .ad-thumb{width:100%;height:160px;border-radius:8px}
+    .ad-top{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
+        <span class="logo-text">seven</span>
+    </div>
+    <div class="topbar-right">
+        <div class="live-dot"></div>
+        <span class="topbar-label">Atualizado 20/03/2026 17:09</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="hero">
+        <h1>DM2 Cachoeiro</h1>
+        <p class="sub">Doutor DM2 Diabetes · Dashboard de Performance Meta Ads</p>
+        <p class="info">105 campanhas (5 ativas) · Conta: CA 01 - Cachoeiro</p>
+    </div>
+
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 140,864.98</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">710,445</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">126,750</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.01%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 1.11</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 11.27</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">7,186</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 19.60</span><span class="kpi-l">Custo/Conv</span></div></div>
+
+    
+        <div class="balance-section">
+            <div class="bal-row"><span>Limite da conta</span><span>R$ 141,292.80</span></div>
+            <div class="bal-row"><span>Gasto total</span><span>R$ 140,860.95</span></div>
+            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#f59e0b">R$ 431.85</span></div>
+            <div class="bal-bar"><div class="bal-fill" style="width:100%;background:#f59e0b"></div></div>
+        </div>
+
+    <h3 class="section-header">Últimos 7 dias</h3>
+    <div class="chart-container">
+        <canvas id="dailyChart"></canvas>
+    </div>
+
+    <h3 class="section-header">Campanhas</h3>
+    <div class="table-wrap">
+        <table class="camp-table">
+            <thead><tr>
+                <th>Campanha</th><th>Objetivo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>CTR</th><th>Conv</th><th>Custo/Conv</th>
+            </tr></thead>
+            <tbody><tr>
+            <td><span class="dot paused"></span>24/11 [engajamento] [wpp] [rmk-cachoeiro] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 7345.26</td>
+            <td>119,962</td>
+            <td>6,944</td>
+            <td>1.03%</td>
+            <td><strong>455</strong></td>
+            <td>R$ 16.14</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>27/10 [engajamento] [cidades] [saude] [35-65+</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 6252.70</td>
+            <td>162,251</td>
+            <td>4,327</td>
+            <td>0.76%</td>
+            <td><strong>376</strong></td>
+            <td>R$ 16.63</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>26/08 - [engajamento] [wpp] [rmk] [44-65] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 5419.69</td>
+            <td>23,926</td>
+            <td>4,227</td>
+            <td>1.42%</td>
+            <td><strong>227</strong></td>
+            <td>R$ 23.88</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>26/08 [vendas] [wpp] [20km] [aberto] [45+] [c</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 5364.36</td>
+            <td>90,540</td>
+            <td>4,358</td>
+            <td>1.10%</td>
+            <td><strong>283</strong></td>
+            <td>R$ 18.96</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>26/08 [vendas] [wpp] [cidades] [aberto] [45+]</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 4958.19</td>
+            <td>82,055</td>
+            <td>4,052</td>
+            <td>1.07%</td>
+            <td><strong>229</strong></td>
+            <td>R$ 21.65</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>26/08 [cachoeiro] [45+] [novo-criativo] CBO 1</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 4821.56</td>
+            <td>96,713</td>
+            <td>4,878</td>
+            <td>1.15%</td>
+            <td><strong>281</strong></td>
+            <td>R$ 17.16</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>18/03 [cachoeiro] [estatico] [45+] [novo-cria</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 4173.94</td>
+            <td>91,753</td>
+            <td>4,923</td>
+            <td>1.38%</td>
+            <td><strong>256</strong></td>
+            <td>R$ 16.30</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>04/06 - [engajamento] [wpp] [rmk] [44-65] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 4170.73</td>
+            <td>17,496</td>
+            <td>3,924</td>
+            <td>1.96%</td>
+            <td><strong>198</strong></td>
+            <td>R$ 21.06</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>05/06 [venda] [cachoeiro] [35-65+] CBO 1-3-1</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 4128.42</td>
+            <td>83,703</td>
+            <td>3,556</td>
+            <td>0.93%</td>
+            <td><strong>386</strong></td>
+            <td>R$ 10.70</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>14/06 [vendas] [wpp] [cidades] [aberto] [45+]</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 3843.53</td>
+            <td>72,184</td>
+            <td>3,213</td>
+            <td>1.26%</td>
+            <td><strong>183</strong></td>
+            <td>R$ 21.00</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>05/06 [venda] [cachoeiro] [45-65+] CBO 1-3-1</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 3749.04</td>
+            <td>103,519</td>
+            <td>3,736</td>
+            <td>0.88%</td>
+            <td><strong>293</strong></td>
+            <td>R$ 12.80</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>18/07 [engajamento] [wpp] [3km-clinica] [pode</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 3434.83</td>
+            <td>73,788</td>
+            <td>1,994</td>
+            <td>0.76%</td>
+            <td><strong>194</strong></td>
+            <td>R$ 17.71</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>05/07 - [venda] [wpp] [rmk] [cachoeiro] [rmk3</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 3421.53</td>
+            <td>8,071</td>
+            <td>3,944</td>
+            <td>2.05%</td>
+            <td><strong>80</strong></td>
+            <td>R$ 42.77</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>07/04 [vendas] [wpp] Criativo Validado 20km c</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 3356.29</td>
+            <td>82,145</td>
+            <td>1,669</td>
+            <td>0.69%</td>
+            <td><strong>158</strong></td>
+            <td>R$ 21.24</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>19/03 - 📱🧊[captação] [publico-frio] [engajame</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 3328.17</td>
+            <td>77,965</td>
+            <td>2,524</td>
+            <td>0.92%</td>
+            <td><strong>300</strong></td>
+            <td>R$ 11.09</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>05/06 [engajamento] [cachoeiro] [40-65+] CBO </td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 3108.88</td>
+            <td>58,821</td>
+            <td>2,258</td>
+            <td>1.05%</td>
+            <td><strong>129</strong></td>
+            <td>R$ 24.10</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>26/03 - 📱🧊[captação] [bairros] [engajamento] </td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 3094.04</td>
+            <td>84,738</td>
+            <td>2,263</td>
+            <td>0.84%</td>
+            <td><strong>221</strong></td>
+            <td>R$ 14.00</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>23/06 [vendas] [wpp] [20km] [aberto] [45+] [c</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 2747.91</td>
+            <td>65,921</td>
+            <td>2,347</td>
+            <td>1.27%</td>
+            <td><strong>142</strong></td>
+            <td>R$ 19.35</td>
+        </tr><tr>
+            <td><span class="dot active"></span>12/01 - [leads] [wpp] [40+] [rmk] - disfuncao</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 2699.76</td>
+            <td>30,955</td>
+            <td>3,854</td>
+            <td>1.92%</td>
+            <td><strong>224</strong></td>
+            <td>R$ 12.05</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>18/07 [trafego] [wpp] [3km-clinica] [poder aq</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 2693.57</td>
+            <td>63,451</td>
+            <td>1,615</td>
+            <td>0.76%</td>
+            <td><strong>151</strong></td>
+            <td>R$ 17.84</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>18/07 [trafego] [wpp] [cidades] [poder aquisi</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 2687.87</td>
+            <td>76,674</td>
+            <td>2,250</td>
+            <td>0.79%</td>
+            <td><strong>185</strong></td>
+            <td>R$ 14.53</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>13/01 [engajamento] [mix-publicos] [saude] [3</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 2460.69</td>
+            <td>64,269</td>
+            <td>2,224</td>
+            <td>1.00%</td>
+            <td><strong>124</strong></td>
+            <td>R$ 19.84</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>30/06 [cachoeiro] [45+] [novo-criativo] CBO 1</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 2405.32</td>
+            <td>51,338</td>
+            <td>2,596</td>
+            <td>1.42%</td>
+            <td><strong>140</strong></td>
+            <td>R$ 17.18</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>31/03 [vendas] Diabetes - Teste de Copys / Cr</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 2302.46</td>
+            <td>63,234</td>
+            <td>1,534</td>
+            <td>0.89%</td>
+            <td><strong>109</strong></td>
+            <td>R$ 21.12</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>28/05🔥[RMK] [engajamento] [wpp] [Cachoeiro] [</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 2130.67</td>
+            <td>6,703</td>
+            <td>1,173</td>
+            <td>0.98%</td>
+            <td><strong>87</strong></td>
+            <td>R$ 24.49</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>12/01 - [vendas] [cachoeiro+cidades] [40+] [l</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 2085.82</td>
+            <td>68,481</td>
+            <td>2,668</td>
+            <td>1.05%</td>
+            <td><strong>104</strong></td>
+            <td>R$ 20.06</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>12/10 - [alcance] [faseI] [cachoeiro] [Thupla</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 2054.83</td>
+            <td>65,319</td>
+            <td>1,104</td>
+            <td>0.38%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>27/10 [engajamento] [cidades] [saude] [35-65+</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1918.70</td>
+            <td>64,811</td>
+            <td>1,735</td>
+            <td>1.02%</td>
+            <td><strong>104</strong></td>
+            <td>R$ 18.45</td>
+        </tr><tr>
+            <td><span class="dot active"></span>12/02 [vendas] [wpp] [cidades-cachoeiro] [35+</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1736.52</td>
+            <td>39,452</td>
+            <td>1,642</td>
+            <td>1.05%</td>
+            <td><strong>143</strong></td>
+            <td>R$ 12.14</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>12/10 [venda] [cachoeiro] [30-65+] CBO 1-3-1</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1711.83</td>
+            <td>48,591</td>
+            <td>1,159</td>
+            <td>0.73%</td>
+            <td><strong>75</strong></td>
+            <td>R$ 22.82</td>
+        </tr><tr>
+            <td><span class="dot active"></span>13/02 [vendas] [wpp] [bairros-cachoeiro] [35+</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1705.85</td>
+            <td>33,189</td>
+            <td>1,486</td>
+            <td>1.08%</td>
+            <td><strong>119</strong></td>
+            <td>R$ 14.33</td>
+        </tr><tr>
+            <td><span class="dot active"></span>12/02 [reconhecimento] [cidades-vizinhas] [35</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 1628.39</td>
+            <td>122,589</td>
+            <td>2,610</td>
+            <td>0.36%</td>
+            <td><strong>25</strong></td>
+            <td>R$ 65.14</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>24/11 [trafego] [perfil] [cachoeiro] [criativ</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 1539.07</td>
+            <td>62,725</td>
+            <td>4,227</td>
+            <td>1.67%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>25/01 [cachoeiro] [estatico] [novo-criativo] </td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 1409.62</td>
+            <td>50,073</td>
+            <td>1,286</td>
+            <td>0.96%</td>
+            <td><strong>74</strong></td>
+            <td>R$ 19.05</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>16/04 - 📱🧊[captação] [outras-cidades] [public</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1270.94</td>
+            <td>41,930</td>
+            <td>1,219</td>
+            <td>0.99%</td>
+            <td><strong>122</strong></td>
+            <td>R$ 10.42</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>19/12. [vendas] [cachoeiro+cidades] [40+] [li</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1179.11</td>
+            <td>61,216</td>
+            <td>1,976</td>
+            <td>1.18%</td>
+            <td><strong>73</strong></td>
+            <td>R$ 16.15</td>
+        </tr><tr>
+            <td><span class="dot active"></span>13/02 [engajamento] [wpp] [rmk] [35+] 90 DIAS</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1023.61</td>
+            <td>12,507</td>
+            <td>1,182</td>
+            <td>1.63%</td>
+            <td><strong>55</strong></td>
+            <td>R$ 18.61</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>25/01 [rmk] [cachoeiro] [estatico] [novo-cria</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 999.81</td>
+            <td>20,857</td>
+            <td>811</td>
+            <td>0.83%</td>
+            <td><strong>61</strong></td>
+            <td>R$ 16.39</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>12/10 - 📱🧊[wpp] [cachoeiro] [engajamento] [fb</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 970.95</td>
+            <td>32,142</td>
+            <td>605</td>
+            <td>0.85%</td>
+            <td><strong>50</strong></td>
+            <td>R$ 19.42</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>12/10 [venda] [cachoeiro] [30-65+] CBO 1-2-2</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 969.69</td>
+            <td>43,137</td>
+            <td>493</td>
+            <td>0.62%</td>
+            <td><strong>50</strong></td>
+            <td>R$ 19.39</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>25/09 [engajamento] [cachoeiro] [35-65+] CBO </td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 952.30</td>
+            <td>39,015</td>
+            <td>540</td>
+            <td>0.76%</td>
+            <td><strong>46</strong></td>
+            <td>R$ 20.70</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>13/12 [alcance] [rmk] [90D] [objecoes-educati</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 841.59</td>
+            <td>24,096</td>
+            <td>1,113</td>
+            <td>0.71%</td>
+            <td><strong>12</strong></td>
+            <td>R$ 70.13</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>24/11 [trafego] [wpp] [cachoeiro] [teste-cria</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 836.05</td>
+            <td>22,704</td>
+            <td>494</td>
+            <td>0.88%</td>
+            <td><strong>35</strong></td>
+            <td>R$ 23.89</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>06/05 [trafego] [whatsapp] [Cachoeiro] [45-65</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 786.83</td>
+            <td>27,831</td>
+            <td>2,395</td>
+            <td>1.90%</td>
+            <td><strong>40</strong></td>
+            <td>R$ 19.67</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>14/07 - [engajamento] [wpp] [14dias] [rmk] [4</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 784.07</td>
+            <td>7,279</td>
+            <td>612</td>
+            <td>1.65%</td>
+            <td><strong>21</strong></td>
+            <td>R$ 37.34</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>03/10 [rmk] [cachoeiro] [wpp] [365D] CBO 1-1-</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 774.72</td>
+            <td>10,946</td>
+            <td>2,150</td>
+            <td>2.86%</td>
+            <td><strong>19</strong></td>
+            <td>R$ 40.77</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>04/06 🧊 [venda] [wpp] [amplo+excluidos] cbo 1</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 761.20</td>
+            <td>21,789</td>
+            <td>622</td>
+            <td>1.29%</td>
+            <td><strong>15</strong></td>
+            <td>R$ 50.75</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>19/03 - 📱🔥[captação] [engajamento][videoview]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 752.98</td>
+            <td>8,874</td>
+            <td>728</td>
+            <td>0.95%</td>
+            <td><strong>31</strong></td>
+            <td>R$ 24.29</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>30/03 - 📱🔥[alcance] [lembrete] [fb-ig] [7-15 </td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 742.24</td>
+            <td>3,968</td>
+            <td>196</td>
+            <td>1.40%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>30/11 [leads] [wpp] [40+] [rmk] - disfuncao</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 668.24</td>
+            <td>13,295</td>
+            <td>610</td>
+            <td>1.38%</td>
+            <td><strong>31</strong></td>
+            <td>R$ 21.56</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>13/12 [trafego-perfil] [topo-exclusao365] [ca</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 659.20</td>
+            <td>21,838</td>
+            <td>826</td>
+            <td>1.22%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 659.20</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>26/03 - 📱🧊[captação] [bairros][fb-ig] [funil </td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 656.98</td>
+            <td>15,601</td>
+            <td>353</td>
+            <td>0.99%</td>
+            <td><strong>46</strong></td>
+            <td>R$ 14.28</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>04/06 [vendas] [wpp] [44-65] [teste-criativos</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 652.24</td>
+            <td>15,243</td>
+            <td>451</td>
+            <td>1.11%</td>
+            <td><strong>15</strong></td>
+            <td>R$ 43.48</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>18/03 [cachoeiro40km] [45+] [teste-criativo] </td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 613.74</td>
+            <td>18,451</td>
+            <td>434</td>
+            <td>1.19%</td>
+            <td><strong>29</strong></td>
+            <td>R$ 21.16</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>03/10 [engajamento] [mix-cidades] [30-65+] AB</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 575.41</td>
+            <td>23,583</td>
+            <td>325</td>
+            <td>0.71%</td>
+            <td><strong>21</strong></td>
+            <td>R$ 27.40</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>rmk [engajamento] [cachoeiro] [wpp] CBO 1-1-1</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 553.68</td>
+            <td>6,846</td>
+            <td>341</td>
+            <td>1.10%</td>
+            <td><strong>12</strong></td>
+            <td>R$ 46.14</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08/12 [engajamento] [cidades] [saude] [35-65+</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 544.43</td>
+            <td>30,805</td>
+            <td>464</td>
+            <td>0.88%</td>
+            <td><strong>23</strong></td>
+            <td>R$ 23.67</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>03/10 [engajamento] [mix-bairros] [30-65+] AB</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 535.44</td>
+            <td>24,153</td>
+            <td>289</td>
+            <td>0.70%</td>
+            <td><strong>19</strong></td>
+            <td>R$ 28.18</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[cadastros][cachoeiro] [fb-ig] [amplo] ABO</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 521.27</td>
+            <td>12,316</td>
+            <td>235</td>
+            <td>0.86%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 521.27</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08/03 [ENGAJAMENTO-POST] [FRIO-LOOK] [VIDEO] </td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 515.58</td>
+            <td>28,602</td>
+            <td>342</td>
+            <td>0.47%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>12/10 - 📱🧊[wpp] [3km-clinica] [engajamento] [</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 509.70</td>
+            <td>20,750</td>
+            <td>238</td>
+            <td>0.74%</td>
+            <td><strong>23</strong></td>
+            <td>R$ 22.16</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>24/05 [Venda] [wpp] [cachoeiro] [fb-ig] 1-2-2</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 490.32</td>
+            <td>16,474</td>
+            <td>233</td>
+            <td>0.69%</td>
+            <td><strong>20</strong></td>
+            <td>R$ 24.52</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>18/03 [rmk] [cachoeiro] [estatico] [novo-cria</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 488.85</td>
+            <td>13,176</td>
+            <td>569</td>
+            <td>1.24%</td>
+            <td><strong>21</strong></td>
+            <td>R$ 23.28</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>22/05 - [engajamento] [wpp] [Cachoeiro] [Fb I</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 451.93</td>
+            <td>15,689</td>
+            <td>286</td>
+            <td>0.97%</td>
+            <td><strong>14</strong></td>
+            <td>R$ 32.28</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08/03 [RECONHECIMENTO] [RMK365D] [VIDEO] [032</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 431.69</td>
+            <td>12,908</td>
+            <td>415</td>
+            <td>1.25%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 215.84</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[cadastros][outras cidades] [fb-ig] [amplo] A</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 387.89</td>
+            <td>9,365</td>
+            <td>213</td>
+            <td>1.03%</td>
+            <td><strong>18</strong></td>
+            <td>R$ 21.55</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>24/05 💲[venda] [wpp] [cachoeiro] [fb-ig] 1-2-</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 384.56</td>
+            <td>12,353</td>
+            <td>191</td>
+            <td>0.81%</td>
+            <td><strong>3</strong></td>
+            <td>R$ 128.19</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>24/05💲🙍🏻‍♂[venda] [homem] [wpp] [cachoeiro] [</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 382.60</td>
+            <td>14,534</td>
+            <td>222</td>
+            <td>0.69%</td>
+            <td><strong>10</strong></td>
+            <td>R$ 38.26</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>24/11 [engajamento] [wpp] [mix-publico] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 346.52</td>
+            <td>11,866</td>
+            <td>232</td>
+            <td>0.91%</td>
+            <td><strong>14</strong></td>
+            <td>R$ 24.75</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>27/10 [engajamento] [cachoeiro] [aberto] [35-</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 344.21</td>
+            <td>16,935</td>
+            <td>209</td>
+            <td>0.77%</td>
+            <td><strong>11</strong></td>
+            <td>R$ 31.29</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>31/03 [vendas] Diabetes - Teste de Copys / Cr</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 330.67</td>
+            <td>19,083</td>
+            <td>292</td>
+            <td>0.95%</td>
+            <td><strong>14</strong></td>
+            <td>R$ 23.62</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>24/05 - 📱🧊[outras cidades] [engajamento] [fb-</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 322.08</td>
+            <td>10,353</td>
+            <td>527</td>
+            <td>2.28%</td>
+            <td><strong>8</strong></td>
+            <td>R$ 40.26</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>11/05 [engajamento] [whatsapp] [Cachoeiro] [4</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 321.41</td>
+            <td>10,522</td>
+            <td>148</td>
+            <td>0.80%</td>
+            <td><strong>8</strong></td>
+            <td>R$ 40.18</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>23/06 [cachoeiro] [estatico] [45+] [novo-cria</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 319.52</td>
+            <td>12,883</td>
+            <td>277</td>
+            <td>1.05%</td>
+            <td><strong>10</strong></td>
+            <td>R$ 31.95</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>06/05 [trafego] [whatsapp] [rmk] [35-65] [FB-</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 318.62</td>
+            <td>3,386</td>
+            <td>176</td>
+            <td>1.22%</td>
+            <td><strong>15</strong></td>
+            <td>R$ 21.24</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>22/05 - 🔥 [RMK] - [engajamento] [wpp] [Cachoe</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 318.05</td>
+            <td>3,099</td>
+            <td>209</td>
+            <td>1.12%</td>
+            <td><strong>18</strong></td>
+            <td>R$ 17.67</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>02/04 - 📱🧊[captação] [cachoeiro][fb-ig] [funi</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 293.50</td>
+            <td>10,292</td>
+            <td>162</td>
+            <td>0.86%</td>
+            <td><strong>23</strong></td>
+            <td>R$ 12.76</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08/03 [LEADS] [WPP] [FRIO-LOOK] [VIDEO] [0325</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 292.43</td>
+            <td>11,080</td>
+            <td>178</td>
+            <td>0.92%</td>
+            <td><strong>7</strong></td>
+            <td>R$ 41.78</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08/03 [LEADS] [WPP] [FRIO-LOOK] [VIDEO] [0325</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 291.15</td>
+            <td>11,587</td>
+            <td>177</td>
+            <td>0.86%</td>
+            <td><strong>9</strong></td>
+            <td>R$ 32.35</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08/03 [ENGAJAMENTO] [BAIRROS-CACHOEIRO] [FRIO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 271.25</td>
+            <td>8,680</td>
+            <td>208</td>
+            <td>1.39%</td>
+            <td><strong>14</strong></td>
+            <td>R$ 19.38</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>11/05 [engajamento] [Homem] [whatsapp] [Cacho</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 268.46</td>
+            <td>9,682</td>
+            <td>250</td>
+            <td>1.37%</td>
+            <td><strong>12</strong></td>
+            <td>R$ 22.37</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>06/03 - 🔍 [engajamento] [cachoeiro] [aberto] </td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 266.89</td>
+            <td>30,605</td>
+            <td>335</td>
+            <td>0.57%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>06/03 - 🔍 [engajamento] [cachoeiro] [aberto] </td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 259.01</td>
+            <td>29,692</td>
+            <td>602</td>
+            <td>0.89%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>06/03 - 🔍 [engajamento] [cachoeiro] [aberto] </td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 258.22</td>
+            <td>31,697</td>
+            <td>413</td>
+            <td>0.69%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>12/03 - 🔍 [engajamento] [cachoeiro] [videovie</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 257.09</td>
+            <td>4,408</td>
+            <td>115</td>
+            <td>0.49%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08/12 [trafego] [wpp] [cidade-cachoeiro] [tes</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 225.30</td>
+            <td>8,842</td>
+            <td>131</td>
+            <td>0.91%</td>
+            <td><strong>8</strong></td>
+            <td>R$ 28.16</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08/12 [engajamento] [wpp] [3km-clinica] [test</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 224.34</td>
+            <td>8,434</td>
+            <td>89</td>
+            <td>0.64%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 112.17</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>06/05 [engajamento] [whatsapp] [Cachoeiro] [4</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 223.80</td>
+            <td>8,614</td>
+            <td>216</td>
+            <td>1.35%</td>
+            <td><strong>3</strong></td>
+            <td>R$ 74.60</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>06/05 [engajamento] [whatsapp] [Cachoeiro] [4</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 213.29</td>
+            <td>8,602</td>
+            <td>134</td>
+            <td>0.99%</td>
+            <td><strong>6</strong></td>
+            <td>R$ 35.55</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>06/05 [engajamento] [whatsapp] [cachoeiro] [4</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 188.25</td>
+            <td>6,646</td>
+            <td>81</td>
+            <td>0.79%</td>
+            <td><strong>4</strong></td>
+            <td>R$ 47.06</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08/03 [RECONHECIMENTO] [CACHOEIRO40KM] [VIDEO</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 181.27</td>
+            <td>55,618</td>
+            <td>216</td>
+            <td>0.33%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>12/03 - 🔍 [engajamento] [cachoeiro] [videovie</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 174.81</td>
+            <td>4,374</td>
+            <td>141</td>
+            <td>0.69%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>12/03 - 🔍 [engajamento] [cachoeiro] [videovie</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 174.48</td>
+            <td>4,487</td>
+            <td>221</td>
+            <td>0.91%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>03/10 - [alcance] [faseI] [cachoeiro] [Thupla</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 136.86</td>
+            <td>72,252</td>
+            <td>104</td>
+            <td>0.12%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>06/04 - [alcance] [lembrete] [fb-ig] [chegamo</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 119.40</td>
+            <td>16,700</td>
+            <td>235</td>
+            <td>0.85%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>04/06 - [engajamento] [wpp] [Cachoeiro] [Fb I</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 83.16</td>
+            <td>3,968</td>
+            <td>56</td>
+            <td>1.12%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 41.58</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>09/10 [engajamento] [cachoeiro] [35-65+] CBO </td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 70.76</td>
+            <td>4,451</td>
+            <td>32</td>
+            <td>0.51%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 35.38</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>27/10 [engajamento] [cachoeiro] [saude] [35-6</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 58.96</td>
+            <td>3,299</td>
+            <td>14</td>
+            <td>0.38%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 29.48</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>10/03 [vaga de emprego] [vendedor] [cachoeiro</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 51.40</td>
+            <td>11,477</td>
+            <td>37</td>
+            <td>0.19%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>22/03 - 📱🔥[captação] [engajamento][videoview]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 30.74</td>
+            <td>567</td>
+            <td>20</td>
+            <td>1.73%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>26/08 [vendas] [wpp] [cidades] [aberto] [45+]</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 20.69</td>
+            <td>847</td>
+            <td>11</td>
+            <td>1.19%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>26/08 - [engajamento] [wpp] [rmk] [44-65] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 17.67</td>
+            <td>734</td>
+            <td>7</td>
+            <td>0.79%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>26/08 [vendas] [wpp] [20km] [aberto] [45+] [c</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 16.27</td>
+            <td>544</td>
+            <td>7</td>
+            <td>1.22%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>26/08 [cachoeiro] [45+] [novo-criativo] CBO 1</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 14.36</td>
+            <td>940</td>
+            <td>15</td>
+            <td>1.46%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr></tbody>
+        </table>
+    </div>
+
+    <h3 class="section-header">Top Criativos</h3>
+    <div class="creatives-grid">
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.13418-10/438296305_1568108920639605_1611950085781900626_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeGC4WNLZpaLve5YfgqU_d0VH9ycPTDcRV0f3Jw9MNxFXe_dZFskX2463uJ5B-k3YHYlaK9Ly3048_MJWPdiQmbM&_nc_ohc=k5WQLwgmddcQ7kNvwEY7_2u&_nc_oc=AdqMCpbXBt9NHPZzu723RumXrPeFtNOliEbeINyHurMf8QY3IucGBv1e5Eukkdi3Q7U&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=gJ2Kpgv9khubzUIodvaPPQ&_nc_tpa=Q5bMBQEIp7q1Q-McvZLxN_NuyodsePNk2nnbhaGrG1_8YS4PlaDGBZKRhimQoCwYcIqZyx91PZDhkwZgkQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_Afz86ujaop7aLD3kZVQ_WLcQGB6TVTm3d0ObhvMwkYFYiw&oe=69C37FFF&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads - unidade cachoeiro</div>
+                    <div class="ad-meta">R$ 5635.64 · 3791 cliques · 339 conv · CTR 0.74%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 16.62</div>
+                    <a class="ad-link" href="https://fb.me/24FdlUdXrWXOmAM" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">É oficial!!!<br>Cachoeiro de Itapemirim agora tem a Doutor DM2 Diabetes!<br>Venha nos conhecer! Chame no zap!<br><br>#doutordm2diabe</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.13418-10/438296305_1568108920639605_1611950085781900626_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeGC4WNLZpaLve5YfgqU_d0VH9ycPTDcRV0f3Jw9MNxFXe_dZFskX2463uJ5B-k3YHYlaK9Ly3048_MJWPdiQmbM&_nc_ohc=k5WQLwgmddcQ7kNvwEY7_2u&_nc_oc=AdqMCpbXBt9NHPZzu723RumXrPeFtNOliEbeINyHurMf8QY3IucGBv1e5Eukkdi3Q7U&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=LGT8HmMVwLo4Ka5aZIolJQ&_nc_tpa=Q5bMBQG1xoqmxIMgU3SreL-jkefMNEYVKxjp2pUZkNPwvo6RyLbhU9a5cIjUWK3S9--895AGU7mGd6wlrg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfwtF9iwGLo4EYNjRHepGa-XA__uXpTwAqYCzoq4ocURow&oe=69C37FFF&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads - unidade cachoeiro</div>
+                    <div class="ad-meta">R$ 3945.19 · 3438 cliques · 374 conv · CTR 0.93%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 10.55</div>
+                    <a class="ad-link" href="https://fb.me/1TtN9xZNWvokoAm" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">É oficial!!!<br>Cachoeiro de Itapemirim agora tem a Doutor DM2 Diabetes!<br>Venha nos conhecer! Chame no zap!<br><br>#doutordm2diabe</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-1.xx.fbcdn.net/v/t15.5256-10/473806627_1131919064949746_869543207918625917_n.jpg?_nc_cat=103&ccb=1-7&_nc_eui2=AeELa3g9AAUJiXLLPx76iBRCNntMtE5EBds2e0y0TkQF28II6S2lJuDgAqxV-2j8Ocv-rCuzfjPxf0WfrSWjeLY-&_nc_ohc=y26LHPcn1cQQ7kNvwGzScbW&_nc_oc=AdrDSE1Zp7wvGr68n72xpzCZrDfc02F8mBMSq1MwJYpO0N6zeAA1zwhygDkIPIqZoJk&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=1_V0Y1nz_dEm7fjzwPs0Mw&_nc_tpa=Q5bMBQG99VgT_SBSIZJtflzoXjkau4Kxx2xC4Tps-yLq1EDNdW-rWNnYpuZnn01b_1B-FUbbEEYTPzoM7w&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzXyFsPTSRQy3-4I3zqLJQBKXmkMMjxcGkdnOAxEO5ueg&oe=69C37A70&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads prova social cely</div>
+                    <div class="ad-meta">R$ 3741.91 · 3715 cliques · 266 conv · CTR 1.09%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 14.07</div>
+                    <a class="ad-link" href="https://fb.me/26YKyxkIDcKkyU4" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Cachoeiro de Itapemirim e Região 🚨<br>Sofre com a Diabetes tipo II e quer conhecer um tratamento INOVADOR? <br><br>👉 Você não pre</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-2.xx.fbcdn.net/v/t45.1600-4/564900183_24766930826303322_8964582225167928980_n.png?_nc_cat=104&ccb=1-7&_nc_eui2=AeHu-GP4uU0xrinTRa-i2GiQKJDsRazKMwQokOxFrMozBPEDz3D-rpx12r2uQ6gBO2kxL5oGlffsy3mobt4b_XPM&_nc_ohc=7yBuXilTbicQ7kNvwElUgdI&_nc_oc=AdpYWZvXjaCqRwodDODo6tr9uWzrmStDAgbBt5KsnBKb40NILoKltJIXrjMkV0kWQBI&_nc_zt=1&_nc_ht=scontent-atl3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=1_V0Y1nz_dEm7fjzwPs0Mw&_nc_tpa=Q5bMBQHOr9sXdu-yy1Bq4GPaFEdYrU71wL6elyZb_Oe8PSSyV50pAN57456i-bRlgKhwRyTsV4bUScPekw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AfxTQn6nfYIam1jFdbAgfPugsfzGvbLrlo6qlQp3SlV_qw&oe=69C39733&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads dm2 mata</div>
+                    <div class="ad-meta">R$ 3186.83 · 3956 cliques · 206 conv · CTR 1.46%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 15.47</div>
+                    <a class="ad-link" href="https://fb.me/1SjpGp7D830O6IW" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 A DIABETES TIPO 2 ESTÁ TE MATANDO AOS POUCOS!<br><br>E o pior: os remédios e dietas que você tenta só mascaram os sintomas..</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.13418-10/438199082_1001722441326665_5177122598573032803_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeEaTkw09LBHEMHdb7w8alvI0fGddncjrhzR8Z12dyOuHGjzXa7i2Kr1WV83Wz2rn19crIAVGEOiGe92-uinyGDw&_nc_ohc=egoak9l9ZVkQ7kNvwGgJbS3&_nc_oc=Adr7lKqXscFNWN22GzzkPoojhSgjPr-QcuqqngbyXRzpFfs60gLOAE29zRdyon1CLos&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=gxwfn77i1IWH0hZXcf4BLw&_nc_tpa=Q5bMBQHHoyT16QNRd7qPutiWuZIyeEujHJ1HaqPP_-4D5DyEmYkEBtRnFBX3ydHnztFjv6fB0WM-_7aK8A&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=c3b633&_nc_sid=58080a&oh=00_Afwhln5ni4t9eHu1Nwvx86PfYFAAcwZn5qZv6Zy2ThNlBg&oe=69C38C60&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads tratamento</div>
+                    <div class="ad-meta">R$ 3108.88 · 2258 cliques · 129 conv · CTR 1.05%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 24.10</div>
+                    <a class="ad-link" href="https://fb.me/33CCMSlgrVTbDHE" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">O protocolo exclusivo da Doutor DM2 Diabetes foi desenvolvido para atingir a REMISSÃO da Diabetes tipo 2 em 12 Semanas d</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t45.1600-4/566402327_25075965352000228_4201388185821914639_n.png?_nc_cat=111&ccb=1-7&_nc_aid=0&_nc_eui2=AeEatr2JMdoyKRTZqoTSLXw9VrFY_8b3ySpWsVj_xvfJKpL90yPUp2LtXZiBU8Sy4IZ9iOYqHNmg_IKndoUOox0M&_nc_ohc=wzif1yzJoLAQ7kNvwGRIE0T&_nc_oc=Adpw0eSO3xigq4Y6Z9aHbeJhfzdDnFIlpb1upSE2UAG2pSLlszYDqTzIbmOpnamX3KI&_nc_zt=1&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=gJ2Kpgv9khubzUIodvaPPQ&_nc_tpa=Q5bMBQGfe8qp9oW3iTRu1g29I8mYAbS8mNaWqQaAqdh7-_qItLs_nkarBFNAbjGMpgiT50bz9nnK4dYPww&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AfwhrpG4mg-o6VUSFxwbQBosHS0jUlfa8bEMWpemzcjD6Q&oe=69C360C7&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads noticia</div>
+                    <div class="ad-meta">R$ 3040.02 · 3038 cliques · 256 conv · CTR 0.89%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 11.88</div>
+                    <a class="ad-link" href="https://fb.me/26HYfYmcoj0B8LN" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Cachoeiro de Itapemerim e região 🚨<br>Sofre com a Diabetes tipo II e quer conhecer um tratamento alternativo? <br>A Doutor DM2</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.13418-10/426982013_7463938803628945_5778973731804611800_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeH3L7S81I-RsjKvU8TViMOCPdSBWY4kVHo91IFZjiRUemR8fo6UEhdldJXKyfe4lKPzJ8kq7BxGJtZCdVDQEwwP&_nc_ohc=iiYFqes4pCsQ7kNvwE96EDj&_nc_oc=AdqvseKG3IKRb8o3Fc-mNAaIOn7qhFEyYxsO9n6WxJ6NuEdmS9Nq0gJZW_hbIr8Uu9Y&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=1_V0Y1nz_dEm7fjzwPs0Mw&_nc_tpa=Q5bMBQHiWrLLJGS1YD5SOAeNDC9w57-P5OLPqOSre1QzVLURPwNnEQzdq0Zw-smyKpxISZQCpgi-JN9IzA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfzwRin6BCxQqBMjESwB73IKZGxWN6eAnCbOvLT7lV1oIQ&oe=69C38A4C&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads dm2 nao tem cura</div>
+                    <div class="ad-meta">R$ 3010.79 · 1478 cliques · 139 conv · CTR 0.69%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 21.66</div>
+                    <a class="ad-link" href="https://fb.me/1RHywCwLyrVXqhp" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Conheça a Doutor DM2 Diabetes e descubra novas abordagens e tratamentos de Diabetes Tipo 2  🩺💪<br><br>Sua saúde é uma priorida</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-1.xx.fbcdn.net/v/t45.1600-4/566283935_25247144751537820_6109165418142698549_n.png?_nc_cat=103&ccb=1-7&_nc_eui2=AeHOV94EaPiqLJO8vkqYNzSdA2l9qFzFYm4DaX2oXMViboiKl9gcKCD0DysCvZ8wuv7KFDPB3gCOLqLcIhbLVd-m&_nc_ohc=UN-kLxS72KcQ7kNvwGozdKN&_nc_oc=AdqGkXLmbNEvu_gF6GKfLoI-iRd_iakdx4DQYebNwTDWEvMNJECIIN3FWtfUVIgNWx4&_nc_zt=1&_nc_ht=scontent-atl3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=1_V0Y1nz_dEm7fjzwPs0Mw&_nc_tpa=Q5bMBQEJoTbrrX_kkQYloLROpCiRHElAltST3oi-6DKT6YznEoCZPvtQIAWGj6J7GzTarAeNs9jr8cL6vw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AfxUGk3qgeMuhR_p0b57168qoAAA8HB1iz_8UECzvPrsiw&oe=69C369B2&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Ads Copy 04 - Glicose</div>
+                    <div class="ad-meta">R$ 2087.65 · 1362 cliques · 99 conv · CTR 0.90%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 21.09</div>
+                    <a class="ad-link" href="https://fb.me/2c2UMkZ4j87AUy3" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">😐 Você acredita que está “controlando” a diabetes?<br>Mas… os sintomas continuam.<br><br>👉 Cansaço<br> 👉 Vista ruim<br> 👉 Dificuldade c</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKokBLDK5AKm8U2AIGNVi7h6qP0bvwT4iSyaFyWl8wij_aTWd5ymSJO1dyUJ_zSBdQ3jdv9oS3GwYCM6LGZkC1GDbVj69cJ2L6Try9DCL2_IHmvfeTjWR9NORUno2bJwJoxRAoE3dFoBxIsXmVHLlBm" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads cachoeiro cta</div>
+                    <div class="ad-meta">R$ 2034.26 · 2668 cliques · 138 conv · CTR 1.29%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 14.74</div>
+                    <a class="ad-link" href="https://fb.me/23pKDRb0zhMpCmp" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Controlar a glicose NÃO é tratar a diabetes<br><br>A maioria dos pacientes com diabetes tipo 2 está tentando resolver o proble</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLbW_PHvd8fItFgd8VQGVnr5edHB9O0YweGCXSI2eQ4LevMvQMWtpHLDVI0O52ov161uglV-0DPn_ew-ms3ajYyF7o5HvVmIkWaV5AH5k70wMSYHJPKDdGa58dyQtLUNf9gWAkmWbr0eN74cH7si-AM" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads classico - dm2 nao tem cura</div>
+                    <div class="ad-meta">R$ 1918.16 · 1534 cliques · 135 conv · CTR 0.86%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 14.21</div>
+                    <a class="ad-link" href="https://fb.me/1RUDbC3Q8m3IAGE" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Conheça a Doutor DM2 Diabetes e descubra novas abordagens e tratamentos de Diabetes Tipo 2  🩺💪<br><br>Sua saúde é uma priorida</div>
+        </div></div>
+
+    <div class="footer">
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 17:09</div>
+    </div>
+</div>
+
+<script>
+new Chart(document.getElementById('dailyChart'),{
+    type:'bar',
+    data:{
+        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
+        datasets:[
+            {label:'Gasto (R$)',data:[169.45, 208.56, 147.21, 264.73, 243.69, 201.21, 188.6],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[205, 215, 157, 247, 240, 218, 194],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[13, 6, 7, 8, 18, 19, 9],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+        ]
+    },
+    options:{
+        responsive:true,
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{position:'bottom',labels:{font:{family:'Montserrat',size:11}}}},
+        scales:{
+            y:{beginAtZero:true,grid:{color:'#f0f0f0'},ticks:{font:{family:'Montserrat',size:11},callback:v=>'R$ '+v}},
+            y1:{position:'right',beginAtZero:true,grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}},
+            x:{grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}}
+        }
+    }
+});
+</script>
+
+</body>
+</html>

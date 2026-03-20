@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seven · DM2 Campo Grande</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-serif}
+
+.topbar{background:#184341;display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:60px;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo svg{width:28px;height:28px}
+.logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.topbar-right{display:flex;align-items:center;gap:12px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.topbar-label{font-size:12px;color:rgba(255,255,255,.6)}
+
+.container{max-width:1100px;margin:0 auto;padding:32px 24px}
+.hero h1{font-size:26px;font-weight:800;margin-bottom:4px}
+.hero .sub{font-size:14px;color:#7a7a7a;margin-bottom:24px}
+.hero .info{font-size:12px;color:#999;margin-bottom:24px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-bottom:32px}
+.kpi{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.kpi-v{display:block;font-size:18px;font-weight:800;color:#184341}
+.kpi-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+
+.section-header{font-size:16px;font-weight:700;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid #e8e8e8}
+
+.camp-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.camp-table th{background:#184341;color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+.camp-table td{padding:10px 12px;border-bottom:1px solid #f0f0f0}
+.camp-table tr:last-child td{border-bottom:none}
+.camp-table tr:hover td{background:#f8fafa}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
+.dot.active{background:#22c55e}
+.dot.paused{background:#d1d5db}
+.obj-tag{font-size:10px;font-weight:700;color:#fff;padding:2px 8px;border-radius:8px}
+
+.chart-container{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px}
+.chart-container canvas{max-height:280px}
+
+.creatives-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.ad-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ad-top{display:flex;gap:12px;align-items:flex-start}
+.ad-thumb{width:80px;height:80px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#eee}
+.ad-thumb-placeholder{width:80px;height:80px;border-radius:10px;background:#eee;flex-shrink:0}
+.ad-info{flex:1;min-width:0}
+.ad-name{font-size:12px;font-weight:700;margin-bottom:4px;word-break:break-word}
+.ad-meta{font-size:11px;color:#7a7a7a;margin-bottom:2px}
+.ad-cpl{font-size:11px;font-weight:700;color:#22c55e;margin-bottom:4px}
+.ad-link{display:inline-block;margin-top:4px;font-size:11px;font-weight:600;color:#00A19A;text-decoration:none;padding:3px 10px;border:1px solid #00A19A;border-radius:6px;transition:all .15s}
+.ad-link:hover{background:#00A19A;color:#fff}
+.ad-body{font-size:11px;color:#666;margin-top:10px;line-height:1.5;padding-top:10px;border-top:1px solid #f0f0f0}
+
+.balance-section{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px;max-width:400px}
+.bal-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.bal-row.highlight{font-weight:700;font-size:14px;margin-top:8px}
+.bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
+.bal-fill{height:100%;border-radius:4px;transition:width .5s}
+
+.footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
+
+.table-wrap{overflow-x:auto;margin-bottom:32px}
+
+@media(max-width:768px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .creatives-grid{grid-template-columns:1fr}
+    .camp-table{font-size:11px}
+    .camp-table th,.camp-table td{padding:8px 6px}
+    .ad-thumb{width:100%;height:160px;border-radius:8px}
+    .ad-top{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
+        <span class="logo-text">seven</span>
+    </div>
+    <div class="topbar-right">
+        <div class="live-dot"></div>
+        <span class="topbar-label">Atualizado 20/03/2026 17:11</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="hero">
+        <h1>DM2 Campo Grande</h1>
+        <p class="sub">Doutor DM2 Diabetes · Dashboard de Performance Meta Ads</p>
+        <p class="info">10 campanhas (4 ativas) · Conta: CA 01 - DM2 CAMPO GRANDE</p>
+    </div>
+
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 20,921.61</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">177,303</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">25,286</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">2.14%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.83</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 17.68</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">2,437</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 8.58</span><span class="kpi-l">Custo/Conv</span></div></div>
+
+    
+        <div class="balance-section">
+            <div class="bal-row"><span>Limite da conta</span><span>R$ 21,449.25</span></div>
+            <div class="bal-row"><span>Gasto total</span><span>R$ 20,921.38</span></div>
+            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#22c55e">R$ 527.87</span></div>
+            <div class="bal-bar"><div class="bal-fill" style="width:98%;background:#22c55e"></div></div>
+        </div>
+
+    <h3 class="section-header">Últimos 7 dias</h3>
+    <div class="chart-container">
+        <canvas id="dailyChart"></canvas>
+    </div>
+
+    <h3 class="section-header">Campanhas</h3>
+    <div class="table-wrap">
+        <table class="camp-table">
+            <thead><tr>
+                <th>Campanha</th><th>Objetivo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>CTR</th><th>Conv</th><th>Custo/Conv</th>
+            </tr></thead>
+            <tbody><tr>
+            <td><span class="dot paused"></span>17/10 [vendas] [wpp] [km-clinica] [40+] [alto</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 6396.24</td>
+            <td>68,167</td>
+            <td>6,346</td>
+            <td>2.06%</td>
+            <td><strong>1046</strong></td>
+            <td>R$ 6.11</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>12/01 [vendas] [wpp] [teste-criativos] [campo</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 4195.44</td>
+            <td>65,007</td>
+            <td>4,088</td>
+            <td>1.99%</td>
+            <td><strong>538</strong></td>
+            <td>R$ 7.80</td>
+        </tr><tr>
+            <td><span class="dot active"></span>12/01 [leads] [campo-grande] [rmk] [40+] ABO</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 2746.90</td>
+            <td>22,172</td>
+            <td>4,313</td>
+            <td>2.88%</td>
+            <td><strong>336</strong></td>
+            <td>R$ 8.18</td>
+        </tr><tr>
+            <td><span class="dot active"></span>17/10  [trafego-perfil] [campo grande] [35+] </td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 2365.51</td>
+            <td>48,444</td>
+            <td>3,371</td>
+            <td>1.96%</td>
+            <td><strong>8</strong></td>
+            <td>R$ 295.69</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01/03 [vendas] [wpp] [ceps-bairros-interesses</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1451.50</td>
+            <td>22,436</td>
+            <td>1,603</td>
+            <td>2.76%</td>
+            <td><strong>136</strong></td>
+            <td>R$ 10.67</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>07/12 [leads] [campo-grande] [rmk] [40+] ABO</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 1130.78</td>
+            <td>10,848</td>
+            <td>2,138</td>
+            <td>3.24%</td>
+            <td><strong>153</strong></td>
+            <td>R$ 7.39</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>17/10 [engajamento] [video-view] [Campo Grand</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1010.61</td>
+            <td>40,391</td>
+            <td>1,367</td>
+            <td>1.02%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>15/12 [vendas] [wpp] [teste-criativos] [campo</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 786.65</td>
+            <td>15,147</td>
+            <td>975</td>
+            <td>2.05%</td>
+            <td><strong>122</strong></td>
+            <td>R$ 6.45</td>
+        </tr><tr>
+            <td><span class="dot active"></span>01/03 [vendas] [wpp] [cidades] [teste-criativ</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 554.24</td>
+            <td>14,089</td>
+            <td>813</td>
+            <td>2.55%</td>
+            <td><strong>69</strong></td>
+            <td>R$ 8.03</td>
+        </tr><tr>
+            <td><span class="dot active"></span>17/03 [vendas] [wpp] [ceps-bairros-interesses</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 283.74</td>
+            <td>6,691</td>
+            <td>272</td>
+            <td>2.39%</td>
+            <td><strong>29</strong></td>
+            <td>R$ 9.78</td>
+        </tr></tbody>
+        </table>
+    </div>
+
+    <h3 class="section-header">Top Criativos</h3>
+    <div class="creatives-grid">
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/566252882_3828400040718265_3666343846053232748_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeEvSTwgCNxGHMg-32T5mYM85vFPQXv_Q9fm8U9Be_9D1w15__077qLrfvHls52OVbGHh3F2WX0j3PAGOljhLEox&_nc_ohc=SSTyEFkF5UkQ7kNvwEIcFUI&_nc_oc=AdrqWKySL4F2xUOXWyZf647R524aV8rfrPSItAuaX7fRTl-yCQ8byWamoH6WvOStVfY&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=OQcnxMyAkJc1jRAK7YVG1A&_nc_tpa=Q5bMBQHcKa-K0ih70vkwa-ahQzMtQPYbnqb0811kOmCCxq3lNKagd0dpgbVgeV6zh8OpNS42HDL7fUEwAg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwAGNQ81wpHDsVlUxxrE3otOwXwMJj_9ByM70X8Np4ADQ&oe=69C38EF8&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Ads nao funciona</div>
+                    <div class="ad-meta">R$ 1789.33 · 1643 cliques · 198 conv · CTR 2.20%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 9.04</div>
+                    <a class="ad-link" href="https://fb.me/1SbMxovWPKN2ZYP" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Campo Grande com o único protoc</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKjU6WEtzUM7TlMUelMQ1NkmZM4nQ4Fymu171zn5M5B-v_-4J2IvLFXk2g0Ye8giQPvrRbUPRngWo_VKr5hn78T0Pv4PfdXP3C7Q89WBl6RWnO1H3ZljeblkVU2H8DJnx9Q-ryfiZY-Z7_nsZyiMNu3" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Ads voce sofre celi</div>
+                    <div class="ad-meta">R$ 1652.69 · 1456 cliques · 274 conv · CTR 1.79%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 6.03</div>
+                    <a class="ad-link" href="https://fb.me/2c6rhGl0S0Axk62" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Campo Grande com o único protoc</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/597408241_2061136247984877_1342783762281101186_n.jpg?_nc_cat=107&ccb=1-7&_nc_eui2=AeFt-YniQKtN8q125aZgWzt6W8s6C1JTDb1byzoLUlMNvSxvKU3EwUVY6qGXur3900NyTLw_RjLWpjcAlC429ooV&_nc_ohc=vC2lE5OkgYwQ7kNvwHZdnZo&_nc_oc=AdqTlL2bYQXbWLtMAQUfogCIcq8Dq_urOp_TWgC3foYDAVg15lzqEpKbJ00YupoGQW8&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=OQcnxMyAkJc1jRAK7YVG1A&_nc_tpa=Q5bMBQFSkYdpSNsKD_gPSlfhHyQac_Sz9YbXq-m2RXdFbgjgBMQguPhKUr-VXhh0mX8ZBBlUn4l36KNKMQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwLKvBH3nggHHz4SBWm3yShLksY2R8CclvODeJhWwiOpQ&oe=69C38ED1&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads 50+</div>
+                    <div class="ad-meta">R$ 1161.78 · 1204 cliques · 184 conv · CTR 2.10%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 6.31</div>
+                    <a class="ad-link" href="https://fb.me/1Y3UN9dT9rmlbjh" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Você sabia que viver sem diabetes tipo 2 é possível?<br>Enquanto muitos acreditam que controlar a doença é o máximo que se </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIPAcZpRKnztL9CFMCrAE2Ic-RiB7ezlFKC0WHCSUUbhgHkcaKdlqgbDRvzv1nac3iZiAwgsAbEEoN-QgzARyNRT4wZQwEYjfnJljzbtHHX2-8c_ScnunSGJmH3cyhs0lq64pE3fp25JSU88kiiR03W" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads metformina</div>
+                    <div class="ad-meta">R$ 1019.22 · 1631 cliques · 8 conv · CTR 1.87%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 127.40</div>
+                    <a class="ad-link" href="https://fb.me/20cr2t0B9gp3EPf" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">A DIABETES TIPO 2 NÃO PRECISA SER SUA SENTENÇA!<br>A Doutor DM2 chegou a Campo Grande com o único protocolo focado em REMIS</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/597408241_2061136247984877_1342783762281101186_n.jpg?_nc_cat=107&ccb=1-7&_nc_eui2=AeFt-YniQKtN8q125aZgWzt6W8s6C1JTDb1byzoLUlMNvSxvKU3EwUVY6qGXur3900NyTLw_RjLWpjcAlC429ooV&_nc_ohc=vC2lE5OkgYwQ7kNvwHZdnZo&_nc_oc=AdqTlL2bYQXbWLtMAQUfogCIcq8Dq_urOp_TWgC3foYDAVg15lzqEpKbJ00YupoGQW8&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=OQcnxMyAkJc1jRAK7YVG1A&_nc_tpa=Q5bMBQFSkYdpSNsKD_gPSlfhHyQac_Sz9YbXq-m2RXdFbgjgBMQguPhKUr-VXhh0mX8ZBBlUn4l36KNKMQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwLKvBH3nggHHz4SBWm3yShLksY2R8CclvODeJhWwiOpQ&oe=69C38ED1&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads 50+</div>
+                    <div class="ad-meta">R$ 993.86 · 710 cliques · 120 conv · CTR 1.51%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 8.28</div>
+                    <a class="ad-link" href="https://fb.me/1Y3UN9dT9rmlbjh" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Você sabia que viver sem diabetes tipo 2 é possível?<br>Enquanto muitos acreditam que controlar a doença é o máximo que se </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKjU6WEtzUM7TlMUelMQ1NkmZM4nQ4Fymu171zn5M5B-v_-4J2IvLFXk2g0Ye8giQPvrRbUPRngWo_VKr5hn78T0Pv4PfdXP3C7Q89WBl6RWnO1H3ZljeblkVU2H8DJnx9Q-ryfiZY-Z7_nsZyiMNu3" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Ads voce sofre celi</div>
+                    <div class="ad-meta">R$ 954.61 · 804 cliques · 155 conv · CTR 1.82%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 6.16</div>
+                    <a class="ad-link" href="https://fb.me/2c6rhGl0S0Axk62" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Campo Grande com o único protoc</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/566252882_3828400040718265_3666343846053232748_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeEvSTwgCNxGHMg-32T5mYM85vFPQXv_Q9fm8U9Be_9D1w15__077qLrfvHls52OVbGHh3F2WX0j3PAGOljhLEox&_nc_ohc=SSTyEFkF5UkQ7kNvwEIcFUI&_nc_oc=AdrqWKySL4F2xUOXWyZf647R524aV8rfrPSItAuaX7fRTl-yCQ8byWamoH6WvOStVfY&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=OQcnxMyAkJc1jRAK7YVG1A&_nc_tpa=Q5bMBQHcKa-K0ih70vkwa-ahQzMtQPYbnqb0811kOmCCxq3lNKagd0dpgbVgeV6zh8OpNS42HDL7fUEwAg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwAGNQ81wpHDsVlUxxrE3otOwXwMJj_9ByM70X8Np4ADQ&oe=69C38EF8&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Ads nao funciona</div>
+                    <div class="ad-meta">R$ 808.30 · 1011 cliques · 139 conv · CTR 2.53%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 5.82</div>
+                    <a class="ad-link" href="https://fb.me/1SbMxovWPKN2ZYP" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Campo Grande com o único protoc</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/595149479_891007893358614_9091517895747941522_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeFHY8ZeFqXGe8YzLWIaZGKVxDg9hsQ74srEOD2GxDviypgREbaeF0f7JdQAhIhIVL8FOIegoawgm-6ieMhUWAEY&_nc_ohc=4oDA0NygcgwQ7kNvwEzKFJv&_nc_oc=AdrJpVbD26ZVh_IS0Bl8n0zUDFvYHYzLY4w83sZ3CwBl-H4vXny3rh5nICXkZbl2e-E&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=OQcnxMyAkJc1jRAK7YVG1A&_nc_tpa=Q5bMBQEqisuJ8yid2fq4kxneNs_y4xXz1CvRCTGGhdRUNNzmPl4vw4cx1w62QWqVb3tdNhCpUuGUU8oTaA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwW-WiYrirYlyQrZmzlB5_crLQC1o3UToEhUjM-LSXxBw&oe=69C37315&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads depoimento campo grande</div>
+                    <div class="ad-meta">R$ 806.83 · 1409 cliques · 102 conv · CTR 2.86%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 7.91</div>
+                    <a class="ad-link" href="https://fb.me/33kiZSdMUtatG7T" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Diabetes tipo 2 não precisa ser pra sempre.<br>E se você tenta controlar há anos e nada muda… não é culpa sua.<br><br>O problema </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJLp7K4bUcpjN8W_UVzKERZDvgl6yuMV8pjQxqrhKYCNegujKYQugFowcFSxdnfPyM9VVcHb4dLm-jxzhooS3f_qHWbgPx_mqBL1GRr0BKaAB6m6PBXVLZ3mUQgk-rRoEm_VRdqoPzM8cD2ozs67X9c" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Ads metformina</div>
+                    <div class="ad-meta">R$ 683.17 · 1021 cliques · 0 conv · CTR 1.03%</div>
+                    
+                    <a class="ad-link" href="https://fb.me/2gmSxjCxJ4Mbrmq" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">A DIABETES TIPO 2 NÃO PRECISA SER SUA SENTENÇA!<br>A Doutor DM2 chegou a Campo Grande com o único protocolo focado em REMIS</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLPlrS16J3TioyxJvbtL30Wg6zpmSwzfFSyD-ehnz_WkpgaHzppo5c5sQDeAA5Juf0DvX_KrVzrXgFwWcwcVG7bFH64V41es3iSr8NCS_3_46Tuc984xUTcUr-919Qncw2WanufaLmwyW-WO-HR-bSn" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads depoimento campo grande</div>
+                    <div class="ad-meta">R$ 665.68 · 1240 cliques · 89 conv · CTR 3.07%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 7.48</div>
+                    <a class="ad-link" href="https://fb.me/1SBmZnzxnNyoaxx" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Diabetes tipo 2 não precisa ser pra sempre.<br>E se você tenta controlar há anos e nada muda… não é culpa sua.<br><br>O problema </div>
+        </div></div>
+
+    <div class="footer">
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 17:11</div>
+    </div>
+</div>
+
+<script>
+new Chart(document.getElementById('dailyChart'),{
+    type:'bar',
+    data:{
+        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
+        datasets:[
+            {label:'Gasto (R$)',data:[135.07, 184.11, 58.62, 10.7, 219.16, 252.18, 190.54],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[181, 181, 78, 14, 233, 290, 230],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[17, 17, 6, 0, 17, 23, 18],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+        ]
+    },
+    options:{
+        responsive:true,
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{position:'bottom',labels:{font:{family:'Montserrat',size:11}}}},
+        scales:{
+            y:{beginAtZero:true,grid:{color:'#f0f0f0'},ticks:{font:{family:'Montserrat',size:11},callback:v=>'R$ '+v}},
+            y1:{position:'right',beginAtZero:true,grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}},
+            x:{grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}}
+        }
+    }
+});
+</script>
+
+</body>
+</html>

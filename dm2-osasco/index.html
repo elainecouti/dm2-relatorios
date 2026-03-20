@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seven · DM2 Osasco</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-serif}
+
+.topbar{background:#184341;display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:60px;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo svg{width:28px;height:28px}
+.logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.topbar-right{display:flex;align-items:center;gap:12px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.topbar-label{font-size:12px;color:rgba(255,255,255,.6)}
+
+.container{max-width:1100px;margin:0 auto;padding:32px 24px}
+.hero h1{font-size:26px;font-weight:800;margin-bottom:4px}
+.hero .sub{font-size:14px;color:#7a7a7a;margin-bottom:24px}
+.hero .info{font-size:12px;color:#999;margin-bottom:24px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-bottom:32px}
+.kpi{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.kpi-v{display:block;font-size:18px;font-weight:800;color:#184341}
+.kpi-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+
+.section-header{font-size:16px;font-weight:700;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid #e8e8e8}
+
+.camp-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.camp-table th{background:#184341;color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+.camp-table td{padding:10px 12px;border-bottom:1px solid #f0f0f0}
+.camp-table tr:last-child td{border-bottom:none}
+.camp-table tr:hover td{background:#f8fafa}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
+.dot.active{background:#22c55e}
+.dot.paused{background:#d1d5db}
+.obj-tag{font-size:10px;font-weight:700;color:#fff;padding:2px 8px;border-radius:8px}
+
+.chart-container{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px}
+.chart-container canvas{max-height:280px}
+
+.creatives-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.ad-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ad-top{display:flex;gap:12px;align-items:flex-start}
+.ad-thumb{width:80px;height:80px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#eee}
+.ad-thumb-placeholder{width:80px;height:80px;border-radius:10px;background:#eee;flex-shrink:0}
+.ad-info{flex:1;min-width:0}
+.ad-name{font-size:12px;font-weight:700;margin-bottom:4px;word-break:break-word}
+.ad-meta{font-size:11px;color:#7a7a7a;margin-bottom:2px}
+.ad-cpl{font-size:11px;font-weight:700;color:#22c55e;margin-bottom:4px}
+.ad-link{display:inline-block;margin-top:4px;font-size:11px;font-weight:600;color:#00A19A;text-decoration:none;padding:3px 10px;border:1px solid #00A19A;border-radius:6px;transition:all .15s}
+.ad-link:hover{background:#00A19A;color:#fff}
+.ad-body{font-size:11px;color:#666;margin-top:10px;line-height:1.5;padding-top:10px;border-top:1px solid #f0f0f0}
+
+.balance-section{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px;max-width:400px}
+.bal-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.bal-row.highlight{font-weight:700;font-size:14px;margin-top:8px}
+.bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
+.bal-fill{height:100%;border-radius:4px;transition:width .5s}
+
+.footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
+
+.table-wrap{overflow-x:auto;margin-bottom:32px}
+
+@media(max-width:768px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .creatives-grid{grid-template-columns:1fr}
+    .camp-table{font-size:11px}
+    .camp-table th,.camp-table td{padding:8px 6px}
+    .ad-thumb{width:100%;height:160px;border-radius:8px}
+    .ad-top{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
+        <span class="logo-text">seven</span>
+    </div>
+    <div class="topbar-right">
+        <div class="live-dot"></div>
+        <span class="topbar-label">Atualizado 20/03/2026 17:11</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="hero">
+        <h1>DM2 Osasco</h1>
+        <p class="sub">Doutor DM2 Diabetes · Dashboard de Performance Meta Ads</p>
+        <p class="info">15 campanhas (3 ativas) · Conta: CA - DM2 OSASCO </p>
+    </div>
+
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 40,161.81</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">448,747</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">31,915</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.50%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 1.26</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 18.86</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">3,297</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 12.18</span><span class="kpi-l">Custo/Conv</span></div></div>
+
+    
+        <div class="balance-section">
+            <div class="bal-row"><span>Limite da conta</span><span>R$ 41,062.20</span></div>
+            <div class="bal-row"><span>Gasto total</span><span>R$ 40,160.11</span></div>
+            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#22c55e">R$ 902.09</span></div>
+            <div class="bal-bar"><div class="bal-fill" style="width:98%;background:#22c55e"></div></div>
+        </div>
+
+    <h3 class="section-header">Últimos 7 dias</h3>
+    <div class="chart-container">
+        <canvas id="dailyChart"></canvas>
+    </div>
+
+    <h3 class="section-header">Campanhas</h3>
+    <div class="table-wrap">
+        <table class="camp-table">
+            <thead><tr>
+                <th>Campanha</th><th>Objetivo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>CTR</th><th>Conv</th><th>Custo/Conv</th>
+            </tr></thead>
+            <tbody><tr>
+            <td><span class="dot paused"></span>15/09 [Venda] [Wpp] [teste-publicos] [40+] [L</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 9257.57</td>
+            <td>129,250</td>
+            <td>6,392</td>
+            <td>1.51%</td>
+            <td><strong>705</strong></td>
+            <td>R$ 13.13</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>15/09 [engajamento] [wpp] [40+] [rmk90D] CBO </td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 5143.97</td>
+            <td>134,721</td>
+            <td>6,659</td>
+            <td>1.78%</td>
+            <td><strong>743</strong></td>
+            <td>R$ 6.92</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>14/11 [venda] [wpp] [osasco] [homens] [40+] [</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 4162.39</td>
+            <td>58,289</td>
+            <td>3,043</td>
+            <td>1.37%</td>
+            <td><strong>255</strong></td>
+            <td>R$ 16.32</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>31/08 [Venda] [Wpp] [Osasco] [Homens] CBO 1-1</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 3940.73</td>
+            <td>61,959</td>
+            <td>2,436</td>
+            <td>1.39%</td>
+            <td><strong>343</strong></td>
+            <td>R$ 11.49</td>
+        </tr><tr>
+            <td><span class="dot active"></span>14/11 [vendas] [wpp] [regiões] [40+] [rmk-30D</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 3329.51</td>
+            <td>17,896</td>
+            <td>2,614</td>
+            <td>2.33%</td>
+            <td><strong>279</strong></td>
+            <td>R$ 11.93</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>27/08 [Engajamento] [Wpp] [Osasco] [alto-valo</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 3092.44</td>
+            <td>48,793</td>
+            <td>2,168</td>
+            <td>1.46%</td>
+            <td><strong>229</strong></td>
+            <td>R$ 13.50</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>14/11 [vendas] [wpp] [regiões] [40+] [alto-va</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 2815.29</td>
+            <td>40,817</td>
+            <td>2,583</td>
+            <td>2.20%</td>
+            <td><strong>267</strong></td>
+            <td>R$ 10.54</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08/01 [venda] [wpp] [osasco] [interesse] [40+</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 2401.59</td>
+            <td>29,770</td>
+            <td>2,207</td>
+            <td>2.69%</td>
+            <td><strong>190</strong></td>
+            <td>R$ 12.64</td>
+        </tr><tr>
+            <td><span class="dot active"></span>08/03 [vendas] [36+] [ceps-osasco] [novos-cri</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1769.25</td>
+            <td>24,486</td>
+            <td>1,378</td>
+            <td>2.27%</td>
+            <td><strong>95</strong></td>
+            <td>R$ 18.62</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>22/10 [BOFU] [comparecimento] [rmk 20 dias] [</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 1088.33</td>
+            <td>4,435</td>
+            <td>339</td>
+            <td>0.83%</td>
+            <td><strong>19</strong></td>
+            <td>R$ 57.28</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>27/08 [Alcance] [Osasco] [Aquecimento] CBO</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 988.13</td>
+            <td>149,889</td>
+            <td>474</td>
+            <td>0.17%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>27/08 [Engajamento] [Wpp] [Osasco] [Criativos</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 789.00</td>
+            <td>15,066</td>
+            <td>574</td>
+            <td>1.80%</td>
+            <td><strong>58</strong></td>
+            <td>R$ 13.60</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>14/11 [vendas] [wpp] [regiões] [40+] [alto-va</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 674.25</td>
+            <td>17,131</td>
+            <td>657</td>
+            <td>1.80%</td>
+            <td><strong>66</strong></td>
+            <td>R$ 10.22</td>
+        </tr><tr>
+            <td><span class="dot active"></span>08/03 [venda] [wpp] [rmk 90-180D] [39+] disfu</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 514.20</td>
+            <td>3,485</td>
+            <td>261</td>
+            <td>2.06%</td>
+            <td><strong>35</strong></td>
+            <td>R$ 14.69</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>10/09 [Venda] [Wpp] [Osasco] [40+] CBO 1-1-3</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 195.16</td>
+            <td>5,498</td>
+            <td>130</td>
+            <td>1.51%</td>
+            <td><strong>13</strong></td>
+            <td>R$ 15.01</td>
+        </tr></tbody>
+        </table>
+    </div>
+
+    <h3 class="section-header">Top Criativos</h3>
+    <div class="creatives-grid">
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKcT9CsLxEjGHLcpWEpqbE-lzHtssMMafleWNF0iO0Qbq3cx-cGGZoslSPInf8LwkYVtgiq9-ZtI6c829ZmueQNgnpPHPCfimtpsovoVroIOAhjJ6OEpmNLhRQQy5RpsZFGrC7H3S9r4vp7yzZU4-oZ" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads controlar sintomas</div>
+                    <div class="ad-meta">R$ 2607.63 · 2397 cliques · 248 conv · CTR 2.26%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 10.51</div>
+                    <a class="ad-link" href="https://fb.me/1Zm71CeN4WiZ1BS" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Controlar a glicose NÃO é tratar a diabetes<br><br>A maioria dos pacientes com diabetes tipo 2 está tentando resolver o proble</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.13418-10/539042769_1274172044168402_4292728563724708913_n.jpg?_nc_cat=107&ccb=1-7&_nc_eui2=AeEIVEP982DvxTJHmaaKBeOL3w7oEB5nMtffDugQHmcy1xoZaY8Zz7iwMqIbrAyKnopXFzKA1cuJXELdN6fgweGY&_nc_ohc=GSnhk-KDN5QQ7kNvwHGGuwC&_nc_oc=Adq4U3lnF0kdKQGZqnZJgmIdo0mifOZ18TlN_-0g0lprQ3j5FNxTmbbWpQF0g15lD9c&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=flLPBHgXKwXjBLAtB9e25A&_nc_tpa=Q5bMBQFEy1QvAxk2csNZNhp81odP49PAiugUYEv9vE_7SA_mCUKd1GGf3gkEc9WHNI7J_-PgPeNtv3-G9A&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfyZVmzyHlZEHX91ao7WRAumIj4RHl_Hnxf8HXOeER84fg&oe=69C366B0&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads sofre</div>
+                    <div class="ad-meta">R$ 2301.08 · 1392 cliques · 166 conv · CTR 1.38%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 13.86</div>
+                    <a class="ad-link" href="https://fb.me/24dXB2Md2KCNsMC" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">⚠️🔔 Mesmo com medicação, você não consegue controlar sua glicemia?<br><br>Agende uma consulta com a Doutor DM2 Diabetes Osasco</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIHD6WycmRtwk1QD_32KZMR2U7YWgpko-wsmJMZsj4O7_xEU-bIrhNRy03PoGt-wy1-cilt7FvQsqUxsB_aDggloi0K_C0H9aW_7U8kJzNZ9uLiSwsDw1tE-ZyijbuNZooWRqk1qpN4RgDcqw7vqDu3" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads thalita homens</div>
+                    <div class="ad-meta">R$ 2173.01 · 1837 cliques · 133 conv · CTR 1.32%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 16.34</div>
+                    <a class="ad-link" href="https://fb.me/23oD5EXJBwrrFb3" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Descubra a relação entre diabetes tipo 2 e impotência.<br><br>Se você:<br><br>👉 Tem mais de 50,<br>👉 Usa metformina, insulina ou outros</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKIxwDfKmdpofuurR_jm16qtXuPoMXQDjJGFoEKL9L_gQeM8DpJyfQ1_TutZ-zvV56BxUl0-fOviC9ymywNJ0jVRXmVCvjF98wTCwKh9Wz84T5yJvL2ELYnWyNc0Ug7xLGZgZ5u49MiANaDoEO1BPIS" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads exames</div>
+                    <div class="ad-meta">R$ 2171.55 · 2885 cliques · 313 conv · CTR 1.77%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 6.94</div>
+                    <a class="ad-link" href="https://fb.me/34Ni53wd38CeaI3" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Você sabia que viver sem diabetes tipo 2 é possível?<br><br>Enquanto muitos acreditam que controlar a doença é o máximo que se</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIRmH_mB4eyfnoq0jyF1AM-hEOAdn6of0BM70CKFL8l7_xGu9c8T6pAi5vqhVIdJLTXWa1yu_kXOjmqSKtCqDu244WRami2LJ6TGKe0zbBSuc87CZotuMSNMvuSK7zqZAF6LTq4GGZfLLJYSDHUdhAz" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Ads disfunção erétil</div>
+                    <div class="ad-meta">R$ 1840.84 · 1252 cliques · 189 conv · CTR 1.53%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 9.74</div>
+                    <a class="ad-link" href="https://fb.me/1ZFGXierjbLHf7l" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">💪 Impotência sexual e disfunção erétil podem ser sinais de alerta para o diabetes tipo 2. Não ignore esses sintomas, cui</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-1.xx.fbcdn.net/v/t15.5256-10/566625961_1236095098274952_7463787455097194235_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeEe6liGFzpXmuYLdTZWJOgqf8Bk9KQz8hd_wGT0pDPyF0I3PSxdsKpba3BZbo5yLqXARyDWwTrnunbUcFddw7Mo&_nc_ohc=I2etMBccKykQ7kNvwGvNDei&_nc_oc=AdqZWI1qkgS8NRX0euraaqWZnPBJCz7v_nrQfTfZTHQE2MBZNc6zE-OpOfZw0pMFZf8&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=flLPBHgXKwXjBLAtB9e25A&_nc_tpa=Q5bMBQEP8jOZ1sX5S_l0T8yUC4TUAsyYfmiYhZ5NcEVdg7Okngr1ws7FwgLurNzskJYKbvnqh2zJVaXDMw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afxd2JxFrGIfVWYz6fgyXwHm7Q0FCqz7vAMEv_pLSEoBjg&oe=69C37CA3&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads exames jonas</div>
+                    <div class="ad-meta">R$ 1728.10 · 1069 cliques · 124 conv · CTR 1.81%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 13.94</div>
+                    <a class="ad-link" href="https://fb.me/1PC2N9JD4IVYcfQ" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Dá pra viver com exames normais e menos remédios? Dá sim.</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-1.xx.fbcdn.net/v/t15.5256-10/566625961_1236095098274952_7463787455097194235_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeEe6liGFzpXmuYLdTZWJOgqf8Bk9KQz8hd_wGT0pDPyF0I3PSxdsKpba3BZbo5yLqXARyDWwTrnunbUcFddw7Mo&_nc_ohc=I2etMBccKykQ7kNvwGvNDei&_nc_oc=AdqZWI1qkgS8NRX0euraaqWZnPBJCz7v_nrQfTfZTHQE2MBZNc6zE-OpOfZw0pMFZf8&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=flLPBHgXKwXjBLAtB9e25A&_nc_tpa=Q5bMBQFs25ZGh66jD73Ud7_AcVEbGcqN6TiWj4ygmJ1woWbpDAjH4JHfumR6conmkSntOtHaV5-wFQKROg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxJUN4I-dt2_U3657CkHxXCEUHPUtM6IZdfMfz9QZwCHw&oe=69C37CA3&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads exames jonas</div>
+                    <div class="ad-meta">R$ 1681.45 · 1588 cliques · 225 conv · CTR 1.53%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 7.47</div>
+                    <a class="ad-link" href="https://fb.me/24FQUWEsMsZN4SV" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Dá pra viver com exames normais e menos remédios? Dá sim.</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-2.xx.fbcdn.net/v/t15.13418-10/540441689_752394080990479_5583405772552130706_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeEuGewloJtxrrGg8dli_wW0v6HgspGOp8m_oeCykY6nyX4hi57YV_-NIuPmtSVhl5Pr0pElRpjKAHQZG7eWPtVO&_nc_ohc=oquqXwDpiWQQ7kNvwEmEM66&_nc_oc=Adpjb2Vy-6L9HgvElZF_oKzCCKe21P_iFruwKVCvBVAesAutScvBt7xt7Oc5-2yreSE&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=flLPBHgXKwXjBLAtB9e25A&_nc_tpa=Q5bMBQEYW2lvPIfsgAXx13bostOQUIaYHFCKiUu07xnxdDMos4dJVa92ed_AuD7zKA7dd6QAz3fsGcReTg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfxCJxXDMpsoRMWUGf8APZKZIu5WGm7rBCOm7VSZjp2SQQ&oe=69C38031&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads tem dm2</div>
+                    <div class="ad-meta">R$ 1602.85 · 1347 cliques · 124 conv · CTR 1.78%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 12.93</div>
+                    <a class="ad-link" href="https://fb.me/23dFOxyv0483IIw" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">⚠️🔔 Mesmo com medicação, você não consegue controlar sua glicemia?<br><br>Agende uma consulta com a Doutor DM2 Diabetes Osasco</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQK92ADvNdAvDuz-GbkeHwWlRU-3UQarsn9d9mkKjLiFfSPrwVM86egrDKeiwA-zZyNyyw57qxyWh-6T5MsauKi2gnqu0O3pfDH2iF-Ga3fLRWOOMmotu29tfmKzPd6uCR2Hi-mWYJs8LFNHKZKJP74i" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads paty azulzinho</div>
+                    <div class="ad-meta">R$ 1582.02 · 1008 cliques · 103 conv · CTR 1.51%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 15.36</div>
+                    <a class="ad-link" href="https://fb.me/1T0Aeuso0960mkV" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Descubra a relação entre diabetes tipo 2 e impotência.<br><br>Se você:<br><br>👉 Tem mais de 50,<br>👉 Usa metformina, insulina ou outros</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/611677810_1265722855376586_7515754868732321687_n.jpg?_nc_cat=110&ccb=1-7&_nc_eui2=AeEfpNwEBNVGV5Eu2bOJgaKMdZLj0E3Ey2R1kuPQTcTLZEo4QPTv42fGY8qgu7NHVjh2_KvHU9HyWXboXLEMPmUC&_nc_ohc=yfgbFOjGcFgQ7kNvwF6dqWa&_nc_oc=AdquWr6ORfW7EZIjp69wWZ-wPu4uaXow4m4fC3dp3nP37QsgBxPqerqw1DwTvkGlkeo&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=flLPBHgXKwXjBLAtB9e25A&_nc_tpa=Q5bMBQFKJWunQnpVY4vjc5Xrdl_1PR-czLU1qXge4yZgNHm3hjeoochthqNjLFAdVCnR8XBcDTmZk0fP1w&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=b696e2&_nc_sid=58080a&oh=00_AfxYBnXb50pmW2FOeIRPj4xb7LJOUmRmgQznKf7VQq6QoA&oe=69C37D31&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads pancreas e insulina</div>
+                    <div class="ad-meta">R$ 1577.89 · 1660 cliques · 148 conv · CTR 2.93%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 10.66</div>
+                    <a class="ad-link" href="https://fb.me/2ibCP2Chle2C41V" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Quase todo diabético comete o mesmo erro:<br>Acreditar que controlar os números é suficiente.<br><br>Só que o diabetes tipo 2 não</div>
+        </div></div>
+
+    <div class="footer">
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 17:11</div>
+    </div>
+</div>
+
+<script>
+new Chart(document.getElementById('dailyChart'),{
+    type:'bar',
+    data:{
+        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
+        datasets:[
+            {label:'Gasto (R$)',data:[107.34, 199.75, 134.07, 375.26, 454.76, 300.16, 208.68],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[107, 160, 91, 242, 277, 205, 142],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[14, 13, 6, 15, 15, 25, 12],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+        ]
+    },
+    options:{
+        responsive:true,
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{position:'bottom',labels:{font:{family:'Montserrat',size:11}}}},
+        scales:{
+            y:{beginAtZero:true,grid:{color:'#f0f0f0'},ticks:{font:{family:'Montserrat',size:11},callback:v=>'R$ '+v}},
+            y1:{position:'right',beginAtZero:true,grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}},
+            x:{grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}}
+        }
+    }
+});
+</script>
+
+</body>
+</html>

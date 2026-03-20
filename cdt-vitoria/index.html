@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seven · CDT Vitória</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-serif}
+
+.topbar{background:#184341;display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:60px;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo svg{width:28px;height:28px}
+.logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.topbar-right{display:flex;align-items:center;gap:12px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.topbar-label{font-size:12px;color:rgba(255,255,255,.6)}
+
+.container{max-width:1100px;margin:0 auto;padding:32px 24px}
+.hero h1{font-size:26px;font-weight:800;margin-bottom:4px}
+.hero .sub{font-size:14px;color:#7a7a7a;margin-bottom:24px}
+.hero .info{font-size:12px;color:#999;margin-bottom:24px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-bottom:32px}
+.kpi{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.kpi-v{display:block;font-size:18px;font-weight:800;color:#184341}
+.kpi-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+
+.section-header{font-size:16px;font-weight:700;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid #e8e8e8}
+
+.camp-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.camp-table th{background:#184341;color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+.camp-table td{padding:10px 12px;border-bottom:1px solid #f0f0f0}
+.camp-table tr:last-child td{border-bottom:none}
+.camp-table tr:hover td{background:#f8fafa}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
+.dot.active{background:#22c55e}
+.dot.paused{background:#d1d5db}
+.obj-tag{font-size:10px;font-weight:700;color:#fff;padding:2px 8px;border-radius:8px}
+
+.chart-container{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px}
+.chart-container canvas{max-height:280px}
+
+.creatives-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.ad-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ad-top{display:flex;gap:12px;align-items:flex-start}
+.ad-thumb{width:80px;height:80px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#eee}
+.ad-thumb-placeholder{width:80px;height:80px;border-radius:10px;background:#eee;flex-shrink:0}
+.ad-info{flex:1;min-width:0}
+.ad-name{font-size:12px;font-weight:700;margin-bottom:4px;word-break:break-word}
+.ad-meta{font-size:11px;color:#7a7a7a;margin-bottom:2px}
+.ad-cpl{font-size:11px;font-weight:700;color:#22c55e;margin-bottom:4px}
+.ad-link{display:inline-block;margin-top:4px;font-size:11px;font-weight:600;color:#00A19A;text-decoration:none;padding:3px 10px;border:1px solid #00A19A;border-radius:6px;transition:all .15s}
+.ad-link:hover{background:#00A19A;color:#fff}
+.ad-body{font-size:11px;color:#666;margin-top:10px;line-height:1.5;padding-top:10px;border-top:1px solid #f0f0f0}
+
+.balance-section{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px;max-width:400px}
+.bal-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.bal-row.highlight{font-weight:700;font-size:14px;margin-top:8px}
+.bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
+.bal-fill{height:100%;border-radius:4px;transition:width .5s}
+
+.footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
+
+.table-wrap{overflow-x:auto;margin-bottom:32px}
+
+@media(max-width:768px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .creatives-grid{grid-template-columns:1fr}
+    .camp-table{font-size:11px}
+    .camp-table th,.camp-table td{padding:8px 6px}
+    .ad-thumb{width:100%;height:160px;border-radius:8px}
+    .ad-top{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
+        <span class="logo-text">seven</span>
+    </div>
+    <div class="topbar-right">
+        <div class="live-dot"></div>
+        <span class="topbar-label">Atualizado 20/03/2026 17:14</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="hero">
+        <h1>CDT Vitória</h1>
+        <p class="sub">Cartão de Todos · Dashboard de Performance Meta Ads</p>
+        <p class="info">97 campanhas (12 ativas) · Conta: CDT VITÓRIA</p>
+    </div>
+
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 79,650.33</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">1,276,215</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">126,492</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.21%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.63</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 7.59</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">16,765</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 4.75</span><span class="kpi-l">Custo/Conv</span></div></div>
+
+    
+        <div class="balance-section">
+            <div class="bal-row"><span>Limite da conta</span><span>R$ 92,083.69</span></div>
+            <div class="bal-row"><span>Gasto total</span><span>R$ 91,388.28</span></div>
+            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#22c55e">R$ 695.41</span></div>
+            <div class="bal-bar"><div class="bal-fill" style="width:99%;background:#22c55e"></div></div>
+        </div>
+
+    <h3 class="section-header">Últimos 7 dias</h3>
+    <div class="chart-container">
+        <canvas id="dailyChart"></canvas>
+    </div>
+
+    <h3 class="section-header">Campanhas</h3>
+    <div class="table-wrap">
+        <table class="camp-table">
+            <thead><tr>
+                <th>Campanha</th><th>Objetivo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>CTR</th><th>Conv</th><th>Custo/Conv</th>
+            </tr></thead>
+            <tbody><tr>
+            <td><span class="dot paused"></span>[ENGAJAMENTO][WHATS][25/09]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 10447.88</td>
+            <td>439,244</td>
+            <td>18,662</td>
+            <td>1.08%</td>
+            <td><strong>2474</strong></td>
+            <td>R$ 4.22</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>16/07 [vendas] [wpp] [campanha] [vix] [compra</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 9970.69</td>
+            <td>227,092</td>
+            <td>12,724</td>
+            <td>1.21%</td>
+            <td><strong>2265</strong></td>
+            <td>R$ 4.40</td>
+        </tr><tr>
+            <td><span class="dot active"></span>24/11 [vendas] [wpp] [21+] [Inativos + LL% cl</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 9364.36</td>
+            <td>207,668</td>
+            <td>12,874</td>
+            <td>1.31%</td>
+            <td><strong>1524</strong></td>
+            <td>R$ 6.14</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[ENGAJAMENTO][Campanha Leads ][whatsApp]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 8761.44</td>
+            <td>276,500</td>
+            <td>15,480</td>
+            <td>1.36%</td>
+            <td><strong>2276</strong></td>
+            <td>R$ 3.85</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[Engajamento][wpp][14/03]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 7843.73</td>
+            <td>218,211</td>
+            <td>14,407</td>
+            <td>1.28%</td>
+            <td><strong>1743</strong></td>
+            <td>R$ 4.50</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[Engajamento][wpp][11/11]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 7135.82</td>
+            <td>301,302</td>
+            <td>8,746</td>
+            <td>0.89%</td>
+            <td><strong>1230</strong></td>
+            <td>R$ 5.80</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Campanha Leads 20/03</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 4079.33</td>
+            <td>174,180</td>
+            <td>8,559</td>
+            <td>1.54%</td>
+            <td><strong>1164</strong></td>
+            <td>R$ 3.50</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[ENGAJAMENTO][Campanha para Leads ][whatsApp]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 3789.32</td>
+            <td>155,336</td>
+            <td>5,237</td>
+            <td>1.12%</td>
+            <td><strong>959</strong></td>
+            <td>R$ 3.95</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>CAMPANHA [DIA DO CONSUMIDOR]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1646.34</td>
+            <td>115,374</td>
+            <td>2,303</td>
+            <td>1.01%</td>
+            <td><strong>367</strong></td>
+            <td>R$ 4.49</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>20/10 [vendas] [wpp] [campanha] [vix] [compra</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1600.80</td>
+            <td>23,886</td>
+            <td>2,036</td>
+            <td>3.06%</td>
+            <td><strong>396</strong></td>
+            <td>R$ 4.04</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>28/07 [vendas] [wpp] [campanha] [sus] [aberto</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1538.96</td>
+            <td>51,517</td>
+            <td>1,231</td>
+            <td>0.99%</td>
+            <td><strong>176</strong></td>
+            <td>R$ 8.74</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[ENGAJAMENTO][DIAS DAS MÃES][whatsApp]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1298.76</td>
+            <td>79,085</td>
+            <td>2,018</td>
+            <td>1.31%</td>
+            <td><strong>236</strong></td>
+            <td>R$ 5.50</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>CAMPANHA LEADS [14/02]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1113.50</td>
+            <td>71,311</td>
+            <td>1,351</td>
+            <td>1.00%</td>
+            <td><strong>158</strong></td>
+            <td>R$ 7.05</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[RECONHECIMENTO][FRIO][VÍDEO]</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 1069.63</td>
+            <td>79,639</td>
+            <td>1,649</td>
+            <td>0.85%</td>
+            <td><strong>3</strong></td>
+            <td>R$ 356.54</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[Engajamento][wpp][14/03] — Cópia</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 939.92</td>
+            <td>39,645</td>
+            <td>1,388</td>
+            <td>1.06%</td>
+            <td><strong>246</strong></td>
+            <td>R$ 3.82</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>04/08 [engajamento] [vaga-vendedor] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 867.90</td>
+            <td>27,295</td>
+            <td>1,985</td>
+            <td>2.04%</td>
+            <td><strong>627</strong></td>
+            <td>R$ 1.38</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[ENGAJAMENTO][WHATSAPP][INSTAGRAM/FACEBOOK]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 767.63</td>
+            <td>44,335</td>
+            <td>1,065</td>
+            <td>0.96%</td>
+            <td><strong>173</strong></td>
+            <td>R$ 4.44</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Vagas</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 521.60</td>
+            <td>44,912</td>
+            <td>3,406</td>
+            <td>2.65%</td>
+            <td><strong>71</strong></td>
+            <td>R$ 7.35</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Campanha Leads 20/03 — Cópia</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 498.11</td>
+            <td>41,511</td>
+            <td>1,131</td>
+            <td>1.70%</td>
+            <td><strong>85</strong></td>
+            <td>R$ 5.86</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>campanha para Whatsapp {10/07}</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 474.04</td>
+            <td>20,449</td>
+            <td>691</td>
+            <td>1.58%</td>
+            <td><strong>25</strong></td>
+            <td>R$ 18.96</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[Engajamento][wpp][11/11] — black friday</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 472.51</td>
+            <td>46,384</td>
+            <td>500</td>
+            <td>0.79%</td>
+            <td><strong>118</strong></td>
+            <td>R$ 4.00</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Campanha São João</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 405.02</td>
+            <td>41,497</td>
+            <td>756</td>
+            <td>1.40%</td>
+            <td><strong>83</strong></td>
+            <td>R$ 4.88</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>23/06 [vendas] [wpp] [campanha] [vix] [rmk-35</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 375.93</td>
+            <td>17,432</td>
+            <td>742</td>
+            <td>2.20%</td>
+            <td><strong>34</strong></td>
+            <td>R$ 11.06</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[Engajamento][wpp][14/03] — Cópia</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 291.44</td>
+            <td>25,907</td>
+            <td>569</td>
+            <td>1.43%</td>
+            <td><strong>33</strong></td>
+            <td>R$ 8.83</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[Engajamento][wpp][26/11] BLACK</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 279.60</td>
+            <td>27,187</td>
+            <td>244</td>
+            <td>0.70%</td>
+            <td><strong>60</strong></td>
+            <td>R$ 4.66</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[ENGAJAMENTO][WHATS][25/09] — Cópia</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 227.36</td>
+            <td>24,459</td>
+            <td>307</td>
+            <td>1.00%</td>
+            <td><strong>40</strong></td>
+            <td>R$ 5.68</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>06/11 [engajamento] [forms.doc] [LL% lista] [</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 211.40</td>
+            <td>14,468</td>
+            <td>604</td>
+            <td>2.80%</td>
+            <td><strong>4</strong></td>
+            <td>R$ 52.85</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>21/07 [vendas] [wpp] [campanha] [vix] [maes] </td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 179.41</td>
+            <td>5,349</td>
+            <td>70</td>
+            <td>0.92%</td>
+            <td><strong>11</strong></td>
+            <td>R$ 16.31</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[TRÁFEGO][WHATSAPP][INSTAGRAM/FACEBOOK]</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 167.97</td>
+            <td>5,837</td>
+            <td>143</td>
+            <td>1.19%</td>
+            <td><strong>24</strong></td>
+            <td>R$ 7.00</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[VAGAS}{VENDEDOREXTERNO][04/04]</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 166.68</td>
+            <td>24,235</td>
+            <td>78</td>
+            <td>0.15%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 🎥🍿Eei vocês gostam d</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 150.00</td>
+            <td>16,293</td>
+            <td>297</td>
+            <td>0.94%</td>
+            <td><strong>6</strong></td>
+            <td>R$ 25.00</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[ENGAJAMENTO][Campanha Leads ][whatsApp][GREE</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 140.75</td>
+            <td>11,054</td>
+            <td>149</td>
+            <td>0.99%</td>
+            <td><strong>20</strong></td>
+            <td>R$ 7.04</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[Engajamento][refiliação]</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 133.85</td>
+            <td>9,019</td>
+            <td>129</td>
+            <td>0.98%</td>
+            <td><strong>12</strong></td>
+            <td>R$ 11.15</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[Engajamento][wpp][DIA C]</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 132.13</td>
+            <td>7,862</td>
+            <td>123</td>
+            <td>1.13%</td>
+            <td><strong>17</strong></td>
+            <td>R$ 7.77</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>27/06 [engajamento] [vix] [35-59] [campanha] </td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 102.75</td>
+            <td>3,304</td>
+            <td>55</td>
+            <td>1.16%</td>
+            <td><strong>6</strong></td>
+            <td>R$ 17.12</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 👉Baixe nosso app Car</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 100.00</td>
+            <td>11,388</td>
+            <td>220</td>
+            <td>1.74%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[RECONHECIMENTO][VÍDEO]</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 94.63</td>
+            <td>68,164</td>
+            <td>65</td>
+            <td>0.08%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: O @michelitos79 já f</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 90.00</td>
+            <td>10,006</td>
+            <td>154</td>
+            <td>1.12%</td>
+            <td><strong>5</strong></td>
+            <td>R$ 18.00</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[ENGAJAMENTO][WHATS][25/09] — Cópia</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 87.56</td>
+            <td>10,346</td>
+            <td>82</td>
+            <td>0.74%</td>
+            <td><strong>16</strong></td>
+            <td>R$ 5.47</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Chegou uma família q</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 76.00</td>
+            <td>7,879</td>
+            <td>76</td>
+            <td>0.47%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[Engajamento][wpp][16/03]</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 72.33</td>
+            <td>6,117</td>
+            <td>97</td>
+            <td>1.18%</td>
+            <td><strong>24</strong></td>
+            <td>R$ 3.01</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>vaga esteticista</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 60.14</td>
+            <td>20,985</td>
+            <td>7</td>
+            <td>0.03%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>supermercado ovelha</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 59.06</td>
+            <td>30,422</td>
+            <td>5</td>
+            <td>0.02%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>15/11 [trafego] [sorteio] [site] CBO</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 58.73</td>
+            <td>4,532</td>
+            <td>231</td>
+            <td>3.89%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>ENGAJAMENTO [OFERTAÇO] LEADS</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 55.92</td>
+            <td>8,011</td>
+            <td>53</td>
+            <td>0.60%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 27.96</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[tráfego][site]</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 54.65</td>
+            <td>5,329</td>
+            <td>398</td>
+            <td>4.54%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 54.65</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Vem com o cartão de.</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 54.11</td>
+            <td>5,183</td>
+            <td>54</td>
+            <td>0.57%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: O @michelitos79 já f</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 50.00</td>
+            <td>4,785</td>
+            <td>196</td>
+            <td>3.70%</td>
+            <td><strong>4</strong></td>
+            <td>R$ 12.50</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 🎥🍿 Atenção, fãs da..</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 50.00</td>
+            <td>7,646</td>
+            <td>112</td>
+            <td>0.88%</td>
+            <td><strong>5</strong></td>
+            <td>R$ 10.00</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 🎥🍿Eei vocês gostam d</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 49.91</td>
+            <td>7,916</td>
+            <td>88</td>
+            <td>0.77%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Celebre o Dia das Mã</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 48.51</td>
+            <td>4,724</td>
+            <td>139</td>
+            <td>2.46%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 48.51</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: É isso mesmo, está..</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 48.00</td>
+            <td>3,975</td>
+            <td>113</td>
+            <td>2.41%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>AMORSAÚDE</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 45.82</td>
+            <td>39,695</td>
+            <td>31</td>
+            <td>0.08%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Vocês não podem fica</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 42.00</td>
+            <td>3,090</td>
+            <td>72</td>
+            <td>1.71%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Nova campanha de Tráfego</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 41.53</td>
+            <td>2,888</td>
+            <td>60</td>
+            <td>1.71%</td>
+            <td><strong>10</strong></td>
+            <td>R$ 4.15</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Essa é pra você come</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 40.00</td>
+            <td>8,959</td>
+            <td>42</td>
+            <td>0.29%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 🚀🚀 Oportunidade no..</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 40.00</td>
+            <td>4,969</td>
+            <td>182</td>
+            <td>2.12%</td>
+            <td><strong>6</strong></td>
+            <td>R$ 6.67</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Aproveite para cuida</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 40.00</td>
+            <td>2,656</td>
+            <td>42</td>
+            <td>1.21%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 40.00</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>campanha mensagem vix[13/01]</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 35.64</td>
+            <td>5,786</td>
+            <td>106</td>
+            <td>1.66%</td>
+            <td><strong>10</strong></td>
+            <td>R$ 3.56</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Quer ganhar R$ 200 e</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 35.00</td>
+            <td>3,821</td>
+            <td>46</td>
+            <td>0.49%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot active"></span>Instagram post: A Refurituza chegou com tudo </td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 32.79</td>
+            <td>4,694</td>
+            <td>53</td>
+            <td>0.77%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>[reconhecimento][stories]</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 30.83</td>
+            <td>9,958</td>
+            <td>24</td>
+            <td>0.22%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Aproveite nossa prom</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 30.00</td>
+            <td>7,905</td>
+            <td>49</td>
+            <td>0.47%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 15.00</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 🎥🍿Eei vocês gostam d</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 30.00</td>
+            <td>9,691</td>
+            <td>131</td>
+            <td>1.21%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Agora, além de sabor</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 30.00</td>
+            <td>3,607</td>
+            <td>78</td>
+            <td>1.81%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 🍕🥤 Sabor e economia </td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 30.00</td>
+            <td>5,399</td>
+            <td>127</td>
+            <td>2.11%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 30.00</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Se você me acompanha</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 30.00</td>
+            <td>1,510</td>
+            <td>63</td>
+            <td>4.14%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Com o Cartão de TODO</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 30.00</td>
+            <td>1,980</td>
+            <td>31</td>
+            <td>1.45%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot active"></span>Instagram post: 💥 Promoção por tempo LIMITADO</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 29.98</td>
+            <td>3,150</td>
+            <td>64</td>
+            <td>1.54%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>dia do consumidor</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 25.78</td>
+            <td>2,210</td>
+            <td>19</td>
+            <td>0.79%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 25.78</td>
+        </tr><tr>
+            <td><span class="dot active"></span>Instagram post: DESCONTO ESPECIAL até 28 de..</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 23.92</td>
+            <td>2,497</td>
+            <td>74</td>
+            <td>2.33%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 11.96</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>LEADS [20/05]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 23.38</td>
+            <td>1,121</td>
+            <td>45</td>
+            <td>2.91%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 11.69</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Confira a entrega do</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 22.00</td>
+            <td>2,925</td>
+            <td>31</td>
+            <td>1.01%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Você sabia que o Car</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 20.00</td>
+            <td>6,540</td>
+            <td>26</td>
+            <td>0.31%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 🍕🥤 Sabor e economia </td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 20.00</td>
+            <td>2,249</td>
+            <td>87</td>
+            <td>3.37%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 🥪 Uma parceria...</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 20.00</td>
+            <td>3,802</td>
+            <td>39</td>
+            <td>0.74%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: O Cartão de TODOS se</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 20.00</td>
+            <td>3,076</td>
+            <td>21</td>
+            <td>0.51%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: É Black Friday no Ca</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 20.00</td>
+            <td>3,192</td>
+            <td>25</td>
+            <td>0.66%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 🚀 Oportunidade no Ca</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 20.00</td>
+            <td>2,573</td>
+            <td>133</td>
+            <td>3.25%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Ganhe dinheiro de vo</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 20.00</td>
+            <td>1,993</td>
+            <td>26</td>
+            <td>1.12%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Venham conhecer noss</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 19.99</td>
+            <td>1,912</td>
+            <td>52</td>
+            <td>2.09%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Promoção GREEN FRIDA</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 18.61</td>
+            <td>2,184</td>
+            <td>53</td>
+            <td>2.06%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Até 20% de Cashback </td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 17.98</td>
+            <td>1,593</td>
+            <td>40</td>
+            <td>2.34%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot active"></span>Instagram post: Você sabia que com o Cartão d</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 17.98</td>
+            <td>2,152</td>
+            <td>26</td>
+            <td>0.92%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Instagram Post</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 17.74</td>
+            <td>2,652</td>
+            <td>23</td>
+            <td>0.59%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>dia do consumidor</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 17.50</td>
+            <td>16,266</td>
+            <td>10</td>
+            <td>0.06%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 🛒🎉 Chegou a hora de.</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 15.00</td>
+            <td>3,279</td>
+            <td>103</td>
+            <td>2.93%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 15.00</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 💛🤝 Setembro é o mês </td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 15.00</td>
+            <td>7,868</td>
+            <td>50</td>
+            <td>0.62%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 15.00</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Se você me acompanha</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 14.99</td>
+            <td>1,214</td>
+            <td>32</td>
+            <td>2.57%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Instagram Post</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 14.74</td>
+            <td>1,299</td>
+            <td>13</td>
+            <td>0.94%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Nova campanha de Reconhecimento</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 13.93</td>
+            <td>2,652</td>
+            <td>4</td>
+            <td>0.15%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot active"></span>Instagram post: Já pensou economizar no médic</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 13.69</td>
+            <td>1,112</td>
+            <td>41</td>
+            <td>3.37%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 🎄🌟 Natal Colibri che</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 12.00</td>
+            <td>975</td>
+            <td>20</td>
+            <td>1.93%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 💼 Estamos contratand</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 11.99</td>
+            <td>996</td>
+            <td>34</td>
+            <td>2.75%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot active"></span>Instagram post: 💙 Quer cuidar da sua saúde se</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 11.99</td>
+            <td>1,227</td>
+            <td>17</td>
+            <td>1.06%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 🏥 Quer ter acesso a.</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 11.95</td>
+            <td>2,096</td>
+            <td>37</td>
+            <td>1.61%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot active"></span>Instagram post: A sua saúde não pode esperar!</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 11.86</td>
+            <td>530</td>
+            <td>22</td>
+            <td>3.67%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot active"></span>Instagram post: TODO MUNDO MERECE um Cartão d</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 11.82</td>
+            <td>1,078</td>
+            <td>36</td>
+            <td>2.83%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot active"></span>Instagram post: Conheça a Visão de Todos, nos</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 11.73</td>
+            <td>1,173</td>
+            <td>18</td>
+            <td>1.27%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Confira a entrega do</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 11.00</td>
+            <td>1,474</td>
+            <td>6</td>
+            <td>0.41%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Venha nos fazer uma.</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 11.00</td>
+            <td>1,349</td>
+            <td>12</td>
+            <td>0.77%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 11.00</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Se liga só nessa sup</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 11.00</td>
+            <td>1,292</td>
+            <td>14</td>
+            <td>1.01%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 🕶Temos o óculos perf</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 10.99</td>
+            <td>1,507</td>
+            <td>27</td>
+            <td>1.70%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 🥘Conheça nosso parce</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 10.99</td>
+            <td>992</td>
+            <td>25</td>
+            <td>2.37%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Clientes do Cartão d</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 10.99</td>
+            <td>1,182</td>
+            <td>10</td>
+            <td>0.84%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Prepare-se para um..</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 10.99</td>
+            <td>1,024</td>
+            <td>6</td>
+            <td>0.53%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: A melhor homenagem c</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 10.00</td>
+            <td>1,782</td>
+            <td>10</td>
+            <td>0.44%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Sabe aquelas notas..</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 10.00</td>
+            <td>928</td>
+            <td>14</td>
+            <td>1.34%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Filiados do Cartão d</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 10.00</td>
+            <td>1,013</td>
+            <td>22</td>
+            <td>2.08%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Se você é afiliado d</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 10.00</td>
+            <td>1,630</td>
+            <td>12</td>
+            <td>0.61%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Participe do nosso..</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 10.00</td>
+            <td>939</td>
+            <td>7</td>
+            <td>0.63%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Quer experimentar os</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 10.00</td>
+            <td>1,115</td>
+            <td>9</td>
+            <td>0.71%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: O Cartão de TODOS é </td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 9.99</td>
+            <td>1,386</td>
+            <td>10</td>
+            <td>0.69%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Já baixou nosso App?</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 9.99</td>
+            <td>720</td>
+            <td>12</td>
+            <td>1.57%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Você sabia que, com </td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 9.98</td>
+            <td>681</td>
+            <td>11</td>
+            <td>1.41%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: E não é que a nossa.</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 9.94</td>
+            <td>2,900</td>
+            <td>23</td>
+            <td>0.77%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 4.97</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: A melhor Clínica de.</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 9.93</td>
+            <td>726</td>
+            <td>9</td>
+            <td>1.10%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: O inverno está próxi</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 9.91</td>
+            <td>1,977</td>
+            <td>9</td>
+            <td>0.44%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>formulário instantâneo</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 9.63</td>
+            <td>548</td>
+            <td>6</td>
+            <td>0.99%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 9.63</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Nova campanha de Tráfego</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 9.58</td>
+            <td>1,516</td>
+            <td>19</td>
+            <td>1.16%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>CAMPANHA PROMOÇÃO ZICO</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 6.73</td>
+            <td>396</td>
+            <td>1</td>
+            <td>0.25%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Instagram post: A idosinha fofa que mora aqui</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 5.99</td>
+            <td>934</td>
+            <td>9</td>
+            <td>0.94%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot active"></span>Instagram post: Você sabia que saúde, educaçã</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 5.99</td>
+            <td>599</td>
+            <td>13</td>
+            <td>2.07%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: 💙 Quer cuidar da sua</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 5.98</td>
+            <td>548</td>
+            <td>5</td>
+            <td>0.82%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot active"></span>Instagram post: Com o Cartão de Todos, você t</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 5.83</td>
+            <td>587</td>
+            <td>6</td>
+            <td>0.97%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Instagram post: 🎉 Semana do Consumidor Cartão</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 5.67</td>
+            <td>895</td>
+            <td>13</td>
+            <td>1.34%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>{Engajamento][18/02][CARNAVAL]</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 5.07</td>
+            <td>191</td>
+            <td>8</td>
+            <td>3.94%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Hoje o Verdinho trou</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 3.59</td>
+            <td>395</td>
+            <td>1</td>
+            <td>0.22%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Publicação do Instagram: Hoje, às 18 horas...</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 2.40</td>
+            <td>182</td>
+            <td>3</td>
+            <td>1.62%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>Instagram Post</td>
+            <td><span class="obj-tag" style="background:#6b7280">Outros</span></td>
+            <td>R$ 1.90</td>
+            <td>826</td>
+            <td>3</td>
+            <td>0.35%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr></tbody>
+        </table>
+    </div>
+
+    <h3 class="section-header">Top Criativos</h3>
+    <div class="creatives-grid">
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://external-atl3-1.xx.fbcdn.net/emg1/v/t13/15279583771937065829?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLfrGqXNR6lA_R-KKla077EZRirV4RcvJYROAeZzxmFwsY2EKLMMLvACp4gzhm-rl85sz66vHhWhI_r243cMYbXHdmITRUteo6GqPY9NUt-tedFwcy92JiP3-rk2l5VkNmKsLjPSQsyt9cPLBLFW7id&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=owwoAV7FwHaMc7zC7UnPdQ&_nc_eui2=AeGbWdPsdXvnuBbbdya1QHeu-afAMrysNrP5p8AyvKw2s1jmc6e-FYArabXRkUfGeGaGDCwvE7u1LEu2n5bAQAkj&_nc_oc=AdpOXiaPDWgid9Hi81uI9xVAG8dCJHkBZ9aKMVUp_em6OUlBWiVdrwJ_1AY5Ousu8Fs&ccb=13-1&oh=06_Q3-9AYae5kEAn4PFt_JNLO3cI1TUDjFFeikZUPrfLpZjAmI8&oe=69BF9516&_nc_sid=58080a&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">especialidade branco</div>
+                    <div class="ad-meta">R$ 4988.24 · 8990 cliques · 1369 conv · CTR 1.25%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 3.64</div>
+                    <a class="ad-link" href="https://fb.me/1YIx6xty4O2UGpo" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Quem tem o Cartão de Todos paga barato em consultas médicas!<br><br>Diversas famílias estão fazendo o Cartão de Todos.👨👩👵👨‍🦳👧<br></div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://external-atl3-1.xx.fbcdn.net/emg1/v/t13/10928637475688650431?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJ12vpD6QLE_mGot1GIewIiD3nF8VL-QIJUbZnJPaQy5Ov1SlcrvqQ7taz8WIZrSP3LfRKYcK0hedEtII6FZglCV8Nxp0NkaB-C3tz8Z_MikNRspReZRm76lTLP36W9kM2zTsTTo7hZcT0swPeHiZgG&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=wipXDdbvGsgzFxodghfSwQ&_nc_eui2=AeEBkUbPu0fnpFEV24Yl4hojUNuC_dAsI5JQ24L90Cwjkoxi-CTzCoWC0sAEWzEtB1ubXN8G72pw_sCNEaQuJocH&_nc_oc=AdrDyclsGK8r5IdLNHA3iLe3ofBPfCC2dgE3_7ifQibuHt_J3B0imhnDf5b_P33THgg&ccb=13-1&oh=06_Q3-9AfmplVIieHPtUOufAJGP7g7jogcy9q3nZ_taXlH2SdIC&oe=69BF96D3&_nc_sid=58080a&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">AD02 - especialidades branco</div>
+                    <div class="ad-meta">R$ 4141.43 · 7141 cliques · 984 conv · CTR 1.10%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 4.21</div>
+                    <a class="ad-link" href="https://fb.me/24iMaVLWFjtrgFr" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">ATENÇÃO! SE VOCÊ MORA EM VITÓRIA, aproveite agora nossas ofertas de consultas médicas e odontológicas:<br><br>💚 Clínico Geral </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://external-atl3-1.xx.fbcdn.net/emg1/v/t13/17941540701348935318?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLl7yU32xtYJr2ZL2mfZfBra3FPPvKIm6_jAzYFvCUeof5xtHUNoa_RsSj0kCVA42DagsJDj-YaANTSPfMsLDJ3EALiQ-y4VTRIivMrXQxi_0IE7TbjTlPW2bYJygfCLg-BZh815QC2lt-1z_hfCPaR&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=94j2pR_rFqtmYhsPYshnSg&_nc_eui2=AeG_pyccy4FB8rJy6ze3cJz3DgPdnz7dJOAOA92fPt0k4PmE8Q5mA0HKgTupzfs62xMjM_2H6Ip8lBDvZa2T8Ofj&_nc_oc=Ado50lEyhFNy-6wcnx_IkADKPgmipFd2qVcCLkVKs1TikUBtJkLrSqwC7S7CU176Ry0&ccb=13-1&oh=06_Q3-9ARekKGJH3VbaxejmhcUwB6eaFWtOb3RozinHHbgjdDZA&oe=69BF7C84&_nc_sid=58080a&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">AD04 -FUNDO VERDE</div>
+                    <div class="ad-meta">R$ 3792.97 · 4759 cliques · 745 conv · CTR 0.88%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 5.09</div>
+                    <a class="ad-link" href="https://fb.me/1SEJuK9SwPqvAeJ" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🟢 Você de Vitória e região paga apenas R$ 30,00 na sua próxima consulta médica e até 35% mais barato em medicamentos com</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://external-atl3-1.xx.fbcdn.net/emg1/v/t13/13843324540756791016?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLk2jotUIeTkA_JoRgpmJfIUH_F0i7OMEpUgZ-VxKB60KJDMMGFT3_7PNaxo68WKSFg-Vk18aYL2qFBHp-c-si4NsTQOsavomTwZYeZdz3AYylMBDAjvv_TZ3GLPpIQPz9GBGv_ONmr3PYxHNJ6bvtr&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=0woQxHeSkXn1RCE1mhKPIQ&_nc_eui2=AeHyQzZbRFepB9ArYonspRXJiVJ0WRc3AW2JUnRZFzcBbaqvOGYFcma9QCCjZ67jfIqRUyJX7MDkcT8B-NfpAfrw&_nc_oc=Adqn1eIfqhjoAQTOlcbbvOss10vd3FfkJ4rbo7y80H7Q3UbEriUIiH5wr6lJBPIvEGU&ccb=13-1&oh=06_Q3-9Aarfsb-9g5YrVrz3c9wopEZHYX8McXd5MRvf5i_WWyQi&oe=69BFA346&_nc_sid=58080a&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads preco novo 2</div>
+                    <div class="ad-meta">R$ 3517.14 · 4179 cliques · 884 conv · CTR 0.90%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 3.98</div>
+                    <a class="ad-link" href="https://fb.me/27NMMHXHOU4xyFO" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Chegou o Cartão de Todos Sonhos – o jeito mais acessível de cuidar da sua saúde e da sua família inteira!<br><br>👩‍⚕️ Consulta</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLByACCAwleSnhIAM50WknAjq5qxWPMxrgkzKixuJ1s8dw6g3SUFAKjkYWjndhp-yEQoNfJLzFaMlExSdAE2n4ajHCk-OppNRwxSXrtOqm55J1mybe53vGEfPfra3QRuSf2gq89GnZvVpj_fyedXeD-" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads chamada</div>
+                    <div class="ad-meta">R$ 1985.35 · 2348 cliques · 399 conv · CTR 2.18%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 4.98</div>
+                    <a class="ad-link" href="https://fb.me/275C4axogHcwWsa" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🎉 Com o Cartão de Todos Sonhos, você realiza!<br><br>Já pensou em ganhar:<br>💸 10 vales de R$ 2.000?<br>🚗 Um carro por semana?<br>🏠 Uma</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://external-atl3-1.xx.fbcdn.net/emg1/v/t13/3094637253116059281?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJCRwOoieHfjxAHdnnVMZcqywJFfdSmSTYStDnwaW4QTwky4BP3KDj7TcxAmqU0IjKzzbxfk4mKFrxQtpTzNP0FmOmy8_PWLOwIS-XTbaH9J7d-PC5Dx49pb1E1SZmAe8h2v0m_q-qWVU4Kh8RHdhtv&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=KCm_buD5jzrJ2GoO-0dhjg&_nc_eui2=AeFbd6BDc866Ne9bBcA74cZ-iIJzttyG7Z6IgnO23Ibtngaodl8W0Fp6CKh28W0OAgO5gpvkvMrrZt6uyQSyT117&_nc_oc=Adq9x_1jVVOdLUU--YnNnW8aj3oP591ry4XT5s9QQRqlwDjvEV4ihYL33rzn-ynDUAI&ccb=13-1&oh=06_Q3-9AfMnzrdJXjkwdGDZueKG9WoQqRqw0G6XnA_oaj2254Is&oe=69BF9316&_nc_sid=58080a&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">1 (especialidades/fundo branco)</div>
+                    <div class="ad-meta">R$ 1910.05 · 4091 cliques · 379 conv · CTR 1.59%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 5.04</div>
+                    <a class="ad-link" href="https://fb.me/1SyiWqXxzZiA1BA" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Quer cuidar da sua saúde e da sua família pagando pouco? 💚<br>Adquira seu Cartão de TODOS e pague apenas R$ 26 em consulta </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-2.xx.fbcdn.net/v/t15.5256-10/429804474_995527298943989_2933925404273130051_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeHFxBZhIOCE9kRE_fRJrT_-oRbJ5zoWqaGhFsnnOhapoazhW-wl9K2Q-GpYSBnG7XMDS0zV1P4p9rHrC0GuBO9i&_nc_ohc=MevftbOZUDgQ7kNvwEaYgQC&_nc_oc=Adqsq7EQlGxm7r9m3SzLo-BYtn6kPnb4me95TKjhRPsFMiDdtMum3u-rOrtInmsLQdw&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=owwoAV7FwHaMc7zC7UnPdQ&_nc_tpa=Q5bMBQGaHLcR838btiXRYqEg-NzaPl_PoWwdFYtjubtOhTAHlxKGDg3yvAlxCJ3puNixI8F0_ZZYwpJ12g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfyAop5i6wNgtZIBa5XK2z183zP962DfJLRcYv0iLCSUjA&oe=69C39001&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">vídeo michel</div>
+                    <div class="ad-meta">R$ 1843.35 · 2967 cliques · 518 conv · CTR 1.69%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 3.56</div>
+                    <a class="ad-link" href="https://fb.me/1T4VeiaoSUR6BeA" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Aproveite para cuidar de você com benefícios especiais! 💙💳 <br><br>#carnavalvitoria #cartaodetodosbrasil #cartaodetodosvitoria</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://external-atl3-1.xx.fbcdn.net/emg1/v/t13/1760565262492100595?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKS3A-up2efnoNiFdBtWvNAh3iR3UUwVx0NmYNRPljAikG_kPPObSxUJ2J2SW5WcXX8cEx4v7eVWguc1nm6rrQbqRFHjFz6cLybvH__26v5eJfOgMBMNd1xGkT2pvlicbvlKPReuxkUN-3DILKQ3Tnr&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=orO3jQZVszle8xvNhFN4ag&_nc_eui2=AeHHS4ORLo2y3t7pKiAm_u7IOm4ThM23F_46bhOEzbcX_kAd14yfvecxrb_IUA2fclaGZVmDV8kVnrJ1zOblIbUM&_nc_oc=AdoRvt75R0bYdot-NhtD-KdU-iP0WeLU3MsHy9JfiinFBbvV4YgmihR64KiiQkMoeco&ccb=13-1&oh=06_Q3-9Ac5SZxxwP-AeiMuVVz0iNeEnHgrWlSWf6AjiN4hNigMx&oe=69BF769A&_nc_sid=58080a&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">especialidades rosa</div>
+                    <div class="ad-meta">R$ 1714.02 · 2214 cliques · 438 conv · CTR 1.08%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 3.91</div>
+                    <a class="ad-link" href="https://fb.me/282fOgqwRVjwJFV" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">📢 Precisando de consultas médicas?<br><br>👨‍⚕️ Clínico geral por apenas R$30,00<br>💉 Outras especialidades a partir de R$40,00<br>✅ </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://external-atl3-1.xx.fbcdn.net/emg1/v/t13/10928637475688650431?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJ12vpD6QLE_mGot1GIewIiD3nF8VL-QIJUbZnJPaQy5Ov1SlcrvqQ7taz8WIZrSP3LfRKYcK0hedEtII6FZglCV8Nxp0NkaB-C3tz8Z_MikNRspReZRm76lTLP36W9kM2zTsTTo7hZcT0swPeHiZgG&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=wipXDdbvGsgzFxodghfSwQ&_nc_eui2=AeEBkUbPu0fnpFEV24Yl4hojUNuC_dAsI5JQ24L90Cwjkoxi-CTzCoWC0sAEWzEtB1ubXN8G72pw_sCNEaQuJocH&_nc_oc=AdrDyclsGK8r5IdLNHA3iLe3ofBPfCC2dgE3_7ifQibuHt_J3B0imhnDf5b_P33THgg&ccb=13-1&oh=06_Q3-9AfmplVIieHPtUOufAJGP7g7jogcy9q3nZ_taXlH2SdIC&oe=69BF96D3&_nc_sid=58080a&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">AD02 - especialidades branco</div>
+                    <div class="ad-meta">R$ 1636.40 · 3256 cliques · 418 conv · CTR 1.00%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 3.91</div>
+                    <a class="ad-link" href="https://fb.me/24iMaVLWFjtrgFr" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">ATENÇÃO! SE VOCÊ MORA EM VITÓRIA, aproveite agora nossas ofertas de consultas médicas e odontológicas:<br><br>💚 Clínico Geral </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://external-atl3-1.xx.fbcdn.net/emg1/v/t13/13843324540756791016?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLk2jotUIeTkA_JoRgpmJfIUH_F0i7OMEpUgZ-VxKB60KJDMMGFT3_7PNaxo68WKSFg-Vk18aYL2qFBHp-c-si4NsTQOsavomTwZYeZdz3AYylMBDAjvv_TZ3GLPpIQPz9GBGv_ONmr3PYxHNJ6bvtr&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=orO3jQZVszle8xvNhFN4ag&_nc_eui2=AeHyQzZbRFepB9ArYonspRXJiVJ0WRc3AW2JUnRZFzcBbaqvOGYFcma9QCCjZ67jfIqRUyJX7MDkcT8B-NfpAfrw&_nc_oc=Adqn1eIfqhjoAQTOlcbbvOss10vd3FfkJ4rbo7y80H7Q3UbEriUIiH5wr6lJBPIvEGU&ccb=13-1&oh=06_Q3-9AQgs1pacAXY5--sNglP3fqmH2cy5pguU8_B4GsSlvOoI&oe=69BFA346&_nc_sid=58080a&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads fundo branco</div>
+                    <div class="ad-meta">R$ 1631.38 · 2100 cliques · 358 conv · CTR 0.97%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 4.56</div>
+                    <a class="ad-link" href="https://fb.me/35xFigJBc9P03au" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Chegou o Cartão de Todos Sonhos – o jeito mais acessível de cuidar da sua saúde e da sua família inteira!<br><br>👩‍⚕️ Consulta</div>
+        </div></div>
+
+    <div class="footer">
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 17:14</div>
+    </div>
+</div>
+
+<script>
+new Chart(document.getElementById('dailyChart'),{
+    type:'bar',
+    data:{
+        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
+        datasets:[
+            {label:'Gasto (R$)',data:[95.58, 127.77, 92.48, 141.21, 146.15, 107.13, 96.69],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[179, 151, 112, 176, 187, 157, 134],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[39, 19, 23, 36, 24, 28, 22],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+        ]
+    },
+    options:{
+        responsive:true,
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{position:'bottom',labels:{font:{family:'Montserrat',size:11}}}},
+        scales:{
+            y:{beginAtZero:true,grid:{color:'#f0f0f0'},ticks:{font:{family:'Montserrat',size:11},callback:v=>'R$ '+v}},
+            y1:{position:'right',beginAtZero:true,grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}},
+            x:{grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}}
+        }
+    }
+});
+</script>
+
+</body>
+</html>

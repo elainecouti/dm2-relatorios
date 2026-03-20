@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seven · DM2 Maringá</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-serif}
+
+.topbar{background:#184341;display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:60px;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo svg{width:28px;height:28px}
+.logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.topbar-right{display:flex;align-items:center;gap:12px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.topbar-label{font-size:12px;color:rgba(255,255,255,.6)}
+
+.container{max-width:1100px;margin:0 auto;padding:32px 24px}
+.hero h1{font-size:26px;font-weight:800;margin-bottom:4px}
+.hero .sub{font-size:14px;color:#7a7a7a;margin-bottom:24px}
+.hero .info{font-size:12px;color:#999;margin-bottom:24px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-bottom:32px}
+.kpi{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.kpi-v{display:block;font-size:18px;font-weight:800;color:#184341}
+.kpi-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+
+.section-header{font-size:16px;font-weight:700;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid #e8e8e8}
+
+.camp-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.camp-table th{background:#184341;color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+.camp-table td{padding:10px 12px;border-bottom:1px solid #f0f0f0}
+.camp-table tr:last-child td{border-bottom:none}
+.camp-table tr:hover td{background:#f8fafa}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
+.dot.active{background:#22c55e}
+.dot.paused{background:#d1d5db}
+.obj-tag{font-size:10px;font-weight:700;color:#fff;padding:2px 8px;border-radius:8px}
+
+.chart-container{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px}
+.chart-container canvas{max-height:280px}
+
+.creatives-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.ad-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ad-top{display:flex;gap:12px;align-items:flex-start}
+.ad-thumb{width:80px;height:80px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#eee}
+.ad-thumb-placeholder{width:80px;height:80px;border-radius:10px;background:#eee;flex-shrink:0}
+.ad-info{flex:1;min-width:0}
+.ad-name{font-size:12px;font-weight:700;margin-bottom:4px;word-break:break-word}
+.ad-meta{font-size:11px;color:#7a7a7a;margin-bottom:2px}
+.ad-cpl{font-size:11px;font-weight:700;color:#22c55e;margin-bottom:4px}
+.ad-link{display:inline-block;margin-top:4px;font-size:11px;font-weight:600;color:#00A19A;text-decoration:none;padding:3px 10px;border:1px solid #00A19A;border-radius:6px;transition:all .15s}
+.ad-link:hover{background:#00A19A;color:#fff}
+.ad-body{font-size:11px;color:#666;margin-top:10px;line-height:1.5;padding-top:10px;border-top:1px solid #f0f0f0}
+
+.balance-section{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px;max-width:400px}
+.bal-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.bal-row.highlight{font-weight:700;font-size:14px;margin-top:8px}
+.bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
+.bal-fill{height:100%;border-radius:4px;transition:width .5s}
+
+.footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
+
+.table-wrap{overflow-x:auto;margin-bottom:32px}
+
+@media(max-width:768px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .creatives-grid{grid-template-columns:1fr}
+    .camp-table{font-size:11px}
+    .camp-table th,.camp-table td{padding:8px 6px}
+    .ad-thumb{width:100%;height:160px;border-radius:8px}
+    .ad-top{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
+        <span class="logo-text">seven</span>
+    </div>
+    <div class="topbar-right">
+        <div class="live-dot"></div>
+        <span class="topbar-label">Atualizado 20/03/2026 17:11</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="hero">
+        <h1>DM2 Maringá</h1>
+        <p class="sub">Doutor DM2 Diabetes · Dashboard de Performance Meta Ads</p>
+        <p class="info">15 campanhas (3 ativas) · Conta: CA DM2 MARINGA </p>
+    </div>
+
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 43,747.99</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">378,379</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">43,640</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.15%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 1.00</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 11.54</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">3,681</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 11.88</span><span class="kpi-l">Custo/Conv</span></div></div>
+
+    
+        <div class="balance-section">
+            <div class="bal-row"><span>Limite da conta</span><span>R$ 44,708.27</span></div>
+            <div class="bal-row"><span>Gasto total</span><span>R$ 43,748.77</span></div>
+            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#22c55e">R$ 959.50</span></div>
+            <div class="bal-bar"><div class="bal-fill" style="width:98%;background:#22c55e"></div></div>
+        </div>
+
+    <h3 class="section-header">Últimos 7 dias</h3>
+    <div class="chart-container">
+        <canvas id="dailyChart"></canvas>
+    </div>
+
+    <h3 class="section-header">Campanhas</h3>
+    <div class="table-wrap">
+        <table class="camp-table">
+            <thead><tr>
+                <th>Campanha</th><th>Objetivo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>CTR</th><th>Conv</th><th>Custo/Conv</th>
+            </tr></thead>
+            <tbody><tr>
+            <td><span class="dot paused"></span>16/09 [engajamento] [rmk] [maringa] [40+] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 6157.49</td>
+            <td>25,864</td>
+            <td>7,510</td>
+            <td>2.35%</td>
+            <td><strong>597</strong></td>
+            <td>R$ 10.31</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>16/09 [Vendas] [wpp] [40+] cidades-LL%cliente</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 6141.61</td>
+            <td>78,986</td>
+            <td>6,696</td>
+            <td>1.62%</td>
+            <td><strong>488</strong></td>
+            <td>R$ 12.59</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01/07 [Vendas] [Maringá] [NOVO] CBO</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 5947.71</td>
+            <td>79,447</td>
+            <td>6,042</td>
+            <td>1.79%</td>
+            <td><strong>594</strong></td>
+            <td>R$ 10.01</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01/07 - [Vendas] [Wpp] [Maringá] [Homens] CBO</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 5661.88</td>
+            <td>67,867</td>
+            <td>3,801</td>
+            <td>1.46%</td>
+            <td><strong>524</strong></td>
+            <td>R$ 10.81</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01/07 [Alcance] [Maringá] [Aquecimento] CBO 1</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 4047.08</td>
+            <td>191,974</td>
+            <td>2,622</td>
+            <td>0.16%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01/07 [Engajamento] [Wpp] [Maringá] [5kmclini</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 4029.13</td>
+            <td>61,624</td>
+            <td>4,687</td>
+            <td>1.88%</td>
+            <td><strong>476</strong></td>
+            <td>R$ 8.46</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01/07 [Engajamento] [Wpp] [Maringá] [Cidade] </td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 2555.69</td>
+            <td>37,096</td>
+            <td>2,080</td>
+            <td>1.68%</td>
+            <td><strong>293</strong></td>
+            <td>R$ 8.72</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>10/01 [Vendas] [wpp] [40+] [outras-cidades-LL</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1925.55</td>
+            <td>47,200</td>
+            <td>2,387</td>
+            <td>1.62%</td>
+            <td><strong>201</strong></td>
+            <td>R$ 9.58</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>10/01 - [Vendas] [Wpp] [Maringá] RMK - disfun</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1760.87</td>
+            <td>12,143</td>
+            <td>1,375</td>
+            <td>1.80%</td>
+            <td><strong>98</strong></td>
+            <td>R$ 17.97</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>10/01 [vendas] [wpp] [40+] [bairros] teste cr</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1579.11</td>
+            <td>25,427</td>
+            <td>2,424</td>
+            <td>3.92%</td>
+            <td><strong>172</strong></td>
+            <td>R$ 9.18</td>
+        </tr><tr>
+            <td><span class="dot active"></span>08/03 [vendas] [wpp] [cidades] [40+] ABO</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 943.61</td>
+            <td>20,960</td>
+            <td>1,172</td>
+            <td>2.06%</td>
+            <td><strong>79</strong></td>
+            <td>R$ 11.94</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>04/11 [vagas] [engajamento] [wpp] [maringa] [</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 919.50</td>
+            <td>13,489</td>
+            <td>309</td>
+            <td>0.63%</td>
+            <td><strong>51</strong></td>
+            <td>R$ 18.03</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>28/10 [TOFU] [trafego-perfil] [maringa] [40+]</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 839.33</td>
+            <td>21,214</td>
+            <td>1,466</td>
+            <td>2.58%</td>
+            <td><strong>4</strong></td>
+            <td>R$ 209.83</td>
+        </tr><tr>
+            <td><span class="dot active"></span>08/03 [Vendas] [Wpp] [36+] [rmk90D] ABO</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 682.14</td>
+            <td>6,029</td>
+            <td>564</td>
+            <td>2.50%</td>
+            <td><strong>52</strong></td>
+            <td>R$ 13.12</td>
+        </tr><tr>
+            <td><span class="dot active"></span>08/03 [vendas] [wpp] [36+] [novos-criativos] </td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 557.29</td>
+            <td>8,819</td>
+            <td>505</td>
+            <td>2.18%</td>
+            <td><strong>52</strong></td>
+            <td>R$ 10.72</td>
+        </tr></tbody>
+        </table>
+    </div>
+
+    <h3 class="section-header">Top Criativos</h3>
+    <div class="creatives-grid">
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/515093807_1105038374800666_6172416247988268818_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeFlYO7TFw0513RSR2auInEZFZRo-hBQHaYVlGj6EFAdpuBV_JErpntZ5Y3xJRHmSAu01IP6Rcs-TdeHWnlPF6e-&_nc_ohc=uPCGH2Rcd_kQ7kNvwGxqGeu&_nc_oc=AdpZUXn7lKezLcyQJjWXUX2BxIj0ARfp78jqtbrwUisR9b7XvR2oZlSCgD7AyO5FnrQ&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=qMAqIviqwHdtHNJDXzrTPA&_nc_tpa=Q5bMBQGbkkkFM2_33WFRS8tUX0VG4fh5JrMWJ7tX0ZGTi2Mw_gGSuu7YcAfKD9L0DOyYhmVzL5XW_q7r0A&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxpS-rRTbD_lLYjrMyevLkBrU2zAQUKohKpz-dJBWuLIQ&oe=69C36B6D&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Conhece a DM2</div>
+                    <div class="ad-meta">R$ 4442.68 · 4578 cliques · 338 conv · CTR 1.40%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 13.14</div>
+                    <a class="ad-link" href="https://fb.me/1SUxMoRAXsNRoVR" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">A clínica referência no tratamento do diabetes tipo 2 chegou a Maringá com uma proposta diferente de tudo o que você já </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQI__wfA0Wl61Pa0r04OINzYZdwVx7Rnp08DfkXx5DDwgiuI0hIqvK5Q9dkYUlCEdYSpTfX1Ha69akIVkjMUE-iMfKpFITuiViGndfSXqp9yhY28N79oXtJWBmaay-d4u_c71OVbGik7n1GZjLaps69_" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads remissao piracicaba</div>
+                    <div class="ad-meta">R$ 3047.21 · 4066 cliques · 304 conv · CTR 2.70%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 10.02</div>
+                    <a class="ad-link" href="https://fb.me/26PtDD4mBtP25V4" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Quantos remédios você ainda vai tomar… antes de admitir que isso não tá resolvendo?<br>Um? Dois? Cinco por dia?<br><br>Você não n</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/514057266_1073808814681368_9082773630245791537_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeHjN3Cr0PzNSMro7pNnzLGQZ3KGkQnLpPpncoaRCcuk-mRlq7bSdhBK0xiWrdjQ17hAtOQi5Le5Vo14VTiOAOqB&_nc_ohc=rNuEIq7TC24Q7kNvwHxfNn2&_nc_oc=AdrmtPGjNctVl-3yyLs_zEW5fEIYxzLTDN51CWyL2Z3hdV5RA9uKb5Iympuzvxsf-kk&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=TgPx9lrr-I-Zbb0c3-OafA&_nc_tpa=Q5bMBQFHzcnmZt6MQybtF2QRz0O3tnmxgbHFgVeN0-cdNibO6hXLNJJbDOmw0jpClYi5w6kG7zRY8ibdaQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afzix8YHIAsoyMC9APfOt_ygCQmmIB2B5sCo2tVchkwppw&oe=69C36D98&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Ads Prova Social Celli</div>
+                    <div class="ad-meta">R$ 2372.78 · 2561 cliques · 274 conv · CTR 1.79%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 8.66</div>
+                    <a class="ad-link" href="https://fb.me/1SKiusC2mE2i5d1" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Conheça a Doutor DM2 Diabetes Maringá e descubra novas abordagens e tratamentos de Diabetes Tipo 2  🩺💪<br><br>Sua saúde é uma </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-1.xx.fbcdn.net/v/t15.13418-10/504016721_1627651411256439_8487674980453477550_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeH_zs1u78FEJwivg_dc563ZMPU-Ov63Uygw9T46_rdTKD6IQuOE4xR5WXBZrlo6YjjhhIJWZFy7U1LA38kb6G22&_nc_ohc=1qqRwBsUxZ0Q7kNvwGDFSW2&_nc_oc=AdrnXWT_aov2txOKrOh1nqGjnhypF6UsVNhthXUCdgplAIu7vu2vgkwraFA2Fx8y9Qs&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TgPx9lrr-I-Zbb0c3-OafA&_nc_tpa=Q5bMBQFy-W2gO-4Q8MvcM9Mrcnk6IK9DqJvk-XS5GSOUIK62Nxs0BsplWRTS466LYhYxC78WWkbrkB2o1Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_Afx7sW5losYa6m73tXKI-RUq_iVCppJtqYGY7apLMtWlzQ&oe=69C360BD&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Ads disfunção eretil</div>
+                    <div class="ad-meta">R$ 2107.59 · 1331 cliques · 175 conv · CTR 1.50%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 12.04</div>
+                    <a class="ad-link" href="https://fb.me/2dEd4c8kYOyOTpF" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">💪 Impotência sexual e disfunção erétil, são sinais que podem ser um alerta para diabetes tipo 2. Não deixe de buscar aju</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKsLycLNn528lhr_FKZqbKka6KFBZvSfC3XBCwuWqb7ZXpA7h6g8K7io5vb_0AwdWaG309EtksUQZXYxcf2nbMzOjtgoKxVkZaJ5aCFSjbPdNTneDKBhsMee4j18Iiwan5RPUf-bXwNNkz-t6AqCR1w" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads exames</div>
+                    <div class="ad-meta">R$ 2039.18 · 1812 cliques · 137 conv · CTR 1.85%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 14.88</div>
+                    <a class="ad-link" href="https://fb.me/24GVoNwiNfkD8j6" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">A clínica referência no tratamento do diabetes tipo 2 chegou a Maringá com uma proposta diferente de tudo o que você já </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/515093807_1105038374800666_6172416247988268818_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeFlYO7TFw0513RSR2auInEZFZRo-hBQHaYVlGj6EFAdpuBV_JErpntZ5Y3xJRHmSAu01IP6Rcs-TdeHWnlPF6e-&_nc_ohc=uPCGH2Rcd_kQ7kNvwGxqGeu&_nc_oc=AdpZUXn7lKezLcyQJjWXUX2BxIj0ARfp78jqtbrwUisR9b7XvR2oZlSCgD7AyO5FnrQ&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=TgPx9lrr-I-Zbb0c3-OafA&_nc_tpa=Q5bMBQEPIxl7aFVixkIdc9CPmZgDYj90PmcThyWcB4xt0S0A0v3Y2zekMN29HnW5-RUZBb0Th6j9XsX6Pg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxKltyocChk_AHKThJTbbS2WpC54FbBa7uPzfE2sn9VFA&oe=69C36B6D&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Conhece a DM2</div>
+                    <div class="ad-meta">R$ 1847.57 · 1923 cliques · 216 conv · CTR 1.59%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 8.55</div>
+                    <a class="ad-link" href="https://fb.me/1S3oGasPmWf5DTI" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">A clínica referência no tratamento do diabetes tipo 2 chegou a Maringá com uma proposta diferente de tudo o que você já </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/514426358_754296793631024_6303488780142773799_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeGyd78nFCh7ekKy46esZSKlqu9ccr_P_Tmq71xyv8_9OSqHRSoiFsCA45w0zTel2B0HTMI9BnaCoj6KRCxSzpFD&_nc_ohc=4Jf7eKE5axAQ7kNvwGZxdCb&_nc_oc=Adqy4LiY5UxMEuDhj38fLjT8ptMMM1E02hS1Lk6X5vQPDbhIIYf9Skf8yKiV4v0Y9WQ&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=TgPx9lrr-I-Zbb0c3-OafA&_nc_tpa=Q5bMBQERVo-eutBG5r7Lx-stlYvoCpzH-JiymK7dt9imxMQSQ3J4wfEuWp0gqF_BLS7KJOTWxc5vEvvSBQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwpwYN8f6YhVUnquRatcZk3ddNWKakv-7egZPKNCoJA7g&oe=69C391AF&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Ads ereção</div>
+                    <div class="ad-meta">R$ 1398.98 · 932 cliques · 123 conv · CTR 1.36%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 11.37</div>
+                    <a class="ad-link" href="https://fb.me/24b8csrTIVPccLX" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">💪 Impotência sexual e disfunção erétil, são sinais que podem ser um alerta para diabetes tipo 2. Não deixe de buscar aju</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/514699903_1432891127861767_2987045015020311897_n.jpg?_nc_cat=110&ccb=1-7&_nc_eui2=AeEztfgzjC-dMjBIyRdJnIGFV0VoCKOzh7RXRWgIo7OHtFl3jH6V-NqEaf8vISBcRBcCSMWGVbWkfsvN84vHBVoj&_nc_ohc=SFMf_MdJ-AIQ7kNvwG4JL4Y&_nc_oc=AdqqvwEYeLeYcOASjetxGg-_-g7ow1koAMMF4awutSTQoyyCZBIIJ4TEDeNU8FuT9AE&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=TgPx9lrr-I-Zbb0c3-OafA&_nc_tpa=Q5bMBQHZPKqG-C9Wyurlgxd-I3VT4bioWanpRsHPmGDxDROQxxRcrBcaIiDLAx3yz6MUO65F4UdJOoIjTg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afw864Lju3n3YLj12duFRaYZobYSJBYsVuHJU65z136p7g&oe=69C389FE&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Ads inimiga dos homens</div>
+                    <div class="ad-meta">R$ 1348.38 · 834 cliques · 110 conv · CTR 1.31%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 12.26</div>
+                    <a class="ad-link" href="https://fb.me/20JDbAeOErJ9mfq" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">💪 Impotência sexual e disfunção erétil, são sinais que podem ser um alerta para diabetes tipo 2. Não deixe de buscar aju</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/515093807_1105038374800666_6172416247988268818_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeFlYO7TFw0513RSR2auInEZFZRo-hBQHaYVlGj6EFAdpuBV_JErpntZ5Y3xJRHmSAu01IP6Rcs-TdeHWnlPF6e-&_nc_ohc=uPCGH2Rcd_kQ7kNvwGxqGeu&_nc_oc=AdpZUXn7lKezLcyQJjWXUX2BxIj0ARfp78jqtbrwUisR9b7XvR2oZlSCgD7AyO5FnrQ&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=TgPx9lrr-I-Zbb0c3-OafA&_nc_tpa=Q5bMBQEPIxl7aFVixkIdc9CPmZgDYj90PmcThyWcB4xt0S0A0v3Y2zekMN29HnW5-RUZBb0Th6j9XsX6Pg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxKltyocChk_AHKThJTbbS2WpC54FbBa7uPzfE2sn9VFA&oe=69C36B6D&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Conhece a DM2</div>
+                    <div class="ad-meta">R$ 1281.58 · 1279 cliques · 101 conv · CTR 1.76%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 12.69</div>
+                    <a class="ad-link" href="https://fb.me/1S3oGasPmWf5DTI" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">A clínica referência no tratamento do diabetes tipo 2 chegou a Maringá com uma proposta diferente de tudo o que você já </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/550033454_4133599476882814_397728807305447904_n.jpg?_nc_cat=111&ccb=1-7&_nc_eui2=AeEHdWKxMD0T1hyhKoL4j7ANxu5f6d_NohzG7l_p382iHMApl7yewAAP1r3eTMDuUROQMCqVccvK6v5hRUpLL9i5&_nc_ohc=2dr-taDkfewQ7kNvwEhQNW7&_nc_oc=AdqGSZO3AkA8UtYiAcmefOzvLgxEA58k9DrHv49wNt7HTgEmEzlE7Ias3NIwN7FzT_8&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=qMAqIviqwHdtHNJDXzrTPA&_nc_tpa=Q5bMBQEHGu2LfbEgl7cn6R8zvb-0Eno1UXfuAG8ysozAxsnDr8rFT6ZLQUWJNj3EMUwNcch9C8l5rEDoJA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afx9IBw0BwLBima2FE8Fg27RzyKBiQCc12wqdQlqRSJ40g&oe=69C38CF6&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads exames</div>
+                    <div class="ad-meta">R$ 1215.67 · 1463 cliques · 120 conv · CTR 2.10%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 10.13</div>
+                    <a class="ad-link" href="https://fb.me/1WBz4zNyko4NMpg" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">A clínica referência no tratamento do diabetes tipo 2 chegou a Maringá com uma proposta diferente de tudo o que você já </div>
+        </div></div>
+
+    <div class="footer">
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 17:11</div>
+    </div>
+</div>
+
+<script>
+new Chart(document.getElementById('dailyChart'),{
+    type:'bar',
+    data:{
+        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
+        datasets:[
+            {label:'Gasto (R$)',data:[132.34, 150.65, 136.77, 248.22, 103.29, 0.0, 192.07],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[166, 178, 116, 226, 120, 0, 191],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[10, 17, 8, 17, 10, 0, 23],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+        ]
+    },
+    options:{
+        responsive:true,
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{position:'bottom',labels:{font:{family:'Montserrat',size:11}}}},
+        scales:{
+            y:{beginAtZero:true,grid:{color:'#f0f0f0'},ticks:{font:{family:'Montserrat',size:11},callback:v=>'R$ '+v}},
+            y1:{position:'right',beginAtZero:true,grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}},
+            x:{grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}}
+        }
+    }
+});
+</script>
+
+</body>
+</html>

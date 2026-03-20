@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seven · DM2 Imperatriz</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-serif}
+
+.topbar{background:#184341;display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:60px;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo svg{width:28px;height:28px}
+.logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.topbar-right{display:flex;align-items:center;gap:12px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.topbar-label{font-size:12px;color:rgba(255,255,255,.6)}
+
+.container{max-width:1100px;margin:0 auto;padding:32px 24px}
+.hero h1{font-size:26px;font-weight:800;margin-bottom:4px}
+.hero .sub{font-size:14px;color:#7a7a7a;margin-bottom:24px}
+.hero .info{font-size:12px;color:#999;margin-bottom:24px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-bottom:32px}
+.kpi{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.kpi-v{display:block;font-size:18px;font-weight:800;color:#184341}
+.kpi-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+
+.section-header{font-size:16px;font-weight:700;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid #e8e8e8}
+
+.camp-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.camp-table th{background:#184341;color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+.camp-table td{padding:10px 12px;border-bottom:1px solid #f0f0f0}
+.camp-table tr:last-child td{border-bottom:none}
+.camp-table tr:hover td{background:#f8fafa}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
+.dot.active{background:#22c55e}
+.dot.paused{background:#d1d5db}
+.obj-tag{font-size:10px;font-weight:700;color:#fff;padding:2px 8px;border-radius:8px}
+
+.chart-container{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px}
+.chart-container canvas{max-height:280px}
+
+.creatives-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.ad-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ad-top{display:flex;gap:12px;align-items:flex-start}
+.ad-thumb{width:80px;height:80px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#eee}
+.ad-thumb-placeholder{width:80px;height:80px;border-radius:10px;background:#eee;flex-shrink:0}
+.ad-info{flex:1;min-width:0}
+.ad-name{font-size:12px;font-weight:700;margin-bottom:4px;word-break:break-word}
+.ad-meta{font-size:11px;color:#7a7a7a;margin-bottom:2px}
+.ad-cpl{font-size:11px;font-weight:700;color:#22c55e;margin-bottom:4px}
+.ad-link{display:inline-block;margin-top:4px;font-size:11px;font-weight:600;color:#00A19A;text-decoration:none;padding:3px 10px;border:1px solid #00A19A;border-radius:6px;transition:all .15s}
+.ad-link:hover{background:#00A19A;color:#fff}
+.ad-body{font-size:11px;color:#666;margin-top:10px;line-height:1.5;padding-top:10px;border-top:1px solid #f0f0f0}
+
+.balance-section{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px;max-width:400px}
+.bal-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.bal-row.highlight{font-weight:700;font-size:14px;margin-top:8px}
+.bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
+.bal-fill{height:100%;border-radius:4px;transition:width .5s}
+
+.footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
+
+.table-wrap{overflow-x:auto;margin-bottom:32px}
+
+@media(max-width:768px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .creatives-grid{grid-template-columns:1fr}
+    .camp-table{font-size:11px}
+    .camp-table th,.camp-table td{padding:8px 6px}
+    .ad-thumb{width:100%;height:160px;border-radius:8px}
+    .ad-top{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
+        <span class="logo-text">seven</span>
+    </div>
+    <div class="topbar-right">
+        <div class="live-dot"></div>
+        <span class="topbar-label">Atualizado 20/03/2026 17:12</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="hero">
+        <h1>DM2 Imperatriz</h1>
+        <p class="sub">Doutor DM2 Diabetes · Dashboard de Performance Meta Ads</p>
+        <p class="info">9 campanhas (4 ativas) · Conta: CA 01 - IMPERATRIZ </p>
+    </div>
+
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 9,452.69</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">99,579</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">11,885</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.72%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.80</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 13.66</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">889</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 10.63</span><span class="kpi-l">Custo/Conv</span></div></div>
+
+    
+        <div class="balance-section">
+            <div class="bal-row"><span>Limite da conta</span><span>R$ 10,541.97</span></div>
+            <div class="bal-row"><span>Gasto total</span><span>R$ 9,453.06</span></div>
+            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#22c55e">R$ 1,088.91</span></div>
+            <div class="bal-bar"><div class="bal-fill" style="width:90%;background:#22c55e"></div></div>
+        </div>
+
+    <h3 class="section-header">Últimos 7 dias</h3>
+    <div class="chart-container">
+        <canvas id="dailyChart"></canvas>
+    </div>
+
+    <h3 class="section-header">Campanhas</h3>
+    <div class="table-wrap">
+        <table class="camp-table">
+            <thead><tr>
+                <th>Campanha</th><th>Objetivo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>CTR</th><th>Conv</th><th>Custo/Conv</th>
+            </tr></thead>
+            <tbody><tr>
+            <td><span class="dot paused"></span>13/01 [vendas] [wpp] [5km clinica] [40+] [alt</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 3609.63</td>
+            <td>37,208</td>
+            <td>2,745</td>
+            <td>1.34%</td>
+            <td><strong>444</strong></td>
+            <td>R$ 8.13</td>
+        </tr><tr>
+            <td><span class="dot active"></span>20/02 [engajamento] [wpp] [35+] [rmk] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1489.45</td>
+            <td>9,245</td>
+            <td>1,068</td>
+            <td>1.69%</td>
+            <td><strong>109</strong></td>
+            <td>R$ 13.66</td>
+        </tr><tr>
+            <td><span class="dot active"></span>20/02 [leads] [wpp] [35+] [cep-cidades] CBO</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 1442.77</td>
+            <td>23,465</td>
+            <td>1,374</td>
+            <td>1.55%</td>
+            <td><strong>156</strong></td>
+            <td>R$ 9.25</td>
+        </tr><tr>
+            <td><span class="dot active"></span>11/02 [trafego-perfil] [Imperatriz] [35+] [ i</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 864.79</td>
+            <td>41,213</td>
+            <td>3,571</td>
+            <td>2.57%</td>
+            <td><strong>4</strong></td>
+            <td>R$ 216.20</td>
+        </tr><tr>
+            <td><span class="dot active"></span>07/03 [engajamento] [wpp] [35+] [novos-ceps] </td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 717.63</td>
+            <td>14,351</td>
+            <td>1,275</td>
+            <td>2.41%</td>
+            <td><strong>128</strong></td>
+            <td>R$ 5.61</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>13/01 [engajamento] [video-view] [Imperatriz]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 412.95</td>
+            <td>16,653</td>
+            <td>289</td>
+            <td>0.49%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>13/01  [trafego-perfil] [Imperatriz] [35+] CB</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 409.72</td>
+            <td>19,317</td>
+            <td>1,050</td>
+            <td>1.80%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>11/02 [vendas] [wpp] [35+] [ceps-imperatriz] </td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 265.13</td>
+            <td>9,052</td>
+            <td>372</td>
+            <td>2.19%</td>
+            <td><strong>39</strong></td>
+            <td>R$ 6.80</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>11/02 [vendas] [wpp] [35+] [rmk90D] CBO</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 240.62</td>
+            <td>2,973</td>
+            <td>141</td>
+            <td>1.57%</td>
+            <td><strong>9</strong></td>
+            <td>R$ 26.74</td>
+        </tr></tbody>
+        </table>
+    </div>
+
+    <h3 class="section-header">Top Criativos</h3>
+    <div class="creatives-grid">
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQInaeFaZjZPdTJy78CZEz3bZjJUrGcr7LumDU_CdjjSLAFYaKqtLEDJhknElpmLSUZntEKkVuULpuXTAqCSitFH7GRvJy8im3r1s_NhfpCIGTWQ3CT3KAXmzIVkhGRlfxWc0K-LfuVg7JZKEAgBBuVE" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads influencer brasil dm2</div>
+                    <div class="ad-meta">R$ 864.61 · 3568 cliques · 4 conv · CTR 2.57%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 216.15</div>
+                    <a class="ad-link" href="https://fb.me/xN0guBuENoFZmTm" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Você conhece alguém que tem diabetes tipo 2?<br><br>Então presta atenção nisso.<br><br>A Dr. DM2 chegou em Imperatriz com uma propos</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-1.xx.fbcdn.net/v/t15.5256-10/633509064_2132501840620576_203606503436219975_n.jpg?_nc_cat=103&ccb=1-7&_nc_eui2=AeEnybP-GDSAN2fYKBudEm3HZE8KuH65ydNkTwq4frnJ06fD00gOA76Ihfx_9gXUiDURpUIyj-Rru7mks9TSuo3V&_nc_ohc=VWuT6p7tJmQQ7kNvwGUtrVY&_nc_oc=AdrTQQWYlg_2BjznpOwJkDQXZzXcuRdhawA1TzRdP2faqPyIRu01ny669znTdngzgRw&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=Qo2NZmEwlJpOMraroZRo2g&_nc_tpa=Q5bMBQH9kj5fLkNRBUvMh61qdlZH5ysnCXFfapKXyKFEDUoQIv7k2dqE65JzKFTOf-Vfypn27Uh0GuuVeg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzrUL11Gdbn_qF7OpDrqpTtalc2-xPVgXgoVN-DPDR0-g&oe=69C37A72&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads exames paty</div>
+                    <div class="ad-meta">R$ 803.85 · 551 cliques · 63 conv · CTR 1.97%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 12.76</div>
+                    <a class="ad-link" href="https://fb.me/1SeIZPW2IvfVvGs" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Até quando você vai gastar com medicamentos…<br>Sem resolver de verdade o problema?<br><br>Diabetes tipo 2 não é falta de sorte.<br></div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKD2o2fJY2V-TflNheqGZFhcl-9eZySmQ5nDXF9J7Uh4pPiphhqWR4H66fO1hgxBDqrdkqDkqreGSBskndX29UVHMdw0fKaDVKkLhg_qPsjR9PeOODUe0QkBMFArYp83Kk7LEgCwPms7MiBc3LOfduQ" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Ads geral Paty</div>
+                    <div class="ad-meta">R$ 709.62 · 467 cliques · 96 conv · CTR 1.46%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 7.39</div>
+                    <a class="ad-link" href="https://fb.me/243DrUPfARDjdUa" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Imperatriz – MA com um protocol</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJ52gD0isrVH6o_ksiXPhxiMS1w08SL3AoeMxLfFGw2B6LR_XGsUPqUmL2r1YiMlXNVw4FSEXUrSWkpppqMtsqV694ZkZljUBkX_dYijm7OIDhkXeiAUu7r9xGvEeWl0uNGrgZbGcZV7Vcjr7va2_xZ" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Ads voce sofre celli</div>
+                    <div class="ad-meta">R$ 625.12 · 418 cliques · 70 conv · CTR 1.09%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 8.93</div>
+                    <a class="ad-link" href="https://fb.me/1R4PPSneixaaBm1" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Imperatriz – MA com um protocol</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJ52gD0isrVH6o_ksiXPhxiMS1w08SL3AoeMxLfFGw2B6LR_XGsUPqUmL2r1YiMlXNVw4FSEXUrSWkpppqMtsqV694ZkZljUBkX_dYijm7OIDhkXeiAUu7r9xGvEeWl0uNGrgZbGcZV7Vcjr7va2_xZ" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Ads voce sofre celli</div>
+                    <div class="ad-meta">R$ 622.79 · 467 cliques · 79 conv · CTR 1.19%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 7.88</div>
+                    <a class="ad-link" href="https://fb.me/1R4PPSneixaaBm1" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Imperatriz – MA com um protocol</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJsCiDAxXCpf9KXsd7Qqm17Vvpk_20wxVlO-FE0EDQer0G9A-TW7wIQmwUP8gcz9xlt5dtOSeY-G6t5JsU6upYyaUw0do_eKrXL_XLvbcADBUW4LipLIyjd2eCDz6Gx3KSwJW9N2f3MGLhFTzTpkN-_" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads caixinha disfuncao</div>
+                    <div class="ad-meta">R$ 588.52 · 449 cliques · 38 conv · CTR 1.50%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 15.49</div>
+                    <a class="ad-link" href="https://fb.me/24iv6z7Fin7EEjE" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">e você tem diabetes tipo 2 e sofre com impotência ou dificuldade de ereção, isso não é coincidência.<br><br>A glicose alta afe</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/628982008_1624284785432233_7053211608017627429_n.jpg?_nc_cat=111&ccb=1-7&_nc_eui2=AeGH0ytdgBsMTM0kIZYyE-DC7yJ3_vKnfYnvInf-8qd9iaTyB3BmvjRyLVmBywA8Ch_mBE95DVcKVXxJ7laJOvoF&_nc_ohc=cGzQ_GIV0XoQ7kNvwELBBSl&_nc_oc=AdpmugpDgcFf9JkwGPlK02PJJDvmbBVJqxCV4AY9tLG-AyoC2zFpeOoN7jA9tvnCz1I&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=Qo2NZmEwlJpOMraroZRo2g&_nc_tpa=Q5bMBQExBElAXR0XfuCSuXkts8t6ueoAV5cWJxfa6H68hlJa9WEkGVBZNohQwX09pVIvH_oNPMSf46GZ4A&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afy18Ml1UsH1NmIwU9q4EjS2CPA9SVSYaq2xX4Z_uj9pMg&oe=69C36693&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads voce tem dm2</div>
+                    <div class="ad-meta">R$ 457.89 · 328 cliques · 47 conv · CTR 1.25%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 9.74</div>
+                    <a class="ad-link" href="https://fb.me/25JKJkFX65kRY03" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Imperatriz – MA com um protocol</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJ52gD0isrVH6o_ksiXPhxiMS1w08SL3AoeMxLfFGw2B6LR_XGsUPqUmL2r1YiMlXNVw4FSEXUrSWkpppqMtsqV694ZkZljUBkX_dYijm7OIDhkXeiAUu7r9xGvEeWl0uNGrgZbGcZV7Vcjr7va2_xZ" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Ads voce sofre celli</div>
+                    <div class="ad-meta">R$ 387.30 · 275 cliques · 41 conv · CTR 1.14%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 9.45</div>
+                    <a class="ad-link" href="https://fb.me/1R4PPSneixaaBm1" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Imperatriz – MA com um protocol</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/628982008_1624284785432233_7053211608017627429_n.jpg?_nc_cat=111&ccb=1-7&_nc_eui2=AeGH0ytdgBsMTM0kIZYyE-DC7yJ3_vKnfYnvInf-8qd9iaTyB3BmvjRyLVmBywA8Ch_mBE95DVcKVXxJ7laJOvoF&_nc_ohc=cGzQ_GIV0XoQ7kNvwELBBSl&_nc_oc=AdpmugpDgcFf9JkwGPlK02PJJDvmbBVJqxCV4AY9tLG-AyoC2zFpeOoN7jA9tvnCz1I&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=Qo2NZmEwlJpOMraroZRo2g&_nc_tpa=Q5bMBQExBElAXR0XfuCSuXkts8t6ueoAV5cWJxfa6H68hlJa9WEkGVBZNohQwX09pVIvH_oNPMSf46GZ4A&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afy18Ml1UsH1NmIwU9q4EjS2CPA9SVSYaq2xX4Z_uj9pMg&oe=69C36693&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads voce tem dm2</div>
+                    <div class="ad-meta">R$ 371.77 · 271 cliques · 38 conv · CTR 1.16%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 9.78</div>
+                    <a class="ad-link" href="https://fb.me/25JKJkFX65kRY03" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Imperatriz – MA com um protocol</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJeeOsEfgOzExehVx44BUQyWMuXm_Rl8DZS0ORdMANXeADQhp3sFbHOIJfta0jN5zvBq6H9LGhgV0WcgWEr-OvOybHj2WmBxiOx2mLhYKV-bqwzd2LoGM-rHwmhZY77AdIwBP_G3l7WslRO8V0zIcLc" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Ads institucional paty e cibely</div>
+                    <div class="ad-meta">R$ 343.98 · 415 cliques · 52 conv · CTR 1.75%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 6.62</div>
+                    <a class="ad-link" href="https://fb.me/1YNAVSZqj8d4fFx" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Imperatriz – MA com um protocol</div>
+        </div></div>
+
+    <div class="footer">
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 17:12</div>
+    </div>
+</div>
+
+<script>
+new Chart(document.getElementById('dailyChart'),{
+    type:'bar',
+    data:{
+        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
+        datasets:[
+            {label:'Gasto (R$)',data:[179.33, 200.91, 172.65, 242.23, 208.72, 137.6, 27.0],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[348, 284, 304, 352, 300, 179, 56],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[23, 21, 21, 24, 11, 12, 2],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+        ]
+    },
+    options:{
+        responsive:true,
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{position:'bottom',labels:{font:{family:'Montserrat',size:11}}}},
+        scales:{
+            y:{beginAtZero:true,grid:{color:'#f0f0f0'},ticks:{font:{family:'Montserrat',size:11},callback:v=>'R$ '+v}},
+            y1:{position:'right',beginAtZero:true,grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}},
+            x:{grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}}
+        }
+    }
+});
+</script>
+
+</body>
+</html>

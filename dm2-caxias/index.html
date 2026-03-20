@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seven · DM2 Caxias</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-serif}
+
+.topbar{background:#184341;display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:60px;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo svg{width:28px;height:28px}
+.logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.topbar-right{display:flex;align-items:center;gap:12px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.topbar-label{font-size:12px;color:rgba(255,255,255,.6)}
+
+.container{max-width:1100px;margin:0 auto;padding:32px 24px}
+.hero h1{font-size:26px;font-weight:800;margin-bottom:4px}
+.hero .sub{font-size:14px;color:#7a7a7a;margin-bottom:24px}
+.hero .info{font-size:12px;color:#999;margin-bottom:24px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-bottom:32px}
+.kpi{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.kpi-v{display:block;font-size:18px;font-weight:800;color:#184341}
+.kpi-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+
+.section-header{font-size:16px;font-weight:700;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid #e8e8e8}
+
+.camp-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.camp-table th{background:#184341;color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+.camp-table td{padding:10px 12px;border-bottom:1px solid #f0f0f0}
+.camp-table tr:last-child td{border-bottom:none}
+.camp-table tr:hover td{background:#f8fafa}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
+.dot.active{background:#22c55e}
+.dot.paused{background:#d1d5db}
+.obj-tag{font-size:10px;font-weight:700;color:#fff;padding:2px 8px;border-radius:8px}
+
+.chart-container{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px}
+.chart-container canvas{max-height:280px}
+
+.creatives-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.ad-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ad-top{display:flex;gap:12px;align-items:flex-start}
+.ad-thumb{width:80px;height:80px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#eee}
+.ad-thumb-placeholder{width:80px;height:80px;border-radius:10px;background:#eee;flex-shrink:0}
+.ad-info{flex:1;min-width:0}
+.ad-name{font-size:12px;font-weight:700;margin-bottom:4px;word-break:break-word}
+.ad-meta{font-size:11px;color:#7a7a7a;margin-bottom:2px}
+.ad-cpl{font-size:11px;font-weight:700;color:#22c55e;margin-bottom:4px}
+.ad-link{display:inline-block;margin-top:4px;font-size:11px;font-weight:600;color:#00A19A;text-decoration:none;padding:3px 10px;border:1px solid #00A19A;border-radius:6px;transition:all .15s}
+.ad-link:hover{background:#00A19A;color:#fff}
+.ad-body{font-size:11px;color:#666;margin-top:10px;line-height:1.5;padding-top:10px;border-top:1px solid #f0f0f0}
+
+.balance-section{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px;max-width:400px}
+.bal-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.bal-row.highlight{font-weight:700;font-size:14px;margin-top:8px}
+.bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
+.bal-fill{height:100%;border-radius:4px;transition:width .5s}
+
+.footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
+
+.table-wrap{overflow-x:auto;margin-bottom:32px}
+
+@media(max-width:768px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .creatives-grid{grid-template-columns:1fr}
+    .camp-table{font-size:11px}
+    .camp-table th,.camp-table td{padding:8px 6px}
+    .ad-thumb{width:100%;height:160px;border-radius:8px}
+    .ad-top{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
+        <span class="logo-text">seven</span>
+    </div>
+    <div class="topbar-right">
+        <div class="live-dot"></div>
+        <span class="topbar-label">Atualizado 20/03/2026 17:11</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="hero">
+        <h1>DM2 Caxias</h1>
+        <p class="sub">Doutor DM2 Diabetes · Dashboard de Performance Meta Ads</p>
+        <p class="info">21 campanhas (5 ativas) · Conta: CA 01 - DM2 CAXIAS/MA</p>
+    </div>
+
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 26,471.79</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">250,860</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">26,433</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.19%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 1.00</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 11.94</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">2,120</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 12.49</span><span class="kpi-l">Custo/Conv</span></div></div>
+
+    
+        <div class="balance-section">
+            <div class="bal-row"><span>Limite da conta</span><span>R$ 26,822.68</span></div>
+            <div class="bal-row"><span>Gasto total</span><span>R$ 26,471.16</span></div>
+            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#f59e0b">R$ 351.52</span></div>
+            <div class="bal-bar"><div class="bal-fill" style="width:99%;background:#f59e0b"></div></div>
+        </div>
+
+    <h3 class="section-header">Últimos 7 dias</h3>
+    <div class="chart-container">
+        <canvas id="dailyChart"></canvas>
+    </div>
+
+    <h3 class="section-header">Campanhas</h3>
+    <div class="table-wrap">
+        <table class="camp-table">
+            <thead><tr>
+                <th>Campanha</th><th>Objetivo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>CTR</th><th>Conv</th><th>Custo/Conv</th>
+            </tr></thead>
+            <tbody><tr>
+            <td><span class="dot paused"></span>17/10 [vendas] [wpp] [km-clinica] [40+] [alto</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 4205.07</td>
+            <td>56,043</td>
+            <td>2,959</td>
+            <td>1.32%</td>
+            <td><strong>419</strong></td>
+            <td>R$ 10.04</td>
+        </tr><tr>
+            <td><span class="dot active"></span>10/01 [vendas] [wpp] [35+] [homens] [interess</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 3371.26</td>
+            <td>90,781</td>
+            <td>3,862</td>
+            <td>1.26%</td>
+            <td><strong>446</strong></td>
+            <td>R$ 7.56</td>
+        </tr><tr>
+            <td><span class="dot active"></span>10/01 [vendas] [wpp] [35+] [interesses] [caxi</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 2717.55</td>
+            <td>67,565</td>
+            <td>2,655</td>
+            <td>1.27%</td>
+            <td><strong>329</strong></td>
+            <td>R$ 8.26</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>24/10 [BOFU] [vendas] [wpp] [40+] [rmk] CBO</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 2512.94</td>
+            <td>53,262</td>
+            <td>1,795</td>
+            <td>1.07%</td>
+            <td><strong>205</strong></td>
+            <td>R$ 12.26</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>25/10 [vendas] [wpp] [caxias] [35+] [aberto] </td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 2289.33</td>
+            <td>32,283</td>
+            <td>1,584</td>
+            <td>0.97%</td>
+            <td><strong>170</strong></td>
+            <td>R$ 13.47</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>10/01 [BOFU] [vendas] [wpp] [35+] [rmk] CBO</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1901.95</td>
+            <td>19,891</td>
+            <td>1,529</td>
+            <td>1.07%</td>
+            <td><strong>120</strong></td>
+            <td>R$ 15.85</td>
+        </tr><tr>
+            <td><span class="dot active"></span>10/11 [alcance] [branding] [35+] [caxias] CBO</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 1705.41</td>
+            <td>53,564</td>
+            <td>2,658</td>
+            <td>1.05%</td>
+            <td><strong>37</strong></td>
+            <td>R$ 46.09</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>22/01 [vendas] [wpp] [35+] [aberto] [caxias]</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1593.77</td>
+            <td>32,584</td>
+            <td>1,177</td>
+            <td>0.90%</td>
+            <td><strong>101</strong></td>
+            <td>R$ 15.78</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>17/10 [TOFU]  [trafego-perfil] [caxias] [35+]</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 1262.81</td>
+            <td>40,950</td>
+            <td>4,016</td>
+            <td>1.97%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>09/12 [vendas] [wpp] [caxias] [35+] [aberto]</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1138.08</td>
+            <td>34,156</td>
+            <td>1,061</td>
+            <td>0.97%</td>
+            <td><strong>63</strong></td>
+            <td>R$ 18.06</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>09/12 [BOFU] [vendas] [wpp] [40+] [rmk] CBO</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1060.57</td>
+            <td>12,865</td>
+            <td>929</td>
+            <td>1.16%</td>
+            <td><strong>79</strong></td>
+            <td>R$ 13.42</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>09/12 [vendas] [wpp] [40km-clinica] [40+] [ab</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 916.25</td>
+            <td>20,105</td>
+            <td>682</td>
+            <td>1.07%</td>
+            <td><strong>49</strong></td>
+            <td>R$ 18.70</td>
+        </tr><tr>
+            <td><span class="dot active"></span>06/03 [leads] [cadastro] [teresina] [40+]</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 777.22</td>
+            <td>10,571</td>
+            <td>444</td>
+            <td>1.32%</td>
+            <td><strong>52</strong></td>
+            <td>R$ 14.95</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>17/10 [engajamento] [video-view] [caixias] [3</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 444.86</td>
+            <td>30,521</td>
+            <td>499</td>
+            <td>0.72%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 444.86</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>05/01 [vendas] [wpp] [caxias] [35+] [aberto]</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 169.64</td>
+            <td>12,442</td>
+            <td>178</td>
+            <td>0.77%</td>
+            <td><strong>8</strong></td>
+            <td>R$ 21.20</td>
+        </tr><tr>
+            <td><span class="dot active"></span>17/03 [vendas] [wpp] [teresina] [teste-criati</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 120.75</td>
+            <td>4,149</td>
+            <td>188</td>
+            <td>2.74%</td>
+            <td><strong>30</strong></td>
+            <td>R$ 4.03</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>05/01 [BOFU] [vendas] [wpp] [40+] [rmk] CBO</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 105.01</td>
+            <td>4,890</td>
+            <td>87</td>
+            <td>0.90%</td>
+            <td><strong>6</strong></td>
+            <td>R$ 17.50</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>09/01 [vendas] [wpp] [caxias] [35+] [aberto]</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 68.43</td>
+            <td>6,694</td>
+            <td>60</td>
+            <td>0.70%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 34.22</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>09/01 [BOFU] [vendas] [wpp] [40+] [rmk] CBO</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 45.81</td>
+            <td>2,591</td>
+            <td>22</td>
+            <td>0.66%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 22.91</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>09/01 [BOFU] [vendas] [wpp] [40+] [rmk] CBO</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 33.15</td>
+            <td>2,270</td>
+            <td>27</td>
+            <td>0.88%</td>
+            <td><strong>1</strong></td>
+            <td>R$ 33.15</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>09/01 [vendas] [wpp] [caxias] [35+] [aberto]</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 31.93</td>
+            <td>3,511</td>
+            <td>21</td>
+            <td>0.52%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr></tbody>
+        </table>
+    </div>
+
+    <h3 class="section-header">Top Criativos</h3>
+    <div class="creatives-grid">
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLR_4UUfFrqSTR4BST0JMQm51AWpPQM4aCnVxemip8VqGBwk2t2ClKxHUsLErZs8gzNXI2I3ODjz-pVVzP1oxwCzMgy9Sry3dNQp-03iOIR6LzSR8kW1TpeVCGDi6jrOoRoA7hxJkcbj-XVG104fOmL" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads caxias paty</div>
+                    <div class="ad-meta">R$ 1724.18 · 2061 cliques · 189 conv · CTR 1.13%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 9.12</div>
+                    <a class="ad-link" href="https://fb.me/1YsbUtdP88VcMrD" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 É DIABÉTICO TIPO 2 E MORA EM CAXIAS E REGIÃO? Você não precisa conviver com cansaço, formigamentos, dor ou medicações </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJFUfnfeeaaWJMFKKS0zrsN0DEERN9JBO_dycSh1qc5UMOg7mpxmmFwDyMOsfrRGx0ScqTPRSSano-cpfiSPgzVJ6GkjGNN1xGBe8ZDUboMJbOprTyhXQnDnQUYEnKsLPKuUZLLoi2lwQsuyCg8WFjB" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads video caxias</div>
+                    <div class="ad-meta">R$ 1657.09 · 2594 cliques · 37 conv · CTR 1.07%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 44.79</div>
+                    <a class="ad-link" href="https://fb.me/1Rw0c8gr9m0yypz" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Conquiste a remissão do diabetes tipo 2 em 90 dias.</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-2.xx.fbcdn.net/v/t15.5256-10/595502080_837781732189261_8596957625784724501_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeGkx_nGuo2_7cjabiPZfaWuvnZVvMHj62i-dlW8wePraGgAmXuuRKwdZwEp9zC279odR2e6tNQuj6-5zwtZmrQI&_nc_ohc=h8G6jP_Dfj0Q7kNvwHSt6v9&_nc_oc=AdqJlTZ4s-dDWxv0LD30CsGt_YBnGB_JwZCX23pRgSTCU6HnKrPUeyTlvm2gSiqtsNQ&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=s_VsWWh2CFYSLVNqHTanAA&_nc_tpa=Q5bMBQElF84KRscMkrg2ksuqdVLfCfa24H3pfE_bm-OFL6lxAHXBk3vYhBIB2PG-AucXWegIcniLJkgR6g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyNqBYZZoO1sPp1X4oTVZf5TwSvqeDLlgJ3ZNUfzPd0dw&oe=69C39627&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads exames jonas</div>
+                    <div class="ad-meta">R$ 1254.47 · 1307 cliques · 176 conv · CTR 1.41%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 7.13</div>
+                    <a class="ad-link" href="https://fb.me/1SM5nilmUlNONBt" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Quantos remédios você ainda vai tomar… antes de admitir que isso não tá resolvendo?<br>Um? Dois? Cinco por dia?<br><br>Você não n</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLtBMvFF3zMY9amsoyH7UFGxfY6k5eIzjxIQVys_6OtwDpnykED6Q8AmiHnZJZcCpb82B2kbFttDDZj8dnagcrOOLK-JY6dFKp0HyBksHtckp2BIck5srEnNgEGkVQmZ4XrI1lnLGBiKX9921iB_H9n" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads video caxias</div>
+                    <div class="ad-meta">R$ 1229.48 · 897 cliques · 53 conv · CTR 0.90%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 23.20</div>
+                    <a class="ad-link" href="https://fb.me/1SS39MbHEoxSmE4" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Quantos remédios você ainda vai tomar…antes de admitir que isso não tá resolvendo?<br><br>Um? Dois? Cinco por dia?<br><br>Você não n</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQK6gsb0TvERRwzbIAAknKZcEm8KAw81VVu6V9Ywn1BMrhvYiWOHVXlU77VL3CCCQK1t3QLFxgJ713uP3JLAyhYsALXQdH3ruLMEKo_tmzKI2_0Liw0RTQ--Orra5gQ7fB_PWl89RQqkf-aEkw1jIJEH" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads voce sofre celi</div>
+                    <div class="ad-meta">R$ 1087.53 · 596 cliques · 99 conv · CTR 1.12%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 10.99</div>
+                    <a class="ad-link" href="https://fb.me/1QecP4nNEU9hwUF" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Caxias com o único protocolo do</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQK9_YWhVlTp8xLh8ccoo5AzbIFAnXhrs4CYuiS-lpXupUuQN-lmZzvK-cXOl12V4QVI30nag9zxh9bBY6tcGsO8bxXRLxfTDVqEZX87Q6Z-3XhXZodOaIs2QL8ADkiJWRjbOq3cvEsUjCc51cajDlry" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads visao 1</div>
+                    <div class="ad-meta">R$ 894.94 · 3076 cliques · 0 conv · CTR 2.01%</div>
+                    
+                    <a class="ad-link" href="https://fb.me/1ZQIgl9EcQwegQY" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">A DIABETES TIPO 2 NÃO PRECISA SER SUA SENTENÇA!<br>A Doutor DM2 chegou a Caxias com o único protocolo focado em REMISSÃO.<br><br></div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLR_4UUfFrqSTR4BST0JMQm51AWpPQM4aCnVxemip8VqGBwk2t2ClKxHUsLErZs8gzNXI2I3ODjz-pVVzP1oxwCzMgy9Sry3dNQp-03iOIR6LzSR8kW1TpeVCGDi6jrOoRoA7hxJkcbj-XVG104fOmL" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads caxias paty</div>
+                    <div class="ad-meta">R$ 869.11 · 1123 cliques · 162 conv · CTR 1.67%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 5.36</div>
+                    <a class="ad-link" href="https://fb.me/1YsbUtdP88VcMrD" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 É DIABÉTICO TIPO 2 E MORA EM CAXIAS E REGIÃO? Você não precisa conviver com cansaço, formigamentos, dor ou medicações </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-2.xx.fbcdn.net/v/t15.13418-10/566628236_1393306972154429_4015929873203248189_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeEksnwWLaMakc4wrBZc8gktK_0Unq-xTGor_RSer7FMamIv2sR5QpgZ6sBy00kH01aTVq_VfSuuo5wZCOdhjDNA&_nc_ohc=EMhxTxW3XY8Q7kNvwHQdSdc&_nc_oc=AdoW4U7VciQbZ-3_HzJr18O65i-5HyxrGeDGIVanNjuV609LwqiVzM8asdXqdMtG_VM&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=9HFkpAPgh5HXNA_X0Ts5Kw&_nc_tpa=Q5bMBQHag96ZJBKkG-qy9q5Zs-BvCLkKGU981rBl8VMqVSw-s9gr9BfhoxV9NtBmuzTz_lgts9Fcgq9qMA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_Afw4GdVPT80WVlyK6UWBwHU_PtEWWF1SO0KWhrAwVZftsg&oe=69C36CCF&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads metodo dm2</div>
+                    <div class="ad-meta">R$ 836.98 · 570 cliques · 62 conv · CTR 1.08%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 13.50</div>
+                    <a class="ad-link" href="https://fb.me/1T8d68oBEPn9Jss" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Caxias com o único protocolo do</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-2.xx.fbcdn.net/v/t15.13418-10/566628236_1393306972154429_4015929873203248189_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeEksnwWLaMakc4wrBZc8gktK_0Unq-xTGor_RSer7FMamIv2sR5QpgZ6sBy00kH01aTVq_VfSuuo5wZCOdhjDNA&_nc_ohc=EMhxTxW3XY8Q7kNvwHQdSdc&_nc_oc=AdoW4U7VciQbZ-3_HzJr18O65i-5HyxrGeDGIVanNjuV609LwqiVzM8asdXqdMtG_VM&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=9HFkpAPgh5HXNA_X0Ts5Kw&_nc_tpa=Q5bMBQHag96ZJBKkG-qy9q5Zs-BvCLkKGU981rBl8VMqVSw-s9gr9BfhoxV9NtBmuzTz_lgts9Fcgq9qMA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_Afw4GdVPT80WVlyK6UWBwHU_PtEWWF1SO0KWhrAwVZftsg&oe=69C36CCF&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads metodo dm2</div>
+                    <div class="ad-meta">R$ 805.82 · 599 cliques · 67 conv · CTR 1.00%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 12.03</div>
+                    <a class="ad-link" href="https://fb.me/2437xH6IyTDTSTy" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Caxias com o único protocolo do</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLMHKjJ4y7oDllObsBwFSX6Hh23n0xO0qm4rbw36mrsaWJV-71HGMQbysAkRQxE9lXbMtru_i5VrJi81yD5l8UFaRJy7FPFg7X7He_031cbWzhoYSoI9aLOKmg21rMtgBghNuAtG-3ThM0B8pE16aON" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads caxias reporter</div>
+                    <div class="ad-meta">R$ 676.96 · 546 cliques · 50 conv · CTR 0.90%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 13.54</div>
+                    <a class="ad-link" href="https://fb.me/1TOlzeoEZbmOyLC" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 É DIABÉTICO TIPO 2 E MORA EM CAXIAS E REGIÃO? Você não precisa conviver com cansaço, formigamentos, dor ou medicações </div>
+        </div></div>
+
+    <div class="footer">
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 17:11</div>
+    </div>
+</div>
+
+<script>
+new Chart(document.getElementById('dailyChart'),{
+    type:'bar',
+    data:{
+        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
+        datasets:[
+            {label:'Gasto (R$)',data:[139.72, 153.8, 129.06, 203.46, 192.45, 230.29, 187.6],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[111, 116, 79, 138, 129, 241, 150],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[11, 13, 7, 12, 5, 17, 27],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+        ]
+    },
+    options:{
+        responsive:true,
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{position:'bottom',labels:{font:{family:'Montserrat',size:11}}}},
+        scales:{
+            y:{beginAtZero:true,grid:{color:'#f0f0f0'},ticks:{font:{family:'Montserrat',size:11},callback:v=>'R$ '+v}},
+            y1:{position:'right',beginAtZero:true,grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}},
+            x:{grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}}
+        }
+    }
+});
+</script>
+
+</body>
+</html>

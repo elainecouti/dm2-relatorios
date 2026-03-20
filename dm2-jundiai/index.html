@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seven · DM2 Jundiaí</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-serif}
+
+.topbar{background:#184341;display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:60px;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo svg{width:28px;height:28px}
+.logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.topbar-right{display:flex;align-items:center;gap:12px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.topbar-label{font-size:12px;color:rgba(255,255,255,.6)}
+
+.container{max-width:1100px;margin:0 auto;padding:32px 24px}
+.hero h1{font-size:26px;font-weight:800;margin-bottom:4px}
+.hero .sub{font-size:14px;color:#7a7a7a;margin-bottom:24px}
+.hero .info{font-size:12px;color:#999;margin-bottom:24px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-bottom:32px}
+.kpi{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.kpi-v{display:block;font-size:18px;font-weight:800;color:#184341}
+.kpi-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+
+.section-header{font-size:16px;font-weight:700;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid #e8e8e8}
+
+.camp-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.camp-table th{background:#184341;color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+.camp-table td{padding:10px 12px;border-bottom:1px solid #f0f0f0}
+.camp-table tr:last-child td{border-bottom:none}
+.camp-table tr:hover td{background:#f8fafa}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
+.dot.active{background:#22c55e}
+.dot.paused{background:#d1d5db}
+.obj-tag{font-size:10px;font-weight:700;color:#fff;padding:2px 8px;border-radius:8px}
+
+.chart-container{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px}
+.chart-container canvas{max-height:280px}
+
+.creatives-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.ad-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ad-top{display:flex;gap:12px;align-items:flex-start}
+.ad-thumb{width:80px;height:80px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#eee}
+.ad-thumb-placeholder{width:80px;height:80px;border-radius:10px;background:#eee;flex-shrink:0}
+.ad-info{flex:1;min-width:0}
+.ad-name{font-size:12px;font-weight:700;margin-bottom:4px;word-break:break-word}
+.ad-meta{font-size:11px;color:#7a7a7a;margin-bottom:2px}
+.ad-cpl{font-size:11px;font-weight:700;color:#22c55e;margin-bottom:4px}
+.ad-link{display:inline-block;margin-top:4px;font-size:11px;font-weight:600;color:#00A19A;text-decoration:none;padding:3px 10px;border:1px solid #00A19A;border-radius:6px;transition:all .15s}
+.ad-link:hover{background:#00A19A;color:#fff}
+.ad-body{font-size:11px;color:#666;margin-top:10px;line-height:1.5;padding-top:10px;border-top:1px solid #f0f0f0}
+
+.balance-section{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px;max-width:400px}
+.bal-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.bal-row.highlight{font-weight:700;font-size:14px;margin-top:8px}
+.bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
+.bal-fill{height:100%;border-radius:4px;transition:width .5s}
+
+.footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
+
+.table-wrap{overflow-x:auto;margin-bottom:32px}
+
+@media(max-width:768px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .creatives-grid{grid-template-columns:1fr}
+    .camp-table{font-size:11px}
+    .camp-table th,.camp-table td{padding:8px 6px}
+    .ad-thumb{width:100%;height:160px;border-radius:8px}
+    .ad-top{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
+        <span class="logo-text">seven</span>
+    </div>
+    <div class="topbar-right">
+        <div class="live-dot"></div>
+        <span class="topbar-label">Atualizado 20/03/2026 17:04</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="hero">
+        <h1>DM2 Jundiaí</h1>
+        <p class="sub">Doutor DM2 Diabetes · Dashboard de Performance Meta Ads</p>
+        <p class="info">48 campanhas (3 ativas) · Conta: BM - DM2 JUNDIAI</p>
+    </div>
+
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 122,831.66</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">674,735</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">103,707</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.71%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 1.18</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 20.25</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">7,636</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 16.09</span><span class="kpi-l">Custo/Conv</span></div></div>
+
+    
+        <div class="balance-section">
+            <div class="bal-row"><span>Limite da conta</span><span>R$ 123,440.87</span></div>
+            <div class="bal-row"><span>Gasto total</span><span>R$ 122,831.06</span></div>
+            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#22c55e">R$ 609.81</span></div>
+            <div class="bal-bar"><div class="bal-fill" style="width:100%;background:#22c55e"></div></div>
+        </div>
+
+    <h3 class="section-header">Últimos 7 dias</h3>
+    <div class="chart-container">
+        <canvas id="dailyChart"></canvas>
+    </div>
+
+    <h3 class="section-header">Campanhas</h3>
+    <div class="table-wrap">
+        <table class="camp-table">
+            <thead><tr>
+                <th>Campanha</th><th>Objetivo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>CTR</th><th>Conv</th><th>Custo/Conv</th>
+            </tr></thead>
+            <tbody><tr>
+            <td><span class="dot paused"></span>01/06 - [engajamento] [wpp] [rmk] [44-65] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 12614.72</td>
+            <td>30,627</td>
+            <td>10,195</td>
+            <td>2.15%</td>
+            <td><strong>610</strong></td>
+            <td>R$ 20.68</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>28/06 [vendas] [wpp] [jundiai-cidade][LL% lis</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 11163.87</td>
+            <td>132,818</td>
+            <td>10,988</td>
+            <td>1.94%</td>
+            <td><strong>711</strong></td>
+            <td>R$ 15.70</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08/08 [vendas] [wpp] [homens] [45+] [jundiai]</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 9259.94</td>
+            <td>106,671</td>
+            <td>7,038</td>
+            <td>1.82%</td>
+            <td><strong>599</strong></td>
+            <td>R$ 15.46</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08/02 [vendas] [wpp] [homens] [39+] [jundiai]</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 9111.15</td>
+            <td>124,159</td>
+            <td>5,540</td>
+            <td>1.29%</td>
+            <td><strong>785</strong></td>
+            <td>R$ 11.61</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>01/06 - [vendas] [wpp] [44-65] [teste-criativ</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 8260.58</td>
+            <td>98,437</td>
+            <td>6,645</td>
+            <td>1.71%</td>
+            <td><strong>525</strong></td>
+            <td>R$ 15.73</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>12/12 [engajamento] [wpp] [bairros] [jundiai]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 6829.64</td>
+            <td>93,608</td>
+            <td>5,533</td>
+            <td>1.24%</td>
+            <td><strong>497</strong></td>
+            <td>R$ 13.74</td>
+        </tr><tr>
+            <td><span class="dot active"></span>26/01 [vendas] [ceps-vinhedo-jundiai] [39+] [</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 6135.13</td>
+            <td>101,865</td>
+            <td>6,694</td>
+            <td>1.90%</td>
+            <td><strong>385</strong></td>
+            <td>R$ 15.94</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>17/03 - [Engajamento] [Cidades] [Wpp] [Jundia</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 5510.22</td>
+            <td>59,023</td>
+            <td>4,193</td>
+            <td>1.55%</td>
+            <td><strong>393</strong></td>
+            <td>R$ 14.02</td>
+        </tr><tr>
+            <td><span class="dot active"></span>26/01 [engajamento] [wpp] [rmk] [campanha-cep</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 4729.43</td>
+            <td>17,275</td>
+            <td>3,113</td>
+            <td>1.98%</td>
+            <td><strong>175</strong></td>
+            <td>R$ 27.03</td>
+        </tr><tr>
+            <td><span class="dot active"></span>28/01 [vendas] [ceps-vinhedo] [39+] [criativo</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 4339.38</td>
+            <td>37,626</td>
+            <td>3,246</td>
+            <td>2.32%</td>
+            <td><strong>169</strong></td>
+            <td>R$ 25.68</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>28/06 [vendas] [wpp] [jundiai-bairros] [44-64</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 4308.34</td>
+            <td>56,623</td>
+            <td>3,391</td>
+            <td>1.52%</td>
+            <td><strong>206</strong></td>
+            <td>R$ 20.91</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>28/11 - [Engajamento] [Cidade] [Wpp] [Jundia]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 3881.50</td>
+            <td>79,225</td>
+            <td>4,131</td>
+            <td>1.88%</td>
+            <td><strong>500</strong></td>
+            <td>R$ 7.76</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>12/11 - [vendas] [wpp] [40-65] [teste de publ</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 3611.74</td>
+            <td>75,134</td>
+            <td>3,102</td>
+            <td>1.81%</td>
+            <td><strong>211</strong></td>
+            <td>R$ 17.12</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>12/11 - [engajamento] [wpp] [rmk] [40-65] [90</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 3605.21</td>
+            <td>30,403</td>
+            <td>3,970</td>
+            <td>1.88%</td>
+            <td><strong>225</strong></td>
+            <td>R$ 16.02</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>04/12 [engajamento] [wpp] [rmk] [jundiai] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 3418.20</td>
+            <td>19,107</td>
+            <td>3,747</td>
+            <td>2.30%</td>
+            <td><strong>207</strong></td>
+            <td>R$ 16.51</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>25/08 [vendas] [wpp] [vinhedo-interesses] [44</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 3353.24</td>
+            <td>42,436</td>
+            <td>2,319</td>
+            <td>1.48%</td>
+            <td><strong>167</strong></td>
+            <td>R$ 20.08</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>25/01 - [Engajamento] [vinhedo] [aberto] [Wpp</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 3262.39</td>
+            <td>38,430</td>
+            <td>2,720</td>
+            <td>1.75%</td>
+            <td><strong>223</strong></td>
+            <td>R$ 14.63</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>28/06 [vendas] [wpp] [homens] [49+] [jundiai-</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 2984.91</td>
+            <td>52,788</td>
+            <td>1,701</td>
+            <td>1.28%</td>
+            <td><strong>187</strong></td>
+            <td>R$ 15.96</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>21/01 - [Engajamento] [Cidade] [Wpp] [Jundia]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 2135.28</td>
+            <td>38,466</td>
+            <td>2,775</td>
+            <td>2.32%</td>
+            <td><strong>223</strong></td>
+            <td>R$ 9.58</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>21/01 - [Engajamento] [bairros] [Wpp] [Jundia</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1800.76</td>
+            <td>33,346</td>
+            <td>1,617</td>
+            <td>1.58%</td>
+            <td><strong>90</strong></td>
+            <td>R$ 20.01</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>20/03 [vendas] [wpp] [homens] [interesses] [4</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1781.05</td>
+            <td>19,671</td>
+            <td>1,121</td>
+            <td>2.14%</td>
+            <td><strong>70</strong></td>
+            <td>R$ 25.44</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>28/06 [vendas] [wpp] [vinhedo] [alto-valror] </td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 1407.52</td>
+            <td>18,706</td>
+            <td>899</td>
+            <td>1.28%</td>
+            <td><strong>60</strong></td>
+            <td>R$ 23.46</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>12/12 - [Engajamento] [bairros] [Wpp] [Jundia</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1160.71</td>
+            <td>22,694</td>
+            <td>979</td>
+            <td>1.47%</td>
+            <td><strong>80</strong></td>
+            <td>R$ 14.51</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>28/11 - [Engajamento] [3kmClinica] [Wpp] [Jun</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1041.38</td>
+            <td>14,977</td>
+            <td>689</td>
+            <td>1.96%</td>
+            <td><strong>64</strong></td>
+            <td>R$ 16.27</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>25/10 [vendas] [jundiai] [wpp] [50+] [instagr</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 951.74</td>
+            <td>25,865</td>
+            <td>373</td>
+            <td>0.89%</td>
+            <td><strong>50</strong></td>
+            <td>R$ 19.03</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>16/10- [engajamento] [mulher] [wpp] [rmk] [40</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 926.06</td>
+            <td>9,211</td>
+            <td>1,053</td>
+            <td>2.94%</td>
+            <td><strong>78</strong></td>
+            <td>R$ 11.87</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>23/11 [FaseII] [trafego] [perfil] [Jundia] AB</td>
+            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
+            <td>R$ 732.44</td>
+            <td>18,682</td>
+            <td>1,111</td>
+            <td>2.14%</td>
+            <td><strong>3</strong></td>
+            <td>R$ 244.15</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>14/06 [engajamento] [wpp] [jundiai] [interess</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 725.07</td>
+            <td>13,511</td>
+            <td>978</td>
+            <td>2.97%</td>
+            <td><strong>38</strong></td>
+            <td>R$ 19.08</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>22/11 [faseII] [engajamento] [anúncio] [Jundi</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 718.35</td>
+            <td>75,766</td>
+            <td>677</td>
+            <td>0.43%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>28/04 [leads] [lp] [criativos-validados] CBO</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 438.97</td>
+            <td>10,626</td>
+            <td>1,178</td>
+            <td>6.71%</td>
+            <td><strong>4</strong></td>
+            <td>R$ 109.74</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>19/11 [FaseI] [reconhecimento] [Jundiai] [Thu</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 334.65</td>
+            <td>14,476</td>
+            <td>198</td>
+            <td>0.61%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>17/01 - [Engajamento] [H 35a69+] ABO 1-1-1</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 317.85</td>
+            <td>8,355</td>
+            <td>237</td>
+            <td>1.51%</td>
+            <td><strong>41</strong></td>
+            <td>R$ 7.75</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>25/11 [engajamento][videoview] [rmk fase I e </td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 257.79</td>
+            <td>4,487</td>
+            <td>220</td>
+            <td>1.07%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>03/12 [alcance] [perfil] [40+] [rmk] [objeçõe</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 222.89</td>
+            <td>33,223</td>
+            <td>219</td>
+            <td>0.25%</td>
+            <td><strong>3</strong></td>
+            <td>R$ 74.30</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>19/11 [FaseI] [reconhecimento] [Jundiai] [Thu</td>
+            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
+            <td>R$ 216.01</td>
+            <td>9,225</td>
+            <td>74</td>
+            <td>0.44%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>08/12 [engajamento] [wpp] [outras-cidades] [j</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 191.32</td>
+            <td>2,942</td>
+            <td>62</td>
+            <td>1.19%</td>
+            <td><strong>3</strong></td>
+            <td>R$ 63.77</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>20/03 [engajamento] [wpp] [bairros] [jundiai]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 128.47</td>
+            <td>3,250</td>
+            <td>60</td>
+            <td>1.07%</td>
+            <td><strong>3</strong></td>
+            <td>R$ 42.82</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>21/01 [engajamento] [wpp] [rmk] [jundiai] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 121.94</td>
+            <td>2,060</td>
+            <td>60</td>
+            <td>1.18%</td>
+            <td><strong>3</strong></td>
+            <td>R$ 40.65</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>05/01 - [engajamento] [wpp] [rmk] [40-65] [90</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 116.88</td>
+            <td>6,156</td>
+            <td>243</td>
+            <td>3.12%</td>
+            <td><strong>14</strong></td>
+            <td>R$ 8.35</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>05/01 [vendas] [wpp] [jundiai-cidade][LL% lis</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 112.05</td>
+            <td>4,127</td>
+            <td>162</td>
+            <td>3.07%</td>
+            <td><strong>8</strong></td>
+            <td>R$ 14.01</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>05/01 - [engajamento] [wpp] [rmk] [44-65] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 111.82</td>
+            <td>2,997</td>
+            <td>80</td>
+            <td>1.72%</td>
+            <td><strong>5</strong></td>
+            <td>R$ 22.36</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>05/01 [vendas] [wpp] [homens] [45+] [jundiai]</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 105.29</td>
+            <td>3,504</td>
+            <td>105</td>
+            <td>2.02%</td>
+            <td><strong>3</strong></td>
+            <td>R$ 35.10</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>07/10  - [vendas] [wpp] [44-65] [teste-criati</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 88.15</td>
+            <td>3,407</td>
+            <td>45</td>
+            <td>1.13%</td>
+            <td><strong>3</strong></td>
+            <td>R$ 29.38</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>07/10 - [engajamento] [wpp] [rmk] [44-65] CBO</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 72.65</td>
+            <td>2,313</td>
+            <td>50</td>
+            <td>1.50%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 36.33</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>07/10 [vendas] [wpp] [jundiai-bairros] [44-64</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 66.49</td>
+            <td>2,577</td>
+            <td>55</td>
+            <td>1.68%</td>
+            <td><strong>3</strong></td>
+            <td>R$ 22.16</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>07/10 [vendas] [wpp] [jundiai-cidade][LL% lis</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 64.66</td>
+            <td>2,645</td>
+            <td>57</td>
+            <td>1.89%</td>
+            <td><strong>2</strong></td>
+            <td>R$ 32.33</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>07/10 [vendas] [wpp] [vinhedo-interesses] [44</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 52.24</td>
+            <td>1,679</td>
+            <td>25</td>
+            <td>1.27%</td>
+            <td><strong>4</strong></td>
+            <td>R$ 13.06</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>07/10 [vendas] [wpp] [homens] [45+] [jundiai]</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 51.59</td>
+            <td>2,282</td>
+            <td>39</td>
+            <td>1.42%</td>
+            <td><strong>4</strong></td>
+            <td>R$ 12.90</td>
+        </tr></tbody>
+        </table>
+    </div>
+
+    <h3 class="section-header">Top Criativos</h3>
+    <div class="creatives-grid">
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-1.xx.fbcdn.net/v/t15.13418-10/476859743_956991952749663_660730423750477873_n.jpg?_nc_cat=100&ccb=1-7&_nc_eui2=AeHlxUPinsS4M9VG8nt3s9Bk06WCXEOLrsrTpYJcQ4uuyuaSWe2OzMFDZQQiBFQ-qQt8UzqzXT0lyOhqEoFuX9fc&_nc_ohc=n0dVVYsU0gAQ7kNvwFnV44U&_nc_oc=Ado8TG2sK5vJsI_pxTfmeTzpPXLiKdqer6AGSLLgNG2Y-URx_n3f87B2Tl6TPoY7G_I&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=9VW4ZYD79hBBWDt0bq99FA&_nc_tpa=Q5bMBQFdgCIftQaKj8Or9iYSPurFQLN4wZE38FLjIl5HKOqGfuW_OGWvybehwgX0hBX7SEpJaXJA3ndazQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=c3b633&_nc_sid=58080a&oh=00_Afx_zWcDat-OxGsBvMiFkSMT2bUMxZEyYehEYJaFNS4EXA&oe=69C38653&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads disfuncao eretil</div>
+                    <div class="ad-meta">R$ 6790.17 · 4153 cliques · 621 conv · CTR 1.33%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 10.93</div>
+                    <a class="ad-link" href="https://fb.me/22iWEm0BCogE92L" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">💪 Impotência sexual e disfunção erétil, são sinais que podem ser um alerta para diabetes tipo 2. Não deixe de buscar aju</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/537007285_755889587155666_4811238046070477206_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeGVsx_bbPkXODNEWlTe6g7WmncTwdgNVTaadxPB2A1VNlZe4OCftAm52YB7uchMAYTkae3O1531qRFD9AW3yYUx&_nc_ohc=fGXTrteXtg0Q7kNvwHu67GA&_nc_oc=AdqP_BGe_7eRFYw5AqCi1MOp7Gwm17ZLksoi51eM_bOVEskXzR86Nh4dj4kcZsenU2U&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=nYTKmY2XeIH_PaFoJWENuQ&_nc_tpa=Q5bMBQFerfQzw24oBmkWsk1cLJW6r2dmbYphR-nxormbiaHe5nLnZN4NtOrwjSDM-oYIHDnXtQFvzLStJw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=d2b52d&_nc_sid=58080a&oh=00_AfwnO06tR3mVZ4r_H-5w2wKDWrh6nALBLIA6mwHTM3Krsg&oe=69C395D1&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads dm2 nao tem cura 3</div>
+                    <div class="ad-meta">R$ 4038.51 · 2809 cliques · 273 conv · CTR 1.48%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 14.79</div>
+                    <a class="ad-link" href="https://fb.me/1ZEj4PN4lohCarl" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">&quot;Vitória é acordar com energia de novo.&quot;<br><br>Quem vive com diabetes sabe o que é levantar cansado.<br> Mas isso pode mudar.<br><br> </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://external-atl3-1.xx.fbcdn.net/emg1/v/t13/2068018203183300637?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKCYqq6DhxfOfYa_lKdP6Rc0eGmYNex2_eAqsOttdf-AI5yROini0dRKkTjzNF1GnV4ejmmB6YQ6HEjuNgZct5IAR0JGGNUpo20YzF3j5LDtHb_bA1jCdGHyEPccvId2pZdUBuMpZcb8E_4CapUhL07&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=9VW4ZYD79hBBWDt0bq99FA&_nc_eui2=AeGIHNWZbYooGC72lqfYDb3vm2dgTLsfFaSbZ2BMux8VpDRZWllt9a8mPZnYDFj4bvuoDtQsoAIpPE3_05nUjzKF&_nc_oc=Adqat793JQpZKuLJ0VEhQsqimN6dFn7iGyS7grkJ3y4FjypP1xmrmnzEIQsyzFFbJcw&ccb=13-1&oh=06_Q3-9AaL0F9LLVvzfrkKxuezW1wJ_Z0g6jAPo2rpCx5KdKeAv&oe=69BF8043&_nc_sid=58080a&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads noticia - copy nova</div>
+                    <div class="ad-meta">R$ 3780.44 · 2672 cliques · 224 conv · CTR 1.16%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 16.88</div>
+                    <a class="ad-link" href="https://fb.me/2iRumrmdchwieUI" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">💊 Conquiste a remissão da diabetes tipo 2 em 12 semanas!<br><br>A diabetes tipo 2 te faz sofrer com dores, noites mal dormidas</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-3.xx.fbcdn.net/v/t15.5256-10/468652113_1574160939896140_3877504526085255043_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeEfttLtrGYjoDMeQ3eBbSzUcrQmr5E7ivtytCavkTuK-y_e4BF6iNn9VUCGMGnI2iGWslx9hHWOUMRTa0uMTt79&_nc_ohc=0XVlf6pbeuEQ7kNvwFG__Y7&_nc_oc=AdqpmFgYp2JFC48PuwGILShN1b_MegNGUBU899DYVSICUNJuogovYDhYDGTPXrdj6sM&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=9VW4ZYD79hBBWDt0bq99FA&_nc_tpa=Q5bMBQHDz39k3WaS57luhx3SDDGhqfp72hgQhsxTHtdVt3rjzYLsY8CiDRlmWWUHeqGadihN_h9AMbk8ag&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=d2b52d&_nc_sid=58080a&oh=00_AfyOX7QxYcr5eV1a7lIaHpv9jhxz-xBOSHk37KhtXk51CA&oe=69C38B7C&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Controle nao funciona</div>
+                    <div class="ad-meta">R$ 3221.58 · 2740 cliques · 251 conv · CTR 1.67%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 12.83</div>
+                    <a class="ad-link" href="https://fb.me/1R4ECJRgBMuNHiG" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">⚠️🔔 Mesmo com medicação, você não consegue controlar sua glicemia? <br>Agende uma consulta com a Doutor DM2 Diabetes e desc</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://external-atl3-1.xx.fbcdn.net/emg1/v/t13/2068018203183300637?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKCYqq6DhxfOfYa_lKdP6Rc0eGmYNex2_eAqsOttdf-AI5yROini0dRKkTjzNF1GnV4ejmmB6YQ6HEjuNgZct5IAR0JGGNUpo20YzF3j5LDtHb_bA1jCdGHyEPccvId2pZdUBuMpZcb8E_4CapUhL07&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=9VW4ZYD79hBBWDt0bq99FA&_nc_eui2=AeGIHNWZbYooGC72lqfYDb3vm2dgTLsfFaSbZ2BMux8VpDRZWllt9a8mPZnYDFj4bvuoDtQsoAIpPE3_05nUjzKF&_nc_oc=Adqat793JQpZKuLJ0VEhQsqimN6dFn7iGyS7grkJ3y4FjypP1xmrmnzEIQsyzFFbJcw&ccb=13-1&oh=06_Q3-9AaL0F9LLVvzfrkKxuezW1wJ_Z0g6jAPo2rpCx5KdKeAv&oe=69BF8043&_nc_sid=58080a&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads noticia - copy nova</div>
+                    <div class="ad-meta">R$ 3049.20 · 2861 cliques · 273 conv · CTR 1.31%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 11.17</div>
+                    <a class="ad-link" href="https://fb.me/2iRumrmdchwieUI" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">💊 Conquiste a remissão da diabetes tipo 2 em 12 semanas!<br><br>A diabetes tipo 2 te faz sofrer com dores, noites mal dormidas</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-2.xx.fbcdn.net/v/t15.13418-10/538809298_3995403047390220_3195758180945101810_n.jpg?_nc_cat=102&ccb=1-7&_nc_eui2=AeFf-7zSoN9L5m25GaW6oeZN5eyUZwk-Ahzl7JRnCT4CHDF2aA4_zMroKSHKcrgRF38ZJqHgD85CtgrlzFwQLkm9&_nc_ohc=yUptXGU-ymUQ7kNvwHZen43&_nc_oc=AdraoaiYdMF5KY0gq0YEcDFP5QaLpiRiy3UsCikh-jqCzfsN72-bdSS-z83sAIOSGjQ&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=NR3ZvE0rMKtsqAtDJ8VFGg&_nc_tpa=Q5bMBQEIB8v-WQYBIoD7h-h8znszn01qjEZ0Wj8CCzfSjwT5eS61edfudvqrCpEiAvaKArKI35Y7S0KHzQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfyV1aEVj5Zygt9Uvz0fm3nyraQnieBYWr4mswQStTaYug&oe=69C37743&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads prova social jundiai</div>
+                    <div class="ad-meta">R$ 2383.39 · 2521 cliques · 139 conv · CTR 1.58%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 17.15</div>
+                    <a class="ad-link" href="https://fb.me/1TPCNxtPiGqzrdh" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 É DIABÉTICO TIPO 2 E MORA EM JUNDIAÍ?<br>Você não precisa conviver com cansaço, formigamentos, dor ou medicações para sem</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQI6BEZ_heCOLzHudosaRi80aY4ekIViobHnC2Dl_7pxP8MbOS62HO0p8r1Nfbi_bNULVWSyBuwdF1qJb7KxAVozzPBHZHHVFr9cZFCouU6uH44Lr3SUAYyFKxJVQ5XZSN2TVOepC2VgzomxPJFhKMND" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads foco nos sintomas</div>
+                    <div class="ad-meta">R$ 2094.97 · 1117 cliques · 123 conv · CTR 1.61%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 17.03</div>
+                    <a class="ad-link" href="https://fb.me/342OBCR9YcrqKVb" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Controlar a glicose NÃO é tratar a diabetes<br><br>A maioria dos pacientes com diabetes tipo 2 está tentando resolver o proble</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-2.xx.fbcdn.net/v/t15.13418-10/474661888_1336277477550425_2296372465869777700_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeH0LSRNp_S0tGXdaLKm-JAumYQ7ixsEW8-ZhDuLGwRbz6e-gTk3y1NIxtVy3XhMpm-lf7ziXK-KPEvdmQ7JBLCK&_nc_ohc=ni2dgbMTwIMQ7kNvwGOizs-&_nc_oc=AdohYMC6ZRdiJDH59u25E9xl7hfHhbbahcAV0-avyKOTkYalS7c4bS34KvZcTjmiOLc&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=9VW4ZYD79hBBWDt0bq99FA&_nc_tpa=Q5bMBQG1ohtkJA5TaER-EH_PYq62fody-xy8Pi_Sj3O4JLbhcpC_E62AGwdU72bThmc8oX5csYxtEDr25A&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfxNNLKrvYKzPg9KjSEwsxRP2efsOUXPmNr0excRQ9ZvRg&oe=69C38873&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads glicose alta</div>
+                    <div class="ad-meta">R$ 1981.42 · 1646 cliques · 136 conv · CTR 2.14%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 14.57</div>
+                    <a class="ad-link" href="https://fb.me/1SVNvFUAlpI3NLe" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Essa pode ser a causa da sua glicose alta pela manhã! Acordar com a glicose elevada não é coincidência. Isso tem um mo</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-atl3-2.xx.fbcdn.net/v/t15.5256-10/552816759_1451431362577966_1662526012268664014_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeHjNrYQ6POMgNYhbaXEU5VL6imDPiF3y43qKYM-IXfLja8pOPxqu5UV2SitRjvh6na0202wFa0_R4UYjFuicbBE&_nc_ohc=rlCv9UEG0lYQ7kNvwGAyD_a&_nc_oc=AdpnGqEnffJuJL5trbBCCeh47xW7cPxHyxUG-iYWApb8G0pMM9ZPUzrOq4_ZfJg-vbU&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=NR3ZvE0rMKtsqAtDJ8VFGg&_nc_tpa=Q5bMBQGVkGEnovMuo_47KbuzXLy6zzHpo-DhpmDXYQeu_MWa-64SJLtbJf4NItanSp9ZNustr2hi0nruMQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyyTTN6R0NJrM9M49Pr6cGHKeFB_xp4yYRo-zUjdfy0hQ&oe=69C36970&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads exames</div>
+                    <div class="ad-meta">R$ 1865.24 · 2208 cliques · 110 conv · CTR 1.89%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 16.96</div>
+                    <a class="ad-link" href="https://fb.me/1S9a5fQWMPyNcKw" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 É DIABÉTICO TIPO 2 E MORA EM JUNDIAÍ?<br>Você não precisa conviver com cansaço, formigamentos, dor ou medicações para sem</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQK2lRUvaySSZBU8Ff5mh5X43Zv_QzurhnNIGcHRIE5F64hBofORLrGa9vthR8Q5WOw8qjGK_qEhgtVwWnJHzVnsJoM_F-tmlcrvr6nN82PIZczaTvuKadTYVg7fq8eXuHJrpgVw1gjwQ5SqX_Jm3HH6" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads live 1</div>
+                    <div class="ad-meta">R$ 1844.87 · 1686 cliques · 161 conv · CTR 2.99%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 11.46</div>
+                    <a class="ad-link" href="https://fb.me/1TQJEYEtQ2bDCFO" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Diabetes tipo 2 não precisa ser pra sempre.<br>E se você tenta controlar há anos e nada muda… não é culpa sua.<br><br>O problema </div>
+        </div></div>
+
+    <div class="footer">
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 17:04</div>
+    </div>
+</div>
+
+<script>
+new Chart(document.getElementById('dailyChart'),{
+    type:'bar',
+    data:{
+        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
+        datasets:[
+            {label:'Gasto (R$)',data:[275.33, 312.34, 271.16, 475.37, 293.79, 296.86, 259.11],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[229, 218, 165, 312, 219, 252, 216],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[13, 15, 15, 18, 10, 8, 10],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+        ]
+    },
+    options:{
+        responsive:true,
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{position:'bottom',labels:{font:{family:'Montserrat',size:11}}}},
+        scales:{
+            y:{beginAtZero:true,grid:{color:'#f0f0f0'},ticks:{font:{family:'Montserrat',size:11},callback:v=>'R$ '+v}},
+            y1:{position:'right',beginAtZero:true,grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}},
+            x:{grid:{display:false},ticks:{font:{family:'Montserrat',size:11}}}
+        }
+    }
+});
+</script>
+
+</body>
+</html>
