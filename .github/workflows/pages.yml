@@ -35,7 +35,7 @@ jobs:
         run: |
           git config user.name "Seven Bot"
           git config user.email "bot@seven.com"
-          git add cuiaba/ parauapebas-inaug/
+          git add */index.html
           git diff --staged --quiet || (git commit -m "Auto-update $(date -u '+%d/%m/%Y %H:%M UTC')" && git push)
 
   deploy:

@@ -12,18 +12,26 @@ body{font-family:'Montserrat',sans-serif;background:#F7F8FA;color:#184341;min-he
 .logo{display:flex;align-items:center;gap:8px;text-decoration:none}
 .logo svg{width:28px;height:28px}
 .logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.container{max-width:900px;margin:0 auto;padding:48px 24px}
+.container{max-width:1100px;margin:0 auto;padding:40px 24px}
 h1{font-size:28px;font-weight:800;margin-bottom:8px}
 .subtitle{color:#7a7a7a;font-size:14px;margin-bottom:40px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-.card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:transform .15s,box-shadow .15s;text-decoration:none;color:inherit;display:block}
-.card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
-.card-badge{display:inline-block;font-size:11px;font-weight:700;color:#fff;padding:4px 12px;border-radius:20px;margin-bottom:14px}
-.card h2{font-size:18px;font-weight:700;margin-bottom:6px}
-.card p{font-size:13px;color:#7a7a7a;line-height:1.5}
-.card-arrow{margin-top:16px;font-size:13px;font-weight:600;color:#00A19A}
+.section-title{font-size:16px;font-weight:700;color:#184341;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid #e8e8e8;display:flex;align-items:center;gap:8px}
+.section-badge{font-size:10px;font-weight:700;color:#fff;padding:3px 10px;border-radius:12px;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:8px}
+.card{background:#fff;border-radius:14px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:transform .15s,box-shadow .15s;text-decoration:none;color:inherit;display:block}
+.card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.card-badge{display:inline-block;font-size:10px;font-weight:700;color:#fff;padding:3px 10px;border-radius:12px;margin-bottom:10px}
+.card h2{font-size:15px;font-weight:700;margin-bottom:4px}
+.card p{font-size:12px;color:#7a7a7a;line-height:1.4}
+.card-arrow{margin-top:12px;font-size:12px;font-weight:600;color:#00A19A}
 .inaug{background:linear-gradient(135deg,#00A19A,#184341)}
-/* Auth gate */
+.dm2{background:#1D71B8}
+.emag{background:#9333ea}
+.cdt{background:#f59e0b}
+.ecom{background:#ef4444}
+.med{background:#22c55e}
+.expert{background:#ec4899}
+/* Auth */
 #auth-gate{position:fixed;inset:0;background:#F7F8FA;z-index:999;display:flex;align-items:center;justify-content:center}
 .auth-box{text-align:center;max-width:340px;padding:24px}
 .auth-box h2{font-size:20px;font-weight:800;margin-bottom:6px}
@@ -58,21 +66,88 @@ h1{font-size:28px;font-weight:800;margin-bottom:8px}
 </div>
 <div class="container">
   <h1>Relatórios de Performance</h1>
-  <p class="subtitle">Doutor DM2 — Dashboards atualizados automaticamente</p>
+  <p class="subtitle">Dashboards atualizados automaticamente a cada 3 horas</p>
+
+  <!-- Inauguração -->
+  <div class="section-title"><span class="section-badge inaug">INAUGURAÇÃO</span> Doutor DM2 — Unidades novas</div>
   <div class="grid">
     <a class="card" href="cuiaba/">
-      <span class="card-badge inaug">INAUGURAÇÃO</span>
+      <span class="card-badge inaug">INAUG</span>
       <h2>Cuiabá — MT</h2>
-      <p>Dashboard de campanhas de inauguração. Funil completo, criativos e análise.</p>
+      <p>Dashboard completo com funil, criativos e análise</p>
       <div class="card-arrow">Ver dashboard →</div>
     </a>
     <a class="card" href="parauapebas-inaug/">
-      <span class="card-badge inaug">INAUGURAÇÃO</span>
+      <span class="card-badge inaug">INAUG</span>
       <h2>Parauapebas — PA</h2>
-      <p>Dashboard de campanhas de inauguração. Funil completo, criativos e análise.</p>
+      <p>Dashboard completo com funil, criativos e análise</p>
       <div class="card-arrow">Ver dashboard →</div>
     </a>
   </div>
+
+  <!-- DM2 -->
+  <div class="section-title"><span class="section-badge dm2">DM2</span> Doutor DM2 Diabetes — Rede</div>
+  <div class="grid">
+    <a class="card" href="dm2-vitoria/"><span class="card-badge dm2">DM2</span><h2>Vitória — ES</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-vila-velha/"><span class="card-badge dm2">DM2</span><h2>Vila Velha — ES</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-cachoeiro/"><span class="card-badge dm2">DM2</span><h2>Cachoeiro — ES</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-colatina/"><span class="card-badge dm2">DM2</span><h2>Colatina — ES</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-linhares/"><span class="card-badge dm2">DM2</span><h2>Linhares — ES</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-campos/"><span class="card-badge dm2">DM2</span><h2>Campos — RJ</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-valadares/"><span class="card-badge dm2">DM2</span><h2>Gov. Valadares — MG</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-montes-claros/"><span class="card-badge dm2">DM2</span><h2>Montes Claros — MG</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-santo-amaro/"><span class="card-badge dm2">DM2</span><h2>Santo Amaro — SP</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-lapa/"><span class="card-badge dm2">DM2</span><h2>Lapa — SP</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-jundiai/"><span class="card-badge dm2">DM2</span><h2>Jundiaí — SP</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-marilia/"><span class="card-badge dm2">DM2</span><h2>Marília — SP</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-osasco/"><span class="card-badge dm2">DM2</span><h2>Osasco — SP</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-rio-preto/"><span class="card-badge dm2">DM2</span><h2>Rio Preto — SP</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-maringa/"><span class="card-badge dm2">DM2</span><h2>Maringá — PR</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-campo-grande/"><span class="card-badge dm2">DM2</span><h2>Campo Grande — MS</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-anapolis/"><span class="card-badge dm2">DM2</span><h2>Anápolis — GO</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-brasilia/"><span class="card-badge dm2">DM2</span><h2>Brasília — DF</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-recife/"><span class="card-badge dm2">DM2</span><h2>Recife — PE</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-sao-luis/"><span class="card-badge dm2">DM2</span><h2>São Luís — MA</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-caxias/"><span class="card-badge dm2">DM2</span><h2>Caxias — MA</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-imperatriz/"><span class="card-badge dm2">DM2</span><h2>Imperatriz — MA</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-eunapolis/"><span class="card-badge dm2">DM2</span><h2>Eunápolis — BA</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dm2-parauapebas/"><span class="card-badge dm2">DM2</span><h2>Parauapebas — PA</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+  </div>
+
+  <!-- Emagrecentro -->
+  <div class="section-title"><span class="section-badge emag">EMAG</span> Emagrecentro</div>
+  <div class="grid">
+    <a class="card" href="emagrecentro-cariacica/"><span class="card-badge emag">EMAG</span><h2>Cariacica — ES</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="emagrecentro-vv/"><span class="card-badge emag">EMAG</span><h2>Vila Velha — ES</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="emagrecentro-vix/"><span class="card-badge emag">EMAG</span><h2>Vitória — ES</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+  </div>
+
+  <!-- CDT -->
+  <div class="section-title"><span class="section-badge cdt">CDT</span> Cartão de Todos</div>
+  <div class="grid">
+    <a class="card" href="cdt-vitoria/"><span class="card-badge cdt">CDT</span><h2>CDT Vitória</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+  </div>
+
+  <!-- Max Outlet -->
+  <div class="section-title"><span class="section-badge ecom">E-COM</span> Max Outlet</div>
+  <div class="grid">
+    <a class="card" href="max-outlet/"><span class="card-badge ecom">E-COM</span><h2>Max Outlet</h2><p>E-commerce — Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+  </div>
+
+  <!-- Médicos -->
+  <div class="section-title"><span class="section-badge med">MED</span> Tráfego Médico</div>
+  <div class="grid">
+    <a class="card" href="dra-leandro/"><span class="card-badge med">MED</span><h2>Dr. Leandro Maia</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dra-alessandra/"><span class="card-badge med">MED</span><h2>Dra. Alessandra</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+    <a class="card" href="dra-chris/"><span class="card-badge med">MED</span><h2>Dra. Chris Barros</h2><p>Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+  </div>
+
+  <!-- Cibelly -->
+  <div class="section-title"><span class="section-badge expert">EXPERT</span> Cibelly Cordeiro</div>
+  <div class="grid">
+    <a class="card" href="cibelly/"><span class="card-badge expert">EXPERT</span><h2>Cibelly Cordeiro</h2><p>Imersão / Eventos — Meta Ads performance</p><div class="card-arrow">Ver →</div></a>
+  </div>
+
 </div>
 </div>
 <script>
