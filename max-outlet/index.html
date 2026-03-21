@@ -63,6 +63,21 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 .bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
 .bal-fill{height:100%;border-radius:4px;transition:width .5s}
 
+.opt-summary{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.opt-card{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.opt-card.opt-green{border-left:4px solid #22c55e}
+.opt-card.opt-red{border-left:4px solid #ef4444}
+.opt-v{display:block;font-size:20px;font-weight:800;color:#184341}
+.opt-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+.opt-block{margin-bottom:20px}
+.opt-title{font-size:14px;font-weight:700;margin-bottom:10px}
+.opt-title-green{color:#16a34a}
+.opt-title-red{color:#dc2626}
+.opt-title-yellow{color:#d97706}
+.cpl-good{color:#16a34a;font-weight:700}
+.cpl-bad{color:#dc2626;font-weight:700}
+.cpl-warn{color:#d97706;font-weight:700}
+
 .footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
 
 .table-wrap{overflow-x:auto;margin-bottom:32px}
@@ -86,7 +101,7 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
     </div>
     <div class="topbar-right">
         <div class="live-dot"></div>
-        <span class="topbar-label">Atualizado 20/03/2026 18:49</span>
+        <span class="topbar-label">Atualizado 20/03/2026 23:49</span>
     </div>
 </div>
 
@@ -97,13 +112,13 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
         <p class="info">46 campanhas (5 ativas) · Conta: Maxoutlet</p>
     </div>
 
-    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 164,088.64</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">3,588,479</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">507,973</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">2.40%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.32</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 7.75</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">28,960</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 5.67</span><span class="kpi-l">Custo/Conv</span></div></div>
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 7,287.77</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">164,844</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">14,381</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">2.47%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.51</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 12.52</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">572</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 12.74</span><span class="kpi-l">Custo/Conv</span></div></div>
 
     
         <div class="balance-section">
             <div class="bal-row"><span>Limite da conta</span><span>R$ 164,468.93</span></div>
-            <div class="bal-row"><span>Gasto total</span><span>R$ 164,091.89</span></div>
-            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#f59e0b">R$ 377.04</span></div>
+            <div class="bal-row"><span>Gasto total</span><span>R$ 164,163.52</span></div>
+            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#f59e0b">R$ 305.41</span></div>
             <div class="bal-bar"><div class="bal-fill" style="width:100%;background:#f59e0b"></div></div>
         </div>
 
@@ -119,419 +134,50 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
                 <th>Campanha</th><th>Objetivo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>CTR</th><th>Conv</th><th>Custo/Conv</th>
             </tr></thead>
             <tbody><tr>
+            <td><span class="dot active"></span>02/10 [vendas] [site] [SP-BRASIL] [tenis] CBO</td>
+            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
+            <td>R$ 2643.64</td>
+            <td>52,565</td>
+            <td>5,932</td>
+            <td>4.48%</td>
+            <td><strong>58</strong></td>
+            <td>R$ 45.58</td>
+        </tr><tr>
             <td><span class="dot active"></span>11/11 [vendas] [site] [SP-BRASIL] [tenis] CBO</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 73340.16</td>
-            <td>2,055,230</td>
-            <td>267,415</td>
-            <td>2.88%</td>
-            <td><strong>3590</strong></td>
-            <td>R$ 20.43</td>
+            <td>R$ 2352.77</td>
+            <td>79,358</td>
+            <td>5,115</td>
+            <td>2.74%</td>
+            <td><strong>83</strong></td>
+            <td>R$ 28.35</td>
         </tr><tr>
             <td><span class="dot active"></span>18/02 [vendas] [wpp] [uberaba] [CBO]</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 18217.03</td>
-            <td>130,621</td>
-            <td>30,037</td>
-            <td>1.22%</td>
-            <td><strong>6451</strong></td>
-            <td>R$ 2.82</td>
-        </tr><tr>
-            <td><span class="dot active"></span>02/10 [vendas] [site] [SP-BRASIL] [tenis] CBO</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 12996.63</td>
-            <td>267,603</td>
-            <td>33,694</td>
-            <td>4.34%</td>
-            <td><strong>331</strong></td>
-            <td>R$ 39.26</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>01 - engajamento - uberaba - aberto - direct</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 6381.38</td>
-            <td>117,072</td>
-            <td>10,247</td>
-            <td>0.99%</td>
-            <td><strong>1903</strong></td>
-            <td>R$ 3.35</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>02 - engajamento - uberaba - aberto - direct</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 5802.99</td>
-            <td>116,463</td>
-            <td>9,880</td>
-            <td>1.02%</td>
-            <td><strong>1834</strong></td>
-            <td>R$ 3.16</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>03 - engajamento - uberaba - aberto - direct</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 5233.84</td>
-            <td>95,089</td>
-            <td>8,530</td>
-            <td>1.04%</td>
-            <td><strong>1522</strong></td>
-            <td>R$ 3.44</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>28/03 - vendas - brasil - 21 - 49 -ig</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 4589.28</td>
-            <td>365,717</td>
-            <td>19,079</td>
-            <td>2.48%</td>
-            <td><strong>3533</strong></td>
-            <td>R$ 1.30</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>24/10 [vendas] [site] [SP-BRASIL] [tenis] CBO</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 4267.36</td>
-            <td>228,830</td>
-            <td>18,715</td>
-            <td>3.56%</td>
-            <td><strong>306</strong></td>
-            <td>R$ 13.95</td>
-        </tr><tr>
-            <td><span class="dot active"></span>22/07 [trafego-perfil-grupo-vip] [LL%+comprad</td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 3922.77</td>
-            <td>165,399</td>
-            <td>17,368</td>
-            <td>4.68%</td>
-            <td><strong>226</strong></td>
-            <td>R$ 17.36</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>04/09 [engajamento] [wpp] [mix-cidades] [inst</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 3875.78</td>
-            <td>199,710</td>
-            <td>12,188</td>
-            <td>2.40%</td>
-            <td><strong>2392</strong></td>
-            <td>R$ 1.62</td>
+            <td>R$ 1816.06</td>
+            <td>31,971</td>
+            <td>2,161</td>
+            <td>0.97%</td>
+            <td><strong>413</strong></td>
+            <td>R$ 4.40</td>
         </tr><tr>
             <td><span class="dot active"></span>29/09 [alcance] [rmk] [video-novo] cbo</td>
             <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
-            <td>R$ 3749.26</td>
-            <td>69,010</td>
-            <td>2,638</td>
-            <td>0.72%</td>
-            <td><strong>26</strong></td>
-            <td>R$ 144.20</td>
+            <td>R$ 240.14</td>
+            <td>5,749</td>
+            <td>123</td>
+            <td>0.67%</td>
+            <td><strong>0</strong></td>
+            <td>—</td>
         </tr><tr>
-            <td><span class="dot paused"></span>03/08 [engajamento] [wpp] [mix-cidades] [inst</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 2506.09</td>
-            <td>214,726</td>
-            <td>9,841</td>
-            <td>1.91%</td>
-            <td><strong>1536</strong></td>
-            <td>R$ 1.63</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>19/11 [vendas] [site] [SP-BRASIL] [tenis] CBO</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 1936.65</td>
-            <td>88,903</td>
-            <td>8,294</td>
-            <td>3.79%</td>
-            <td><strong>260</strong></td>
-            <td>R$ 7.45</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>08/10 [vendas] [site] [SP-BRASIL] [LV-TESLA] </td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 1644.25</td>
-            <td>117,724</td>
-            <td>5,554</td>
-            <td>2.42%</td>
-            <td><strong>55</strong></td>
-            <td>R$ 29.90</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>30/10 [vendas] [site] [SP-BRASIL] [tenis] CBO</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 1183.86</td>
-            <td>34,990</td>
-            <td>3,434</td>
-            <td>4.34%</td>
-            <td><strong>88</strong></td>
-            <td>R$ 13.45</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>20/10 [trafego] [perfil] CBO</td>
+            <td><span class="dot active"></span>22/07 [trafego-perfil-grupo-vip] [LL%+comprad</td>
             <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 1124.03</td>
-            <td>229,823</td>
-            <td>16,776</td>
-            <td>3.92%</td>
-            <td><strong>79</strong></td>
-            <td>R$ 14.23</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>04/09  [engajamento] [wpp [uberaba] [instagra</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 1111.22</td>
-            <td>30,979</td>
-            <td>3,441</td>
-            <td>1.89%</td>
-            <td><strong>660</strong></td>
-            <td>R$ 1.68</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>13/09 [vendas] [site] [sao-paulo] [LV-tenis] </td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 1076.38</td>
-            <td>73,181</td>
-            <td>2,806</td>
-            <td>2.07%</td>
-            <td><strong>24</strong></td>
-            <td>R$ 44.85</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>22/07 [engajamento] [wpp] [mix-cidades] [inst</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 1003.12</td>
-            <td>124,534</td>
-            <td>3,870</td>
-            <td>2.12%</td>
-            <td><strong>851</strong></td>
-            <td>R$ 1.18</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>11/07 [engajamento] [wpp] [sp] [instagram] CB</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 953.91</td>
-            <td>112,882</td>
-            <td>4,541</td>
-            <td>2.21%</td>
-            <td><strong>1043</strong></td>
-            <td>R$ 0.91</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>04/12 [vendas] [site] [SP-BRASIL] [tenis] CBO</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 805.24</td>
-            <td>21,312</td>
-            <td>1,366</td>
-            <td>2.78%</td>
-            <td><strong>63</strong></td>
-            <td>R$ 12.78</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>07/03 [rmk] [vendas] [pageviewsite] CBO</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 687.62</td>
-            <td>7,168</td>
-            <td>812</td>
-            <td>1.23%</td>
-            <td><strong>23</strong></td>
-            <td>R$ 29.90</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>30/11 [vendas] [wpp] [uberaba] [ABO]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 680.95</td>
-            <td>10,038</td>
-            <td>732</td>
-            <td>1.04%</td>
-            <td><strong>277</strong></td>
-            <td>R$ 2.46</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>20/09 [vendas] [site] [estados] [tenis] [esca</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 543.47</td>
-            <td>28,067</td>
-            <td>1,037</td>
-            <td>1.73%</td>
-            <td><strong>12</strong></td>
-            <td>R$ 45.29</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>19/12 [vendas] [wpp] [uberaba] [CBO]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 533.28</td>
-            <td>19,226</td>
-            <td>950</td>
-            <td>1.32%</td>
-            <td><strong>212</strong></td>
-            <td>R$ 2.52</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>12/12 [vendas] [wpp] [uberaba] [CBO] INFANTIL</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 528.02</td>
-            <td>13,282</td>
-            <td>987</td>
-            <td>1.67%</td>
-            <td><strong>251</strong></td>
-            <td>R$ 2.10</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>22/01 [vendas] [wpp] [uberaba] [CBO]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 479.76</td>
-            <td>14,470</td>
-            <td>930</td>
-            <td>1.43%</td>
-            <td><strong>164</strong></td>
-            <td>R$ 2.93</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>Nova campanha de Engajamento</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 471.79</td>
-            <td>32,900</td>
-            <td>944</td>
-            <td>1.01%</td>
-            <td><strong>115</strong></td>
-            <td>R$ 4.10</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>08/01 [vendas] [site] [SP-BRASIL] [tenis] CBO</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 462.07</td>
-            <td>21,331</td>
-            <td>1,508</td>
-            <td>4.35%</td>
-            <td><strong>21</strong></td>
-            <td>R$ 22.00</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>12/02 [vendas] [RMK] [site] [BRASIL] [tenis] </td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 447.81</td>
-            <td>2,772</td>
-            <td>272</td>
-            <td>0.89%</td>
-            <td><strong>1</strong></td>
-            <td>R$ 447.81</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>29/03 [carrossel] [vendas] [Brasil] CBO</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 370.81</td>
-            <td>10,718</td>
-            <td>485</td>
-            <td>1.64%</td>
-            <td><strong>4</strong></td>
-            <td>R$ 92.70</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>22/08 [engajamento] [direct] [uberaba] [insta</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 343.13</td>
-            <td>13,720</td>
-            <td>741</td>
-            <td>1.35%</td>
-            <td><strong>159</strong></td>
-            <td>R$ 2.16</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>24/12 [vendas] [wpp] [uberaba] [CBO]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 309.43</td>
-            <td>20,743</td>
-            <td>1,240</td>
-            <td>2.18%</td>
-            <td><strong>134</strong></td>
-            <td>R$ 2.31</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>05/08 [engajamento] [direct] [uberaba] [insta</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 288.74</td>
-            <td>15,133</td>
-            <td>1,402</td>
-            <td>2.72%</td>
-            <td><strong>192</strong></td>
-            <td>R$ 1.50</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>06/01 [vendas] [site] [SP-BRASIL] [tenis-nike</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 263.25</td>
-            <td>17,599</td>
-            <td>758</td>
-            <td>2.91%</td>
-            <td><strong>5</strong></td>
-            <td>R$ 52.65</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>06/01 [vendas] [site] [SP-BRASIL] [conj-infan</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 258.79</td>
-            <td>19,333</td>
-            <td>727</td>
-            <td>2.65%</td>
-            <td><strong>11</strong></td>
-            <td>R$ 23.53</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>08/02 [vendas] [site] [SP-MG] [tenis] CBO 1-1</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 250.28</td>
-            <td>45,526</td>
-            <td>1,424</td>
-            <td>2.66%</td>
-            <td><strong>9</strong></td>
-            <td>R$ 27.81</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>31/12 [vendas] [wpp] [uberaba] [CBO]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 209.77</td>
-            <td>12,932</td>
-            <td>422</td>
-            <td>1.32%</td>
-            <td><strong>72</strong></td>
-            <td>R$ 2.91</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>01/08 [engajamento] [wpp] [mix-cidades] [inst</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 188.67</td>
-            <td>27,847</td>
-            <td>801</td>
-            <td>2.34%</td>
-            <td><strong>214</strong></td>
-            <td>R$ 0.88</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>Nova campanha de Engajamento — Cópia</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 176.81</td>
-            <td>18,149</td>
-            <td>510</td>
-            <td>1.35%</td>
-            <td><strong>57</strong></td>
-            <td>R$ 3.10</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>11/07 [engajamento] [wpp] [uberaba] [instagra</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 168.18</td>
-            <td>13,081</td>
-            <td>604</td>
-            <td>1.49%</td>
-            <td><strong>130</strong></td>
-            <td>R$ 1.29</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>Nova campanha de Engajamento — Cópia</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 151.40</td>
-            <td>14,481</td>
-            <td>267</td>
-            <td>0.92%</td>
-            <td><strong>45</strong></td>
-            <td>R$ 3.36</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>24/12 [vendas] [wpp] [uberaba] [CBO]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 142.41</td>
-            <td>6,609</td>
-            <td>155</td>
-            <td>0.77%</td>
-            <td><strong>36</strong></td>
-            <td>R$ 3.96</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>Teste — 29/03 [pague 2 leve 3] [vendas] [Bras</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 137.23</td>
-            <td>3,560</td>
-            <td>168</td>
-            <td>1.24%</td>
-            <td><strong>2</strong></td>
-            <td>R$ 68.61</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>29/03 [pague 2 leve 3] [vendas] [Brasil] CBO</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 136.93</td>
-            <td>4,635</td>
-            <td>231</td>
-            <td>2.03%</td>
-            <td><strong>1</strong></td>
-            <td>R$ 136.93</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>16/06 [vendas] [wpp] [uberaba] [ABO]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 136.81</td>
-            <td>3,666</td>
-            <td>152</td>
-            <td>0.88%</td>
-            <td><strong>40</strong></td>
-            <td>R$ 3.42</td>
+            <td>R$ 235.16</td>
+            <td>13,918</td>
+            <td>1,050</td>
+            <td>5.05%</td>
+            <td><strong>18</strong></td>
+            <td>R$ 13.06</td>
         </tr></tbody>
         </table>
     </div>
@@ -540,127 +186,135 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
     <div class="creatives-grid">
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-1.xx.fbcdn.net/v/t15.13418-10/473120223_1346569980121622_1767731406533251297_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeGC8tOHs9Lx_mHi1oc-u0XJH4YPyXgTYwAfhg_JeBNjAMK7SVd0irmqeG7C2hI0gyGEjgf6UEI4kh9E4WxlGp6Z&_nc_ohc=b2mdsXK9IlkQ7kNvwE-ocvo&_nc_oc=Adq__FBnzIGdVCF2PFt-dY7vmVlG7hm_I6vVBOoqbK7FFcBM9owcV4Uc8YOQMT0YkUw&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=s6nv_9U51ceX3y-IQItehg&_nc_tpa=Q5bMBQH0cduDVANxWCcpOAVW8_9PWZoVAkLPbvQ1uLOg11QcGDDOsVOsxKUbQ89762ChESGewN82iMMSCQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfyuetaaJ6Kcb8t0UMn9-fgV3_SDIpmhAvxujTlqyDfaXA&oe=69C3823E&width=480" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">Nike Air Force 1 Black</div>
-                    <div class="ad-meta">R$ 18053.57 · 70094 cliques · 761 conv · CTR 2.32%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 23.72</div>
-                    <a class="ad-link" href="https://fb.me/2nrxt49PdbkGD4x" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">Entregamos em todo Brasil 🇧🇷<br><br>🛒 www.maxoutlett.com.br<br><br>Chame em nosso whatsapp 📱34-992482044<br><br>Loja física 📍 Yolanda Mott</div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra5-1.xx.fbcdn.net/v/t15.13418-10/481389406_953201400213089_2888723011160360911_n.jpg?_nc_cat=110&ccb=1-7&_nc_eui2=AeGpxKo4W_P8r_pJ0EyE26VJ6lUWefkq5h3qVRZ5-SrmHbweETM14FIXov7BjKbLOm3-b15ZHtUX0Vw_UicFnDjx&_nc_ohc=n3dMDPpFAIcQ7kNvwE5pVR0&_nc_oc=AdqUrgXM0kH8uTjrcwBYV_dxcKGj5rJx7PRikyQGwxJBv5-PH1zEY2_65r1jK5p0wMk&_nc_zt=23&_nc_ht=scontent-fra5-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=s6nv_9U51ceX3y-IQItehg&_nc_tpa=Q5bMBQHXDloaxDwKXiYkY_DYKW_x1ZyQogi3SPYTPFILcPyHDtW7wroDGOcyDUR5K-dBv2Au0ZrVMGIAEA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfxwNLX-NzL-0-IiAh-QEb5fprpl3hgjz-C5Or3NsIJZbA&oe=69C3AB39&width=480" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">Puma Lafrancé Moment Alpine Snow x Lamelo Ball 2</div>
-                    <div class="ad-meta">R$ 15645.14 · 64980 cliques · 541 conv · CTR 3.44%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 28.92</div>
-                    <a class="ad-link" href="https://fb.me/1SwwYkCFKd3OE0J" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">www.maxoutlett.com.br<br>📦Enviamos pra todo Brasil<br>🏍️Entregas em Uberaba MG via motoboy<br><br>Chame em nosso whatsapp 📱34-992482</div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLG4_Z7eTqGro-d0rlPPQhfPozlC1i2s9vk14Q6VKjU1IPqPp---IpagHXuGy7gCh60R5HAHNwzfbuSovqDC_SFCYSBFUT7LSFMhMs1FVqHZF0Xm6gdPmqBbwj0sxh_sGeVktbG1VY9tb2Wg1sDj0z8" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">Nike Air Force 1 Low White 2</div>
-                    <div class="ad-meta">R$ 6917.89 · 20108 cliques · 402 conv · CTR 1.94%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 17.21</div>
-                    <a class="ad-link" href="https://fb.me/2fye0rQck18dRFB" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">Entregamos em todo Brasil 🇧🇷<br><br>🛒 www.maxoutlett.com.br<br><br>Chame em nosso whatsapp 📱34-992482044<br><br>Loja física 📍 Yolanda Mott</div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQInExLXi2ufacyH6unkZt3E59WWrMm6ZR57iCOmzdJHmalKp9P7C_NEu_HutDclXHrz7TMeywxzFMt9czzwy6bFQDyzY1GxLeaCdQDSXE0GL5J6WRqOiKkJXvKFgNBak4Yz5CZ5rFhH5XzhxEQ4Z0oz" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJK_OuvMpDCHEZhUb1k4rv9zsYK5K29xgfzC-QR9BrjjY5INvSn8mQSwanHyDlhuAfLZ1VPz8ofnefHzrIj5Q_QkpvGdeutAuBacad6heo7lYV7eozIrp_HPzNphiDd0gBtLUmmE2u3aW8bkLDTuTAN" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">Air Jordan narrado</div>
-                    <div class="ad-meta">R$ 6303.16 · 18355 cliques · 328 conv · CTR 3.44%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 19.22</div>
-                    <a class="ad-link" href="https://fb.me/1Tl2b1IzTnGBJ8L" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 1190.74 · 2727 cliques · 41 conv · CTR 3.63%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 29.04</div>
+                    <a class="ad-link" href="https://fb.me/23rvxYGyOCCODKX" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🛒 www.maxoutlett.com.br <br><br>📦 Entregas rápidas em todo Brasil 🇧🇷🌎<br><br>🏍️Entregas em Uberaba MG via motoboy <br><br>Chame em nosso w</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIw0-_Q5v3UDKs6Yu-9zve8BLeCid43KiAoG2dtlLqVlQqlt7bF25c7gpqhHjJvNTvCDlMWMD0a2qOq-mQahRuqx-qsKpn2-VVMVC097lNjJ90WzywlFcTUUlUiD4q2rvvKh0WxcTqc92o6peRgO3-2" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.13418-10/473120223_1346569980121622_1767731406533251297_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeGC8tOHs9Lx_mHi1oc-u0XJH4YPyXgTYwAfhg_JeBNjAMK7SVd0irmqeG7C2hI0gyGEjgf6UEI4kh9E4WxlGp6Z&_nc_ohc=b2mdsXK9IlkQ7kNvwHJQ37r&_nc_oc=AdqfbTNcIAtkOKBFBRvqZhc42dRAOhYgwmHIXD9toKPvdTpYmvNZ0HC0EOWgZwVd3_I&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=iXJ4GaA8gSxukWU8j5HtHA&_nc_tpa=Q5bMBQEjLzEy2U5RILnHvGlOoYcF8HOn2_qdmh0Y18v4122oC1ZoRVLzQqrygjtOcw_tIqx3tDlmJUaBBQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_Afz2q287ZFiq7XTkwoVeuGZXzsWGArxRhTyLLksSwA-WRA&oe=69C3F2BE&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">Nike Air Force 1 Black</div>
+                    <div class="ad-meta">R$ 832.82 · 1636 cliques · 29 conv · CTR 1.87%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 28.72</div>
+                    <a class="ad-link" href="https://fb.me/1ZQKyCaNZetbl9a" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Entregamos em todo Brasil 🇧🇷<br><br>🛒 www.maxoutlett.com.br<br><br>Chame em nosso whatsapp 📱34-992482044<br><br>Loja física 📍 Yolanda Mott</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKT_FDzvKKhH7Lu58HvSJ805zZK9oyAfD11tX4kS7OI2xXKF5Kfmmi1iGo1OgjyYHCbK-ZfvcS8muow1z9oBVzBycIf-LvHO6mCfTcWTH0qn-CeX1Lef3z_uAXohWEmxY3KJpKIMN-CjxIZzRVfXZ6e" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">Tenis New Balance 9060</div>
-                    <div class="ad-meta">R$ 4742.15 · 12370 cliques · 87 conv · CTR 4.98%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 54.51</div>
-                    <a class="ad-link" href="https://fb.me/26z6mymJpmp6zpz" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 805.03 · 1992 cliques · 10 conv · CTR 6.04%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 80.50</div>
+                    <a class="ad-link" href="https://fb.me/2bkhVeh8g550V3b" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🛒 www.maxoutlett.com.br <br><br>📦 Entregas rápidas em todo Brasil 🇧🇷🌎<br><br>🏍️Entregas em Uberaba MG via motoboy <br><br>Chame em nosso w</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-1.xx.fbcdn.net/v/t15.5256-10/522658133_1426046351970165_3002943462763891927_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeHSncLJoE4G6x1nwuujg63ZVr8_RpIaTRJWvz9GkhpNEsbbumZSFvrSoG82F8GTRPbKxWmOTBqoyVLMcyl1HJWt&_nc_ohc=X4JeDAnHroMQ7kNvwE2IjvS&_nc_oc=AdqQOINUU_TwRpL_0w8yC6co5frlPQERFcmOQr74nTaJchbUifexPYTJD95sBjg3HrY&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=s6nv_9U51ceX3y-IQItehg&_nc_tpa=Q5bMBQHwT5_CS651ZKkJEyYPlEtUHBRuGp3JjXllR5LayKxTqBUAsy7Th22dWx_xmjhAX7a5ssGrsmSSFg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afz0GALMRj3HOak8b9_GebXX5NtsV0-Qn8OYKGfR4CoCzw&oe=69C397A8&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/612954874_951956340824662_1899822674153354498_n.jpg?_nc_cat=100&ccb=1-7&_nc_eui2=AeHvKy9c7P8Jg4ZHJG4dEFg0uSxtk4DEVpy5LG2TgMRWnFoyYWehmbL8t3wYij2WoqJOqBpfUEEmcBSVNJE6oZD4&_nc_ohc=3-4T3W9cIIsQ7kNvwGaS7O5&_nc_oc=AdrNHDeTO6c7XI2_3XuCZ_PfZxYp4yGVoe9o1Ou5uaTGGsphCmnqvkutxtjT6ahn5Dw&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=iXJ4GaA8gSxukWU8j5HtHA&_nc_tpa=Q5bMBQFXXSsRVKito4tnJ20VH9tFRsyH0ugdu1j2lwQDW1IMLxrzsoi52I29zs-TQYS6oZt_pEBozi71gQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afy9ygjhh9z7ctVzxR1wf5zprFTL1ww-Q7PpjOAJO4KbCQ&oe=69C3D7BC&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads grupo vip</div>
-                    <div class="ad-meta">R$ 3922.77 · 17368 cliques · 226 conv · CTR 4.68%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 17.36</div>
-                    <a class="ad-link" href="https://fb.me/27k4qqBmEUkiqZv" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads calca jogador</div>
+                    <div class="ad-meta">R$ 791.00 · 860 cliques · 148 conv · CTR 0.82%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 5.34</div>
+                    <a class="ad-link" href="https://fb.me/27DWMZkZxmTGUio" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">Link na Bio 🔗<br>#GrupoVip</div>
+            <div class="ad-body">www.maxoutlett.com.br <br><br>📦 Entregas rápidas em todo Brasil 🇧🇷🌎<br><br>🏍️Entregas em Uberaba MG via motoboy <br><br>Chame em nosso wha</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLmqrp4HwVauXbmBLRUxH5vWiJstqVA5bQAmXifXbF6xmcEu6zCb1_Yi6YUlrDjhmpPJdfI2tkRuLHRefNxWxIaZAfsTpGyR31gzoU0zViAwAWeRfQqManPkmOmSNLE-uKRqOyP0XwsRj6QDLmMMlVk" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLm3_f0o4cdNDwQhVf5BUw5v31AtyA1c7hSfyenJyigQ05L45X6SM_BtRI0FYNPfwRIb-JV2JzEI05jjAYZMeLWeHepDRqU3G3MxGqrYAO76nNnoYF2Kid52ZNmtqSd1CMdH9hFbv8nsm6wHtXN11Cg" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads rmk</div>
-                    <div class="ad-meta">R$ 3749.26 · 2638 cliques · 26 conv · CTR 0.72%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 144.20</div>
-                    <a class="ad-link" href="https://fb.me/26BwFUNhHFebp7J" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">tenis Marrom</div>
+                    <div class="ad-meta">R$ 697.40 · 1419 cliques · 23 conv · CTR 3.02%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 30.32</div>
+                    <a class="ad-link" href="https://fb.me/2o4nHP7sqAt7hBW" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">🎁 Sabemos que você estava de olho no seu produto favorito! Para te dar aquele empurrãozinho, liberamos FRETE GRÁTIS 🛍️✨<br></div>
+            <div class="ad-body">🛒 www.maxoutlett.com.br <br><br>📦 Entregas rápidas em todo Brasil 🇧🇷🌎<br><br>🏍️Entregas em Uberaba MG via motoboy <br><br>Chame em nosso w</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJtcUa_aMeaII2NvsULPqzKpdu9F_V6glsTBNDcX0DyjHROmtfEnjhC_xeQG1zM86jRLiVQRP0rFXdkJpBCcTU5PcEc160wiEe6y950uQQDZ5LDUgq7AZM88AS6K-rRHrQEnctVty2SfyWo9S84ypkR" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIHIqG0I71mbOHeE9Z8PWSUrNMcVPu4YrRx2zoDLCDf7byWkcTcFD9Q_lIT-xQ7lrmnspBmLiCWl-d3X6DZEDciRIZK3x8mXnGWIwXrFc0k2XmfCjT9Y6HIrKDcFCk-5eFFNFWkAiB1hm4bbrX4YiLK" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">New Balance Fuelcell Supercomp Elite V4</div>
-                    <div class="ad-meta">R$ 3570.72 · 10508 cliques · 51 conv · CTR 5.95%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 70.01</div>
-                    <a class="ad-link" href="https://fb.me/1ZseStVnvyBjoFj" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 561.92 · 1363 cliques · 6 conv · CTR 6.75%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 93.65</div>
+                    <a class="ad-link" href="https://fb.me/2pnTlvFIkUVonm9" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">O Tênis de Corrida Fuelcell Supercomp Elite v4 da New Balance foi desenvolvido com foco no retorno de energia, leveza e </div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra5-2.xx.fbcdn.net/v/t15.13418-10/484008323_1808220350024486_4337625589589318576_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeGLADB2n-1QmqxRabw8jTOol5SXvbS5uIWXlJe9tLm4hQi8wOKIr1rscW-0PVEa4gabreJ7iXobVp7hn9uP-XSR&_nc_ohc=H_anW4SxNf0Q7kNvwFASqQG&_nc_oc=AdpyQLnItIHSYJKn1doUlVwR6JDFePLt-tqnG_sDMAr0RC9MSM6bGxynWLW0a0fVZCg&_nc_zt=23&_nc_ht=scontent-fra5-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=s6nv_9U51ceX3y-IQItehg&_nc_tpa=Q5bMBQH3IuvL8LxU4_UfBeccz2RPP0FUG2Y-xSKbyFoL36zzTc8PnFNg2me7XN2ADfkW-OxFxC9e4Am2PQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=c3b633&_nc_sid=58080a&oh=00_AfzNQctfyQNgmv8n0iTveThz4WMx9y9jaCCxR9fxahKECQ&oe=69C3A7E0&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/624401110_2209569836117589_4826421680503665104_n.jpg?_nc_cat=107&ccb=1-7&_nc_eui2=AeGzT2i8JRzuLLUZb3-k_RmX0M23JpFLysjQzbcmkUvKyFsH4lQKcodQZ0SksMG-naAYHmVuvW05it9RwO1gO_o_&_nc_ohc=ToUJZaz4ntsQ7kNvwG2XjhA&_nc_oc=AdpewzsOJ3oRMs6kEcyQH3WpUGX_qJ1laOxAoYpOUaASGITxs3CKH2o5d80IyEF59Ac&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=iXJ4GaA8gSxukWU8j5HtHA&_nc_tpa=Q5bMBQHX971g9e2L8xOvefDd9_I-8AnSS_Y-9GqjFYH-b03VnpDi-0UzQzvUpHpghsn4AeT5X6va-yYYLw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfzZ-cVBxfkHa_u30BWmJ-VDygSz34_7ZE2-I9iE5hTP7g&oe=69C3CD13&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads nike branco</div>
-                    <div class="ad-meta">R$ 3266.50 · 6596 cliques · 1367 conv · CTR 1.65%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 2.39</div>
-                    <a class="ad-link" href="https://fb.me/23h4kqE9ojtuuGO" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads mochilas</div>
+                    <div class="ad-meta">R$ 264.57 · 215 cliques · 49 conv · CTR 0.69%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 5.40</div>
+                    <a class="ad-link" href="https://fb.me/20CIuwCUIn6XnkI" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">🛒 www.maxoutlett.com.br<br><br>📦Enviamos pra todo Brasil<br><br>🏍️Entregas em Uberaba MG via motoboy<br><br>Chame em nosso whatsapp 📱34-99</div>
+            <div class="ad-body">www.maxoutlett.com.br <br><br>📦 Entregas rápidas em todo Brasil 🇧🇷🌎<br><br>🏍️Entregas em Uberaba MG via motoboy <br><br>Chame em nosso wha</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra5-2.xx.fbcdn.net/v/t15.13418-10/463222367_1273987273957082_6142610778043989593_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeFFvwsX_aL1ReRzdqo33arMsY07O443-qKxjTs7jjf6oo1LE_keQlpNVgToR4PR2waXoZFKQS7isk9RII1HH1UF&_nc_ohc=2Cd0GC5rM3MQ7kNvwGxN1zW&_nc_oc=Adp5EQkAwDwvU8f5BhlW4jPVtpOwWF8SCdyvHxjzrQMjAzhpmz0zsQXLfPEgGoc664c&_nc_zt=23&_nc_ht=scontent-fra5-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=Tvg3C35AsI8DEyLcOWAuDw&_nc_tpa=Q5bMBQHQWveBVn6plyKkUf5K0Y-JBLDKUHXUhVk6DjxM4wgkTktcGJYv9SFOu18KaI_6WjtNSpxo4TbQ9Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfzkGEo2DZ6o_K3H1Vy5_foE2AqvkxLlZ4lhebLTuGKu2A&oe=69C3A6BC&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLmzpyLnpmxu7tlFAHNsPXTsLwy22QB9F_j9GAO1f6zdxrxUGEDdaNsChp9LibpSoqyWKdPH2QNDXHtYG8Gz-MSI4R9b-phJal8KeEm-rqHZPtVHwXhT_DPU-8sxX8DofPTvXDUyXzuIo23x7Asb_ia" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads lv tenis azul 5</div>
-                    <div class="ad-meta">R$ 3094.78 · 14436 cliques · 198 conv · CTR 3.51%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 15.63</div>
-                    <a class="ad-link" href="https://fb.me/269jcLT59Uv5KOq" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">Nike Air Jordan 4 Retro &quot;Preto Branco/Panda&quot;</div>
+                    <div class="ad-meta">R$ 263.41 · 441 cliques · 14 conv · CTR 3.24%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 18.82</div>
+                    <a class="ad-link" href="https://fb.me/24lmiukJtz2DDT9" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">Tênis Top do Momento para Você! 🏆<br><br>Quer o melhor do street style sem sair de casa? A MaxOutlett tem o tênis perfeito pra</div>
+            <div class="ad-body">🛒 www.maxoutlett.com.br <br><br>📦 Entregas rápidas em todo Brasil 🇧🇷🌎<br><br>🏍️Entregas em Uberaba MG via motoboy <br><br>Chame em nosso w</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIN0aFsrRlov3Rp2lVvcaO48cyuqkMUmHjqU7FaeHPpSswEh04snYGbrlbXrLPtoZ5U2GMYzlH-XNmifCqXOknbQh0c4a4V4VnOJtIBlBB4CWNzq4hBj0pUi1JM1lMmRpmPxF3ljOGWJAnhyrX3V3H2" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads rmk</div>
+                    <div class="ad-meta">R$ 240.14 · 123 cliques · 0 conv · CTR 0.67%</div>
+                    
+                    <a class="ad-link" href="https://fb.me/24mpdwc4tldKBYX" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🎁 Sabemos que você estava de olho no seu produto favorito! Para te dar aquele empurrãozinho, liberamos FRETE GRÁTIS 🛍️✨<br></div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/522658133_1426046351970165_3002943462763891927_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeHSncLJoE4G6x1nwuujg63ZVr8_RpIaTRJWvz9GkhpNEsbbumZSFvrSoG82F8GTRPbKxWmOTBqoyVLMcyl1HJWt&_nc_ohc=X4JeDAnHroMQ7kNvwHVRRW6&_nc_oc=Adq_-KmcTWZu0p3gwqxqKcbihhcfI943JjHOjWuLlfEb6MOULz1azmOPmKF2mTeTZzw&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=iXJ4GaA8gSxukWU8j5HtHA&_nc_tpa=Q5bMBQFs5hvEtUg4YhRxcDYnKrwL6TfxHAa_xT8558Oqe5rVSjypXhF4auiKWoPpzbP9q-aFXA7k2tKH1A&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afw7XCbBiLnjJPprmJSj7qtyb9o6Sfm_fCbJuI_pNZ30ug&oe=69C3CFE8&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads grupo vip</div>
+                    <div class="ad-meta">R$ 235.16 · 1050 cliques · 18 conv · CTR 5.05%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 13.06</div>
+                    <a class="ad-link" href="https://fb.me/27NhgQw76wkUTqN" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Link na Bio 🔗<br>#GrupoVip</div>
         </div></div>
 
+    <h3 class="section-header">Análise &amp; Otimizações</h3>
+    <div class="opt-summary">
+        <div class="opt-card opt-green"><span class="opt-v">R$ 12.7</span><span class="opt-l">CPL Médio</span></div>
+        <div class="opt-card opt-green"><span class="opt-v">R$ 2.9</span><span class="opt-l">Melhor CPL</span></div>
+        <div class="opt-card opt-red"><span class="opt-v">R$ 282</span><span class="opt-l">Gasto sem conversão</span></div>
+        <div class="opt-card opt-red"><span class="opt-v">3.9%</span><span class="opt-l">% desperdiçado</span></div>
+    </div><div class="opt-block"><h4 class="opt-title opt-title-green">🟢 Escalar — CPL abaixo da média</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>CTR</th></tr></thead><tbody><tr><td>18/02 [vendas] [wpp] [uberaba] [CBO]</td><td>R$ 1816</td><td><strong>413</strong></td><td class="cpl-good">R$ 4.4</td><td>0.97%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-red">🔴 Pausar — CPL muito alto ou sem conversão</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Motivo</th></tr></thead><tbody><tr><td>02/10 [vendas] [site] [SP-BRASIL] [tenis] CBO</td><td>R$ 2644</td><td>58</td><td class="cpl-bad">R$ 45.6</td><td>CPL 3.6x a média</td></tr><tr><td>29/09 [alcance] [rmk] [video-novo] cbo</td><td>R$ 240</td><td>0</td><td class="cpl-bad">—</td><td>Sem conversões</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-yellow">🟡 Otimizar — CPL acima da média</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th></tr></thead><tbody><tr><td>11/11 [vendas] [site] [SP-BRASIL] [tenis] CBO 1-1-</td><td>R$ 2353</td><td>83</td><td class="cpl-warn">R$ 28.3</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-green">🏆 Top Criativos — Menor CPL</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>CTR</th></tr></thead><tbody><tr><td>ads nb branco</td><td>18/02 [vendas] [wpp] [uberaba]</td><td>R$ 198</td><td><strong>68</strong></td><td class="cpl-good">R$ 2.9</td><td>1.48%</td></tr><tr><td>ads flamengo</td><td>18/02 [vendas] [wpp] [uberaba]</td><td>R$ 165</td><td><strong>52</strong></td><td class="cpl-good">R$ 3.2</td><td>1.06%</td></tr><tr><td>ads shorts masculino</td><td>18/02 [vendas] [wpp] [uberaba]</td><td>R$ 115</td><td><strong>32</strong></td><td class="cpl-good">R$ 3.6</td><td>0.89%</td></tr><tr><td>ads tenis NB vermelho</td><td>18/02 [vendas] [wpp] [uberaba]</td><td>R$ 171</td><td><strong>47</strong></td><td class="cpl-good">R$ 3.6</td><td>1.66%</td></tr><tr><td>TÊNIS NOCTA x Nike Glide Black Whit</td><td>18/02 [vendas] [wpp] [uberaba]</td><td>R$ 17</td><td><strong>4</strong></td><td class="cpl-good">R$ 4.2</td><td>1.58%</td></tr><tr><td>ads calca jogador</td><td>18/02 [vendas] [wpp] [uberaba]</td><td>R$ 791</td><td><strong>148</strong></td><td class="cpl-good">R$ 5.3</td><td>0.82%</td></tr><tr><td>ads mochilas</td><td>18/02 [vendas] [wpp] [uberaba]</td><td>R$ 265</td><td><strong>49</strong></td><td class="cpl-good">R$ 5.4</td><td>0.69%</td></tr><tr><td>ads conj masculino</td><td>18/02 [vendas] [wpp] [uberaba]</td><td>R$ 81</td><td><strong>11</strong></td><td class="cpl-good">R$ 7.4</td><td>0.84%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-red">💸 Criativos sem conversão (gasto > R$ 25)</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Campanha</th><th>Gasto</th><th>Clicks</th></tr></thead><tbody><tr><td>ads rmk</td><td>29/09 [alcance] [rmk] [video-n</td><td class="cpl-bad">R$ 240</td><td>123</td></tr><tr><td>TÊNIS NOCTA x Nike Glide Black Whit</td><td>02/10 [vendas] [site] [SP-BRAS</td><td class="cpl-bad">R$ 42</td><td>65</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-yellow">⚠️ Criativos com CPL alto (> R$ 25)</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Gasto</th><th>Conv</th><th>CPL</th></tr></thead><tbody><tr><td>New Balance Fuelcell Supercomp Elite V4</td><td>R$ 562</td><td>6</td><td class="cpl-bad">R$ 93.7</td></tr><tr><td>Tenis New Balance 9060</td><td>R$ 805</td><td>10</td><td class="cpl-bad">R$ 80.5</td></tr><tr><td>tenis Marrom</td><td>R$ 697</td><td>23</td><td class="cpl-bad">R$ 30.3</td></tr><tr><td>Air Jordan narrado</td><td>R$ 1191</td><td>41</td><td class="cpl-bad">R$ 29.0</td></tr><tr><td>Nike Air Force 1 Black</td><td>R$ 833</td><td>29</td><td class="cpl-bad">R$ 28.7</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title">📊 Evolução por Período</h4><table class="camp-table"><thead><tr><th>Período</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Tendência</th></tr></thead><tbody><tr><td><strong>30 dias</strong></td><td>R$ 7288</td><td><strong>572</strong></td><td>R$ 12.7</td><td>—</td></tr><tr><td><strong>14 dias</strong></td><td>R$ 3467</td><td><strong>284</strong></td><td>R$ 12.2</td><td><span style="color:#6b7280">≈ estável</span></td></tr><tr><td><strong>3 dias</strong></td><td>R$ 769</td><td><strong>76</strong></td><td>R$ 10.1</td><td><span style="color:#16a34a">▼ 17% melhor</span></td></tr><tr><td><strong>Ontem</strong></td><td>R$ 248</td><td><strong>15</strong></td><td>R$ 16.6</td><td><span style="color:#dc2626">▲ 64% pior</span></td></tr><tr><td><strong>Hoje</strong></td><td>R$ 192</td><td><strong>16</strong></td><td>R$ 12.0</td><td><span style="color:#16a34a">▼ 27% melhor</span></td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-green">📈 Melhorando (CPL caiu nos últimos 3 dias)</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>CPL 14d</th><th>CPL 3d</th><th>Variação</th></tr></thead><tbody><tr><td>11/11 [vendas] [site] [SP-BRASIL] [tenis] CBO 1-1-</td><td>R$ 33.2</td><td class="cpl-good">R$ 20.8</td><td class="cpl-good">-37%</td></tr></tbody></table></div>
+
     <div class="footer">
-        <div>seven midas · marketing digital · atualizado em 20/03/2026 18:49</div>
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 23:49</div>
     </div>
 </div>
 
@@ -668,11 +322,11 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 new Chart(document.getElementById('dailyChart'),{
     type:'bar',
     data:{
-        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
+        labels:["03/06", "03/07", "03/08", "03/09", "03/10", "03/11", "03/12", "03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
         datasets:[
-            {label:'Gasto (R$)',data:[249.19, 224.78, 254.59, 260.97, 264.0, 256.76, 248.3],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
-            {label:'Cliques',data:[445, 418, 484, 512, 482, 396, 451],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
-            {label:'Conversões',data:[20, 18, 13, 13, 37, 24, 15],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+            {label:'Gasto (R$)',data:[235.06, 227.41, 275.24, 159.98, 212.12, 306.11, 292.31, 249.19, 224.78, 254.59, 260.97, 264.0, 256.76, 248.3],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[419, 415, 477, 280, 432, 611, 591, 445, 418, 484, 512, 482, 396, 451],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[25, 25, 13, 13, 19, 28, 21, 20, 18, 13, 13, 37, 24, 15],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
         ]
     },
     options:{

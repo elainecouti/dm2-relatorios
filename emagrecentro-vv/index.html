@@ -63,6 +63,21 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 .bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
 .bal-fill{height:100%;border-radius:4px;transition:width .5s}
 
+.opt-summary{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.opt-card{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.opt-card.opt-green{border-left:4px solid #22c55e}
+.opt-card.opt-red{border-left:4px solid #ef4444}
+.opt-v{display:block;font-size:20px;font-weight:800;color:#184341}
+.opt-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+.opt-block{margin-bottom:20px}
+.opt-title{font-size:14px;font-weight:700;margin-bottom:10px}
+.opt-title-green{color:#16a34a}
+.opt-title-red{color:#dc2626}
+.opt-title-yellow{color:#d97706}
+.cpl-good{color:#16a34a;font-weight:700}
+.cpl-bad{color:#dc2626;font-weight:700}
+.cpl-warn{color:#d97706;font-weight:700}
+
 .footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
 
 .table-wrap{overflow-x:auto;margin-bottom:32px}
@@ -86,7 +101,7 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
     </div>
     <div class="topbar-right">
         <div class="live-dot"></div>
-        <span class="topbar-label">Atualizado 20/03/2026 18:47</span>
+        <span class="topbar-label">Atualizado 20/03/2026 23:47</span>
     </div>
 </div>
 
@@ -97,7 +112,7 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
         <p class="info">24 campanhas (5 ativas) · Conta: CA 8 - Emagrecentro VV</p>
     </div>
 
-    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 113,911.20</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">465,342</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">73,315</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.29%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 1.55</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 20.00</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">11,444</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 9.95</span><span class="kpi-l">Custo/Conv</span></div></div>
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 19,883.33</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">198,358</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">15,341</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.53%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 1.30</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 19.77</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">2,098</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 9.48</span><span class="kpi-l">Custo/Conv</span></div></div>
 
     
 
@@ -115,111 +130,57 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
             <tbody><tr>
             <td><span class="dot active"></span>12/09 [vendas] [wpp] [25-55] [mulheres] [prai</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 17421.78</td>
-            <td>158,676</td>
-            <td>12,474</td>
-            <td>1.33%</td>
-            <td><strong>1772</strong></td>
-            <td>R$ 9.83</td>
+            <td>R$ 3701.56</td>
+            <td>82,510</td>
+            <td>3,127</td>
+            <td>1.45%</td>
+            <td><strong>349</strong></td>
+            <td>R$ 10.61</td>
         </tr><tr>
             <td><span class="dot active"></span>12/09 i [vendas] [wpp] [25-55] [homens] [prai</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 16960.19</td>
-            <td>177,427</td>
-            <td>9,673</td>
-            <td>1.06%</td>
-            <td><strong>1047</strong></td>
-            <td>R$ 16.20</td>
+            <td>R$ 3695.01</td>
+            <td>76,380</td>
+            <td>2,434</td>
+            <td>1.27%</td>
+            <td><strong>248</strong></td>
+            <td>R$ 14.90</td>
         </tr><tr>
             <td><span class="dot active"></span>02/10 [vendas] [wpp] [25-55] [mulheres] [vila</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 14340.81</td>
-            <td>107,492</td>
-            <td>12,638</td>
-            <td>1.54%</td>
-            <td><strong>1677</strong></td>
-            <td>R$ 8.55</td>
+            <td>R$ 2851.50</td>
+            <td>50,318</td>
+            <td>2,244</td>
+            <td>1.56%</td>
+            <td><strong>342</strong></td>
+            <td>R$ 8.34</td>
         </tr><tr>
             <td><span class="dot paused"></span>12/09 i [engajamento] [wpp] [rmk] [vila-velha</td>
             <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 14179.50</td>
-            <td>51,879</td>
-            <td>8,472</td>
-            <td>1.22%</td>
-            <td><strong>1597</strong></td>
-            <td>R$ 8.88</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>19/11 - [saldão black] [wpp] [25 a 55] [hm] A</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 9587.75</td>
-            <td>62,695</td>
-            <td>6,524</td>
-            <td>1.64%</td>
-            <td><strong>1174</strong></td>
-            <td>R$ 8.17</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>12/09 [vendas] [wpp] [25-55] [mulheres] [vila</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 8805.35</td>
-            <td>72,829</td>
-            <td>4,597</td>
-            <td>1.07%</td>
-            <td><strong>912</strong></td>
-            <td>R$ 9.65</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>12/09 [vendas] [wpp] [25-55] [mulheres] [vila</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 8797.22</td>
-            <td>78,030</td>
-            <td>4,440</td>
-            <td>1.22%</td>
-            <td><strong>805</strong></td>
-            <td>R$ 10.93</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>21/08 [vendas] [wpp] [homem+mulher] [interess</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 5685.09</td>
-            <td>120,553</td>
-            <td>2,361</td>
-            <td>0.83%</td>
-            <td><strong>397</strong></td>
-            <td>R$ 14.32</td>
+            <td>R$ 2770.43</td>
+            <td>23,252</td>
+            <td>1,365</td>
+            <td>1.08%</td>
+            <td><strong>158</strong></td>
+            <td>R$ 17.53</td>
         </tr><tr>
             <td><span class="dot active"></span>03/03 [vendas] [wpp] [25-55] [mulheres] [vila</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 2722.42</td>
-            <td>48,862</td>
-            <td>2,208</td>
-            <td>1.68%</td>
-            <td><strong>289</strong></td>
-            <td>R$ 9.42</td>
+            <td>R$ 2616.33</td>
+            <td>47,127</td>
+            <td>2,047</td>
+            <td>1.63%</td>
+            <td><strong>277</strong></td>
+            <td>R$ 9.45</td>
         </tr><tr>
             <td><span class="dot active"></span>03/03 [vendas] [wpp] [25-55] [homens] [praias</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 2708.28</td>
-            <td>46,544</td>
-            <td>1,902</td>
-            <td>1.49%</td>
-            <td><strong>146</strong></td>
-            <td>R$ 18.55</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>19/09 [feirão] [vendas] [wpp] [vila velha] CB</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 2372.60</td>
-            <td>40,449</td>
-            <td>1,055</td>
-            <td>1.17%</td>
-            <td><strong>246</strong></td>
-            <td>R$ 9.64</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>04/09 [trafego-perfil] [vila-velha] [mulheres</td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 2214.79</td>
-            <td>37,373</td>
-            <td>1,112</td>
-            <td>0.78%</td>
-            <td><strong>28</strong></td>
-            <td>R$ 79.10</td>
+            <td>R$ 2593.74</td>
+            <td>45,566</td>
+            <td>1,804</td>
+            <td>1.47%</td>
+            <td><strong>144</strong></td>
+            <td>R$ 18.01</td>
         </tr><tr>
             <td><span class="dot paused"></span>12/03 [feirão] [vendas] [wpp] [vila velha] AB</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
@@ -229,87 +190,6 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
             <td>2.93%</td>
             <td><strong>580</strong></td>
             <td>R$ 2.85</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>23/08 [vendas] [wpp] [rmk] [interesses] [vila</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 1448.90</td>
-            <td>23,679</td>
-            <td>399</td>
-            <td>0.79%</td>
-            <td><strong>81</strong></td>
-            <td>R$ 17.89</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>18/10 [engajamento] [wpp] [vaga-vendedor] [vi</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 1388.87</td>
-            <td>11,104</td>
-            <td>674</td>
-            <td>1.29%</td>
-            <td><strong>252</strong></td>
-            <td>R$ 5.51</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>04/09 [feirão] [vendas] [wpp] [vila velha] CB</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 1088.49</td>
-            <td>17,821</td>
-            <td>717</td>
-            <td>1.54%</td>
-            <td><strong>206</strong></td>
-            <td>R$ 5.28</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>09/09 [feirão] [vendas] [wpp] [vila velha] CB</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 973.25</td>
-            <td>20,346</td>
-            <td>455</td>
-            <td>1.17%</td>
-            <td><strong>107</strong></td>
-            <td>R$ 9.10</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>20/01 [vendas] [wpp] [grupo-vip-marla] [vila-</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 719.21</td>
-            <td>15,541</td>
-            <td>716</td>
-            <td>1.59%</td>
-            <td><strong>94</strong></td>
-            <td>R$ 7.65</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>04/09 [vendas] [direct] [mulher] [interesses]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 266.38</td>
-            <td>7,215</td>
-            <td>87</td>
-            <td>0.81%</td>
-            <td><strong>15</strong></td>
-            <td>R$ 17.76</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>04/09 [vendas] [direct] [homem] [interesses] </td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 241.40</td>
-            <td>9,953</td>
-            <td>96</td>
-            <td>0.64%</td>
-            <td><strong>8</strong></td>
-            <td>R$ 30.18</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>23/08 [trafego-perfil] [emagrecentro-vilavelh</td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 233.33</td>
-            <td>13,310</td>
-            <td>363</td>
-            <td>1.54%</td>
-            <td><strong>6</strong></td>
-            <td>R$ 38.89</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>10/09 [vendas] [direct] [mulher] [interesses]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 100.83</td>
-            <td>3,841</td>
-            <td>32</td>
-            <td>0.65%</td>
-            <td><strong>5</strong></td>
-            <td>R$ 20.17</td>
         </tr></tbody>
         </table>
     </div>
@@ -318,127 +198,135 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
     <div class="creatives-grid">
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJgGK2AVpKReqv-4HXFvfeTthhWFz45sBENKYm9XPNMf-nsIsl5GebYSv_8L0LA0vvAirxhRA16gBiDC5RggH8sB1LEAu2_LmHrtueouTjWfp-Cjx9H7VvceoycVdod_U-aMVEJT_DCwO5DJ6e06aEJ" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">ads video out 1</div>
-                    <div class="ad-meta">R$ 6968.49 · 3730 cliques · 430 conv · CTR 1.06%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 16.21</div>
-                    <a class="ad-link" href="https://fb.me/289cB634ig34KDJ" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">🔥 Cansado de tentar emagrecer e não ver resultado?<br><br>Roupas apertadas, falta de disposição, autoestima em baixa… tudo iss</div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIxksNiNlxPAH_PO09sC_4eZKoxXJ4mIF72tv9DSGA3uCoiMXWvtIWD2ul9CJNvsjG1UCa7RrEyLkj-RwY0Vl4dMeIuGbfmHfeYDRZuDyd9XO7NChxnvAsJnSYFbMih22E_tZhg50rY41YmLhRLjLiv" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">ads video out 5</div>
-                    <div class="ad-meta">R$ 5986.61 · 6806 cliques · 799 conv · CTR 1.86%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 7.49</div>
-                    <a class="ad-link" href="https://fb.me/24fO5Y3d7tImIaX" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">🎉 MÊS DE ANIVERSÁRIO EMAGRECENTRO 🎉<br><br>Se você busca emagrecimento rápido, Criolipólise, Enzimas ou Tirzepatida, este reca</div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://external-fra3-2.xx.fbcdn.net/emg1/v/t13/5755152411007454877?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQK5j5h7h2eXFMp4zrtc3CaigwrRHqRafSI6thtC7Q2X9olG7-T-Xi5OxRDnohkNQrE4x0PRo67UP3vwVEfZR5vwl4wxbDQH-xPd9ZEElS183utRawdMin6ElUZTcbFcPDrVHTkwvhL8B0dPj2Pb99a1&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=kK_6EdxyklK2zleZaIkugw&_nc_eui2=AeEJyn9UsDGogCSA3qg_PhQLW-RGPZC5KJlb5EY9kLkomdLGFjbQoyXPdBdDS6o7bZINoHk4C_lVRu2R_BPlQs1k&_nc_oc=AdqHMl7Wvw1RSn_lWJL2zrMCrncslNbX0qJjSpwGKZOjdm5E_Y750sOaE5Qe4DE78aw&ccb=13-1&oh=06_Q3-9AXX1Vp0ecsMnuFGvzDUkiOn4880V66G2AZRzwQz-fNfY&oe=69BF8B0D&_nc_sid=58080a&width=480" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">ads lipo 2</div>
-                    <div class="ad-meta">R$ 5661.46 · 2945 cliques · 518 conv · CTR 1.27%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 10.93</div>
-                    <a class="ad-link" href="https://fb.me/2cioHfYjrD9qIYQ" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">🚨 AQUELA BARRIGA QUE TEIMA EM NÃO SAIR, mesmo com dietas e exercícios? <br>Temos a solução que está transformando vidas: LI</div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQItRrRBP99sURY_PUJ0ZusEr9CQrWF7038di8sZ9uQ9BG1xU33TuU8ZhVtZV48VABUONHo8Q-psJx0RHQjB3iV2XibF5ZvgMBaqg4SaVHe4vTjDr7hhRNthCzLNltThp39x28u7f5FFKnYsRYeNStOy" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">ads metodo</div>
-                    <div class="ad-meta">R$ 5291.87 · 2383 cliques · 505 conv · CTR 1.03%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 10.48</div>
-                    <a class="ad-link" href="https://fb.me/1TFihIUkcqY9huk" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">O Método 4 Fases nada mais é do que um processo de emagrecimento limpo, onde te ajudamos a reconstruir o relacionamento </div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKLs8suixPCL6Lpa90BSLWAcHLPP4a2iWDd4QXFzwqbmNUDh_zIZsy9zcOGZKIjp4TTRFt7akDUt2Uz7mbNRm3VE8Cpc11H_USZu6_qjiOBAnQqSCUd5sYfkYWC4Uekto1Z5KPm-9xCsWE1SD05cwEB" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">ads result 2</div>
-                    <div class="ad-meta">R$ 5048.51 · 2376 cliques · 515 conv · CTR 0.97%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 9.80</div>
-                    <a class="ad-link" href="https://fb.me/2jQMJLYff8Kmf27" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">A Lipo Sem Cortes do Emagrecentro Vila Velha é o tratamento ideal para mulheres que querem resultado real, sem dor e sem</div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-2.xx.fbcdn.net/v/t45.1600-4/547207570_122228571410142003_696792276386146272_n.png?_nc_cat=111&ccb=1-7&_nc_eui2=AeHTSDtsq3aCMF2FcAoO3h-TWM_dA4egyc9Yz90Dh6DJzy2_fwdboEBrADmDDT2reMvlFdwqDpxwHf10iPbYMU9R&_nc_ohc=4is97P020LkQ7kNvwFmhlkK&_nc_oc=AdpGDEIHviGWuBNapSckD-wej6ltyLFv4CesQ2LUiDszqe966AMVnCAWOZQ_6PHKA_g&_nc_zt=1&_nc_ht=scontent-fra3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=kK_6EdxyklK2zleZaIkugw&_nc_tpa=Q5bMBQH1bW6EA8WhSQ2mWWCZb7LqfG3wbicsnGP7LhAXNsISYrURqtp9xt2xtmY-sYvKIUMw-FzF_mcRCg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AfzJOJKaK2dhh0E9EQMqiCUnGokhYmgsR7gjABN01X9LSQ&oe=69C38D9B&width=480" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">ads verao</div>
-                    <div class="ad-meta">R$ 4273.46 · 2460 cliques · 713 conv · CTR 1.12%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 5.99</div>
-                    <a class="ad-link" href="https://fb.me/23i936x9pQxupGq" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">O Método 4 Fases nada mais é do que um processo de emagrecimento limpo, onde te ajudamos a reconstruir o relacionamento </div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLBZjRdMT1ednHr61OK6IS7pj825WGR4s9SmeMRWzq-RiG6QAEfxc31HXZ_1idobljUrDlGfNpoM_KTAAvHlG_XL6PeEyItLLAHe6kNNx-eDsgecpK5bCqux1utIoZUp-UDTAT1ptq-NM1u6hauNH-6" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKrwiIoMTYs4zPErbstc5IiJ0TKd4p1Xs2yFBPfxHVgT-V6Cel00IDHmONbeixwDtCawLwY__Gstq3rB8v_HUZNVqo6rPOjWhhxQO0OI1WD9gjuxS7IzFQym_VNTJM8H6ak9-OEFJAg3-J3CSGxaD2O" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads marla antes e depois EDITADO</div>
-                    <div class="ad-meta">R$ 3732.83 · 3452 cliques · 410 conv · CTR 1.36%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 9.10</div>
-                    <a class="ad-link" href="https://fb.me/1PN3w4NNwOs5QJz" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 1806.34 · 1416 cliques · 143 conv · CTR 1.23%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 12.63</div>
+                    <a class="ad-link" href="https://fb.me/1SuzyZc3U2mnUBs" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🚨 ATENÇÃO VILA VELHA E REGIÃO! 🚨<br><br>A Emagrecentro tem mudado vidas como a da Marla, que buscava reduzir medidas sem cirur</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra5-1.xx.fbcdn.net/v/t15.5256-10/623845330_2124414778295534_1564453374294686061_n.jpg?_nc_cat=102&ccb=1-7&_nc_eui2=AeGG5wB4i8AXA6byRXyIlJfaeSQGMzWAnbF5JAYzNYCdsWwMK49vWyT44opPU_dwE_aazFdki7IGGtpq35Mnofsz&_nc_ohc=ZCbESssRWCsQ7kNvwHroi8N&_nc_oc=AdrnIZLBRMRoyqrFlGujHhcDgAml8OyfJpakJAdmglgPfNyeHfRNiWsJUNAlya0UZ60&_nc_zt=23&_nc_ht=scontent-fra5-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=UNeXuFmuSMt4BdZ88aj0VA&_nc_tpa=Q5bMBQHpqQ4_KCZTKt6A_i6N01hMewS0hI7Wnk5q2i3qUtgfrWlSWgHYbLWNenN8rP8YTv3uc2_Rm9ZqMg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzCL8iPjMXqak-Tarzb2r_joo3xnnu7RMwfa5NzkHZqrQ&oe=69C383D8&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/623845330_2124414778295534_1564453374294686061_n.jpg?_nc_cat=102&ccb=1-7&_nc_eui2=AeGG5wB4i8AXA6byRXyIlJfaeSQGMzWAnbF5JAYzNYCdsWwMK49vWyT44opPU_dwE_aazFdki7IGGtpq35Mnofsz&_nc_ohc=ZCbESssRWCsQ7kNvwFAADKd&_nc_oc=AdokSFqc5ASMV8V613f79N0BFZ6-i7391c5ugqf2f0RPrqUy6YynzJZwNebd4wGTCBs&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=H8K1RCxgsXSJ2nTFG5qlyA&_nc_tpa=Q5bMBQGCjGcjt9iTtsKTx8y2K-3ZP0Ebd_nbhu-ZTx1kFoc4lw7c_U1Cc4gqE6-VOf-SrhZ_vYsRCEEXPg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzDIkdPBNkFReEn_okNlx5PchLPSRA-uNkYuyvYxIqEBQ&oe=69C3F458&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads ilton antes e depois</div>
-                    <div class="ad-meta">R$ 3001.19 · 1910 cliques · 219 conv · CTR 1.15%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 13.70</div>
-                    <a class="ad-link" href="https://fb.me/1TtFlJSZEcTzWy0" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 1502.30 · 935 cliques · 103 conv · CTR 1.14%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 14.59</div>
+                    <a class="ad-link" href="https://fb.me/25bY1LQM1h2D6Nt" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🚨 ATENÇÃO VILA VELHA E REGIÃO! 🚨<br><br>A Emagrecentro tem mudado vidas como a do Ilton, que buscava reduzir medidas sem cirur</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://external-fra3-2.xx.fbcdn.net/emg1/v/t13/6703014070642566316?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQIMOaqUgQfiCVbu390SdOM3T-9HLzvUafm7_G5Vsbq7y69lDLTtNE00Oes1ZXSBu38RIiQiNyXlPtbIfKombbn3LxfRdU6qvc9jW2_1bBT0pWb1V79hcvEAi0BYOhjZ8qGd-JDFQTzs7e1uH5pQE3pG&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=RNmCKmIgFeMZxv6urtCB7A&_nc_eui2=AeFdT1a8KFt3DqPJuKZRglWmcfJGx3_pNEJx8kbHf-k0QkS5TKqDXV785z_UiuZHu7VUOeU4IeTZpoNiLuSyDSw3&_nc_oc=Adph19NikV5aFlDBF2SiZ2grg1XcvyfHSR6HzIaBUVmyjHZt4xkgU1ANbIS7ii3K7wk&ccb=13-1&oh=06_Q3-9AfCOk1T9y90iCtdOfrSjg26BJfGc21DViNELMJnYINMP&oe=69BF90FA&_nc_sid=58080a&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJQIEqZowjT1mvYr63RNdgqI6kVc4sX52fhFydHpfAwlvvbu3K5PbuCUbquoDS_Z-I1NYPJ6CLNOnlVDk1LxYkYgkniKAZZ2V0m6Hq8FkhO50xthgxZQ793RSe08NI3FzPzlIYLHOpyncS1kp7FvZZf" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads depoimento validado</div>
+                    <div class="ad-meta">R$ 1275.42 · 595 cliques · 99 conv · CTR 0.91%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 12.88</div>
+                    <a class="ad-link" href="https://fb.me/1T7vQCByO5RLRYT" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 ATENÇÃO VILA VELHA E REGIÃO! 🚨<br>A Emagrecentro tem mudado vidas, que buscavam reduzir medidas sem cirurgia, sem dor e s</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/612442132_4268333186715113_337495367598765418_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeEQhfhi5qho5ExP5XBJnWe5JaVMyHexYgQlpUzId7FiBBewj11ueKKU8hdkgCEtJXTkZe8DuJrctcfSIebdTDXV&_nc_ohc=rn8QvIDZ4p4Q7kNvwHdqYQK&_nc_oc=AdqcWKjkghEkXLx_KDfS2DLuCy4bnSsGLgm_XsiIm0lAfmhGEdshhKNpE5F6W5KKW7U&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=o-LFHLXB0SDXnOjyjHNzmw&_nc_tpa=Q5bMBQHQT9UOpyUXhLRSfiDvTMQdu6fxAgDiPcCm_lbT7IlOpG118OfIA-zaRQ0hxDgV9QpaoksP-_-97Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afw52f6Tj5R84YNxdqkGffxh3FLrGIBSxFNw1hZ-alPEqQ&oe=69C3CE73&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads janeiro</div>
+                    <div class="ad-meta">R$ 846.91 · 438 cliques · 56 conv · CTR 0.91%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 15.12</div>
+                    <a class="ad-link" href="https://fb.me/2h8Yr97TEhOWRGb" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🎯 Quer emagrecer em 2026, mas sem começar o ano sofrendo com dieta maluca?<br><br>Então essa condição é pra você.<br><br>✔️ Tratamen</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://external-iad3-2.xx.fbcdn.net/emg1/v/t13/6703014070642566316?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQIMOaqUgQfiCVbu390SdOM3T-9HLzvUafm7_G5Vsbq7y69lDLTtNE00Oes1ZXSBu38RIiQiNyXlPtbIfKombbn3LxfRdU6qvc9jW2_1bBT0pWb1V79hcvEAi0BYOhjZ8qGd-JDFQTzs7e1uH5pQE3pG&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=o-LFHLXB0SDXnOjyjHNzmw&_nc_eui2=AeFdT1a8KFt3DqPJuKZRglWmcfJGx3_pNEJx8kbHf-k0QkS5TKqDXV785z_UiuZHu7VUOeU4IeTZpoNiLuSyDSw3&_nc_oc=AdriglQ4FtahsDxSFowU4ckevXXGGzotXkn3JFEPOpKPAkwnJxiS1ZeSuCmm9YGb5FA&ccb=13-1&oh=06_Q3-9AXCOPCBJ4OXgk1tztqIXRx8TZfhqdDRzmL4GdqcOMZwn&oe=69BFC93A&_nc_sid=58080a&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads lipo</div>
-                    <div class="ad-meta">R$ 2761.10 · 1482 cliques · 251 conv · CTR 1.16%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 11.00</div>
-                    <a class="ad-link" href="https://fb.me/26HbdXrZ1NCpuJx" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 689.52 · 301 cliques · 44 conv · CTR 1.04%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 15.67</div>
+                    <a class="ad-link" href="https://fb.me/2dIzzBT5MVnUifM" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🔥 LIPO SEM CORTE: SUA TRANSFORMAÇÃO COMEÇA AQUI! 🔥<br><br>Cansada de ver gordura que não sai com dieta nem academia?<br><br>Flacidez</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJPJSDYqkUCWUSVul5givr2mGvTNN3JqHQkDofKi6nm0oqNGKYB49FD-MqMtYt209-NhhqAmK4ZQhW4L8Y_J1uhpJ1m6sQIha-goBaHZ-zOgBHKWPxvujKbWCP1OsT805mDsjALU2gIC91CH_vv4C7p" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJv1z2mxuRR9KLAyZEAdCTjYFTvV7fdtKVBrNjq1Id8ImV9s-qPXcVBluOHMQTMQE8WA9M4d6mm72BpsIQZi__UcA7C5w4-uTWQVcCsQxk7j9wk_Jn3ie6ztG7fxpuvpjJH6C1QN--75jp8aXc3cV3G" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads metodo 4</div>
-                    <div class="ad-meta">R$ 2577.74 · 1316 cliques · 134 conv · CTR 0.88%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 19.24</div>
-                    <a class="ad-link" href="https://fb.me/1ZLuhLHMRnz2BD2" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads janeiro</div>
+                    <div class="ad-meta">R$ 642.72 · 374 cliques · 43 conv · CTR 0.94%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 14.95</div>
+                    <a class="ad-link" href="https://fb.me/20ITyXSGqyojdi7" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">O Método 4 Fases nada mais é do que um processo de emagrecimento limpo, onde te ajudamos a reconstruir o relacionamento </div>
+            <div class="ad-body">🎯 Quer emagrecer em 2026, mas sem começar o ano sofrendo com dieta maluca?<br><br>Então essa condição é pra você.<br><br>✔️ Tratamen</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQI4nlWnE0CPz7o5HD6UK1e5aSwJiET-5nMrF-2ALg7avcoX8mv2VHA4wWQ5eLejTRRcsSfOa15Ae5XXRq0b7WPDApY6RRVR0HpZiZ_QXlSqTR_SPRRfthcJuYl2TT8D4UV-KCOPmJ8u0XdhvMor_GZE" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads 06 - video 3 — Cópia</div>
+                    <div class="ad-meta">R$ 462.19 · 543 cliques · 183 conv · CTR 2.69%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 2.53</div>
+                    <a class="ad-link" href="https://fb.me/2445oCHHnFlZo2w" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🔥 Vem aí o FEIRÃO 2026 da Emagrecentro! 🔥<br><br>Uma oportunidade ÚNICA para você ter acesso aos nossos principais protocolos </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQI4nlWnE0CPz7o5HD6UK1e5aSwJiET-5nMrF-2ALg7avcoX8mv2VHA4wWQ5eLejTRRcsSfOa15Ae5XXRq0b7WPDApY6RRVR0HpZiZ_QXlSqTR_SPRRfthcJuYl2TT8D4UV-KCOPmJ8u0XdhvMor_GZE" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads 06 - video 3</div>
+                    <div class="ad-meta">R$ 454.19 · 588 cliques · 199 conv · CTR 3.07%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 2.28</div>
+                    <a class="ad-link" href="https://fb.me/23KocENHYZvI7kI" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🔥 Vem aí o FEIRÃO 2026 da Emagrecentro! 🔥<br><br>Uma oportunidade ÚNICA para você ter acesso aos nossos principais protocolos </div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/649536737_4455645114682855_6976460468115627305_n.jpg?_nc_cat=110&ccb=1-7&_nc_eui2=AeHTjA2gsxHmSnH4vkW3nx_v7OJdLVYbGbLs4l0tVhsZsoBhJpC-g-ATNhLETOOHgzTMjevaxSa53ABicDwV5Kd-&_nc_ohc=6Iv4a0AOVd8Q7kNvwE0doLB&_nc_oc=Adoa896JC4XKjdXMKFYQHQziCeb8nBfgDRGAR1EqaBVwGlAetHX4QiXX47Ka5FOSbDU&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=H8K1RCxgsXSJ2nTFG5qlyA&_nc_tpa=Q5bMBQGV4mq_vD3KLbq4K48xyqt1feWsV_zbMLFZ2Ot7_YYQQim34lFghVB9WlGGoEnSD-85RTMDLvJsyw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyQvuZPQjjgOD62yDhV0A_JdgkaECFVtQzEsgZ27wJZCw&oe=69C3D9C0&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads novo marla 1 — Cópia — Cópia — Cópia</div>
+                    <div class="ad-meta">R$ 449.40 · 774 cliques · 126 conv · CTR 3.11%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 3.57</div>
+                    <a class="ad-link" href="https://fb.me/23y1U3oaXpgM5zW" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 VITÓRIA, VILA VELHA E CARIACICA (CAMPO GRANDE) 🚨<br><br>Você já deixou de fazer coisas simples por causa do peso?<br><br>Amarrar o</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/623833813_1178957987355370_2182803967405458796_n.jpg?_nc_cat=103&ccb=1-7&_nc_eui2=AeGZUmYBCtZkMo3HCD0GN8TeXDEhXIRC2PZcMSFchELY9nCzBOUfHBodivYDzOf3IVOfDtOg3p1zq7jl5N5w1dzT&_nc_ohc=s6QZRM9fzA8Q7kNvwFxKNwX&_nc_oc=Adr3Me00vLh9qmHy5qagpVbzyFPxgVuoRZ4AYDtlXU5vIya6bnGrNy6tVjNNpeCrPK8&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=o-LFHLXB0SDXnOjyjHNzmw&_nc_tpa=Q5bMBQFgtoceFoUFNggV_UirwTw4ESMRMJt5sEvw_sxQCvuesAY4zMjmZMNcjAQjjCQ-xaFb7Rt0cE1H5g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afy9Uo97pvAK7eqTESWd7-AtLuWvwIPpcueLVuHBI8PRCQ&oe=69C3ECB8&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads marla antes e depois EDITADO — Cópia</div>
+                    <div class="ad-meta">R$ 428.00 · 270 cliques · 29 conv · CTR 1.42%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 14.76</div>
+                    <a class="ad-link" href="https://fb.me/2dqzPMe0jqzYEEm" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 ATENÇÃO VILA VELHA E REGIÃO! 🚨<br>A Emagrecentro tem mudado vidas como a da Marla, que buscava reduzir medidas sem cirurg</div>
         </div></div>
 
+    <h3 class="section-header">Análise &amp; Otimizações</h3>
+    <div class="opt-summary">
+        <div class="opt-card opt-green"><span class="opt-v">R$ 9.5</span><span class="opt-l">CPL Médio</span></div>
+        <div class="opt-card opt-green"><span class="opt-v">R$ 2.0</span><span class="opt-l">Melhor CPL</span></div>
+        <div class="opt-card opt-red"><span class="opt-v">R$ 182</span><span class="opt-l">Gasto sem conversão</span></div>
+        <div class="opt-card opt-red"><span class="opt-v">0.9%</span><span class="opt-l">% desperdiçado</span></div>
+    </div><div class="opt-block"><h4 class="opt-title opt-title-green">🟢 Escalar — CPL abaixo da média</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>CTR</th></tr></thead><tbody><tr><td>12/03 [feirão] [vendas] [wpp] [vila velha] ABO</td><td>R$ 1655</td><td><strong>580</strong></td><td class="cpl-good">R$ 2.9</td><td>2.93%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-yellow">🟡 Otimizar — CPL acima da média</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th></tr></thead><tbody><tr><td>03/03 [vendas] [wpp] [25-55] [homens] [praias] ABO</td><td>R$ 2594</td><td>144</td><td class="cpl-warn">R$ 18.0</td></tr><tr><td>12/09 i [engajamento] [wpp] [rmk] [vila-velha] CBO</td><td>R$ 2770</td><td>158</td><td class="cpl-warn">R$ 17.5</td></tr><tr><td>12/09 i [vendas] [wpp] [25-55] [homens] [praias] C</td><td>R$ 3695</td><td>248</td><td class="cpl-warn">R$ 14.9</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-green">🏆 Top Criativos — Menor CPL</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>CTR</th></tr></thead><tbody><tr><td>ads 02 - estatico preto — Cópia</td><td>12/03 [feirão] [vendas] [wpp] </td><td>R$ 16</td><td><strong>8</strong></td><td class="cpl-good">R$ 2.0</td><td>1.64%</td></tr><tr><td>ads 06 - video 3</td><td>12/03 [feirão] [vendas] [wpp] </td><td>R$ 454</td><td><strong>199</strong></td><td class="cpl-good">R$ 2.3</td><td>3.07%</td></tr><tr><td>ads 06 - video 3 — Cópia</td><td>12/03 [feirão] [vendas] [wpp] </td><td>R$ 462</td><td><strong>183</strong></td><td class="cpl-good">R$ 2.5</td><td>2.69%</td></tr><tr><td>ads 05 - video 2</td><td>12/03 [feirão] [vendas] [wpp] </td><td>R$ 63</td><td><strong>23</strong></td><td class="cpl-good">R$ 2.7</td><td>3.44%</td></tr><tr><td>ads 07 - video 4 — Cópia</td><td>12/03 [feirão] [vendas] [wpp] </td><td>R$ 9</td><td><strong>3</strong></td><td class="cpl-good">R$ 3.0</td><td>2.76%</td></tr><tr><td>ads novo marla 3 — Cópia — Cópia</td><td>03/03 [vendas] [wpp] [25-55] [</td><td>R$ 22</td><td><strong>7</strong></td><td class="cpl-good">R$ 3.2</td><td>5.07%</td></tr><tr><td>ads 04 - video 1</td><td>12/03 [feirão] [vendas] [wpp] </td><td>R$ 128</td><td><strong>38</strong></td><td class="cpl-good">R$ 3.4</td><td>3.72%</td></tr><tr><td>ads 03 - estatico preto — Cópia</td><td>12/03 [feirão] [vendas] [wpp] </td><td>R$ 14</td><td><strong>4</strong></td><td class="cpl-good">R$ 3.5</td><td>1.76%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-red">💸 Criativos sem conversão (gasto > R$ 19)</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Campanha</th><th>Gasto</th><th>Clicks</th></tr></thead><tbody><tr><td>ads lipo 2</td><td>12/09 i [engajamento] [wpp] [r</td><td class="cpl-bad">R$ 70</td><td>24</td></tr><tr><td>ads resultados</td><td>03/03 [vendas] [wpp] [25-55] [</td><td class="cpl-bad">R$ 35</td><td>12</td></tr><tr><td>ads metodo 6</td><td>03/03 [vendas] [wpp] [25-55] [</td><td class="cpl-bad">R$ 30</td><td>11</td></tr><tr><td>ads metodo 4</td><td>12/09 i [vendas] [wpp] [25-55]</td><td class="cpl-bad">R$ 26</td><td>13</td></tr><tr><td>ads resultados</td><td>03/03 [vendas] [wpp] [25-55] [</td><td class="cpl-bad">R$ 21</td><td>11</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-yellow">⚠️ Criativos com CPL alto (> R$ 19)</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Gasto</th><th>Conv</th><th>CPL</th></tr></thead><tbody><tr><td>ads janeiro</td><td>R$ 259</td><td>5</td><td class="cpl-bad">R$ 51.8</td></tr><tr><td>ads metodo</td><td>R$ 191</td><td>4</td><td class="cpl-bad">R$ 47.6</td></tr><tr><td>ads video out 1</td><td>R$ 95</td><td>2</td><td class="cpl-bad">R$ 47.3</td></tr><tr><td>ads lipo sem corte</td><td>R$ 199</td><td>5</td><td class="cpl-bad">R$ 39.8</td></tr><tr><td>ads video out 1</td><td>R$ 116</td><td>3</td><td class="cpl-bad">R$ 38.8</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title">📊 Evolução por Período</h4><table class="camp-table"><thead><tr><th>Período</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Tendência</th></tr></thead><tbody><tr><td><strong>30 dias</strong></td><td>R$ 19883</td><td><strong>2098</strong></td><td>R$ 9.5</td><td>—</td></tr><tr><td><strong>14 dias</strong></td><td>R$ 10200</td><td><strong>1441</strong></td><td>R$ 7.1</td><td><span style="color:#16a34a">▼ 25% melhor</span></td></tr><tr><td><strong>3 dias</strong></td><td>R$ 2242</td><td><strong>369</strong></td><td>R$ 6.1</td><td><span style="color:#16a34a">▼ 14% melhor</span></td></tr><tr><td><strong>Ontem</strong></td><td>R$ 525</td><td><strong>68</strong></td><td>R$ 7.7</td><td><span style="color:#dc2626">▲ 27% pior</span></td></tr><tr><td><strong>Hoje</strong></td><td>R$ 553</td><td><strong>60</strong></td><td>R$ 9.2</td><td><span style="color:#dc2626">▲ 19% pior</span></td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-green">📈 Melhorando (CPL caiu nos últimos 3 dias)</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>CPL 14d</th><th>CPL 3d</th><th>Variação</th></tr></thead><tbody><tr><td>12/09 [vendas] [wpp] [25-55] [mulheres] [praias] C</td><td>R$ 7.9</td><td class="cpl-good">R$ 5.0</td><td class="cpl-good">-37%</td></tr><tr><td>03/03 [vendas] [wpp] [25-55] [mulheres] [vila-velh</td><td>R$ 8.7</td><td class="cpl-good">R$ 5.8</td><td class="cpl-good">-33%</td></tr><tr><td>12/09 i [vendas] [wpp] [25-55] [homens] [praias] C</td><td>R$ 13.7</td><td class="cpl-good">R$ 9.3</td><td class="cpl-good">-32%</td></tr><tr><td>02/10 [vendas] [wpp] [25-55] [mulheres] [vila-velh</td><td>R$ 6.1</td><td class="cpl-good">R$ 4.8</td><td class="cpl-good">-21%</td></tr><tr><td>03/03 [vendas] [wpp] [25-55] [homens] [praias] ABO</td><td>R$ 18.1</td><td class="cpl-good">R$ 15.3</td><td class="cpl-good">-15%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-red">📉 Piorando (CPL subiu nos últimos 3 dias)</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>CPL 14d</th><th>CPL 3d</th><th>Variação</th></tr></thead><tbody><tr><td>12/03 [feirão] [vendas] [wpp] [vila velha] ABO</td><td>R$ 2.9</td><td class="cpl-bad">R$ 3.8</td><td class="cpl-bad">+32%</td></tr></tbody></table></div>
+
     <div class="footer">
-        <div>seven midas · marketing digital · atualizado em 20/03/2026 18:47</div>
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 23:47</div>
     </div>
 </div>
 
@@ -446,11 +334,11 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 new Chart(document.getElementById('dailyChart'),{
     type:'bar',
     data:{
-        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
+        labels:["03/06", "03/07", "03/08", "03/09", "03/10", "03/11", "03/12", "03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
         datasets:[
-            {label:'Gasto (R$)',data:[1051.86, 785.1, 636.49, 829.15, 978.58, 738.23, 525.17],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
-            {label:'Cliques',data:[1161, 1058, 929, 943, 1245, 1046, 648],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
-            {label:'Conversões',data:[304, 195, 144, 142, 174, 127, 68],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+            {label:'Gasto (R$)',data:[574.56, 776.91, 669.86, 604.79, 765.42, 565.39, 698.51, 1051.86, 785.1, 636.49, 829.15, 978.58, 738.23, 525.37],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[321, 394, 350, 290, 432, 270, 411, 1161, 1058, 929, 943, 1245, 1046, 648],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[31, 52, 39, 34, 46, 24, 61, 304, 195, 144, 142, 174, 127, 68],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
         ]
     },
     options:{

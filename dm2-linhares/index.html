@@ -63,6 +63,21 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 .bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
 .bal-fill{height:100%;border-radius:4px;transition:width .5s}
 
+.opt-summary{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.opt-card{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.opt-card.opt-green{border-left:4px solid #22c55e}
+.opt-card.opt-red{border-left:4px solid #ef4444}
+.opt-v{display:block;font-size:20px;font-weight:800;color:#184341}
+.opt-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+.opt-block{margin-bottom:20px}
+.opt-title{font-size:14px;font-weight:700;margin-bottom:10px}
+.opt-title-green{color:#16a34a}
+.opt-title-red{color:#dc2626}
+.opt-title-yellow{color:#d97706}
+.cpl-good{color:#16a34a;font-weight:700}
+.cpl-bad{color:#dc2626;font-weight:700}
+.cpl-warn{color:#d97706;font-weight:700}
+
 .footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
 
 .table-wrap{overflow-x:auto;margin-bottom:32px}
@@ -86,7 +101,7 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
     </div>
     <div class="topbar-right">
         <div class="live-dot"></div>
-        <span class="topbar-label">Atualizado 20/03/2026 18:45</span>
+        <span class="topbar-label">Atualizado 20/03/2026 23:44</span>
     </div>
 </div>
 
@@ -97,13 +112,13 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
         <p class="info">66 campanhas (3 ativas) · Conta: Doutor DM2 Linhares - BL</p>
     </div>
 
-    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 139,111.58</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">642,505</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">120,381</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.19%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 1.16</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 13.70</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">7,266</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 19.15</span><span class="kpi-l">Custo/Conv</span></div></div>
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 5,527.71</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">89,345</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">6,778</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.78%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.82</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 14.51</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">305</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 18.12</span><span class="kpi-l">Custo/Conv</span></div></div>
 
     
         <div class="balance-section">
             <div class="bal-row"><span>Limite da conta</span><span>R$ 140,459.44</span></div>
-            <div class="bal-row"><span>Gasto total</span><span>R$ 139,100.40</span></div>
-            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#22c55e">R$ 1,359.04</span></div>
+            <div class="bal-row"><span>Gasto total</span><span>R$ 139,153.28</span></div>
+            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#22c55e">R$ 1,306.16</span></div>
             <div class="bal-bar"><div class="bal-fill" style="width:99%;background:#22c55e"></div></div>
         </div>
 
@@ -121,588 +136,30 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
             <tbody><tr>
             <td><span class="dot active"></span>16/08 [vendas] [wpp] [cidades] [45+] ABO</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 23640.11</td>
-            <td>185,773</td>
-            <td>20,332</td>
-            <td>1.25%</td>
-            <td><strong>1626</strong></td>
-            <td>R$ 14.54</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>07/06 [vendas] [wpp] [cidades] [50+] ABO</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 7822.78</td>
-            <td>97,427</td>
-            <td>5,211</td>
-            <td>1.24%</td>
-            <td><strong>432</strong></td>
-            <td>R$ 18.11</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>24/11 [engajamento] [teste de publicos] [novo</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 6020.40</td>
-            <td>104,744</td>
-            <td>4,382</td>
-            <td>0.83%</td>
-            <td><strong>408</strong></td>
-            <td>R$ 14.76</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>26/08 [trafego] [wpp] [mix-publicos] [ig-fb] </td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 5137.07</td>
-            <td>110,016</td>
-            <td>4,302</td>
-            <td>0.89%</td>
-            <td><strong>352</strong></td>
-            <td>R$ 14.59</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>09/06 [vendas] [wpp] [teste publico] [ig-fb] </td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 5000.17</td>
-            <td>88,230</td>
-            <td>3,851</td>
-            <td>1.01%</td>
-            <td><strong>257</strong></td>
-            <td>R$ 19.46</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>16/08 [vendas] [linhares-30km] [LL%] [wpp] [4</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 4732.04</td>
-            <td>66,394</td>
-            <td>3,487</td>
-            <td>1.24%</td>
-            <td><strong>223</strong></td>
-            <td>R$ 21.22</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>31/03 [vendas] [wpp] DM2 nao tem cura - Valid</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 4565.59</td>
-            <td>112,212</td>
-            <td>2,605</td>
-            <td>0.85%</td>
-            <td><strong>241</strong></td>
-            <td>R$ 18.94</td>
+            <td>R$ 3344.76</td>
+            <td>64,279</td>
+            <td>3,261</td>
+            <td>1.45%</td>
+            <td><strong>218</strong></td>
+            <td>R$ 15.34</td>
         </tr><tr>
             <td><span class="dot active"></span>27/11 [vendas] [wpp] [rmk-disfuncao] [45+] CB</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 4206.79</td>
-            <td>22,393</td>
-            <td>4,045</td>
-            <td>1.72%</td>
-            <td><strong>235</strong></td>
-            <td>R$ 17.90</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>22/09 [BOFU] [engajamento] [wpp] [rmk] [40-65</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 3845.27</td>
-            <td>17,826</td>
-            <td>2,828</td>
-            <td>1.41%</td>
-            <td><strong>173</strong></td>
-            <td>R$ 22.23</td>
+            <td>R$ 1648.56</td>
+            <td>13,952</td>
+            <td>1,448</td>
+            <td>1.53%</td>
+            <td><strong>86</strong></td>
+            <td>R$ 19.17</td>
         </tr><tr>
             <td><span class="dot active"></span>14/07 [TOFU] [trafego-perfil] [linhares] [45+</td>
             <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 3748.06</td>
-            <td>74,970</td>
-            <td>10,239</td>
-            <td>2.14%</td>
-            <td><strong>4</strong></td>
-            <td>R$ 937.01</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>09/06 [engajamento] [wpp] [alto valor] [ig-fb</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 3726.20</td>
-            <td>59,615</td>
-            <td>2,776</td>
-            <td>1.14%</td>
-            <td><strong>208</strong></td>
-            <td>R$ 17.91</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>14/09 [engajamento] [wpp] [rmk] [ig-fb] [30-6</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 3581.43</td>
-            <td>24,261</td>
-            <td>2,969</td>
-            <td>1.25%</td>
-            <td><strong>200</strong></td>
-            <td>R$ 17.91</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>09/06 [vendas] [wpp] [homem] [ig-fb] [40-65+]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 3380.94</td>
-            <td>61,218</td>
-            <td>2,302</td>
-            <td>1.13%</td>
-            <td><strong>141</strong></td>
-            <td>R$ 23.98</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>01/12 [engajamento] [wpp] [mix-cidades] ABO  </td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 3247.73</td>
-            <td>118,853</td>
-            <td>2,825</td>
-            <td>0.75%</td>
-            <td><strong>191</strong></td>
-            <td>R$ 17.00</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>26/01 [engajamento] [rmk-link] [linhares] CBO</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 3189.53</td>
-            <td>22,983</td>
-            <td>2,964</td>
-            <td>1.37%</td>
-            <td><strong>188</strong></td>
-            <td>R$ 16.97</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>14/09 [trafego] [wpp] [mix-publicos] [ig-fb] </td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 3078.98</td>
-            <td>86,961</td>
-            <td>2,244</td>
-            <td>0.91%</td>
-            <td><strong>185</strong></td>
-            <td>R$ 16.64</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>30/05 [engajamento] [wpp] [rmk] [44-65] CBO</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 3034.72</td>
-            <td>21,453</td>
-            <td>2,528</td>
-            <td>1.51%</td>
-            <td><strong>143</strong></td>
-            <td>R$ 21.22</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>13/01 [engajamento] [wpp] [sao matheus-aracru</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 3031.80</td>
-            <td>67,288</td>
-            <td>2,588</td>
-            <td>0.99%</td>
-            <td><strong>162</strong></td>
-            <td>R$ 18.71</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>30/05 [vendas] [linhares-30km] [wpp]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 3028.07</td>
-            <td>46,683</td>
-            <td>1,843</td>
-            <td>1.02%</td>
-            <td><strong>118</strong></td>
-            <td>R$ 25.66</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>03/07 [vendas] [wpp] [cidades] [ig-fb] [40-65</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 2923.90</td>
-            <td>59,245</td>
-            <td>2,848</td>
-            <td>1.21%</td>
-            <td><strong>244</strong></td>
-            <td>R$ 11.98</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>14/11 [trafego] [wpp] [linhares] [outras-cida</td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 2915.88</td>
-            <td>76,124</td>
-            <td>1,816</td>
-            <td>0.85%</td>
-            <td><strong>139</strong></td>
-            <td>R$ 20.98</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>07/10 [trafego] [wpp] [mix-publicos] ABO 1-6-</td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 2715.11</td>
-            <td>70,681</td>
-            <td>2,029</td>
-            <td>0.92%</td>
-            <td><strong>144</strong></td>
-            <td>R$ 18.85</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>06/02 [ENGAJAMENTO] [WPP] [HOMENS] [39+] CBO</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 2457.26</td>
-            <td>28,786</td>
-            <td>1,317</td>
-            <td>1.00%</td>
-            <td><strong>146</strong></td>
-            <td>R$ 16.83</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>07/04 [vendas] Diabetes - Teste Criativo - CB</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 2320.65</td>
-            <td>45,189</td>
-            <td>1,023</td>
-            <td>0.82%</td>
-            <td><strong>110</strong></td>
-            <td>R$ 21.10</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>07/02 [VENDAS] [WPP] [CIDADES] [CRIATIVO-NOVO</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 2053.49</td>
-            <td>48,014</td>
-            <td>1,921</td>
-            <td>1.36%</td>
-            <td><strong>135</strong></td>
-            <td>R$ 15.21</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>16/08 [engajamento] [wpp] [rmk] [44-65] ABO</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 1704.50</td>
-            <td>14,801</td>
-            <td>1,307</td>
-            <td>1.36%</td>
-            <td><strong>79</strong></td>
-            <td>R$ 21.58</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>05/07 - [vendas] [wpp] [linhares] [rmk30dias]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 1685.99</td>
-            <td>22,505</td>
-            <td>2,389</td>
-            <td>2.26%</td>
-            <td><strong>68</strong></td>
-            <td>R$ 24.79</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>05 - [CAP] [ABO] [PUBLICO FRIO] [WPP] [VIDEOS</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 1685.01</td>
-            <td>28,016</td>
-            <td>1,404</td>
-            <td>1.37%</td>
-            <td><strong>88</strong></td>
-            <td>R$ 19.15</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>03/04 [leads] [RMK365D] Sintomas - Teste de C</td>
-            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
-            <td>R$ 1663.65</td>
-            <td>20,525</td>
-            <td>967</td>
-            <td>0.91%</td>
-            <td><strong>66</strong></td>
-            <td>R$ 25.21</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>01/12 [engajamento] [wpp] [rmk] [ig-fb] [30-6</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 1540.93</td>
-            <td>25,820</td>
-            <td>1,415</td>
-            <td>0.98%</td>
-            <td><strong>81</strong></td>
-            <td>R$ 19.02</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>03/09 [engajamento] [wpp] [mix-publicos] [ig-</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 1518.68</td>
-            <td>47,281</td>
-            <td>1,118</td>
-            <td>1.09%</td>
-            <td><strong>82</strong></td>
-            <td>R$ 18.52</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>09/06 [alcance] [geo 3km] [ig-fb] [40-65+] CB</td>
-            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
-            <td>R$ 1474.25</td>
-            <td>57,675</td>
-            <td>942</td>
-            <td>0.46%</td>
-            <td><strong>0</strong></td>
-            <td>—</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>13/01 [trafego] [perfil] [linhares] CBO</td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 1271.99</td>
-            <td>47,602</td>
-            <td>4,225</td>
-            <td>3.41%</td>
-            <td><strong>3</strong></td>
-            <td>R$ 424.00</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>13/05 [vendas] [wpp] [linhares] [44-65+] [dep</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 1069.79</td>
-            <td>14,294</td>
-            <td>567</td>
-            <td>0.93%</td>
-            <td><strong>13</strong></td>
-            <td>R$ 82.29</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>26/08 [trafego] [perfil] [mix-publicos] [ig] </td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 933.32</td>
-            <td>28,949</td>
-            <td>1,472</td>
-            <td>1.39%</td>
+            <td>R$ 534.39</td>
+            <td>27,924</td>
+            <td>2,069</td>
+            <td>3.39%</td>
             <td><strong>1</strong></td>
-            <td>R$ 933.32</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>04 - [CAP] [ABO] [PUBLICO FRIO] [WPP]</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 902.55</td>
-            <td>23,822</td>
-            <td>805</td>
-            <td>1.38%</td>
-            <td><strong>18</strong></td>
-            <td>R$ 50.14</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>13/01 [engajamento] [wpp] [rmk] [ig-fb] [30-6</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 856.47</td>
-            <td>15,885</td>
-            <td>613</td>
-            <td>0.99%</td>
-            <td><strong>42</strong></td>
-            <td>R$ 20.39</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>20/11 [vendas] [wpp] [aracruz] CBO</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 766.97</td>
-            <td>24,285</td>
-            <td>471</td>
-            <td>0.95%</td>
-            <td><strong>33</strong></td>
-            <td>R$ 23.24</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>13/05 [leads] [wpp] [linhares] [44-65+] teste</td>
-            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
-            <td>R$ 757.92</td>
-            <td>17,545</td>
-            <td>352</td>
-            <td>0.80%</td>
-            <td><strong>25</strong></td>
-            <td>R$ 30.32</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>26/08 [trafego] [wpp] [mix-publicos] [ig-fb] </td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 726.76</td>
-            <td>20,606</td>
-            <td>504</td>
-            <td>1.20%</td>
-            <td><strong>33</strong></td>
-            <td>R$ 22.02</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>13/01 [engajamento] [wpp] [3km-clinica] [ig-f</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 577.45</td>
-            <td>22,275</td>
-            <td>432</td>
-            <td>0.90%</td>
-            <td><strong>25</strong></td>
-            <td>R$ 23.10</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>18/03 [VENDAS] [LINHARES-SAO MATHEUS-ARACRUZ]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 561.26</td>
-            <td>18,365</td>
-            <td>518</td>
-            <td>1.25%</td>
-            <td><strong>23</strong></td>
-            <td>R$ 24.40</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>28/04 [leads] [lp] [cidades] [validados] CBO</td>
-            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
-            <td>R$ 540.62</td>
-            <td>10,964</td>
-            <td>583</td>
-            <td>2.80%</td>
-            <td><strong>1</strong></td>
-            <td>R$ 540.62</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>20/11 [vendas] [wpp] [2km-centro-linhares] CB</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 539.14</td>
-            <td>17,330</td>
-            <td>293</td>
-            <td>0.85%</td>
-            <td><strong>23</strong></td>
-            <td>R$ 23.44</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>09/06 [engajamento] [wpp] [rmk] [ig-fb] [40-6</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 485.50</td>
-            <td>2,213</td>
-            <td>328</td>
-            <td>1.46%</td>
-            <td><strong>24</strong></td>
-            <td>R$ 20.23</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>22/08 [engajamento] [linhares] [fb-ig] [90dia</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 418.97</td>
-            <td>5,667</td>
-            <td>988</td>
-            <td>3.60%</td>
-            <td><strong>12</strong></td>
-            <td>R$ 34.91</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>24/01 [alcance] [rmk] [prova-social] [90D] CB</td>
-            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
-            <td>R$ 399.82</td>
-            <td>14,353</td>
-            <td>432</td>
-            <td>0.73%</td>
-            <td><strong>4</strong></td>
-            <td>R$ 99.95</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>30/05 [vendas] [wpp] [44-65] [teste-criativos</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 368.99</td>
-            <td>9,895</td>
-            <td>181</td>
-            <td>0.90%</td>
-            <td><strong>14</strong></td>
-            <td>R$ 26.36</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>30/05 [engajamento] [wpp] [30km-linhares] [va</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 323.50</td>
-            <td>11,713</td>
-            <td>152</td>
-            <td>0.86%</td>
-            <td><strong>9</strong></td>
-            <td>R$ 35.94</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>25/10 [BOFU] [vendas] [wpp] [rmk] [homens] [4</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 279.55</td>
-            <td>4,315</td>
-            <td>249</td>
-            <td>1.49%</td>
-            <td><strong>12</strong></td>
-            <td>R$ 23.30</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>26/01 [leads] [wpp] [linhares-mateus-aracruz]</td>
-            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
-            <td>R$ 276.35</td>
-            <td>11,756</td>
-            <td>223</td>
-            <td>0.96%</td>
-            <td><strong>19</strong></td>
-            <td>R$ 14.54</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>09/06 [trafego] [linhares] [ig-fb] [40-65+] A</td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 262.78</td>
-            <td>12,080</td>
-            <td>523</td>
-            <td>1.91%</td>
-            <td><strong>3</strong></td>
-            <td>R$ 87.59</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>03/10 [trafego] [wpp] [mix-publicos] [ig-fb] </td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 241.96</td>
-            <td>13,016</td>
-            <td>151</td>
-            <td>0.79%</td>
-            <td><strong>10</strong></td>
-            <td>R$ 24.20</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>26/08 [trafego] [wpp] [cidades] [ig-fb] [30-6</td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 215.69</td>
-            <td>12,435</td>
-            <td>206</td>
-            <td>1.09%</td>
-            <td><strong>7</strong></td>
-            <td>R$ 30.81</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>20/11 [vendas] [wpp] [outras-cidades] CBO</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 194.40</td>
-            <td>8,898</td>
-            <td>132</td>
-            <td>0.83%</td>
-            <td><strong>10</strong></td>
-            <td>R$ 19.44</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>31/03 [vendas] Diabetes - Teste de Copys / Cr</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 187.40</td>
-            <td>10,019</td>
-            <td>188</td>
-            <td>1.10%</td>
-            <td><strong>8</strong></td>
-            <td>R$ 23.43</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>20/11 [vendas] [wpp] [sao-matheus] CBO</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 181.64</td>
-            <td>7,551</td>
-            <td>125</td>
-            <td>0.98%</td>
-            <td><strong>5</strong></td>
-            <td>R$ 36.33</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>03/09 [engajamento] [wpp] [mix-publicos] [ig-</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 179.26</td>
-            <td>9,588</td>
-            <td>142</td>
-            <td>0.97%</td>
-            <td><strong>5</strong></td>
-            <td>R$ 35.85</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>03/09 [trafego] [wpp] [mix-publicos] [ig] [30</td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 177.10</td>
-            <td>8,502</td>
-            <td>113</td>
-            <td>0.83%</td>
-            <td><strong>2</strong></td>
-            <td>R$ 88.55</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>07/06 [engajamento] [wpp] [carrossel] [50+] C</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 130.09</td>
-            <td>4,645</td>
-            <td>83</td>
-            <td>1.11%</td>
-            <td><strong>4</strong></td>
-            <td>R$ 32.52</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>01 - [CAP] - [ENGAJAMENTO COM A PUBLICAÇÃO] [</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 127.42</td>
-            <td>10,558</td>
-            <td>98</td>
-            <td>0.55%</td>
-            <td><strong>5</strong></td>
-            <td>R$ 25.48</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>02 - [CAP] - [ENGAJAMENTO COM A PUBLICAÇÃO] [</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 124.61</td>
-            <td>9,300</td>
-            <td>55</td>
-            <td>0.35%</td>
-            <td><strong>0</strong></td>
-            <td>—</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>03 - [CAP] - [ENGAJAMENTO COM A PUBLICAÇÃO] [</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 123.42</td>
-            <td>13,957</td>
-            <td>109</td>
-            <td>0.53%</td>
-            <td><strong>1</strong></td>
-            <td>R$ 123.42</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>30/05 [reconhecimento] [lp] [40+] [aberto] [c</td>
-            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
-            <td>R$ 117.83</td>
-            <td>31,286</td>
-            <td>128</td>
-            <td>0.21%</td>
-            <td><strong>0</strong></td>
-            <td>—</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>26/10 [MOFU] [engajamento] [videoview] [rmk18</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 114.08</td>
-            <td>3,461</td>
-            <td>123</td>
-            <td>1.49%</td>
-            <td><strong>3</strong></td>
-            <td>R$ 38.03</td>
+            <td>R$ 534.39</td>
         </tr></tbody>
         </table>
     </div>
@@ -711,127 +168,135 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
     <div class="creatives-grid">
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJLBB08WmftPe6xUNeipjx78YCEGcy1Uzb_ml88HD3lLxLg5tCAppX0tZZbkp6sTsJ2A8TGhPwDvGwtoXz0QXrSoTWXtdHAHYxI39k3fYc8ZTk2wqlKl41D2m7YyYd-p0esQKHM1up74m9jVFh03U_n" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQI9OLnIJN241r34Yl7Fpl2BSeBnXmNrxUyM3oiHJ-ZEmNOVJ70mQDQy8fL8Y6YXtQEnZ_53wzOWQP_tFHKHtrKltzH6AV26aL44Igqm_OMfgpepDc3DOlR42B3VJCv6IB9-doxLVHZAtg7UYGckDWyx" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads sao mateus out</div>
-                    <div class="ad-meta">R$ 4891.12 · 4608 cliques · 414 conv · CTR 1.13%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 11.81</div>
-                    <a class="ad-link" href="https://fb.me/1Zp6lIv4drTCpPA" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 764.69 · 771 cliques · 52 conv · CTR 1.21%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 14.71</div>
+                    <a class="ad-link" href="https://fb.me/1Tit4DmYREHaUCz" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🚨 É DIABÉTICO E MORA NA REGIÃO DE LINHARES?<br>Você não precisa conviver com cansaço, formigamentos, dor ou medicações para</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJSTArGqz-asmMAm2rONs0mL03v__jVcSPfeKAs_qA1zrCkmGSJHofvCuvsbZ-q3N95vPas0P2xKGlVNwminjlGEaMstjVsqADyY42PGdxpXnIu_QGhG-vuoogSwl8L2oysd2aWDdgyx3HFeE3bdWHQ" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLaUpACj8wZ5zaGHtdgpAYC4cmQetQntwDBTNrwMwiLiVWqPwSZkgfTcPfa6Nrjkvvk3POtjuSO9LmZKHObJeGEOVxhfA0k4PLOyrZ5fECoemcuOCvRtdcMzg0ByecdfmFYLnzklCIR7H8kJALd56dA" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads aracruz</div>
+                    <div class="ad-meta">R$ 618.92 · 660 cliques · 42 conv · CTR 1.57%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 14.74</div>
+                    <a class="ad-link" href="https://fb.me/1SP7tJ8HMwk1SPi" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 É DIABÉTICO E MORA NA REGIÃO DE LINHARES?<br>Você não precisa conviver com cansaço, formigamentos, dor ou medicações para</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJigmYLvyxs6eeCifrBiTdSrCx01ruA_lI7FwXoiE3t2oAQJOsPvbvF9A_K8XbBydLK0twOLY6zRO-cEoaqLy28ElGFLNHBQ2BoZzv3fo8Y2SHnDibvwbvjVYyUMRIggfFODLu6uV-PGcm2_ldsxlpZ" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads linhares out</div>
-                    <div class="ad-meta">R$ 4141.54 · 3533 cliques · 294 conv · CTR 1.06%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 14.09</div>
-                    <a class="ad-link" href="https://fb.me/1YVXA3CoPrXQXaA" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 571.01 · 506 cliques · 31 conv · CTR 1.05%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 18.42</div>
+                    <a class="ad-link" href="https://fb.me/1SEDvaVgCQbWkc0" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🚨 É DIABÉTICO E MORA EM LINHARES?<br>Você não precisa conviver com cansaço, formigamentos, dor ou medicações para sempre.<br><br></div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-1.xx.fbcdn.net/v/t15.13418-10/465951768_3829072157336978_1872150690820398464_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeG0rtuISog-PQVCjOPG47IEt-AA3HYuDOS34ADcdi4M5G4Xw-1ihIfc1nPTqUc6X0eRxqK1W8jnodYHRyjnl6Kn&_nc_ohc=_grBNrckvSUQ7kNvwFi-9IB&_nc_oc=AdrDbgS69jjZskiXNxLaJMCTw4eB-KEJfksOCQLzKG0Kx1ifabyqp0Ay1-5TvtCO8Bg&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=qD8d1ymzwUmCOn1KFwiC3A&_nc_tpa=Q5bMBQEG24eg9U_grYJX3WwNJlujz27RR5zCIN8K5PFDh9u3EYX3GXMkdUrCYtIdAUduPltnGsSpgikiqw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=ac5893&_nc_sid=58080a&oh=00_AfwIugWgEKupTXPnnNGbvdNZLj31fDLiSEVcAlE_LSlNXA&oe=69C386F0&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLWULt31ZYD9niUxrywenfsG8Y2wvLF0suga19SqXPfvge7One67cvWxcyo2ulJgWSpXE7qAQp3a_BESDBUV8l_ycqypBvTrPOWuaa5icWXoGszZ_3ZORSyjuzPEmCHLOh6DT5Z1tvQxsj21Nd0QjqK" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads dm2 nao tem cura</div>
-                    <div class="ad-meta">R$ 4130.78 · 3032 cliques · 293 conv · CTR 0.81%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 14.10</div>
-                    <a class="ad-link" href="https://fb.me/1TtiQ7PYKzlAnpU" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads inofensiva</div>
+                    <div class="ad-meta">R$ 439.70 · 1774 cliques · 0 conv · CTR 3.85%</div>
+                    
+                    <a class="ad-link" href="https://fb.me/1TDIMRMIr98q8tC" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">Linhares e Região!<br>E o que falta pra você dar o primeiro passo?<br>Basta agendar sua consulta. <br>Nossa equipe vai entrar em </div>
+            <div class="ad-body">Enquanto muitos acreditam que controlar a doença é o máximo que se pode alcançar, nós acreditamos em algo muito maior: a</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQI0Ghwh4seG6n0a6SaqWk_t9Dgg8JTZunu2TFBcsGVam6w62Uk9gqpUJniRIwQB99uvO_1NEWoaO0kFLIOte772Wjzk7JWVFDOxBSOzMNj7crOz1FJAvj7V4rV_3VTvmJdU4yclZOoxgJk2OruuoVYQ" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQK6ucAQq5B-fYKX4jBB8WBFFfVDChg0IEXaltTPMbAXal1ViyI6NTCDT4j7eKpeJKpG3LYofS-fLdRqnvs5mm4L-e5hpfKmxEeNikCVBy3CBLniAQfx8x2o7n0SbGyXifrhGqThp-DqfUtAHm68D-9Y" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads aracruz</div>
-                    <div class="ad-meta">R$ 3323.06 · 3248 cliques · 260 conv · CTR 1.46%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 12.78</div>
-                    <a class="ad-link" href="https://fb.me/1STkchqLXRkcZ73" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads dm2 tem remissao</div>
+                    <div class="ad-meta">R$ 423.82 · 276 cliques · 24 conv · CTR 1.21%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 17.66</div>
+                    <a class="ad-link" href="https://fb.me/1ZGShxCB1DHmLi6" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">🚨 É DIABÉTICO E MORA NA REGIÃO DE LINHARES?<br>Você não precisa conviver com cansaço, formigamentos, dor ou medicações para</div>
+            <div class="ad-body">O método da Doutor DM2 Linhares pensa diferente:<br>Tratar o problema pela raiz = eliminar a resistência insulínica.<br><br>Com a</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-1.xx.fbcdn.net/v/t15.13418-10/465951768_3829072157336978_1872150690820398464_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeG0rtuISog-PQVCjOPG47IEt-AA3HYuDOS34ADcdi4M5G4Xw-1ihIfc1nPTqUc6X0eRxqK1W8jnodYHRyjnl6Kn&_nc_ohc=_grBNrckvSUQ7kNvwFi-9IB&_nc_oc=AdrDbgS69jjZskiXNxLaJMCTw4eB-KEJfksOCQLzKG0Kx1ifabyqp0Ay1-5TvtCO8Bg&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=qD8d1ymzwUmCOn1KFwiC3A&_nc_tpa=Q5bMBQE_cSJlwVeZPo_tTyC2v_1pswMDm5WLOKau95u4LYRkrbpSYWjJXVwMrmEZ4DDVjpbFqEE62xTktw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=ac5893&_nc_sid=58080a&oh=00_Afz867DVdsXHC1Rt6mS4sg3BqfqZ7LESg3qIX2tCrx5UGQ&oe=69C386F0&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/643606681_2152392328835218_9092812465777212048_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeFLeBtm-NjdEVFAjFmPo3xAHO9NNsaJU_sc7002xolT-1YVdmaS51__qB6ida5sYyww50sWqyjAlSFIzMCzeFoo&_nc_ohc=xVVXVjuzyicQ7kNvwG-Hdi_&_nc_oc=AdryCDaLAQh5GCzp0McvnzJ5F2_iYKMJEWCNFSqOWH3_03uu5MvyrEUTqPh8ohQHup8&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=dH_oyvewo7kta0AVTqMEPg&_nc_tpa=Q5bMBQHKLidCZc5QbknNf1x9KzvnYyI4BM-do1LrdLeQsdQVg35qZu5v8hCAp4V9M-dqkqmS2rIALh3zjQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxIhF4uIKuG8bKHKUCgIS6eKVYxvfOPqo1FAI7ZiIt3fw&oe=69C3D56F&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads dm2 não tem cura</div>
-                    <div class="ad-meta">R$ 2496.63 · 1398 cliques · 134 conv · CTR 0.88%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 18.63</div>
-                    <a class="ad-link" href="https://fb.me/1ZLC5894ak08Wpz" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads pre diabetes</div>
+                    <div class="ad-meta">R$ 338.09 · 374 cliques · 26 conv · CTR 1.89%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 13.00</div>
+                    <a class="ad-link" href="https://fb.me/2fN6NPXwd3j3LNR" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">Linhares e Região!<br>E o que falta pra você dar o primeiro passo?<br>Basta agendar sua consulta. <br>Nossa equipe vai entrar em </div>
+            <div class="ad-body">🚨 Diabetes Tipo 2? Descubra Como Reduzir a Glicose Sem Depender Apenas de Remédios!<br><br>Sofrendo com diabetes tipo 2? Formi</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQI8QN64urxAJEJGbyUwfoOfJpX4iJc9vuIrwzkVql2tDmQN0nXxe9kz91O8YkE25Svo4QQpBqRR2v4F_nTcG2nEIniriG-RFmTzdxGfI3JLHWiM6N2UbRP-U3B2lRhe312ANocqRzaWI_q5aGZUWYVb" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/645794780_1419679259894956_8566143778883829260_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeFqPa5VPOcUos6CqVlCtjYfztpt_A9ZcYPO2m38D1lxg0YGQRxmowMxZTQVAuBBw1BS495g4gcqTalSK2kSDPWT&_nc_ohc=tTriXhQ068MQ7kNvwFEh2FT&_nc_oc=AdopUhx6x1hefLLyAmgU2NdyH1LAA8Cwb7ZKmo3HwS9Hv0gjziEZP1W-6JUmEqoH-BA&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=dH_oyvewo7kta0AVTqMEPg&_nc_tpa=Q5bMBQHJtFSyK03Ge370g9iFYSYtN7oswEtBBqmPkJjlPfyS2qcmKTaLfJG8woltFjIiNPqoL5bU_UB5Cw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afy6EtBW47QJJpnhBCrakVIhQ4xcJYLPdEXf4j9MzPIfqg&oe=69C3E8D1&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads aracruz out</div>
-                    <div class="ad-meta">R$ 2299.76 · 1968 cliques · 159 conv · CTR 1.19%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 14.46</div>
-                    <a class="ad-link" href="https://fb.me/1ZriIZbGSoyd1MB" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads sulfoniureias</div>
+                    <div class="ad-meta">R$ 300.14 · 277 cliques · 20 conv · CTR 1.92%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 15.01</div>
+                    <a class="ad-link" href="https://fb.me/2017MyvGN86wi8w" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">🚨 É DIABÉTICO E MORA NA REGIÃO DE LINHARES?<br>Você não precisa conviver com cansaço, formigamentos, dor ou medicações para</div>
+            <div class="ad-body">🚨 Diabetes Tipo 2? Descubra Como Reduzir a Glicose Sem Depender Apenas de Remédios!<br><br>Sofrendo com diabetes tipo 2? Formi</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-2.xx.fbcdn.net/v/t15.13418-10/438251643_1612599329503534_8381615715344772153_n.jpg?_nc_cat=111&ccb=1-7&_nc_eui2=AeHrZHYMx7oxocwY0EqLJggvAZvz78-tHjsBm_Pvz60eO4Fcw9IzI_wd7kntDv88hSxrLpd76e7Lb5YWiMNs4ulZ&_nc_ohc=S1uOZ-Q1aWMQ7kNvwF1dx_E&_nc_oc=AdpIQcd6si4snGNULyG7vgdgwTJ3XVxC7WL2yZyisYbqJi65rSL5hx85fqFJ2x7OaCM&_nc_zt=23&_nc_ht=scontent-fra3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=9QA9kIdpzuOpbpT2t2eTmg&_nc_tpa=Q5bMBQE8hc7DvIsvZMSzG0rBqtMtccP8oHtmhXdJ4tlqz9aqc291Kk3EQ1daTcvNBpMoLMlnMlDc8Bkkyw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_Afz47oR02D0JcygmQ1shFQVgb4lhs_4Fqh_dlRXzthStQA&oe=69C3AD44&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLtRsYwiHGPCJe0dPMkcEBDdatqFvn7FcfK6jayCMFmWqHClRdk5sd4AQrSrq-5mJdAVXTjfw-5DirH9Y_783f5F2dSQrVylfo4NdvR5UmkKwTQ1Vc6Q-nnNUZd_ANnZaTXlJq43Km37OfeUS-ZOQ7o" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads controle nao funciona — Cópia</div>
-                    <div class="ad-meta">R$ 2144.23 · 1645 cliques · 132 conv · CTR 1.12%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 16.24</div>
-                    <a class="ad-link" href="https://fb.me/2x69tZW0MzC6IrB" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads remissao carlos</div>
+                    <div class="ad-meta">R$ 261.53 · 281 cliques · 10 conv · CTR 1.52%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 26.15</div>
+                    <a class="ad-link" href="https://fb.me/28ErTeRh1fVzy6I" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">⚠️🔔 Mesmo com medicação, você não consegue controlar sua glicemia? <br><br>Agende uma consulta com a Doutor DM2 Diabetes e des</div>
+            <div class="ad-body">O método da Doutor DM2 Linhares pensa diferente:<br>Tratar o problema pela raiz = eliminar a resistência insulínica.<br><br>Com a</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-2.xx.fbcdn.net/v/t15.5256-10/566589092_4080865602128823_1941384777239483830_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeFU9o3nCJZWvInpRpH7I_xQRqgwjd4r-vZGqDCN3iv69j4ImV7W0DcS8x0KQSz94qvuMd0wY2ogeNJzvb7kZP0M&_nc_ohc=hvtPIjpsoSoQ7kNvwHoVeV4&_nc_oc=AdpSW7tqdsXV2wkM5PhNtjyE9R9jIEILarXPRwD4A6iYcJseeQ7KVK5OqeIXDAn9eR4&_nc_zt=23&_nc_ht=scontent-fra3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=TG0kwiMmnH9g_7uqeTD6vg&_nc_tpa=Q5bMBQFwZutzxv9ahu-kgHJXKbk_XXP7l0AtpaLnl9WHy52D6QcABIuUf69vs21QkltX31UfHpM2lkF9og&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afw2DTQS4V8aNRbaXelCeCNpCQq-WfDOG2FnP4PziVG9_A&oe=69C3897F&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLXQ0RcN4nsMnpkeNx96JqfhqqEcaTN5OHGLRxtI8GuR7e88wPEz7wDUwliNXxyqVJQHlDjXMZ7o1i6FL0PGlDpsgfFxEGEDCDNROy_N-JL4Ngf8m0VleqKYEVWXQAonQIp12audcL_0ax-yAzEgrBb" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads tratar sintomas</div>
-                    <div class="ad-meta">R$ 2033.91 · 1237 cliques · 97 conv · CTR 1.34%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 20.97</div>
-                    <a class="ad-link" href="https://fb.me/1ScU23UTJnxdXxD" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads prova social linhares</div>
+                    <div class="ad-meta">R$ 178.26 · 179 cliques · 8 conv · CTR 1.63%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 22.28</div>
+                    <a class="ad-link" href="https://fb.me/1SYqQejpA3Nw4ek" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">Você está controlando...�ou só remediando a sua diabetes?<br>Porque tem uma diferença enorme entre manter a glicose “ok” co</div>
+            <div class="ad-body">O método da Doutor DM2 Linhares pensa diferente:<br>Tratar o problema pela raiz = eliminar a resistência insulínica.<br><br>Com a</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-1.xx.fbcdn.net/v/t15.13418-10/441928667_25828158066800194_2128337189587818395_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeGfou0_ZiKX6D7iEPD0IsrQcnSJsK_hjN9ydImwr-GM373VTQlKfAjru3_L3NYizU6H-7Zc_7PJg5pA8uABPszl&_nc_ohc=Uh6vKxQ5nrsQ7kNvwERH4Ms&_nc_oc=AdoF3UJ8HYctVuJ7DdV30aCPfDaXz4crqb--PP4J0JtDPB9AMYGQwdsPUtvj4fvYDXg&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=9QA9kIdpzuOpbpT2t2eTmg&_nc_tpa=Q5bMBQFqZEpIxOHthJKYQoujt-6wyyyk7yUuZOyjXFUYl8-Vi8FfbHqdotuqtGxWjYNDjl-3dTX2OqOnbw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfxXodAVt2SY4ehNl9P6jBpTUkAfnDVDQNTA3JaDkX-8MQ&oe=69C3A4F9&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/639493143_1960708241200515_655535282213928945_n.jpg?_nc_cat=103&ccb=1-7&_nc_eui2=AeGwdVguErt0IvuKz_JnJ7AiMGRzUZWxn4EwZHNRlbGfgVYgpoXE5EbTp_BHVTxOgOe9MvCMqTtEX2PleLrXf6L2&_nc_ohc=dL0aFn0Cl04Q7kNvwF0IZJe&_nc_oc=AdpabPQ27ab7vKIs5kjU906-EltpcL0e7TUOM1zd7c_nHqs81hKybPuZUD0u5ygqYsw&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=dH_oyvewo7kta0AVTqMEPg&_nc_tpa=Q5bMBQG119-7GVdT1j3w70aRsFaqnM1ucueR04mcu4bYzDN25CeuMgWerDBgPJcf-YZwVD9jlFVEl1PQHw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwlJTR1x5szuD_QbPK135DvSOut89SbpO7OqcfU65AuOw&oe=69C3BF59&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads metformina</div>
-                    <div class="ad-meta">R$ 1717.68 · 1580 cliques · 160 conv · CTR 1.22%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 10.74</div>
-                    <a class="ad-link" href="https://fb.me/2jZcwq67S4J49hM" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads exames paty</div>
+                    <div class="ad-meta">R$ 164.70 · 126 cliques · 13 conv · CTR 1.93%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 12.67</div>
+                    <a class="ad-link" href="https://fb.me/xYYk14JRTRHG5hb" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">Linhares e região 🚨<br>Sofre com a Diabetes tipo II e quer conhecer um tratamento alternativo? <br><br>A Doutor DM2 chegou com um</div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQL8KBaORC9Mw3DDbQ2yVCsEHaZQNmuifKbtYVRqiqaCTG5iCdlAifrETkgXQUSeOqHQ_FLkc3s0S_BQBXVt7fTrXiutdyuD7Cn_vfy117RKwZ_J-pEHbpFNXas-OXIAShm8zN1Dt94Wapb37agB-tut" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">ads aracruz</div>
-                    <div class="ad-meta">R$ 1710.23 · 1302 cliques · 116 conv · CTR 1.40%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 14.74</div>
-                    <a class="ad-link" href="https://fb.me/1RxarEntq4XBRdQ" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">“Você já tentou de tudo: remédio, plano, dieta…<br>Mas sua glicose continua alta?<br><br>Dormência, visão turva, cansaço constant</div>
+            <div class="ad-body">O método da Doutor DM2 Linhares pensa diferente:<br>Tratar o problema pela raiz = eliminar a resistência insulínica.<br><br>Com a</div>
         </div></div>
 
+    <h3 class="section-header">Análise &amp; Otimizações</h3>
+    <div class="opt-summary">
+        <div class="opt-card opt-green"><span class="opt-v">R$ 18.1</span><span class="opt-l">CPL Médio</span></div>
+        <div class="opt-card opt-green"><span class="opt-v">R$ 8.2</span><span class="opt-l">Melhor CPL</span></div>
+        <div class="opt-card opt-red"><span class="opt-v">R$ 440</span><span class="opt-l">Gasto sem conversão</span></div>
+        <div class="opt-card opt-red"><span class="opt-v">8.0%</span><span class="opt-l">% desperdiçado</span></div>
+    </div><div class="opt-block"><h4 class="opt-title opt-title-red">🔴 Pausar — CPL muito alto ou sem conversão</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Motivo</th></tr></thead><tbody><tr><td>14/07 [TOFU] [trafego-perfil] [linhares] [45+] CBO</td><td>R$ 534</td><td>1</td><td class="cpl-bad">R$ 534.4</td><td>CPL 29.5x a média</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-green">🏆 Top Criativos — Menor CPL</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>CTR</th></tr></thead><tbody><tr><td>ads saude mental e dm2</td><td>27/11 [vendas] [wpp] [rmk-disf</td><td>R$ 33</td><td><strong>4</strong></td><td class="cpl-good">R$ 8.2</td><td>2.53%</td></tr><tr><td>ads tadala</td><td>27/11 [vendas] [wpp] [rmk-disf</td><td>R$ 27</td><td><strong>3</strong></td><td class="cpl-good">R$ 9.1</td><td>2.02%</td></tr><tr><td>ads controlar sintomas</td><td>16/08 [vendas] [wpp] [cidades]</td><td>R$ 71</td><td><strong>7</strong></td><td class="cpl-good">R$ 10.2</td><td>1.45%</td></tr><tr><td>ads pancreas e insulina</td><td>27/11 [vendas] [wpp] [rmk-disf</td><td>R$ 89</td><td><strong>8</strong></td><td class="cpl-good">R$ 11.1</td><td>3.07%</td></tr><tr><td>ads exames paty</td><td>27/11 [vendas] [wpp] [rmk-disf</td><td>R$ 45</td><td><strong>4</strong></td><td class="cpl-good">R$ 11.2</td><td>2.46%</td></tr><tr><td>ads exames paty</td><td>16/08 [vendas] [wpp] [cidades]</td><td>R$ 165</td><td><strong>13</strong></td><td class="cpl-good">R$ 12.7</td><td>1.93%</td></tr><tr><td>ads pre diabetes</td><td>16/08 [vendas] [wpp] [cidades]</td><td>R$ 338</td><td><strong>26</strong></td><td class="cpl-good">R$ 13.0</td><td>1.89%</td></tr><tr><td>ads aracruz out</td><td>16/08 [vendas] [wpp] [cidades]</td><td>R$ 117</td><td><strong>9</strong></td><td class="cpl-good">R$ 13.0</td><td>1.17%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-red">💸 Criativos sem conversão (gasto > R$ 36)</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Campanha</th><th>Gasto</th><th>Clicks</th></tr></thead><tbody><tr><td>ads inofensiva</td><td>14/07 [TOFU] [trafego-perfil] </td><td class="cpl-bad">R$ 440</td><td>1774</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-yellow">⚠️ Criativos com CPL alto (> R$ 36)</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Gasto</th><th>Conv</th><th>CPL</th></tr></thead><tbody><tr><td>ads exames paty</td><td>R$ 132</td><td>3</td><td class="cpl-bad">R$ 44.1</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title">📊 Evolução por Período</h4><table class="camp-table"><thead><tr><th>Período</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Tendência</th></tr></thead><tbody><tr><td><strong>30 dias</strong></td><td>R$ 5528</td><td><strong>305</strong></td><td>R$ 18.1</td><td>—</td></tr><tr><td><strong>14 dias</strong></td><td>R$ 3059</td><td><strong>165</strong></td><td>R$ 18.5</td><td><span style="color:#6b7280">≈ estável</span></td></tr><tr><td><strong>3 dias</strong></td><td>R$ 616</td><td><strong>38</strong></td><td>R$ 16.2</td><td><span style="color:#16a34a">▼ 13% melhor</span></td></tr><tr><td><strong>Ontem</strong></td><td>R$ 194</td><td><strong>13</strong></td><td>R$ 14.9</td><td><span style="color:#6b7280">≈ estável</span></td></tr><tr><td><strong>Hoje</strong></td><td>R$ 194</td><td><strong>9</strong></td><td>R$ 21.6</td><td><span style="color:#dc2626">▲ 45% pior</span></td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-green">📈 Melhorando (CPL caiu nos últimos 3 dias)</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>CPL 14d</th><th>CPL 3d</th><th>Variação</th></tr></thead><tbody><tr><td>16/08 [vendas] [wpp] [cidades] [45+] ABO</td><td>R$ 16.2</td><td class="cpl-good">R$ 12.4</td><td class="cpl-good">-23%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-red">📉 Piorando (CPL subiu nos últimos 3 dias)</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>CPL 14d</th><th>CPL 3d</th><th>Variação</th></tr></thead><tbody><tr><td>27/11 [vendas] [wpp] [rmk-disfuncao] [45+] CBO</td><td>R$ 18.0</td><td class="cpl-bad">R$ 21.7</td><td class="cpl-bad">+21%</td></tr></tbody></table></div>
+
     <div class="footer">
-        <div>seven midas · marketing digital · atualizado em 20/03/2026 18:45</div>
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 23:44</div>
     </div>
 </div>
 
@@ -839,11 +304,11 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 new Chart(document.getElementById('dailyChart'),{
     type:'bar',
     data:{
-        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
+        labels:["03/06", "03/07", "03/08", "03/09", "03/10", "03/11", "03/12", "03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
         datasets:[
-            {label:'Gasto (R$)',data:[141.78, 228.35, 235.54, 239.13, 226.09, 196.07, 193.43],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
-            {label:'Cliques',data:[241, 268, 304, 284, 241, 240, 228],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
-            {label:'Conversões',data:[7, 18, 12, 11, 14, 11, 13],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+            {label:'Gasto (R$)',data:[225.44, 248.77, 199.17, 231.98, 260.86, 213.0, 219.69, 141.78, 228.35, 235.54, 239.13, 226.09, 196.07, 193.55],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[291, 298, 250, 243, 257, 240, 275, 241, 268, 304, 284, 241, 240, 228],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[16, 13, 11, 15, 9, 11, 4, 7, 18, 12, 11, 14, 11, 13],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
         ]
     },
     options:{

@@ -63,6 +63,21 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 .bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
 .bal-fill{height:100%;border-radius:4px;transition:width .5s}
 
+.opt-summary{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.opt-card{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.opt-card.opt-green{border-left:4px solid #22c55e}
+.opt-card.opt-red{border-left:4px solid #ef4444}
+.opt-v{display:block;font-size:20px;font-weight:800;color:#184341}
+.opt-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+.opt-block{margin-bottom:20px}
+.opt-title{font-size:14px;font-weight:700;margin-bottom:10px}
+.opt-title-green{color:#16a34a}
+.opt-title-red{color:#dc2626}
+.opt-title-yellow{color:#d97706}
+.cpl-good{color:#16a34a;font-weight:700}
+.cpl-bad{color:#dc2626;font-weight:700}
+.cpl-warn{color:#d97706;font-weight:700}
+
 .footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
 
 .table-wrap{overflow-x:auto;margin-bottom:32px}
@@ -86,7 +101,7 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
     </div>
     <div class="topbar-right">
         <div class="live-dot"></div>
-        <span class="topbar-label">Atualizado 20/03/2026 18:41</span>
+        <span class="topbar-label">Atualizado 20/03/2026 23:40</span>
     </div>
 </div>
 
@@ -97,13 +112,13 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
         <p class="info">6 campanhas (4 ativas) · Conta: CA DM2 RECIFE</p>
     </div>
 
-    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 17,069.69</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">189,340</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">22,510</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">2.69%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.76</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 20.37</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">2,807</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 6.08</span><span class="kpi-l">Custo/Conv</span></div></div>
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 4,114.71</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">59,031</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">5,115</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">2.82%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.80</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 22.72</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">546</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 7.54</span><span class="kpi-l">Custo/Conv</span></div></div>
 
     
         <div class="balance-section">
             <div class="bal-row"><span>Limite da conta</span><span>R$ 17,993.75</span></div>
-            <div class="bal-row"><span>Gasto total</span><span>R$ 17,068.61</span></div>
-            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#22c55e">R$ 925.14</span></div>
+            <div class="bal-row"><span>Gasto total</span><span>R$ 17,115.43</span></div>
+            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#22c55e">R$ 878.32</span></div>
             <div class="bal-bar"><div class="bal-fill" style="width:95%;background:#22c55e"></div></div>
         </div>
 
@@ -119,59 +134,41 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
                 <th>Campanha</th><th>Objetivo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>CTR</th><th>Conv</th><th>Custo/Conv</th>
             </tr></thead>
             <tbody><tr>
+            <td><span class="dot active"></span>04/02 [engajamento] [rmk] [recife] [40+]</td>
+            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
+            <td>R$ 1252.64</td>
+            <td>14,979</td>
+            <td>1,426</td>
+            <td>2.75%</td>
+            <td><strong>227</strong></td>
+            <td>R$ 5.52</td>
+        </tr><tr>
             <td><span class="dot active"></span>25/11 [vendas] [wpp] [bairros + km clinica] [</td>
             <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 8640.17</td>
-            <td>76,152</td>
-            <td>8,356</td>
-            <td>2.51%</td>
-            <td><strong>1951</strong></td>
-            <td>R$ 4.43</td>
+            <td>R$ 1217.87</td>
+            <td>22,857</td>
+            <td>1,234</td>
+            <td>2.55%</td>
+            <td><strong>263</strong></td>
+            <td>R$ 4.63</td>
         </tr><tr>
             <td><span class="dot active"></span>10/01  [vendas] [wpp] [homens] [40+] [alto va</td>
             <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 2753.16</td>
-            <td>26,076</td>
-            <td>1,921</td>
-            <td>1.99%</td>
-            <td><strong>172</strong></td>
-            <td>R$ 16.01</td>
+            <td>R$ 1196.68</td>
+            <td>12,388</td>
+            <td>758</td>
+            <td>2.04%</td>
+            <td><strong>54</strong></td>
+            <td>R$ 22.16</td>
         </tr><tr>
             <td><span class="dot active"></span>14/11  [trafego-perfil] [recife] [35+] CBO</td>
             <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 1797.75</td>
-            <td>72,928</td>
-            <td>7,662</td>
+            <td>R$ 447.52</td>
+            <td>23,105</td>
+            <td>1,697</td>
             <td>3.88%</td>
             <td><strong>2</strong></td>
-            <td>R$ 898.88</td>
-        </tr><tr>
-            <td><span class="dot active"></span>04/02 [engajamento] [rmk] [recife] [40+]</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 1772.92</td>
-            <td>16,708</td>
-            <td>2,140</td>
-            <td>2.96%</td>
-            <td><strong>352</strong></td>
-            <td>R$ 5.04</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>14/11 [vendas] [wpp] [bairros + km clinica] [</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 1528.15</td>
-            <td>23,119</td>
-            <td>1,451</td>
-            <td>3.06%</td>
-            <td><strong>330</strong></td>
-            <td>R$ 4.63</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>14/11 [engajamento] [video-view] [Recife] [35</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 577.54</td>
-            <td>39,283</td>
-            <td>980</td>
-            <td>1.08%</td>
-            <td><strong>0</strong></td>
-            <td>—</td>
+            <td>R$ 223.76</td>
         </tr></tbody>
         </table>
     </div>
@@ -180,127 +177,135 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
     <div class="creatives-grid">
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-2.xx.fbcdn.net/v/t15.5256-10/583245887_1374233494102468_1729921334202363713_n.jpg?_nc_cat=111&ccb=1-7&_nc_eui2=AeGCUFqhiuPRWThLh8nfA0FrGMOyFHJd600Yw7IUcl3rTeyzlphspbgXtLhEgKm-ucwsTy2q3IGuUPDkt819fGWZ&_nc_ohc=zCzFJh-Gc0MQ7kNvwGeZXGP&_nc_oc=AdpLiQlE1FDh99gg-3Hxcr8vlCS6gOj0EXlYI24jpmnfWsAjmIRrsr18NVkR0-wap2M&_nc_zt=23&_nc_ht=scontent-fra3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=8445IxEL7iyrOW05gXxR1Q&_nc_tpa=Q5bMBQGRqRc6FqIm_Ey_eBmdtwcPo-w1QAxXRiRSPEEDMpZiMM_i3bQaqaMwcRGKJg6hRznkk-UU_KTIrw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=d2b52d&_nc_sid=58080a&oh=00_AfzHi7uHe8iEMCDr5I75yM_fPHhZ_yJoi6OtppFPC2_S6w&oe=69C38682&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/583245887_1374233494102468_1729921334202363713_n.jpg?_nc_cat=111&ccb=1-7&_nc_eui2=AeGCUFqhiuPRWThLh8nfA0FrGMOyFHJd600Yw7IUcl3rTeyzlphspbgXtLhEgKm-ucwsTy2q3IGuUPDkt819fGWZ&_nc_ohc=zCzFJh-Gc0MQ7kNvwHigj9g&_nc_oc=AdpPl-XJPLbz5u3r77K8leRjY-bQyIfFxK1PBzUVzeHG5CgZbFakaeGfA7NQAF3OGcU&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=0kYb30ud_AlEVGFilfU-fA&_nc_tpa=Q5bMBQG4ggWZFzfPjsKfnKndLGKGxTfetkQYXCRZG2Y5Is_d2WxcHUvdGczBXekG-d3AP0G74LiSO7zvXQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=d2b52d&_nc_sid=58080a&oh=00_AfypE4GdRQljn7a8Jf8NEajTkydttWjvPp0X6dAd00o3yg&oe=69C3BEC2&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">Ads geral paty</div>
-                    <div class="ad-meta">R$ 3285.53 · 3288 cliques · 786 conv · CTR 2.53%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 4.18</div>
-                    <a class="ad-link" href="https://fb.me/xYokMkKV5ugpcMK" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 1084.69 · 1074 cliques · 242 conv · CTR 2.53%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 4.48</div>
+                    <a class="ad-link" href="https://fb.me/2ieyT3zyOrHhTGZ" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Recife – PE com um protocolo es</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJhL-0tT8MAqizyDWnKNW_pmCxPmMUEFEpeTpmNFc3AhYfknUsP4lRYWZHlqk9OwYH3vWPVpAfBjBv6NdGdqakh-i_q4j7Ht2zrDj6kgAWuyHifboVhkVH7SFqeUO5MYLqnSu840YRe8iro4hfvDfyp" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKIX4NlJYUyHyGidsApSZJR2i6fdWc6CF7R080Y3pFqT8-guSiUM6bKWTX_ygJrLVqwv4EkS5WlaB95CEcW3Tf_fSaHJAXmNLKow4gYz84NfXmY7jbcGbcCq0059-vcsRdph1JbPYsyEoivuVLJK8LL" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads exames jonas</div>
-                    <div class="ad-meta">R$ 1430.13 · 1705 cliques · 294 conv · CTR 2.95%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 4.86</div>
-                    <a class="ad-link" href="https://fb.me/1SQlOOkMjzNa8rU" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 980.95 · 1066 cliques · 185 conv · CTR 2.68%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 5.30</div>
+                    <a class="ad-link" href="https://fb.me/1UTcpRbUVsgVHHt" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">Diabetes não precisa ser sentença.<br>Se seus exames seguem ruins, mesmo com dieta e remédio...<br>👉 Você precisa de outro cam</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-1.xx.fbcdn.net/v/t15.5256-10/582127870_878027088121279_1034889703586285501_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeHjbsZAiPPfzo9zLL-L91nHi_DcD3DwRUOL8NwPcPBFQ3c0CZH1MoWU0fGXlir1ZGQQs9u9gq6koND3VkM9cQvq&_nc_ohc=ZSOF_icg5SIQ7kNvwGLF2jf&_nc_oc=Adq2ujBOzGOC59yPAQJALKzwMl5JER6KYWBEjsv-1C04LqmgLMjyAqfNpijdkDZdHfM&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=8445IxEL7iyrOW05gXxR1Q&_nc_tpa=Q5bMBQH135kB9M928qRXG787BGHiqcRfwFpJ2iy73Imhp95-T42DmXRjucpC6tU9bvPz79OLupdwFloZHA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfymYq2GtEis9Y5YBoncnVHM3lmebm8jTYzyTmHV4EjZjQ&oe=69C38BC2&width=480" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">Ads controlar glicose</div>
-                    <div class="ad-meta">R$ 1275.80 · 1284 cliques · 257 conv · CTR 2.25%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 4.96</div>
-                    <a class="ad-link" href="https://fb.me/2BAU5r5hUOdV51O" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Recife – PE com um protocolo es</div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQK8rm6XfR0nMLzDcuBo73AR1cZezqd2jCSeClihG70t34OlpC0Uu02QEmR3qWcrvJf9TV1Q4bMPYm999hjOKgbRmDj8OzK5qYpiR9YvE2s3QhnXa3XvS0r7EfnTPRYhmMOIa5OWqlxOT_SBbK7JH2CG" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIIcmMUN-4Agty_XiKDKdVng424GiS06m5ZyFKP_rcHE9LoJtfn-gQ2Z2WTzP1d0akGZkLFpSR3sMJpscEcJY654PZ-5f48kEizAs5ESlI46eu2QXlA1ifmgm2Xf8-LiclWj_9qvJdFcpj5kFYgKo8K" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads disfuncao cely 2</div>
-                    <div class="ad-meta">R$ 1130.03 · 646 cliques · 81 conv · CTR 1.79%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 13.95</div>
-                    <a class="ad-link" href="https://fb.me/1T1A8yaXDRVmVOn" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 496.84 · 261 cliques · 22 conv · CTR 1.93%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 22.58</div>
+                    <a class="ad-link" href="https://fb.me/qMTC5aoNlFWwEK7" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">Diabetes tipo 2 e impotência: relação REAL.<br><br>Se você tem +50 anos, usa metformina/insulina e sente:<br>👉 libido baixa<br>👉 can</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIpASj3sUSzLgbVmJlJFYAoTnJtrhqwp5jFv-5JFlbD73D5hz6TAL7VEgiWpSpS_5gGRg-vLTtt5W0hnVz-gpO9nHLdZKjYQlQM5sThznodOFkMq0XwRyyn4VrOXm4gub6Z6rgIIQPuvQnf0ATxBMa1" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIKmqb_VRrdOhZzXWDszs4MDn4oeW-twc9Ag_6nylnkxcrZlWH9JeJRdwvS560vP3yTKfAqa3nJMClr4KnBCf14ne-8NaScTagB0OzyQO3IjWFl-8BFqsMqeb8KaPIYWw5JSIJBtjbuxbAV2foyEah2" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads disfuncao cely</div>
+                    <div class="ad-meta">R$ 460.90 · 356 cliques · 23 conv · CTR 2.05%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 20.04</div>
+                    <a class="ad-link" href="https://fb.me/1SsJaB8ZzD6G8MN" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Diabetes tipo 2 e impotência: relação REAL.<br><br>Se você tem +50 anos, usa metformina/insulina e sente:<br>👉 libido baixa<br>👉 can</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKwjtAwgrKwaI8mT6wO_fRWLArg9OhJlkMv-AU_pBsbHi8ck4V7XguaewZvlrnFxinDoyJ8ZHDIEWeCVdnJVASqZISgumpIqi1tyZ5AM_oV73Yg7_OeftT-xc9YDZGvWY3BWA7nCXH3H_GsjYipQrEq" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">Ad - Visão 2</div>
-                    <div class="ad-meta">R$ 858.48 · 3522 cliques · 2 conv · CTR 4.41%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 429.24</div>
-                    <a class="ad-link" href="https://fb.me/2ibpRBrg1QWfpD6" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 358.86 · 1372 cliques · 2 conv · CTR 4.40%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 179.43</div>
+                    <a class="ad-link" href="https://fb.me/xYeJVzEOCxIZB4q" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">A DIABETES TIPO 2 NÃO PRECISA SER SUA SENTENÇA! A Doutor DM2 chegou a Recife – PE com o único protocolo focado em REMISS</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-2.xx.fbcdn.net/v/t15.5256-10/583245887_1374233494102468_1729921334202363713_n.jpg?_nc_cat=111&ccb=1-7&_nc_eui2=AeGCUFqhiuPRWThLh8nfA0FrGMOyFHJd600Yw7IUcl3rTeyzlphspbgXtLhEgKm-ucwsTy2q3IGuUPDkt819fGWZ&_nc_ohc=zCzFJh-Gc0MQ7kNvwGeZXGP&_nc_oc=AdpLiQlE1FDh99gg-3Hxcr8vlCS6gOj0EXlYI24jpmnfWsAjmIRrsr18NVkR0-wap2M&_nc_zt=23&_nc_ht=scontent-fra3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=8445IxEL7iyrOW05gXxR1Q&_nc_tpa=Q5bMBQGRqRc6FqIm_Ey_eBmdtwcPo-w1QAxXRiRSPEEDMpZiMM_i3bQaqaMwcRGKJg6hRznkk-UU_KTIrw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=d2b52d&_nc_sid=58080a&oh=00_AfzHi7uHe8iEMCDr5I75yM_fPHhZ_yJoi6OtppFPC2_S6w&oe=69C38682&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLcXJY_OIpuljvO_E6LwXoE7izKp8--qzCSgX7czwMq6RT10t4FZhHpkm6EdRTqWjBWCGXpRfhyVfCY-kP79h1bjHushD1Mr-S_FqwsMkzHK5WBNeDXBw7ESRY_XwxcyCgUc5OzFGRIM_fFmPkxoMaU" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">Ads geral paty</div>
-                    <div class="ad-meta">R$ 835.69 · 825 cliques · 245 conv · CTR 3.02%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 3.41</div>
-                    <a class="ad-link" href="https://fb.me/xYokMkKV5ugpcMK" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">Novo anúncio de Engajamento</div>
+                    <div class="ad-meta">R$ 216.35 · 267 cliques · 31 conv · CTR 2.78%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 6.98</div>
+                    <a class="ad-link" href="https://fb.me/27lDCjyFgKvhhTu" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Recife – PE com um protocolo es</div>
+            
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-2.xx.fbcdn.net/v/t15.5256-10/583044900_1374600844317694_6904335297976680287_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeG1dUtdn0Hvu2zfI8wPLRsBv-IGucnk5ZG_4ga5yeTlkS9F7mIuHlW9345wkD6Gmk_-HNG2PnLMvBPEPYIO2U6m&_nc_ohc=u866U9BNhaIQ7kNvwFSQAjb&_nc_oc=Adqf4f1DcP7WgMCUi1QGHIGmDGjzKNzA0WDm5qNs3iHmBTpGiK9BiA4g6eGWhB4Ty-Q&_nc_zt=23&_nc_ht=scontent-fra3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=8445IxEL7iyrOW05gXxR1Q&_nc_tpa=Q5bMBQGrgK_0oPRuOWAqPNC0O4VW48Z2xhmm7SulNAReWd7ZWvzQp2VAB_xLEbxZwSplo41EGlQXIUZ8Hg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyUfaUYo27nGmLSPBO1L3YPCyWSJghuasgI4pBVDnmZjQ&oe=69C39425&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/626114735_1561610271799518_6331510462067658044_n.jpg?_nc_cat=107&ccb=1-7&_nc_eui2=AeGRAsXo9azcn5jgWAnHGWiW6gg31--ioZ7qCDfX76Khnu8-uft_jWZpAxEE8sivZKdDEBRbdVUyVZ0qGSzxjr2A&_nc_ohc=ihpy4G40UNgQ7kNvwHRO9hs&_nc_oc=Adpin5JqzAo48wt8WBgeHtrDg7Vn-OD8pvajg2sW3jZkps_1BSMSMknt6T8gilrkT54&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=0kYb30ud_AlEVGFilfU-fA&_nc_tpa=Q5bMBQEY38qJI97WvNXRjPOIu-FTij2aHXaz7ZfYkcMiXVU9zOLHH1Q6MhWZ3glhxo-HNUQvppiRZWYHJw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=b696e2&_nc_sid=58080a&oh=00_AfyX6ulm9LtLqrZrQBAySNinPaSpP1qw-bFsgIojARRhmQ&oe=69C3DCB8&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads papo homem</div>
+                    <div class="ad-meta">R$ 193.01 · 118 cliques · 8 conv · CTR 2.39%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 24.13</div>
+                    <a class="ad-link" href="https://fb.me/1SDDOALTw0NMioy" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Se você tem diabetes tipo 2 e sofre com impotência ou dificuldade de ereção, isso não é coincidência.<br><br>A glicose alta af</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/583044900_1374600844317694_6904335297976680287_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeG1dUtdn0Hvu2zfI8wPLRsBv-IGucnk5ZG_4ga5yeTlkS9F7mIuHlW9345wkD6Gmk_-HNG2PnLMvBPEPYIO2U6m&_nc_ohc=u866U9BNhaIQ7kNvwHE3Zh2&_nc_oc=AdpfGOeMCvGg9BwhWRLDANIEkukbcOF7ltkPU2P7HeQicILBpT48OEOaGszbEi_apbM&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=0kYb30ud_AlEVGFilfU-fA&_nc_tpa=Q5bMBQG0IV-iKXe5PtZX7r5VDXNdNoUgHOF_BAYh1nn00i1qSoT0xa1pjSuOTve-mdlL86hFBpoxupc_Ng&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzKB8-totN7_bwszRFpx40AhEWc3CxbaRoantAYKMKF3g&oe=69C3CC65&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">Ads voce sofre celli</div>
-                    <div class="ad-meta">R$ 816.67 · 507 cliques · 139 conv · CTR 1.87%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 5.88</div>
-                    <a class="ad-link" href="https://fb.me/qzRlnOLBijtWjQo" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 119.71 · 141 cliques · 20 conv · CTR 2.72%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 5.99</div>
+                    <a class="ad-link" href="https://fb.me/34SnIbi2d805f31" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Recife – PE com um protocolo es</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-1.xx.fbcdn.net/v/t15.5256-10/582127870_878027088121279_1034889703586285501_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeHjbsZAiPPfzo9zLL-L91nHi_DcD3DwRUOL8NwPcPBFQ3c0CZH1MoWU0fGXlir1ZGQQs9u9gq6koND3VkM9cQvq&_nc_ohc=ZSOF_icg5SIQ7kNvwGLF2jf&_nc_oc=Adq2ujBOzGOC59yPAQJALKzwMl5JER6KYWBEjsv-1C04LqmgLMjyAqfNpijdkDZdHfM&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=8445IxEL7iyrOW05gXxR1Q&_nc_tpa=Q5bMBQH135kB9M928qRXG787BGHiqcRfwFpJ2iy73Imhp95-T42DmXRjucpC6tU9bvPz79OLupdwFloZHA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfymYq2GtEis9Y5YBoncnVHM3lmebm8jTYzyTmHV4EjZjQ&oe=69C38BC2&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKxcR3fyKa4Vyqmj7Nfy9U1FRHpLDo1qAzmD-HpDV4DX0ZnmvVMOOZ3W3eegP3vPm8Wq1tWzO7qTXjwiSCVmRrN201dTsH9JpXzP9yl0vFKMYnFbbTSpVwD2EhoVYY3_40RD2Wf-q_8TP-roMVU5NwE" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">Ads controlar glicose</div>
-                    <div class="ad-meta">R$ 788.46 · 626 cliques · 154 conv · CTR 2.58%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 5.12</div>
-                    <a class="ad-link" href="https://fb.me/2BAU5r5hUOdV51O" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">🚨 Mesmo tomando remédios, sua glicemia continua fora de controle?<br><br>A Doutor DM2 chegou a Recife – PE com um protocolo es</div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLml1Tx7tKmaPkVRfCtt3SzqrjHtJXnwbdYiXAdy0iwoV0SsnNrMB2dR2c6jd010FTtkYtpLgr3Dv4JV1yRK1foWl3oy3Eqj3hZJO4YW50wJcUQFZvM1zrfXfQ8QBj3pIny7t4njH55DiQMKnSmsdxw" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">ads disfuncao cely</div>
-                    <div class="ad-meta">R$ 779.15 · 672 cliques · 47 conv · CTR 1.96%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 16.58</div>
-                    <a class="ad-link" href="https://fb.me/28dYFZT60S4Maoj" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads disfuncao paty</div>
+                    <div class="ad-meta">R$ 45.93 · 23 cliques · 1 conv · CTR 1.75%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 45.93</div>
+                    <a class="ad-link" href="https://fb.me/1SQmtpcpDAKxl10" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">Diabetes tipo 2 e impotência: relação REAL.<br><br>Se você tem +50 anos, usa metformina/insulina e sente:<br>👉 libido baixa<br>👉 can</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra5-2.xx.fbcdn.net/v/t15.5256-10/626114735_1561610271799518_6331510462067658044_n.jpg?_nc_cat=107&ccb=1-7&_nc_eui2=AeGRAsXo9azcn5jgWAnHGWiW6gg31--ioZ7qCDfX76Khnu8-uft_jWZpAxEE8sivZKdDEBRbdVUyVZ0qGSzxjr2A&_nc_ohc=ihpy4G40UNgQ7kNvwHmQDQ9&_nc_oc=AdqImBxbYOdre0aIGupnaVvnlBwN1MluJ16lY5-zw1FYuCo57nMV5ndEdvgrr5yOGo4&_nc_zt=23&_nc_ht=scontent-fra5-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=8445IxEL7iyrOW05gXxR1Q&_nc_tpa=Q5bMBQEQdLSujEyLEHAJGQk_Wk0QWfRr_P-QScqPgpsXau8qZk3iKDvJpaSNJ2op8cRDRuJc2e2-mGNl1g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=b696e2&_nc_sid=58080a&oh=00_AfxbEdeK0h3PkiJREZjfF-e7eMddf5Snf5RumSKrrABhoQ&oe=69C3A478&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIYrCwpko2DCbXlUYB-wGbZfYi5fys9Zx65C4GCyz_SGRgzMwH4UZlEirJaSHOabQiyRQ6uqL_ZWImOMCF9v3YZJR-SMaUyenG0pQ45MlfxDfDf4Vw2FlNck3L0tMYhgun92O99zTUwBjZeseBLkLRd" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads papo homem</div>
-                    <div class="ad-meta">R$ 723.81 · 544 cliques · 40 conv · CTR 2.41%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 18.10</div>
-                    <a class="ad-link" href="https://fb.me/1OBuF9tGnONWhvZ" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">Novo anúncio de Engajamento — Cópia</div>
+                    <div class="ad-meta">R$ 39.27 · 57 cliques · 10 conv · CTR 3.62%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 3.93</div>
+                    <a class="ad-link" href="https://fb.me/1SgBhRaKxuXWWqK" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">Se você tem diabetes tipo 2 e sofre com impotência ou dificuldade de ereção, isso não é coincidência.<br><br>A glicose alta af</div>
+            
         </div></div>
 
+    <h3 class="section-header">Análise &amp; Otimizações</h3>
+    <div class="opt-summary">
+        <div class="opt-card opt-green"><span class="opt-v">R$ 7.5</span><span class="opt-l">CPL Médio</span></div>
+        <div class="opt-card opt-green"><span class="opt-v">R$ 3.9</span><span class="opt-l">Melhor CPL</span></div>
+        <div class="opt-card opt-red"><span class="opt-v">R$ 59</span><span class="opt-l">Gasto sem conversão</span></div>
+        <div class="opt-card opt-red"><span class="opt-v">1.4%</span><span class="opt-l">% desperdiçado</span></div>
+    </div><div class="opt-block"><h4 class="opt-title opt-title-green">🟢 Escalar — CPL abaixo da média</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>CTR</th></tr></thead><tbody><tr><td>25/11 [vendas] [wpp] [bairros + km clinica] [40+] </td><td>R$ 1218</td><td><strong>263</strong></td><td class="cpl-good">R$ 4.6</td><td>2.55%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-red">🔴 Pausar — CPL muito alto ou sem conversão</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Motivo</th></tr></thead><tbody><tr><td>14/11  [trafego-perfil] [recife] [35+] CBO</td><td>R$ 448</td><td>2</td><td class="cpl-bad">R$ 223.8</td><td>CPL 29.7x a média</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-yellow">🟡 Otimizar — CPL acima da média</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th></tr></thead><tbody><tr><td>10/01  [vendas] [wpp] [homens] [40+] [alto valor]</td><td>R$ 1197</td><td>54</td><td class="cpl-warn">R$ 22.2</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-green">🏆 Top Criativos — Menor CPL</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>CTR</th></tr></thead><tbody><tr><td>Novo anúncio de Engajamento — Cópia</td><td>04/02 [engajamento] [rmk] [rec</td><td>R$ 39</td><td><strong>10</strong></td><td class="cpl-good">R$ 3.9</td><td>3.62%</td></tr><tr><td>Ads geral paty</td><td>25/11 [vendas] [wpp] [bairros </td><td>R$ 1085</td><td><strong>242</strong></td><td class="cpl-good">R$ 4.5</td><td>2.53%</td></tr><tr><td>ads exames jonas</td><td>04/02 [engajamento] [rmk] [rec</td><td>R$ 981</td><td><strong>185</strong></td><td class="cpl-good">R$ 5.3</td><td>2.68%</td></tr><tr><td>Ads voce sofre celli</td><td>25/11 [vendas] [wpp] [bairros </td><td>R$ 120</td><td><strong>20</strong></td><td class="cpl-good">R$ 6.0</td><td>2.72%</td></tr><tr><td>Novo anúncio de Engajamento</td><td>04/02 [engajamento] [rmk] [rec</td><td>R$ 216</td><td><strong>31</strong></td><td class="cpl-good">R$ 7.0</td><td>2.78%</td></tr><tr><td>ads disfuncao cely</td><td>10/01  [vendas] [wpp] [homens]</td><td>R$ 461</td><td><strong>23</strong></td><td class="cpl-good">R$ 20.0</td><td>2.05%</td></tr><tr><td>ads disfuncao cely 2</td><td>10/01  [vendas] [wpp] [homens]</td><td>R$ 497</td><td><strong>22</strong></td><td class="cpl-good">R$ 22.6</td><td>1.93%</td></tr><tr><td>ads papo homem</td><td>10/01  [vendas] [wpp] [homens]</td><td>R$ 193</td><td><strong>8</strong></td><td class="cpl-good">R$ 24.1</td><td>2.39%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-red">💸 Criativos sem conversão (gasto > R$ 15)</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Campanha</th><th>Gasto</th><th>Clicks</th></tr></thead><tbody><tr><td>Ad - Cansaço</td><td>14/11  [trafego-perfil] [recif</td><td class="cpl-bad">R$ 36</td><td>133</td></tr><tr><td>Ad - Visão</td><td>14/11  [trafego-perfil] [recif</td><td class="cpl-bad">R$ 23</td><td>89</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-yellow">⚠️ Criativos com CPL alto (> R$ 15)</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Gasto</th><th>Conv</th><th>CPL</th></tr></thead><tbody><tr><td>Ad - Visão 2</td><td>R$ 359</td><td>2</td><td class="cpl-bad">R$ 179.4</td></tr><tr><td>ads papo homem</td><td>R$ 193</td><td>8</td><td class="cpl-bad">R$ 24.1</td></tr><tr><td>ads disfuncao cely 2</td><td>R$ 497</td><td>22</td><td class="cpl-bad">R$ 22.6</td></tr><tr><td>ads disfuncao cely</td><td>R$ 461</td><td>23</td><td class="cpl-bad">R$ 20.0</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title">📊 Evolução por Período</h4><table class="camp-table"><thead><tr><th>Período</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Tendência</th></tr></thead><tbody><tr><td><strong>30 dias</strong></td><td>R$ 4115</td><td><strong>546</strong></td><td>R$ 7.5</td><td>—</td></tr><tr><td><strong>14 dias</strong></td><td>R$ 2256</td><td><strong>243</strong></td><td>R$ 9.3</td><td><span style="color:#dc2626">▲ 23% pior</span></td></tr><tr><td><strong>3 dias</strong></td><td>R$ 459</td><td><strong>61</strong></td><td>R$ 7.5</td><td><span style="color:#16a34a">▼ 19% melhor</span></td></tr><tr><td><strong>Ontem</strong></td><td>R$ 138</td><td><strong>23</strong></td><td>R$ 6.0</td><td><span style="color:#16a34a">▼ 20% melhor</span></td></tr><tr><td><strong>Hoje</strong></td><td>R$ 145</td><td><strong>19</strong></td><td>R$ 7.6</td><td><span style="color:#dc2626">▲ 27% pior</span></td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-green">📈 Melhorando (CPL caiu nos últimos 3 dias)</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>CPL 14d</th><th>CPL 3d</th><th>Variação</th></tr></thead><tbody><tr><td>10/01  [vendas] [wpp] [homens] [40+] [alto valor]</td><td>R$ 22.4</td><td class="cpl-good">R$ 15.3</td><td class="cpl-good">-32%</td></tr><tr><td>25/11 [vendas] [wpp] [bairros + km clinica] [40+] </td><td>R$ 5.3</td><td class="cpl-good">R$ 3.8</td><td class="cpl-good">-28%</td></tr></tbody></table></div>
+
     <div class="footer">
-        <div>seven midas · marketing digital · atualizado em 20/03/2026 18:41</div>
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 23:40</div>
     </div>
 </div>
 
@@ -308,11 +313,11 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 new Chart(document.getElementById('dailyChart'),{
     type:'bar',
     data:{
-        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
+        labels:["03/06", "03/07", "03/08", "03/09", "03/10", "03/11", "03/12", "03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
         datasets:[
-            {label:'Gasto (R$)',data:[117.16, 146.57, 160.83, 196.52, 166.51, 153.82, 138.19],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
-            {label:'Cliques',data:[153, 175, 205, 220, 212, 179, 193],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
-            {label:'Conversões',data:[13, 14, 15, 22, 25, 13, 23],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+            {label:'Gasto (R$)',data:[155.55, 176.1, 110.21, 201.22, 208.14, 168.16, 156.89, 117.16, 146.57, 160.83, 196.52, 166.51, 153.82, 138.19],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[174, 182, 125, 158, 198, 217, 206, 153, 175, 205, 220, 212, 179, 193],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[17, 16, 11, 20, 12, 25, 17, 13, 14, 15, 22, 25, 13, 23],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
         ]
     },
     options:{

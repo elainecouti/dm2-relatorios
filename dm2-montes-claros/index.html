@@ -63,6 +63,21 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 .bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
 .bal-fill{height:100%;border-radius:4px;transition:width .5s}
 
+.opt-summary{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.opt-card{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.opt-card.opt-green{border-left:4px solid #22c55e}
+.opt-card.opt-red{border-left:4px solid #ef4444}
+.opt-v{display:block;font-size:20px;font-weight:800;color:#184341}
+.opt-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+.opt-block{margin-bottom:20px}
+.opt-title{font-size:14px;font-weight:700;margin-bottom:10px}
+.opt-title-green{color:#16a34a}
+.opt-title-red{color:#dc2626}
+.opt-title-yellow{color:#d97706}
+.cpl-good{color:#16a34a;font-weight:700}
+.cpl-bad{color:#dc2626;font-weight:700}
+.cpl-warn{color:#d97706;font-weight:700}
+
 .footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
 
 .table-wrap{overflow-x:auto;margin-bottom:32px}
@@ -86,7 +101,7 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
     </div>
     <div class="topbar-right">
         <div class="live-dot"></div>
-        <span class="topbar-label">Atualizado 20/03/2026 18:42</span>
+        <span class="topbar-label">Atualizado 20/03/2026 23:42</span>
     </div>
 </div>
 
@@ -97,13 +112,13 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
         <p class="info">29 campanhas (2 ativas) · Conta: CA 01 - MONTES CLAROS</p>
     </div>
 
-    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 81,833.29</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">656,523</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">71,134</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.20%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 1.15</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 13.79</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">7,883</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 10.38</span><span class="kpi-l">Custo/Conv</span></div></div>
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 3,612.30</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">62,181</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">3,859</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.86%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.94</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 17.42</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">392</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 9.22</span><span class="kpi-l">Custo/Conv</span></div></div>
 
     
         <div class="balance-section">
             <div class="bal-row"><span>Limite da conta</span><span>R$ 82,028.79</span></div>
-            <div class="bal-row"><span>Gasto total</span><span>R$ 81,833.41</span></div>
-            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#f59e0b">R$ 195.38</span></div>
+            <div class="bal-row"><span>Gasto total</span><span>R$ 81,873.53</span></div>
+            <div class="bal-row highlight"><span>Saldo restante</span><span style="color:#f59e0b">R$ 155.26</span></div>
             <div class="bal-bar"><div class="bal-fill" style="width:100%;background:#f59e0b"></div></div>
         </div>
 
@@ -119,266 +134,50 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
                 <th>Campanha</th><th>Objetivo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>CTR</th><th>Conv</th><th>Custo/Conv</th>
             </tr></thead>
             <tbody><tr>
-            <td><span class="dot paused"></span>22/06 [trafego] [wpp] [captacao] [ABO] [teste</td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 11918.77</td>
-            <td>156,913</td>
-            <td>8,705</td>
-            <td>1.16%</td>
-            <td><strong>1535</strong></td>
-            <td>R$ 7.76</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>27/06 [engajamento] [wpp] [montes-claros] [al</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 8376.91</td>
-            <td>175,597</td>
-            <td>7,252</td>
-            <td>1.34%</td>
-            <td><strong>758</strong></td>
-            <td>R$ 11.05</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>22/06 [engajamento] [wpp] [captacao] [ABO] [t</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 6176.23</td>
-            <td>98,487</td>
-            <td>6,889</td>
-            <td>1.31%</td>
-            <td><strong>683</strong></td>
-            <td>R$ 9.04</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>01/06 - [engajamento] [wpp] [rmk] [44-65] CBO</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 5774.52</td>
-            <td>26,479</td>
-            <td>4,852</td>
-            <td>1.78%</td>
-            <td><strong>363</strong></td>
-            <td>R$ 15.91</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>09/10 [trafego] [wpp] [captacao] [ABO] [teste</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 5160.61</td>
-            <td>128,797</td>
-            <td>4,374</td>
-            <td>1.07%</td>
-            <td><strong>535</strong></td>
-            <td>R$ 9.65</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>25/01 [engajamento] [wpp] [3km-clinica] [novo</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 3384.29</td>
-            <td>57,170</td>
-            <td>3,026</td>
-            <td>1.39%</td>
-            <td><strong>207</strong></td>
-            <td>R$ 16.35</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>13/10 [vendas] [wpp] [montes-claro] [mix-publ</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 3328.65</td>
-            <td>87,534</td>
-            <td>2,930</td>
-            <td>1.13%</td>
-            <td><strong>438</strong></td>
-            <td>R$ 7.60</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>27/06 [vendas] [montes-claros] [44-65+] [test</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 3237.52</td>
-            <td>47,087</td>
-            <td>1,824</td>
-            <td>0.87%</td>
-            <td><strong>163</strong></td>
-            <td>R$ 19.86</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>09/08 [trafego] [wpp] [captacao] [ABO] [cidad</td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 3101.26</td>
-            <td>71,661</td>
-            <td>2,920</td>
-            <td>0.85%</td>
-            <td><strong>325</strong></td>
-            <td>R$ 9.54</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>24/03 [vendas] [homens] [40+] [cidade] [impot</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 2996.77</td>
-            <td>56,722</td>
-            <td>1,666</td>
-            <td>1.04%</td>
-            <td><strong>296</strong></td>
-            <td>R$ 10.12</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>13/10 [vendas] [wpp] [rmk] [montes-claro]  CB</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 2863.08</td>
-            <td>101,014</td>
-            <td>2,262</td>
-            <td>0.82%</td>
-            <td><strong>229</strong></td>
-            <td>R$ 12.50</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>20/11 [LEADS] [WPP] [ABERTO]</td>
-            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
-            <td>R$ 2838.23</td>
-            <td>60,903</td>
-            <td>2,827</td>
-            <td>1.23%</td>
-            <td><strong>393</strong></td>
-            <td>R$ 7.22</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>22/06 [vendas] [homem] [wpp] [publicos] [ABO]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 2676.39</td>
-            <td>41,598</td>
-            <td>2,075</td>
-            <td>1.18%</td>
-            <td><strong>200</strong></td>
-            <td>R$ 13.38</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>13/10 [vendas] [wpp] [montes-claro] [mix-publ</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 2381.68</td>
-            <td>78,190</td>
-            <td>3,379</td>
-            <td>1.13%</td>
-            <td><strong>353</strong></td>
-            <td>R$ 6.75</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>13/10 [vendas] [wpp] [montes-claro] [mix-publ</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 2375.08</td>
-            <td>81,550</td>
-            <td>2,854</td>
-            <td>1.23%</td>
-            <td><strong>301</strong></td>
-            <td>R$ 7.89</td>
-        </tr><tr>
             <td><span class="dot active"></span>01/03 [vendas] [wpp] [ceps-bairros-interesses</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 2336.32</td>
-            <td>36,245</td>
-            <td>2,381</td>
+            <td>R$ 2252.14</td>
+            <td>35,675</td>
+            <td>2,297</td>
             <td>1.99%</td>
-            <td><strong>230</strong></td>
-            <td>R$ 10.16</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>24/03 ][engajamento] [rmk] montes-claros] CBO</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 2330.42</td>
-            <td>18,120</td>
-            <td>1,639</td>
-            <td>1.57%</td>
-            <td><strong>145</strong></td>
-            <td>R$ 16.07</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>25/01 [engajamento] [wpp] [montes-claros] [no</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 2279.54</td>
-            <td>38,633</td>
-            <td>2,053</td>
-            <td>1.50%</td>
-            <td><strong>164</strong></td>
-            <td>R$ 13.90</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>20/10 [LEADS] [WPP] [ABERTO]</td>
-            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
-            <td>R$ 1525.00</td>
-            <td>54,845</td>
-            <td>1,349</td>
-            <td>1.14%</td>
-            <td><strong>184</strong></td>
-            <td>R$ 8.29</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>22/06 [alcance] [videoview] [ABO]</td>
-            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
-            <td>R$ 1419.33</td>
-            <td>56,533</td>
-            <td>1,322</td>
-            <td>0.70%</td>
-            <td><strong>13</strong></td>
-            <td>R$ 109.18</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>25/01 [engajamento] [wpp] [cidades-montes-cla</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 1304.01</td>
-            <td>25,177</td>
-            <td>1,429</td>
-            <td>1.35%</td>
-            <td><strong>106</strong></td>
-            <td>R$ 12.30</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>25/01 [leads] [wpp] [montes-claros 40km] [est</td>
-            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
-            <td>R$ 1010.76</td>
-            <td>29,598</td>
-            <td>994</td>
-            <td>1.25%</td>
-            <td><strong>85</strong></td>
-            <td>R$ 11.89</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>23/05 [vendas] [wpp] [montes-claros] [45+] CB</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 763.32</td>
-            <td>27,518</td>
-            <td>264</td>
-            <td>0.58%</td>
-            <td><strong>21</strong></td>
-            <td>R$ 36.35</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>01/06 - [vendas] [wpp] [44-65] [teste-criativ</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 644.83</td>
-            <td>22,966</td>
-            <td>376</td>
-            <td>1.09%</td>
-            <td><strong>39</strong></td>
-            <td>R$ 16.53</td>
+            <td><strong>219</strong></td>
+            <td>R$ 10.28</td>
         </tr><tr>
             <td><span class="dot active"></span>01/03 [engajamento] [wpp] [rmk] [35+] CBO</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 471.18</td>
-            <td>6,213</td>
-            <td>617</td>
-            <td>2.95%</td>
-            <td><strong>59</strong></td>
-            <td>R$ 7.99</td>
+            <td>R$ 453.87</td>
+            <td>6,175</td>
+            <td>602</td>
+            <td>2.99%</td>
+            <td><strong>57</strong></td>
+            <td>R$ 7.96</td>
         </tr><tr>
-            <td><span class="dot paused"></span>18/09 [engajamento] [wpp] [montes-claros] [al</td>
+            <td><span class="dot paused"></span>20/11 [LEADS] [WPP] [ABERTO]</td>
+            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
+            <td>R$ 302.56</td>
+            <td>15,196</td>
+            <td>352</td>
+            <td>1.23%</td>
+            <td><strong>39</strong></td>
+            <td>R$ 7.76</td>
+        </tr><tr>
+            <td><span class="dot paused"></span>09/10 [trafego] [wpp] [captacao] [ABO] [teste</td>
             <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 439.50</td>
-            <td>9,928</td>
-            <td>192</td>
-            <td>0.79%</td>
-            <td><strong>21</strong></td>
-            <td>R$ 20.93</td>
+            <td>R$ 302.33</td>
+            <td>15,385</td>
+            <td>317</td>
+            <td>1.25%</td>
+            <td><strong>38</strong></td>
+            <td>R$ 7.96</td>
         </tr><tr>
-            <td><span class="dot paused"></span>27/07 [trafego] [wpp] [captacao] [ABO] [cidad</td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 395.41</td>
-            <td>5,618</td>
-            <td>438</td>
-            <td>1.37%</td>
-            <td><strong>11</strong></td>
-            <td>R$ 35.95</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>11/09 [engajamento] [wpp] [montes-claros] [al</td>
+            <td><span class="dot paused"></span>27/06 [engajamento] [wpp] [montes-claros] [al</td>
             <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 213.33</td>
-            <td>8,134</td>
-            <td>167</td>
-            <td>1.15%</td>
-            <td><strong>13</strong></td>
-            <td>R$ 16.41</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>06/10 [trafego] [wpp] [captacao] [ABO] [teste</td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 110.35</td>
-            <td>4,487</td>
-            <td>78</td>
-            <td>1.10%</td>
-            <td><strong>13</strong></td>
-            <td>R$ 8.49</td>
+            <td>R$ 301.40</td>
+            <td>14,048</td>
+            <td>291</td>
+            <td>1.62%</td>
+            <td><strong>39</strong></td>
+            <td>R$ 7.73</td>
         </tr></tbody>
         </table>
     </div>
@@ -387,127 +186,135 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
     <div class="creatives-grid">
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-1.xx.fbcdn.net/v/t15.13418-10/436495410_3831901527067711_4563155624163106927_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeGsWJW8VRxDywM9_hpYogBRSrP82aysyqJKs_zZrKzKojN5oZAwlSvfh4JWMAUJa3wPMP9c2Rjd4ODYr1wsvfjH&_nc_ohc=cfBUl4h2w-cQ7kNvwFwQ21s&_nc_oc=AdrER5zDIyT-TducHoDuyHlcWiHhIJTmkKtzGw5Nm6ypOx7tml0_Ukc5B7iMM-eM6SM&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=86970xWk6oKeSctrCNPxjA&_nc_tpa=Q5bMBQFC4bbCGOPGeTIdipCCj4GVKIzdXEPcAOmrtp62tzjn5sNnj36TLJt3WvlaaljetuyjUJ2jdVdXWA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_Afx08DMhVfQBm7C1DhEIznzWNchTYCR6FE8xMoluOgFqTw&oe=69C38CA3&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/643831716_758837447027488_792798876168590846_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeG3LTfXr2gZlU_QtgMGocWzgx4fjx-oIaiDHh-PH6ghqEuTb1Ai15Sh9CVwxUmHTDO__LfW73b9iXDxojKlTzvn&_nc_ohc=k4jp2NGD194Q7kNvwG04QiZ&_nc_oc=AdrOjI8geZdG-IaaEcUJmja0jcJRfsoUb1k5u0S4SHKFbFhv01Y1mPqihBARiN8_aqg&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=koNtfSA-Beqj4En_jC1QUg&_nc_tpa=Q5bMBQFicj1tcigxi1fT0kcn8YFL-bPUe3QmjWpkiT0OyJB22LdUg6WDMjI4f6dqhJcG_rzev7r0oVWUzQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfylYxUUuzjync2KcUGQSld22M0uVLk-bSdxA5SKgztDXg&oe=69C3D79E&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads se voce tem dm2</div>
-                    <div class="ad-meta">R$ 10156.63 · 7627 cliques · 1341 conv · CTR 1.15%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 7.57</div>
-                    <a class="ad-link" href="https://fb.me/1ZboByfiuMIYFNu" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads sulfoniureias</div>
+                    <div class="ad-meta">R$ 360.33 · 264 cliques · 35 conv · CTR 1.88%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 10.30</div>
+                    <a class="ad-link" href="https://fb.me/1SEDs6whWkoGOJ6" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">Montes Claros e Região 🚨<br>Sofre com a Diabetes tipo II e quer conhecer um tratamento alternativo? <br><br>A Doutor DM2 chegou c</div>
+            <div class="ad-body">Você toma glibenclamida, glimepirida ou gliclazida?<br><br>Esses medicamentos estimulam o pâncreas a produzir mais insulina.<br><br></div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKJLvcUdIdrUD0N_-Q-ZOf8RSp3FuW8T8SzfSE2itt_BHBRWRhZZQm4a3SVlM85pwS--uqNgFO_LVxy2K2d2O0ZQX66VT6uDNK_YMDuqolkGrj9dBxhJWTeTURTbG1Y-xh4bmk5ql2MwwlSAWtBiVpW" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/645724984_1586787019270972_4595705073781263424_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeGhWWXH0Fs2qq3idl7l9BzIQWd_85naDLdBZ3_zmdoMt1p0Ie2dD2k8fxHVYmg14G_SUTwO2Xzf1_Kr5kG5XcZ5&_nc_ohc=pCaTm5FLouwQ7kNvwEc5R9g&_nc_oc=Adopauo3B8k-2M97bkXlvOx8h3mGIzOCVevxVLyk5PN_U7E5sV_Ds__j8PsUqKygpG8&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=koNtfSA-Beqj4En_jC1QUg&_nc_tpa=Q5bMBQFrKQNtyGLjxbJeRtXO2BTFcpePEcJjqu7WWKqrpy5O74VwKN3jP42nX8ehAoqyppA-eeIFA2qqBQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afx63Jkp9ry2TFdlq-T1b2m-15UqdqdPHnwlPAkQESopbQ&oe=69C3E487&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads midia flexivel</div>
-                    <div class="ad-meta">R$ 8326.38 · 7180 cliques · 758 conv · CTR 1.33%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 10.98</div>
-                    <a class="ad-link" href="https://fb.me/2c15rvX2KhTDzsf" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads metformina / glifage</div>
+                    <div class="ad-meta">R$ 315.99 · 297 cliques · 22 conv · CTR 2.42%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 14.36</div>
+                    <a class="ad-link" href="https://fb.me/1SJCRzAcz0z3l3p" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">🔴 Diabético e mora em Montes Claros e Região? Descubra como sair da medicação e conquistar a remissão da diabetes!<br><br>Você</div>
+            <div class="ad-body">Metformina controla. Mas não resolve.<br><br>Você não acorda com glicose alta por culpa do jantar.<br><br>É o seu fígado produzindo </div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQL_SjDTimpwdSCbObKwaMxMO5KoRQV-uQiKv2fTwIwbJ9oKCcW-Ir_7ZK__ibE01pPFfTO7y3yCG_TTZUmG4Vdb9YofW4-Afl180fLa9AVUuBjzDX-dQ1DlzX6J5o3arlqDEOECxFykPTyS1DgbHwsL" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJJRGhZQDFHEO0PjJBJtZDaC1LeBHlSHcSo4JoG_S3OUh4L9yZVvmq6H94ELAUJhmwGW45JEF2QNw7b06vSXnrh9-gjfgYu-KF6oWOvH4R_sZYPXOU2rmcUw_QX-ZL9cTqOzAWgA2q-xFOmi_T7q7DA" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">[add 04]</div>
-                    <div class="ad-meta">R$ 5070.16 · 4299 cliques · 531 conv · CTR 1.07%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 9.55</div>
-                    <a class="ad-link" href="https://fb.me/1Q0lk8wpNSSuKkP" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 302.33 · 317 cliques · 38 conv · CTR 1.25%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 7.96</div>
+                    <a class="ad-link" href="https://fb.me/2OjoYQv9yChdwpQ" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🚨 É DIABÉTICO TIPO 2 E MORA EM MONTES CLAROS E REGIÃO?<br>Você não precisa conviver com cansaço, formigamentos, dor ou medi</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJlNvyHiDwZoGGPnvmtca6QAw6nSDZFMiFpm-Ooe-lt5QUlWRHgnltd-8GmX-1M42K9DwOGdaklCCEPUpYGbJwk4gciSCH6u-PKklnAdel7BqlGnHw7dSsn2O_AyFknyID0o8DuwIH05qYn7RC8LQI3" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJ7hRGg5j_NmvZcPdZV0SI-Myu_LJCJ5DpD63jDqeyJM1gtHk-zoGzMdTK4Aj9Yns_YNPC2qch3KWZk4_69CafwhvwSVWOrvTV_jkTYSP3i-XmTSxVjNSoCGyjeaWZkY61T5vd7V137o7W7Oo1KHmcZ" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads institucional</div>
-                    <div class="ad-meta">R$ 2714.22 · 1785 cliques · 172 conv · CTR 1.29%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 15.78</div>
-                    <a class="ad-link" href="https://fb.me/20AyQL5Bd80fvbe" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads midia flexivel</div>
+                    <div class="ad-meta">R$ 301.40 · 291 cliques · 39 conv · CTR 1.62%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 7.73</div>
+                    <a class="ad-link" href="https://fb.me/1ZwI4YRfp0jguIJ" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">Você sabia que viver sem diabetes tipo 2 é possível?<br><br>Enquanto muitos acreditam que controlar a doença é o máximo que se</div>
+            <div class="ad-body">🔴 Diabético e mora em Montes Claros e Região? Descubra como sair da medicação e conquistar a remissão da diabetes!<br><br>Você</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIQjdxhN83hQXtUpC9wEsBaEqSvHaQkWRTU9gBbJMFlkpn15qqBjRN9qmRlsvyqH8ExdEn1rhlU6-LmjS1rtHGo9H0HxmXVUoJdlS2qDC846s6p3_AypJUpraNCQyF6302aJflHp532dqnk-QnS_TmX" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJrrZ0kjNP7GqZWp3SWu3vYh1nLBar07vSd2-q0JEdoxYGuHSVQjuyoUbpyPwgdhbj1t_z1gbZUT_OWD9ZS2U2Vw7IyGwLBEQaBgelX9-4EMShhseXAtrZ8M3rBdgvJ5jFu4MEM7HR9iLQv-tYE5Dit" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads disfuncao eretil</div>
-                    <div class="ad-meta">R$ 2712.83 · 1526 cliques · 281 conv · CTR 1.05%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 9.65</div>
-                    <a class="ad-link" href="https://fb.me/1TFMJci2LCJ5jVB" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">[add 03]</div>
+                    <div class="ad-meta">R$ 276.89 · 332 cliques · 38 conv · CTR 1.28%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 7.29</div>
+                    <a class="ad-link" href="https://fb.me/2a8JTScUl9Km5Jx" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">Diabetes Pode Afetar Sua Saúde Sexual? <br><br>Muitos homens não sabem, mas o diabetes tipo 2 pode impactar a saúde sexual e a</div>
+            <div class="ad-body">🚨 É DIABÉTICO TIPO 2 E MORA EM MONTES CLAROS E REGIÃO?<br>Você não precisa conviver com cansaço, formigamentos, dor ou medi</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://external-fra3-2.xx.fbcdn.net/emg1/v/t13/10888329086459950844?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQI2Kd4xWEJuOIk5Cw5ACbojc2kkcaOJy3VxVY9TdDwyzmeQCDmq3wywW4PK2JxCznRBZ-69PehEOGixJTa_pQVKjp8h1gZOzLv_DQvY050wzTaY39ovVZ6VLUSnFPI58WPeQmHT-v0XWupa7oMTPVj5&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=oPBXA1Q9EL030HEH32hTsw&_nc_eui2=AeGI96mmprG2FYXOhiYX1niyfBc1L9bsz418FzUv1uzPjXNtnsZGeSDqJimoFM4LaypHftDT3r_yNiy8MtY6u7j0&_nc_oc=AdqDoubaqmZhaY19YJ_JUT-GYAMZVwNj9HvHSMYveRvywkk8NMxuNuPIPcvMeKOP4P4&ccb=13-1&oh=06_Q3-9AZVHs5RiHXJs53M_aSVu7zfTvBHW_fezi1IU_1SpZx4D&oe=69BF8EC8&_nc_sid=58080a&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/641253124_1876763629638087_6135263645649029601_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeF8iqXRfqP0e-CD3NowGjGJpbvZZvoeCv6lu9lm-h4K_qeqAiFf-j-_aE3tXOPJIrIIrptw-lb298tNMtZI2TED&_nc_ohc=EgPmBhV-AzoQ7kNvwHI-Cc0&_nc_oc=AdoK6VeQIsnCNRtCcMPyoYzBGMs0cSWYTVoyGMPZyaNaD67eL7X37vYzzoY2Cu51oA4&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=koNtfSA-Beqj4En_jC1QUg&_nc_tpa=Q5bMBQHwZFI3m4g3j_0NIENKTllO8AyGHUzzkijAtV0D0l_y0PUjD6cBicbmv_iAmwyAVRv6WL6o4jMXLw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afyn_ZCr5VDjO30RJ3pNp2v-PUwrsVV9I4RhmUqkjYgwdg&oe=69C3EE2A&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads noticia — Cópia</div>
-                    <div class="ad-meta">R$ 2237.17 · 2479 cliques · 213 conv · CTR 1.10%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 10.50</div>
-                    <a class="ad-link" href="https://fb.me/2Lo96tfErttAlR3" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads pre-diabetes</div>
+                    <div class="ad-meta">R$ 271.13 · 288 cliques · 26 conv · CTR 1.77%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 10.43</div>
+                    <a class="ad-link" href="https://fb.me/2omZWwWUdtG4GSW" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">Montes Claros e Região 🚨<br>Sofre com a Diabetes tipo II e quer conhecer um tratamento alternativo? <br><br>A Doutor DM2 chegou c</div>
+            <div class="ad-body">Pré-diabetes não é o começo da doença.<br>É o último aviso antes dela se instalar.<br><br>Antes da glicose subir, seu corpo já es</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://external-fra3-2.xx.fbcdn.net/emg1/v/t13/10888329086459950844?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQI2Kd4xWEJuOIk5Cw5ACbojc2kkcaOJy3VxVY9TdDwyzmeQCDmq3wywW4PK2JxCznRBZ-69PehEOGixJTa_pQVKjp8h1gZOzLv_DQvY050wzTaY39ovVZ6VLUSnFPI58WPeQmHT-v0XWupa7oMTPVj5&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=oPBXA1Q9EL030HEH32hTsw&_nc_eui2=AeGI96mmprG2FYXOhiYX1niyfBc1L9bsz418FzUv1uzPjXNtnsZGeSDqJimoFM4LaypHftDT3r_yNiy8MtY6u7j0&_nc_oc=AdqDoubaqmZhaY19YJ_JUT-GYAMZVwNj9HvHSMYveRvywkk8NMxuNuPIPcvMeKOP4P4&ccb=13-1&oh=06_Q3-9AZVHs5RiHXJs53M_aSVu7zfTvBHW_fezi1IU_1SpZx4D&oe=69BF8EC8&_nc_sid=58080a&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/643591385_25958487600468640_5114167025264480796_n.jpg?_nc_cat=100&ccb=1-7&_nc_eui2=AeGDdbw0oR5yQncQiD9KYdwePwsTfrLsWjo_CxN-suxaOvG_we9JDEP21zTf2a4M5Cr3ubL5ERfJSYXbv3mAOtoe&_nc_ohc=uAR1r0vmpwcQ7kNvwHUn4Wj&_nc_oc=AdoXgQPuEZ2PGA6VSKtmWoJo57UDYTRp8nzWOE6BYfFES1uy_G_JlHSJAi-js6a3v_A&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=koNtfSA-Beqj4En_jC1QUg&_nc_tpa=Q5bMBQF0wjbTxeXHbPEpG63155LO8v-Rx4N4ut3F2coGfnRl__1PHRm_UfbwMtlUn14BkH-ZRscO9mMp3g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfzNI3WQ-l4qtLI0OFzdTygAQaf2iB1hNdEX8a8Byer27Q&oe=69C3E10C&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads noticia</div>
-                    <div class="ad-meta">R$ 1955.57 · 2516 cliques · 271 conv · CTR 1.39%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 7.22</div>
-                    <a class="ad-link" href="https://fb.me/22lMc9obxBcq2OX" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads remissao prova social</div>
+                    <div class="ad-meta">R$ 270.91 · 411 cliques · 29 conv · CTR 3.16%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 9.34</div>
+                    <a class="ad-link" href="https://fb.me/24pBJpUIyqF8Wj3" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">Montes Claros e Região 🚨<br>Sofre com a Diabetes tipo II e quer conhecer um tratamento alternativo? <br><br>A Doutor DM2 chegou c</div>
+            <div class="ad-body">Ela poderia ter continuado apenas “se controlando”.<br>Poderia ter aceitado viver com medo da glicose todos os dias.<br>Mas de</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJpG1G5yuTfMGOfcM2N6Yb2nXVY8HJz0ddzZI1EOxc0sPuXNcL0YsjGidWNCxVUE2yg6D7PblFzR6lcBcg5m7MV_-qARPsTtGe5Rby1nw6jf865YsOKJvICqQ_lKEYUk0KOKRzIWcJc73WPYpqw6H95" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/641253124_1876763629638087_6135263645649029601_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeF8iqXRfqP0e-CD3NowGjGJpbvZZvoeCv6lu9lm-h4K_qeqAiFf-j-_aE3tXOPJIrIIrptw-lb298tNMtZI2TED&_nc_ohc=EgPmBhV-AzoQ7kNvwHI-Cc0&_nc_oc=AdoK6VeQIsnCNRtCcMPyoYzBGMs0cSWYTVoyGMPZyaNaD67eL7X37vYzzoY2Cu51oA4&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=koNtfSA-Beqj4En_jC1QUg&_nc_tpa=Q5bMBQHwZFI3m4g3j_0NIENKTllO8AyGHUzzkijAtV0D0l_y0PUjD6cBicbmv_iAmwyAVRv6WL6o4jMXLw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afyn_ZCr5VDjO30RJ3pNp2v-PUwrsVV9I4RhmUqkjYgwdg&oe=69C3EE2A&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads neuropatia</div>
-                    <div class="ad-meta">R$ 1907.67 · 1925 cliques · 128 conv · CTR 2.85%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 14.90</div>
-                    <a class="ad-link" href="https://fb.me/2d0iQyWzAiEFSCD" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads pre-diabetes</div>
+                    <div class="ad-meta">R$ 207.84 · 187 cliques · 16 conv · CTR 1.59%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 12.99</div>
+                    <a class="ad-link" href="https://fb.me/2omZWwWUdtG4GSW" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">&quot;A fiação do seu corpo está queimando — e ninguém te contou.&quot;<br><br> Sabe aquelas dores, formigamentos ou dormência nos pés e</div>
+            <div class="ad-body">Pré-diabetes não é o começo da doença.<br>É o último aviso antes dela se instalar.<br><br>Antes da glicose subir, seu corpo já es</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra5-2.xx.fbcdn.net/v/t15.5256-10/475168150_1831908820944796_6440434360397085278_n.jpg?_nc_cat=107&ccb=1-7&_nc_eui2=AeGafYzPzOvF5xCcoItEkdf0S7vO-2KyA7dLu877YrIDt6P16tOfAF6WtF6SWeB_pZgv1Er9r2WZsqAXg1narr6n&_nc_ohc=6AUzF4MKir4Q7kNvwEmpFGb&_nc_oc=Adq1T7_Sj-M8qojFSk_z5HQRfjLAlJsFI46e_YS7vKkOxWTpBV-8W5fazpItljB9qA0&_nc_zt=23&_nc_ht=scontent-fra5-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=86970xWk6oKeSctrCNPxjA&_nc_tpa=Q5bMBQGymYIgOyiF-FN9NRWpxP8g5piTGE27DOBzzpYOiNR0wY1i0n66vfgRbyrAc_uMdIgO3lDSP2Dpqg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwNnXvoa_d9u7jLg5VW_R6an-vrkuTlknGxiKy306P2JQ&oe=69C3A407&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/641253124_1876763629638087_6135263645649029601_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeF8iqXRfqP0e-CD3NowGjGJpbvZZvoeCv6lu9lm-h4K_qeqAiFf-j-_aE3tXOPJIrIIrptw-lb298tNMtZI2TED&_nc_ohc=EgPmBhV-AzoQ7kNvwHI-Cc0&_nc_oc=AdoK6VeQIsnCNRtCcMPyoYzBGMs0cSWYTVoyGMPZyaNaD67eL7X37vYzzoY2Cu51oA4&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=koNtfSA-Beqj4En_jC1QUg&_nc_tpa=Q5bMBQHwZFI3m4g3j_0NIENKTllO8AyGHUzzkijAtV0D0l_y0PUjD6cBicbmv_iAmwyAVRv6WL6o4jMXLw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afyn_ZCr5VDjO30RJ3pNp2v-PUwrsVV9I4RhmUqkjYgwdg&oe=69C3EE2A&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads prova social cely</div>
-                    <div class="ad-meta">R$ 1891.78 · 1512 cliques · 128 conv · CTR 1.28%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 14.78</div>
-                    <a class="ad-link" href="https://fb.me/1THpNsIp9xaU0in" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads pre-diabetes</div>
+                    <div class="ad-meta">R$ 202.01 · 296 cliques · 30 conv · CTR 1.95%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 6.73</div>
+                    <a class="ad-link" href="https://fb.me/2omZWwWUdtG4GSW" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">A Doutor DM2 Diabetes Montes Claros chegou com um tratamento exclusivo! 🎯<br><br>R. São Mateus, 333 - Todos Os Santos, Montes </div>
+            <div class="ad-body">Pré-diabetes não é o começo da doença.<br>É o último aviso antes dela se instalar.<br><br>Antes da glicose subir, seu corpo já es</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQI-EbtaF2CgK6zCFn9LW8b8YZkJBS5YC1Fpdpvgu0zmJcVC5zV-_JGb3xGaJeEP4Wv53bocKW07Wzq3scyOJeeWHdvuzuY1myrIj9vJ3uY1piE02H8471zHFZuUOjXhRXYNaw0Ialef0kJIjooZBxx6" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/643831716_758837447027488_792798876168590846_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeG3LTfXr2gZlU_QtgMGocWzgx4fjx-oIaiDHh-PH6ghqEuTb1Ai15Sh9CVwxUmHTDO__LfW73b9iXDxojKlTzvn&_nc_ohc=k4jp2NGD194Q7kNvwG04QiZ&_nc_oc=AdrOjI8geZdG-IaaEcUJmja0jcJRfsoUb1k5u0S4SHKFbFhv01Y1mPqihBARiN8_aqg&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=koNtfSA-Beqj4En_jC1QUg&_nc_tpa=Q5bMBQFicj1tcigxi1fT0kcn8YFL-bPUe3QmjWpkiT0OyJB22LdUg6WDMjI4f6dqhJcG_rzev7r0oVWUzQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfylYxUUuzjync2KcUGQSld22M0uVLk-bSdxA5SKgztDXg&oe=69C3D79E&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads paty clinica</div>
-                    <div class="ad-meta">R$ 1855.50 · 1416 cliques · 169 conv · CTR 0.82%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 10.98</div>
-                    <a class="ad-link" href="https://fb.me/1XtTS5731DpcVCw" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads sulfoniureias</div>
+                    <div class="ad-meta">R$ 138.02 · 172 cliques · 28 conv · CTR 2.89%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 4.93</div>
+                    <a class="ad-link" href="https://fb.me/1SEDs6whWkoGOJ6" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">⚠️🔔 Mesmo com medicação, você não consegue controlar sua glicemia? <br><br>Agende uma consulta com a Doutor DM2 Diabetes e des</div>
+            <div class="ad-body">Você toma glibenclamida, glimepirida ou gliclazida?<br><br>Esses medicamentos estimulam o pâncreas a produzir mais insulina.<br><br></div>
         </div></div>
 
+    <h3 class="section-header">Análise &amp; Otimizações</h3>
+    <div class="opt-summary">
+        <div class="opt-card opt-green"><span class="opt-v">R$ 9.2</span><span class="opt-l">CPL Médio</span></div>
+        <div class="opt-card opt-green"><span class="opt-v">R$ 2.9</span><span class="opt-l">Melhor CPL</span></div>
+        <div class="opt-card opt-red"><span class="opt-v">R$ 21</span><span class="opt-l">Gasto sem conversão</span></div>
+        <div class="opt-card opt-red"><span class="opt-v">0.6%</span><span class="opt-l">% desperdiçado</span></div>
+    </div><div class="opt-block"><h4 class="opt-title opt-title-green">🏆 Top Criativos — Menor CPL</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>CTR</th></tr></thead><tbody><tr><td>ads tadala</td><td>01/03 [engajamento] [wpp] [rmk</td><td>R$ 12</td><td><strong>4</strong></td><td class="cpl-good">R$ 2.9</td><td>3.37%</td></tr><tr><td>ads controlar a anos</td><td>01/03 [vendas] [wpp] [ceps-bai</td><td>R$ 10</td><td><strong>3</strong></td><td class="cpl-good">R$ 3.4</td><td>1.34%</td></tr><tr><td>ads sulfoniureias</td><td>01/03 [vendas] [wpp] [ceps-bai</td><td>R$ 10</td><td><strong>3</strong></td><td class="cpl-good">R$ 3.5</td><td>2.75%</td></tr><tr><td>ads reposta disfuncao</td><td>01/03 [engajamento] [wpp] [rmk</td><td>R$ 72</td><td><strong>15</strong></td><td class="cpl-good">R$ 4.8</td><td>2.51%</td></tr><tr><td>ads sulfoniureias</td><td>01/03 [vendas] [wpp] [ceps-bai</td><td>R$ 138</td><td><strong>28</strong></td><td class="cpl-good">R$ 4.9</td><td>2.89%</td></tr><tr><td>ads exames paty</td><td>01/03 [engajamento] [wpp] [rmk</td><td>R$ 36</td><td><strong>6</strong></td><td class="cpl-good">R$ 6.0</td><td>2.80%</td></tr><tr><td>ads pre-diabetes</td><td>01/03 [vendas] [wpp] [ceps-bai</td><td>R$ 202</td><td><strong>30</strong></td><td class="cpl-good">R$ 6.7</td><td>1.95%</td></tr><tr><td>[add 03]</td><td>20/11 [LEADS] [WPP] [ABERTO]</td><td>R$ 277</td><td><strong>38</strong></td><td class="cpl-good">R$ 7.3</td><td>1.28%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-red">💸 Criativos sem conversão (gasto > R$ 18)</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Campanha</th><th>Gasto</th><th>Clicks</th></tr></thead><tbody><tr><td>ads sulfoniureias</td><td>01/03 [vendas] [wpp] [ceps-bai</td><td class="cpl-bad">R$ 21</td><td>24</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title">📊 Evolução por Período</h4><table class="camp-table"><thead><tr><th>Período</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Tendência</th></tr></thead><tbody><tr><td><strong>30 dias</strong></td><td>R$ 3612</td><td><strong>392</strong></td><td>R$ 9.2</td><td>—</td></tr><tr><td><strong>14 dias</strong></td><td>R$ 2074</td><td><strong>219</strong></td><td>R$ 9.5</td><td><span style="color:#6b7280">≈ estável</span></td></tr><tr><td><strong>3 dias</strong></td><td>R$ 474</td><td><strong>52</strong></td><td>R$ 9.1</td><td><span style="color:#6b7280">≈ estável</span></td></tr><tr><td><strong>Ontem</strong></td><td>R$ 141</td><td><strong>16</strong></td><td>R$ 8.8</td><td><span style="color:#6b7280">≈ estável</span></td></tr><tr><td><strong>Hoje</strong></td><td>R$ 142</td><td><strong>16</strong></td><td>R$ 8.9</td><td><span style="color:#6b7280">≈ estável</span></td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-green">📈 Melhorando (CPL caiu nos últimos 3 dias)</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>CPL 14d</th><th>CPL 3d</th><th>Variação</th></tr></thead><tbody><tr><td>01/03 [engajamento] [wpp] [rmk] [35+] CBO</td><td>R$ 7.0</td><td class="cpl-good">R$ 5.4</td><td class="cpl-good">-23%</td></tr></tbody></table></div>
+
     <div class="footer">
-        <div>seven midas · marketing digital · atualizado em 20/03/2026 18:42</div>
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 23:42</div>
     </div>
 </div>
 
@@ -515,11 +322,11 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 new Chart(document.getElementById('dailyChart'),{
     type:'bar',
     data:{
-        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
+        labels:["03/06", "03/07", "03/08", "03/09", "03/10", "03/11", "03/12", "03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
         datasets:[
-            {label:'Gasto (R$)',data:[124.72, 131.89, 115.32, 177.08, 182.13, 151.37, 140.53],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
-            {label:'Cliques',data:[165, 136, 109, 139, 176, 134, 126],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
-            {label:'Conversões',data:[15, 15, 9, 10, 22, 14, 16],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+            {label:'Gasto (R$)',data:[121.54, 144.59, 84.29, 140.24, 204.47, 167.49, 188.51, 124.72, 131.89, 115.32, 177.08, 182.13, 151.37, 140.53],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[160, 149, 71, 143, 257, 188, 246, 165, 136, 109, 139, 176, 134, 126],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[9, 12, 4, 14, 27, 26, 26, 15, 15, 9, 10, 22, 14, 16],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
         ]
     },
     options:{

@@ -63,6 +63,21 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 .bal-bar{height:6px;background:#e5e7eb;border-radius:4px;margin-top:10px;overflow:hidden}
 .bal-fill{height:100%;border-radius:4px;transition:width .5s}
 
+.opt-summary{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.opt-card{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.opt-card.opt-green{border-left:4px solid #22c55e}
+.opt-card.opt-red{border-left:4px solid #ef4444}
+.opt-v{display:block;font-size:20px;font-weight:800;color:#184341}
+.opt-l{display:block;font-size:11px;color:#999;margin-top:4px;font-weight:600}
+.opt-block{margin-bottom:20px}
+.opt-title{font-size:14px;font-weight:700;margin-bottom:10px}
+.opt-title-green{color:#16a34a}
+.opt-title-red{color:#dc2626}
+.opt-title-yellow{color:#d97706}
+.cpl-good{color:#16a34a;font-weight:700}
+.cpl-bad{color:#dc2626;font-weight:700}
+.cpl-warn{color:#d97706;font-weight:700}
+
 .footer{text-align:center;padding:32px;font-size:11px;color:#bbb}
 
 .table-wrap{overflow-x:auto;margin-bottom:32px}
@@ -86,7 +101,7 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
     </div>
     <div class="topbar-right">
         <div class="live-dot"></div>
-        <span class="topbar-label">Atualizado 20/03/2026 18:39</span>
+        <span class="topbar-label">Atualizado 20/03/2026 23:38</span>
     </div>
 </div>
 
@@ -97,7 +112,7 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
         <p class="info">57 campanhas (3 ativas) · Conta: Doutor DM2 Santo Amaro 1 - Seven</p>
     </div>
 
-    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 196,985.75</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">1,517,880</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">145,497</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.61%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 1.35</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 21.81</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">16,464</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 11.96</span><span class="kpi-l">Custo/Conv</span></div></div>
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 5,185.30</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">41,928</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">4,667</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">2.87%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 1.11</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 31.91</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">403</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 12.87</span><span class="kpi-l">Custo/Conv</span></div></div>
 
     
 
@@ -113,518 +128,68 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
                 <th>Campanha</th><th>Objetivo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>CTR</th><th>Conv</th><th>Custo/Conv</th>
             </tr></thead>
             <tbody><tr>
-            <td><span class="dot paused"></span>26/02- [engajamento] [captação] [santoamaro] </td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 29733.97</td>
-            <td>370,015</td>
-            <td>15,808</td>
-            <td>1.15%</td>
-            <td><strong>2806</strong></td>
-            <td>R$ 10.60</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>10/09 - [vendas] [captação] [interesses]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 25381.34</td>
-            <td>272,296</td>
-            <td>12,803</td>
-            <td>1.44%</td>
-            <td><strong>1644</strong></td>
-            <td>R$ 15.44</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>20/01 [leads] [wpp] [rmk] [novo-criativo] CBO</td>
-            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
-            <td>R$ 19166.54</td>
-            <td>60,732</td>
-            <td>14,626</td>
-            <td>2.16%</td>
-            <td><strong>2078</strong></td>
-            <td>R$ 9.22</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>02/04 - [engajamento] [captação] [geolocaliza</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 16671.77</td>
-            <td>222,364</td>
-            <td>9,159</td>
-            <td>1.40%</td>
-            <td><strong>1346</strong></td>
-            <td>R$ 12.39</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>02/04 - [vendas] [captação] [geolocalizado 10</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 11274.58</td>
-            <td>207,327</td>
-            <td>9,966</td>
-            <td>1.85%</td>
-            <td><strong>1597</strong></td>
-            <td>R$ 7.06</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>02/04 - [vendas][faseII] [captação] [outrosba</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 8161.38</td>
-            <td>153,062</td>
-            <td>4,463</td>
-            <td>1.37%</td>
-            <td><strong>637</strong></td>
-            <td>R$ 12.81</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>15/09 - [vendas] [wpp] [40+] [outros-bairros]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 8043.99</td>
-            <td>108,401</td>
-            <td>7,599</td>
-            <td>2.44%</td>
-            <td><strong>920</strong></td>
-            <td>R$ 8.74</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>03 - [engajamento] [faseII] [captação] [santo</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 6876.25</td>
-            <td>141,342</td>
-            <td>4,285</td>
-            <td>1.22%</td>
-            <td><strong>821</strong></td>
-            <td>R$ 8.38</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>07/08 [engajamento] [wpp] [chacara-regiao] [n</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 5503.27</td>
-            <td>86,852</td>
-            <td>1,964</td>
-            <td>1.18%</td>
-            <td><strong>333</strong></td>
-            <td>R$ 16.53</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>10/01 - [vendas] [wpp] [40+] [teste-bairros] </td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 4889.64</td>
-            <td>50,373</td>
-            <td>4,049</td>
-            <td>2.30%</td>
-            <td><strong>166</strong></td>
-            <td>R$ 29.46</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>15/09 - [vendas] [wpp] [40+] [taboao] [LL%cli</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 4858.22</td>
-            <td>56,142</td>
-            <td>3,643</td>
-            <td>1.64%</td>
-            <td><strong>221</strong></td>
-            <td>R$ 21.98</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>06/08 - [vendas] [captação] [bairros] [intere</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 4469.58</td>
-            <td>65,472</td>
-            <td>2,702</td>
-            <td>1.48%</td>
-            <td><strong>158</strong></td>
-            <td>R$ 28.29</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>01/06 - [vendas] [wpp] [44-65] [teste-criativ</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 4080.21</td>
-            <td>50,138</td>
-            <td>2,725</td>
-            <td>1.89%</td>
-            <td><strong>313</strong></td>
-            <td>R$ 13.04</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>02/04 - [engajamento] [RMK] [captação] [santo</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 3968.28</td>
-            <td>15,321</td>
-            <td>3,869</td>
-            <td>3.32%</td>
-            <td><strong>273</strong></td>
-            <td>R$ 14.54</td>
-        </tr><tr>
             <td><span class="dot paused"></span>22/01 [leads] [wpp] [rmk] [novo-criativo] CBO</td>
             <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
-            <td>R$ 3334.92</td>
-            <td>19,804</td>
-            <td>5,161</td>
-            <td>4.32%</td>
-            <td><strong>372</strong></td>
-            <td>R$ 8.96</td>
+            <td>R$ 1753.22</td>
+            <td>13,259</td>
+            <td>2,166</td>
+            <td>3.63%</td>
+            <td><strong>196</strong></td>
+            <td>R$ 8.95</td>
         </tr><tr>
             <td><span class="dot paused"></span>09/01 - [vendas] [wpp] [40+] [taboao] [LL%cli</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 3172.75</td>
-            <td>36,754</td>
-            <td>2,086</td>
-            <td>1.65%</td>
-            <td><strong>194</strong></td>
-            <td>R$ 16.35</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>04 - [vendas][faseII] [captação] [santoamaro]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 3072.52</td>
-            <td>85,681</td>
-            <td>5,184</td>
-            <td>2.11%</td>
-            <td><strong>544</strong></td>
-            <td>R$ 5.65</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>05 - [engajamento] homens$] [captação] [santo</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 2973.67</td>
-            <td>45,881</td>
-            <td>1,946</td>
-            <td>1.44%</td>
-            <td><strong>194</strong></td>
-            <td>R$ 15.33</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>[cadastro] [santoamaro] [fb-ig] [segmentado] </td>
-            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
-            <td>R$ 2955.22</td>
-            <td>43,978</td>
-            <td>1,082</td>
-            <td>1.35%</td>
-            <td><strong>4</strong></td>
-            <td>R$ 738.80</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>01/06 - [engajamento] [wpp] [rmk] [44-65] CBO</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 2587.88</td>
-            <td>31,967</td>
-            <td>1,634</td>
-            <td>2.04%</td>
-            <td><strong>124</strong></td>
-            <td>R$ 20.87</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>16/06🔥[RMK] [engajamento] [santo amaro] [FB-I</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 1991.78</td>
-            <td>4,235</td>
-            <td>736</td>
-            <td>1.70%</td>
-            <td><strong>55</strong></td>
-            <td>R$ 36.21</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>05/07 🔥[RMK] [engajamento] [santo amaro] [FB-</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 1669.91</td>
-            <td>3,770</td>
-            <td>720</td>
-            <td>2.47%</td>
-            <td><strong>40</strong></td>
-            <td>R$ 41.75</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>01 - [alcance][faseI][santoamaro]</td>
-            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
-            <td>R$ 1342.47</td>
-            <td>145,815</td>
-            <td>4,151</td>
-            <td>0.75%</td>
-            <td><strong>2</strong></td>
-            <td>R$ 671.24</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>06 - [vendas][faseII] [captação] [santoamaro]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 1291.78</td>
-            <td>38,893</td>
-            <td>1,524</td>
-            <td>1.65%</td>
-            <td><strong>111</strong></td>
-            <td>R$ 11.64</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>24/11 [engajamento] [rmk] [santo-amaro] [CBO]</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 1056.72</td>
-            <td>15,561</td>
-            <td>391</td>
-            <td>1.39%</td>
-            <td><strong>48</strong></td>
-            <td>R$ 22.02</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>06 - [vendas][faseII] [captação] [santoamaro]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 998.04</td>
-            <td>21,605</td>
-            <td>2,836</td>
-            <td>3.13%</td>
-            <td><strong>72</strong></td>
-            <td>R$ 13.86</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>05 - [engajamento] homens$] [captação] [santo</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 997.23</td>
-            <td>21,200</td>
-            <td>731</td>
-            <td>1.47%</td>
-            <td><strong>82</strong></td>
-            <td>R$ 12.16</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>04 - [vendas][faseII] [captação] [santoamaro]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 995.43</td>
-            <td>36,684</td>
-            <td>1,278</td>
-            <td>1.66%</td>
-            <td><strong>159</strong></td>
-            <td>R$ 6.26</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>07 - [engajamento] [RMK] [captação] [santoama</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 994.43</td>
-            <td>12,818</td>
-            <td>945</td>
-            <td>1.44%</td>
-            <td><strong>83</strong></td>
-            <td>R$ 11.98</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>03 - [engajamento] [faseII] [captação] [santo</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 974.37</td>
-            <td>26,166</td>
-            <td>644</td>
-            <td>1.38%</td>
-            <td><strong>131</strong></td>
-            <td>R$ 7.44</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>07 - [engajamento] [RMK] [captação] [santoama</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 964.42</td>
-            <td>10,095</td>
-            <td>1,514</td>
-            <td>2.34%</td>
-            <td><strong>80</strong></td>
-            <td>R$ 12.06</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>09/06 [vendas] [wpp] [bairros] [50+] ABO</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 943.67</td>
-            <td>13,679</td>
-            <td>365</td>
-            <td>1.22%</td>
-            <td><strong>18</strong></td>
-            <td>R$ 52.43</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>28/04 [leads] [lp] [validados] [santo-amaro] </td>
-            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
-            <td>R$ 837.32</td>
-            <td>8,066</td>
-            <td>745</td>
-            <td>4.34%</td>
-            <td><strong>7</strong></td>
-            <td>R$ 119.62</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>09 - [vendas][faseII] [captação] [outrosbairr</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 786.77</td>
-            <td>24,259</td>
-            <td>1,977</td>
-            <td>2.55%</td>
-            <td><strong>42</strong></td>
-            <td>R$ 18.73</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>22/10  [BOFU] [comparecimento] [rmk 20D] [pro</td>
-            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
-            <td>R$ 770.78</td>
-            <td>6,233</td>
-            <td>478</td>
-            <td>1.20%</td>
-            <td><strong>23</strong></td>
-            <td>R$ 33.51</td>
+            <td>R$ 1297.34</td>
+            <td>18,204</td>
+            <td>784</td>
+            <td>1.63%</td>
+            <td><strong>89</strong></td>
+            <td>R$ 14.58</td>
         </tr><tr>
             <td><span class="dot active"></span>08/03 - [vendas] [wpp] [35+] [zona-sul] CBO</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 736.20</td>
-            <td>7,165</td>
-            <td>524</td>
-            <td>3.44%</td>
-            <td><strong>36</strong></td>
-            <td>R$ 20.45</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>28/05🔥[RMK] [engajamento] [santo amaro] [FB-I</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 726.94</td>
-            <td>4,837</td>
-            <td>343</td>
-            <td>1.98%</td>
-            <td><strong>44</strong></td>
-            <td>R$ 16.52</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>[09/01] [videoview] [ABO] [santo amaro 15km] </td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 704.35</td>
-            <td>208,921</td>
-            <td>4,084</td>
-            <td>0.98%</td>
-            <td><strong>0</strong></td>
-            <td>—</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>22/08 - [vendas] [captação] [taboao da serra]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 695.12</td>
-            <td>15,919</td>
-            <td>707</td>
-            <td>1.77%</td>
+            <td>R$ 723.08</td>
+            <td>7,017</td>
+            <td>516</td>
+            <td>3.45%</td>
             <td><strong>35</strong></td>
-            <td>R$ 19.86</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>02/04- [engajamento] [homens$] [captação] [sa</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 688.26</td>
-            <td>22,081</td>
-            <td>543</td>
-            <td>1.23%</td>
-            <td><strong>67</strong></td>
-            <td>R$ 10.27</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>02/04 - 📱🔥 [alcance] [fb-ig] [RMK] ABO 1-2-2</td>
-            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
-            <td>R$ 610.51</td>
-            <td>1,799</td>
-            <td>178</td>
-            <td>3.00%</td>
-            <td><strong>0</strong></td>
-            <td>—</td>
+            <td>R$ 20.66</td>
         </tr><tr>
             <td><span class="dot active"></span>08/03 [leads] [wpp] [rmk] [35+] [90-180D] CBO</td>
             <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
-            <td>R$ 602.78</td>
-            <td>5,367</td>
-            <td>648</td>
-            <td>4.25%</td>
-            <td><strong>39</strong></td>
-            <td>R$ 15.46</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>NV - [engajamento] [RMK] [captação] [santoama</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 516.34</td>
-            <td>9,655</td>
-            <td>522</td>
-            <td>1.89%</td>
-            <td><strong>64</strong></td>
-            <td>R$ 8.07</td>
-        </tr><tr>
-            <td><span class="dot active"></span>08/03 - [vendas] [wpp] [39+] [taboao-serra] [</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 413.47</td>
-            <td>5,217</td>
-            <td>271</td>
-            <td>2.13%</td>
-            <td><strong>21</strong></td>
-            <td>R$ 19.69</td>
+            <td>R$ 598.62</td>
+            <td>5,440</td>
+            <td>642</td>
+            <td>4.26%</td>
+            <td><strong>38</strong></td>
+            <td>R$ 15.75</td>
         </tr><tr>
             <td><span class="dot paused"></span>01/03 - [vendas] [wpp] [35+] [teste-criativos</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
             <td>R$ 407.66</td>
-            <td>5,875</td>
+            <td>5,832</td>
             <td>296</td>
             <td>2.42%</td>
             <td><strong>23</strong></td>
             <td>R$ 17.72</td>
         </tr><tr>
-            <td><span class="dot paused"></span>NV - [vendas] [captação] [geolocalizado 10km]</td>
+            <td><span class="dot active"></span>08/03 - [vendas] [wpp] [39+] [taboao-serra] [</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 366.80</td>
-            <td>15,496</td>
-            <td>448</td>
-            <td>1.97%</td>
-            <td><strong>67</strong></td>
-            <td>R$ 5.47</td>
+            <td>R$ 405.38</td>
+            <td>4,990</td>
+            <td>263</td>
+            <td>2.13%</td>
+            <td><strong>21</strong></td>
+            <td>R$ 19.30</td>
         </tr><tr>
-            <td><span class="dot paused"></span>NV - [vendas][faseII] [captação] [outrosbairr</td>
+            <td><span class="dot paused"></span>10/01 - [vendas] [wpp] [40+] [teste-bairros] </td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 366.27</td>
-            <td>12,310</td>
-            <td>311</td>
-            <td>1.68%</td>
-            <td><strong>57</strong></td>
-            <td>R$ 6.43</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>NV - [engajamento] [captação] [geolocalizado </td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 364.63</td>
-            <td>13,786</td>
-            <td>257</td>
-            <td>1.32%</td>
-            <td><strong>39</strong></td>
-            <td>R$ 9.35</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>NV- [engajamento] homens$] [captação] [santoa</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 363.60</td>
-            <td>15,675</td>
-            <td>313</td>
-            <td>1.33%</td>
-            <td><strong>49</strong></td>
-            <td>R$ 7.42</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>NV - [engajamento] [RMK] [captação] [santoama</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 363.42</td>
-            <td>7,787</td>
-            <td>447</td>
-            <td>2.18%</td>
-            <td><strong>41</strong></td>
-            <td>R$ 8.86</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>02 - [trafego][faseI][santoamaro]</td>
-            <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 300.65</td>
-            <td>9,264</td>
-            <td>521</td>
-            <td>1.68%</td>
-            <td><strong>0</strong></td>
+            <td>R$ 0.00</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0.00%</td>
+            <td><strong>1</strong></td>
             <td>—</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>08 - [vendas][faseII] [captação] [outrosbairr</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 293.47</td>
-            <td>11,144</td>
-            <td>648</td>
-            <td>3.54%</td>
-            <td><strong>54</strong></td>
-            <td>R$ 5.43</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>09 - [vendas][faseII] [captação] [outrosbairr</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 250.29</td>
-            <td>6,181</td>
-            <td>243</td>
-            <td>2.17%</td>
-            <td><strong>0</strong></td>
-            <td>—</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>09/01 - [vendas] [wpp] [40+] [outros-bairros]</td>
-            <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 185.02</td>
-            <td>6,540</td>
-            <td>321</td>
-            <td>4.05%</td>
-            <td><strong>116</strong></td>
-            <td>R$ 1.60</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>[cadastro] [santoamaro] [fb-ig] [segmentado] </td>
-            <td><span class="obj-tag" style="background:#00A19A">Leads</span></td>
-            <td>R$ 161.93</td>
-            <td>3,197</td>
-            <td>54</td>
-            <td>1.21%</td>
-            <td><strong>5</strong></td>
-            <td>R$ 32.39</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>00- [alcance][vaga de emprego][santoamaro]</td>
-            <td><span class="obj-tag" style="background:#f59e0b">Alcance</span></td>
-            <td>R$ 51.05</td>
-            <td>23,873</td>
-            <td>16</td>
-            <td>0.06%</td>
-            <td><strong>0</strong></td>
-            <td>—</td>
-        </tr><tr>
-            <td><span class="dot paused"></span>09/01 - [engajamento] [captação] [santoamaro]</td>
-            <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 25.48</td>
-            <td>1,013</td>
-            <td>13</td>
-            <td>1.13%</td>
-            <td><strong>9</strong></td>
-            <td>R$ 2.83</td>
         </tr></tbody>
         </table>
     </div>
@@ -633,127 +198,135 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
     <div class="creatives-grid">
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-1.xx.fbcdn.net/v/t15.13418-10/370340924_2208547949341706_512088321500238014_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeHLu5xa30XKn-QYmNfgtJS4F4YaDt-WizAXhhoO35aLMHhWnxf0umzTACeR09oY6kwUmxujB2sXgCt49_gAHF12&_nc_ohc=RuYmLMMNLtcQ7kNvwGArh-O&_nc_oc=AdpFNpkltFTzspbYghnWvcWllX0u0nF6Xy1Fe-Ha3nIPz7e6w7m2D6gjzyEPdXpc1l0&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=FK6J2_HO5XnabVt46EFiMA&_nc_tpa=Q5bMBQFmtJATOHG-WX_agTYTCs-p2GmZAUji5b8_-zqXWUIYCbpVHNS5RqZ746wv5n6sTJFocvWvJiWJYQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_Afzmu_enkA1jSEuHZlsRoP-R2urumBYiSQtBFOlO-X76uw&oe=69C376A5&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/631604030_4248013798776988_2856391114782505843_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeFu4vaRQP6I6kcx5RR4mmYrAXjhK3yJUtABeOErfIlS0Oa60GCBpd1FjO2QtZaEpO0_JersqS8vwbIdYYt8aq7P&_nc_ohc=pqT5bLAEW5UQ7kNvwFj-S5z&_nc_oc=Adq890b2f1J4NtrFbOpQG-lQf55uBylFw9graTznuU8U9Zi0kOueC0uVKcRV7ooTopA&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=vb0WKNU7TpYUTkiz3c5xQw&_nc_tpa=Q5bMBQFEFFPiC5__Ff5CdMdkUqSxCLmfVyRh2tjxL8m3oY3UhbmNZQO8-vVV-1uFPSE98eJ-kHk_ezcC6Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=b696e2&_nc_sid=58080a&oh=00_AfykU1of094Gf3jDOoOKKoaP_LOKuWjVQCOSQ-nijsFq7w&oe=69C3E753&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads dm2 santo amaro</div>
-                    <div class="ad-meta">R$ 14911.65 · 7919 cliques · 1344 conv · CTR 1.17%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 11.09</div>
-                    <a class="ad-link" href="https://fb.me/1ZvL8quLMWXqUSp" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads tadala</div>
+                    <div class="ad-meta">R$ 738.54 · 812 cliques · 104 conv · CTR 3.19%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 7.10</div>
+                    <a class="ad-link" href="https://fb.me/1SKF6BMZ1GNZtia" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">A &quot;Doutor DM2 Diabetes&quot; 👨‍⚕️, centro especializado em diabetes tipo 2, acaba de chegar à Santo Amaro, oferecendo um trat</div>
+            <div class="ad-body">Homens com DM2 costumam ignorar o primeiro sinal:<br>a falha na ereção.<br><br>Quem age cedo ainda tem chance.<br>Quem espera, perde</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra5-2.xx.fbcdn.net/v/t15.13418-10/389551349_6324343911009002_2381918758317826243_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeHuyXYpMpKb3h9CjmBBTtMtKepAKmT3O3gp6kAqZPc7eOp7sU-HKzBE78QzJrbE1Y4C11wPMak_GtHe_VaJqzIy&_nc_ohc=y6SS79udmIoQ7kNvwFbKFBt&_nc_oc=AdqnH5qErRTiub6s7TuCsjosgdLI3veSEzSsOzQtjZruCzNvCuMLdjCvn05ztpL7y64&_nc_zt=23&_nc_ht=scontent-fra5-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=FK6J2_HO5XnabVt46EFiMA&_nc_tpa=Q5bMBQHSuC2r2NqxNpTwLFe44smKzqdLntbl2qWY-kx1oDh7ZtmLD6SS9gIN-9aCrEYUWEQzpg31F_sdHg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfxKgRaUhGJpgGMdSlKpxeeybNGmTH297h3aqi_eGWvF0Q&oe=69C38D04&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/474325922_586185817617791_1964294737136760396_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeH5XXr4DGBTrCx0uSLutdUB9m40X6QeWt72bjRfpB5a3qSV83y8M76Ys1e9S7jcNjOu5h-6xujym4EIZQxQiaXO&_nc_ohc=qiPyD6vJl1sQ7kNvwGXXTFk&_nc_oc=AdquCnOkqrkM8m0MNVqxdF4fEg3XcfgpoBGEUdWvW0w7vhs5xdRJINgz_sR5N7BBB-s&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=vb0WKNU7TpYUTkiz3c5xQw&_nc_tpa=Q5bMBQFQ4AotFvdm-xToyv8T0QDgvTePoR-A06-LBbfOgBLVQTWj0x2O9Uk8f19mr4Fk30R2uNYKFnz2DA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfznqC9vLao4Djz5eVFV_C6Jm0go9PwSXi4Onop7PpHj0w&oe=69C3CB0A&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads voce tem dm2</div>
-                    <div class="ad-meta">R$ 9198.59 · 6181 cliques · 1071 conv · CTR 1.97%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 8.59</div>
-                    <a class="ad-link" href="https://fb.me/35uYIL4tZhmCTD3" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads prova social cely</div>
+                    <div class="ad-meta">R$ 633.63 · 390 cliques · 50 conv · CTR 1.69%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 12.67</div>
+                    <a class="ad-link" href="https://fb.me/2dIHLwD0b1R2HoW" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">Conheça a Doutor DM2 Diabetes Santo Amaro e descubra novas abordagens e tratamentos de Diabetes Tipo 2  🩺💪<br><br>Sua saúde é </div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-1.xx.fbcdn.net/v/t15.13418-10/370340924_2208547949341706_512088321500238014_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeHLu5xa30XKn-QYmNfgtJS4F4YaDt-WizAXhhoO35aLMHhWnxf0umzTACeR09oY6kwUmxujB2sXgCt49_gAHF12&_nc_ohc=RuYmLMMNLtcQ7kNvwGArh-O&_nc_oc=AdpFNpkltFTzspbYghnWvcWllX0u0nF6Xy1Fe-Ha3nIPz7e6w7m2D6gjzyEPdXpc1l0&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=FK6J2_HO5XnabVt46EFiMA&_nc_tpa=Q5bMBQFmtJATOHG-WX_agTYTCs-p2GmZAUji5b8_-zqXWUIYCbpVHNS5RqZ746wv5n6sTJFocvWvJiWJYQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_Afzmu_enkA1jSEuHZlsRoP-R2urumBYiSQtBFOlO-X76uw&oe=69C376A5&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.13418-10/389551349_6324343911009002_2381918758317826243_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeHuyXYpMpKb3h9CjmBBTtMtKepAKmT3O3gp6kAqZPc7eOp7sU-HKzBE78QzJrbE1Y4C11wPMak_GtHe_VaJqzIy&_nc_ohc=y6SS79udmIoQ7kNvwHMd2VS&_nc_oc=AdoRh7UCFNYViWP4tmigfv4HuD1IAoOWTltfmBjEO9WXLoa2TEq8K3_ux3rjPC15ryY&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=vb0WKNU7TpYUTkiz3c5xQw&_nc_tpa=Q5bMBQECWgLr9wcErQSyrCG4vGr2RR3dBsL0SL6dxCOVaBmURvUh2eKJXONfRxiSA7MQwoRRX0XJncsjAg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfzNZ81g7c-x_5djAQ9etTfEy7lIQ0bmCZGdQyG4qeJWog&oe=69C3C544&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads dm2 santo amaro</div>
-                    <div class="ad-meta">R$ 7925.95 · 4202 cliques · 791 conv · CTR 1.12%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 10.02</div>
-                    <a class="ad-link" href="https://fb.me/1ZvL8quLMWXqUSp" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">A &quot;Doutor DM2 Diabetes&quot; 👨‍⚕️, centro especializado em diabetes tipo 2, acaba de chegar à Santo Amaro, oferecendo um trat</div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJuH-5W-vBExsxpXpsi5riVP_Q1O3JIhnR24XglFYU5TeEsn42bdvYTkx-WRcdBZU8JAkw1jI5FjM37b8N15YGzYrwLyf063i2fpysUGU1zaJsWmEI8XDzMQEqMG0a7Nde8aOq2uOt3E3PQlvoFJZCg" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">add 04 diabetes nao tem cura SA</div>
-                    <div class="ad-meta">R$ 6831.00 · 4233 cliques · 815 conv · CTR 1.21%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 8.38</div>
-                    <a class="ad-link" href="https://fb.me/1SJFLCmPhQ5FGdE" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">A &quot;Doutor DM2 Diabetes&quot; 👨‍⚕️, centro especializado em diabetes tipo 2, acaba de chegar à Santo Amaro, oferecendo um trat</div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-1.xx.fbcdn.net/v/t15.13418-10/370340924_2208547949341706_512088321500238014_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeHLu5xa30XKn-QYmNfgtJS4F4YaDt-WizAXhhoO35aLMHhWnxf0umzTACeR09oY6kwUmxujB2sXgCt49_gAHF12&_nc_ohc=RuYmLMMNLtcQ7kNvwGArh-O&_nc_oc=AdpFNpkltFTzspbYghnWvcWllX0u0nF6Xy1Fe-Ha3nIPz7e6w7m2D6gjzyEPdXpc1l0&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=A6kq4tsr6OOmv5ElqE-cMQ&_nc_tpa=Q5bMBQGFrDTA3DQJkSRLVzHbn0ynDkkgqIZngoCA07MLRTUrsiWHRtWDhLr20btIahEmjsQE82uWqU9-5w&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfzdBY5PqpHbaOpdA1Ea-7hsdN6N56tUUn9oZ-f6xkSPcQ&oe=69C376A5&width=480" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">add 04 diabetes nao tem cura SA</div>
-                    <div class="ad-meta">R$ 5055.21 · 2486 cliques · 420 conv · CTR 1.31%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 12.04</div>
-                    <a class="ad-link" href="https://fb.me/23XGvm8NfFmRRaO" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">A &quot;Doutor DM2 Diabetes&quot; 👨‍⚕️, centro especializado em diabetes tipo 2, acaba de chegar à Santo Amaro, oferecendo um trat</div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra3-1.xx.fbcdn.net/v/t15.13418-10/370340924_2208547949341706_512088321500238014_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeHLu5xa30XKn-QYmNfgtJS4F4YaDt-WizAXhhoO35aLMHhWnxf0umzTACeR09oY6kwUmxujB2sXgCt49_gAHF12&_nc_ohc=RuYmLMMNLtcQ7kNvwGArh-O&_nc_oc=AdpFNpkltFTzspbYghnWvcWllX0u0nF6Xy1Fe-Ha3nIPz7e6w7m2D6gjzyEPdXpc1l0&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=FK6J2_HO5XnabVt46EFiMA&_nc_tpa=Q5bMBQFmtJATOHG-WX_agTYTCs-p2GmZAUji5b8_-zqXWUIYCbpVHNS5RqZ746wv5n6sTJFocvWvJiWJYQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_Afzmu_enkA1jSEuHZlsRoP-R2urumBYiSQtBFOlO-X76uw&oe=69C376A5&width=480" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">ads dm2 santo amaro</div>
-                    <div class="ad-meta">R$ 4703.36 · 2229 cliques · 454 conv · CTR 1.12%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 10.36</div>
-                    <a class="ad-link" href="https://fb.me/1ZvL8quLMWXqUSp" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">A &quot;Doutor DM2 Diabetes&quot; 👨‍⚕️, centro especializado em diabetes tipo 2, acaba de chegar à Santo Amaro, oferecendo um trat</div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra5-2.xx.fbcdn.net/v/t15.13418-10/389551349_6324343911009002_2381918758317826243_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeHuyXYpMpKb3h9CjmBBTtMtKepAKmT3O3gp6kAqZPc7eOp7sU-HKzBE78QzJrbE1Y4C11wPMak_GtHe_VaJqzIy&_nc_ohc=y6SS79udmIoQ7kNvwFbKFBt&_nc_oc=AdqnH5qErRTiub6s7TuCsjosgdLI3veSEzSsOzQtjZruCzNvCuMLdjCvn05ztpL7y64&_nc_zt=23&_nc_ht=scontent-fra5-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=ndFjR-QDbL1FUNokvSkioA&_nc_tpa=Q5bMBQG1Nl88u51V0gGWmYcXMx-1RBbiZNt-Qzk3b3xjaBgOw__98_N9R7PnROJnpe4S-6GZ613dmdazhw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfyAbFMLf83kJnWNv357hk6rQaeWwhoOf02hywKcSZj9TQ&oe=69C38D04&width=480" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">add 03 voce tem dm2</div>
-                    <div class="ad-meta">R$ 4096.54 · 1821 cliques · 305 conv · CTR 1.50%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 13.43</div>
-                    <a class="ad-link" href="https://fb.me/1SE2GGbipR0sUjQ" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">add 02 voce tem dm2..</div>
+                    <div class="ad-meta">R$ 520.29 · 300 cliques · 32 conv · CTR 1.64%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 16.26</div>
+                    <a class="ad-link" href="https://fb.me/27MpI2Knzt1hx3N" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">Conheça a Doutor DM2 Diabetes Santo Amaro e descubra novas abordagens e tratamentos de Diabetes Tipo 2  🩺💪<br><br>Sua saúde é </div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra5-2.xx.fbcdn.net/v/t15.13418-10/504436605_1003952638576261_6178501285222588688_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeGDoplRinbr1Pe3iym_LAJvD-VTKXYTj-AP5VMpdhOP4Lm10LdzS4IngZOWjm3H5VTNafhnt1oHbzp04k3rx9j6&_nc_ohc=RUcNTa0cfL8Q7kNvwH6qedp&_nc_oc=AdpQ6YN3fGyGbkk4vPZrW4kOUkVW0H2t8Nnw_JORH0mApm3jB83J-VhiKJRpGX9rd3c&_nc_zt=23&_nc_ht=scontent-fra5-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=FK6J2_HO5XnabVt46EFiMA&_nc_tpa=Q5bMBQFiwRKH4wNy5bo37uH9frX_XmIRGeQerWrnfXA_tDMWfYKyVHggc3MAvPCywmwK5LvhDKmXull8cA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfzzoCkPWeIKpzI6ZI3wFosumV5XipKobD1nGu5C9zq8qA&oe=69C3814C&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/624421128_761133823733956_1313138320730891837_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeGiVhZgUSR6QldiLVHit0M0B6Vwc30xnFYHpXBzfTGcViNXx94_v7_RMifrg_rmuoXT3Smq3udE4u3Lzy0dIjNW&_nc_ohc=rCFh97PGIRgQ7kNvwGn0tQe&_nc_oc=AdqcpvaBuM9VB1dqBxaIaHDiZxi0rTn9lX2EmPGgrsRETU3pP-JdGIVMGthbuBg9NZc&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=vb0WKNU7TpYUTkiz3c5xQw&_nc_tpa=Q5bMBQExYImtL0D3VugU-oeLctjUE3RaLVNLAjF66nCoqSE6s0wDwk2s8LhsCQ0THy8hBG-HAxRl_o_2ng&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=b696e2&_nc_sid=58080a&oh=00_Afwd0CxeNE5Puz3BBJJTyE3BiKt3gjMzRVW0IYiPsIuIpA&oe=69C3E617&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads resultado</div>
-                    <div class="ad-meta">R$ 4009.77 · 3261 cliques · 400 conv · CTR 2.12%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 10.02</div>
-                    <a class="ad-link" href="https://fb.me/qwHBNrPl9VmKExs" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads papo de homem</div>
+                    <div class="ad-meta">R$ 426.78 · 307 cliques · 42 conv · CTR 2.82%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 10.16</div>
+                    <a class="ad-link" href="https://fb.me/27FNBYhVSVtlmuc" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">Diabetes não precisa ser sentença.<br>Se seus exames seguem ruins, mesmo com dieta e remédio...<br>👉 Você precisa de outro cam</div>
+            <div class="ad-body">Se você tem diabetes tipo 2 e sofre com impotência ou dificuldade de ereção, isso não é coincidência.<br><br>A glicose alta af</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra5-2.xx.fbcdn.net/v/t15.13418-10/370244200_1680360892448402_8953403549435510226_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeGzoG-HNOC8U0TAt9Xe7eM3eyY7znfCqFJ7JjvOd8KoUqiQ9I-FPZIcaLcTgDEqcH3zRmkvYBHEeBL92JwVr-Xf&_nc_ohc=8AEAoRS7CSYQ7kNvwGZhMgT&_nc_oc=AdrKx3DukBzaqQtprooZrCQiNhjvs9jYXia3qCRCv_L-tivYd_YGRn0OpQgsftatCF4&_nc_zt=23&_nc_ht=scontent-fra5-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=A6kq4tsr6OOmv5ElqE-cMQ&_nc_tpa=Q5bMBQEqJUVETvUFpeSWGSmdcG_r7dxY4z9TKbKINdgaHzfeIoX-IfQtUInNmOPoWl1nly9zWvFtu2oVuw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfyLOp8lQaqQYpxRER64D0Fi_aFWcIExYt6gu0yRpU-Pvw&oe=69C3761A&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/643658708_1978594963052270_5741913390401227326_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeGyINvxo71xjXAMvwYnwzNgzipil_3N51_OKmKX_c3nX4qqTE4gGDXnnZVvRXTDaYkbqrPhNQ7rB1kG4lUU8tBE&_nc_ohc=v4-rlkRvjOUQ7kNvwFsHxKh&_nc_oc=AdqJ92vXLg8enAv0OU2pbEMITsT8DtQnovwSFcK4H8woYrj7TQkZVbYfz1bAaEC2hkE&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=vb0WKNU7TpYUTkiz3c5xQw&_nc_tpa=Q5bMBQEJmVQoLFPTDn4Rlsya7zHjijFHK9Ee44NHZoIopMPA7ht3gggWrIK_SRU4m4tC_ZF04ITlKtwOtg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxpygToMbCkUD98lZeMwFkg-kRhuD-bYD5SHfsZ97CuPQ&oe=69C3CF61&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">add 01 controle nao funciona</div>
-                    <div class="ad-meta">R$ 3395.20 · 1923 cliques · 271 conv · CTR 1.22%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 12.53</div>
-                    <a class="ad-link" href="https://fb.me/xT2SfKctBSGHFQW" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads sulfoniureias</div>
+                    <div class="ad-meta">R$ 368.36 · 251 cliques · 20 conv · CTR 3.23%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 18.42</div>
+                    <a class="ad-link" href="https://fb.me/1T1tKJ4T71NRkF9" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">Conheça a Doutor DM2 Diabetes Santo Amaro e descubra novas abordagens e tratamentos de Diabetes Tipo 2  🩺💪<br><br>Sua saúde é </div>
+            <div class="ad-body">🚨 Diabetes Tipo 2? Descubra Como Reduzir a Glicose Sem Depender Apenas de Remédios!<br><br>Sofrendo com diabetes tipo 2? Formi</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-fra5-2.xx.fbcdn.net/v/t15.13418-10/370244200_1680360892448402_8953403549435510226_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeGzoG-HNOC8U0TAt9Xe7eM3eyY7znfCqFJ7JjvOd8KoUqiQ9I-FPZIcaLcTgDEqcH3zRmkvYBHEeBL92JwVr-Xf&_nc_ohc=8AEAoRS7CSYQ7kNvwGZhMgT&_nc_oc=AdrKx3DukBzaqQtprooZrCQiNhjvs9jYXia3qCRCv_L-tivYd_YGRn0OpQgsftatCF4&_nc_zt=23&_nc_ht=scontent-fra5-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=A6kq4tsr6OOmv5ElqE-cMQ&_nc_tpa=Q5bMBQHgkkBKCVlzm1jo9cLjsVM1S32_FOY8bjcwzTx6hlQre53E7EPTWBD16_uIpdWGkkLO82yEGgIj4Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfxEKkXPqbVHBwxo7uy2jLxg9yWL1-xnhhKw7MCW0U_agg&oe=69C3761A&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/621114219_1768185690807003_1837337161206641498_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeGjRALA42cJAeYmfzYUPrJr8Ur28V3H3pXxSvbxXcfelWYlnqJVEJkwcrX9J0E5xHdIM9Klp_ARkr0MezcuX_io&_nc_ohc=Cd983LQhzawQ7kNvwGRZkLl&_nc_oc=AdoVso5SrXJQ4K8qRq70bTBZ-2QiTfEjv716bOQ-GKIQtkTmHdk6Loct9QIkkUfEMLw&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=vb0WKNU7TpYUTkiz3c5xQw&_nc_tpa=Q5bMBQFtJSBPJJ22dL3wBAGPqnT9JhPdhY3M09jMGa0Zu2FgG1eFEW0WAL7loWoOrjYFuoJDwNvtkRK2eQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfzLfN4H4IRyyVF_bSH7Am-cyB6YvvND7YVJe3XSiVr3qA&oe=69C3C2E6&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">add 01 controle nao funciona1</div>
-                    <div class="ad-meta">R$ 3373.94 · 3070 cliques · 479 conv · CTR 1.88%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 7.04</div>
-                    <a class="ad-link" href="https://fb.me/1ShY0GBht5F6jLN" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads paulo santo amaro</div>
+                    <div class="ad-meta">R$ 349.98 · 668 cliques · 30 conv · CTR 5.02%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 11.67</div>
+                    <a class="ad-link" href="https://fb.me/1SBQN8QUKqi9Tpt" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">Conheça a Doutor DM2 Diabetes Santo Amaro e descubra novas abordagens e tratamentos de Diabetes Tipo 2  🩺💪<br><br>Sua saúde é </div>
+            <div class="ad-body">Hoje celebramos um dia muito especial na unidade de Santo Amaro a remissão do diabetes tipo 2. Parabéns ao nosso pacient</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/621114219_1768185690807003_1837337161206641498_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeGjRALA42cJAeYmfzYUPrJr8Ur28V3H3pXxSvbxXcfelWYlnqJVEJkwcrX9J0E5xHdIM9Klp_ARkr0MezcuX_io&_nc_ohc=Cd983LQhzawQ7kNvwGRZkLl&_nc_oc=AdoVso5SrXJQ4K8qRq70bTBZ-2QiTfEjv716bOQ-GKIQtkTmHdk6Loct9QIkkUfEMLw&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=vb0WKNU7TpYUTkiz3c5xQw&_nc_tpa=Q5bMBQE2cT8_5Ue2bBKo9MafIZdg_aJ1AcmwvP6toU9aourLYIGExksvVxd6Bx-KlDg9KIxbsp3XQjd2FA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfzDHicJHIL-ntV8Ge6wt_-k2c1af_VyPgT1U8JcWgO-3w&oe=69C3C2E6&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads paulo santo amaro</div>
+                    <div class="ad-meta">R$ 267.81 · 323 cliques · 18 conv · CTR 4.51%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 14.88</div>
+                    <a class="ad-link" href="https://fb.me/2j8R2HLWet48hHU" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">Hoje celebramos um dia muito especial na unidade de Santo Amaro a remissão do diabetes tipo 2. Parabéns ao nosso pacient</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/643601709_25907844758880896_1675879674272664038_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeGkupV9VBKZGYCMayPnihSDxxWfgvKYzj_HFZ-C8pjOP8HaMriWZRwHiGmFQ3OJq21N7c-TAjFyTAL4temlby7K&_nc_ohc=nOaPNvMcwgwQ7kNvwFkl_BG&_nc_oc=Adru2ggTU8d4R_MwRIkTyRZvdOPhuwbTHSsyy_qCWv8q-0QQoz1qpDfB6ql6hh9f90s&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=vb0WKNU7TpYUTkiz3c5xQw&_nc_tpa=Q5bMBQEnGo8CJ01nPvPzOjKHbLwhEojMK4fI0IHcF0f6x5ND7bVMoT01j3eNdytGlOVb49wpv7MeK1LjCg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyjhDVIqHzDboqGtOMP3YK-2sHw6UM5gnukS2tSoiiWBQ&oe=69C3C872&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads exames paty</div>
+                    <div class="ad-meta">R$ 233.50 · 118 cliques · 13 conv · CTR 1.92%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 17.96</div>
+                    <a class="ad-link" href="https://fb.me/xZZk9X4aumSCkBX" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Diabetes Tipo 2? Descubra Como Reduzir a Glicose Sem Depender Apenas de Remédios!<br><br>Sofrendo com diabetes tipo 2? Formi</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/619199846_1740209060698171_8199414433228642932_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeGvPHY3GjfwtxVkTxWSQ8gE1cjghxAozk7VyOCHECjOThRS93MxTOnrhCSxHtz9aWQjQqQkA54ZVBAhehuWAL_M&_nc_ohc=DN4h8VhG4T4Q7kNvwHsXl9a&_nc_oc=Adpz-qS2J-JO6xuMk7TS3PJghx6Zcn0wMz80Pq5goqIvGUH4Ib18Wwxrl6zxEGFun98&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=vb0WKNU7TpYUTkiz3c5xQw&_nc_tpa=Q5bMBQHrjpHlEPkBEySsTKQpBEorp-pFuNuZapY7zXGxXWTTr2aXswuALMEZ0aBUJWDKUaf2dIlUQp7mNg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfxnY7t1WglDHdJr-rclkpiqas1WTGcLvnx6ne03Z5_-MQ&oe=69C3EE18&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads marcelo</div>
+                    <div class="ad-meta">R$ 196.17 · 311 cliques · 12 conv · CTR 3.85%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 16.35</div>
+                    <a class="ad-link" href="https://fb.me/1Rj76K4L5sPdzb3" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">De 11.5 de glicada para remissão.<br>Parece impossível? Para o Marcelo também parecia.<br><br>Ele nos encontrou pelo Facebook sem</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJflObWGIqKWnF8nD-TkyJbiUiorXV7vHFU_Hr1s--EaLLX7LNZJwSwWCzz_tlOtM-uM6uaNqfZiAu221Cp_3sFnb_fWwORQ6yCsPT8usWHwDjIjZE395M-vaN9c5t8PiSxjOopKgfuYv7vsofrhk8N" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads sulfoniureias</div>
+                    <div class="ad-meta">R$ 156.15 · 106 cliques · 12 conv · CTR 2.16%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 13.01</div>
+                    <a class="ad-link" href="https://fb.me/1Snc4fY6ceS5J1C" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 Diabetes Tipo 2? Descubra Como Reduzir a Glicose Sem Depender Apenas de Remédios!<br><br>Sofrendo com diabetes tipo 2? Formi</div>
         </div></div>
 
+    <h3 class="section-header">Análise &amp; Otimizações</h3>
+    <div class="opt-summary">
+        <div class="opt-card opt-green"><span class="opt-v">R$ 12.9</span><span class="opt-l">CPL Médio</span></div>
+        <div class="opt-card opt-green"><span class="opt-v">R$ 3.8</span><span class="opt-l">Melhor CPL</span></div>
+        <div class="opt-card opt-red"><span class="opt-v">R$ 59</span><span class="opt-l">Gasto sem conversão</span></div>
+        <div class="opt-card opt-red"><span class="opt-v">1.1%</span><span class="opt-l">% desperdiçado</span></div>
+    </div><div class="opt-block"><h4 class="opt-title opt-title-green">🟢 Escalar — CPL abaixo da média</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>CTR</th></tr></thead><tbody><tr><td>22/01 [leads] [wpp] [rmk] [novo-criativo] CBO</td><td>R$ 1753</td><td><strong>196</strong></td><td class="cpl-good">R$ 8.9</td><td>3.63%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-yellow">🟡 Otimizar — CPL acima da média</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th></tr></thead><tbody><tr><td>08/03 - [vendas] [wpp] [35+] [zona-sul] CBO</td><td>R$ 723</td><td>35</td><td class="cpl-warn">R$ 20.7</td></tr><tr><td>08/03 - [vendas] [wpp] [39+] [taboao-serra] [propr</td><td>R$ 405</td><td>21</td><td class="cpl-warn">R$ 19.3</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-green">🏆 Top Criativos — Menor CPL</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>CTR</th></tr></thead><tbody><tr><td>ads pastor maringa</td><td>22/01 [leads] [wpp] [rmk] [nov</td><td>R$ 23</td><td><strong>6</strong></td><td class="cpl-good">R$ 3.8</td><td>3.91%</td></tr><tr><td>ads papo de homem</td><td>08/03 [leads] [wpp] [rmk] [35+</td><td>R$ 19</td><td><strong>3</strong></td><td class="cpl-good">R$ 6.2</td><td>2.52%</td></tr><tr><td>ads tadala</td><td>22/01 [leads] [wpp] [rmk] [nov</td><td>R$ 739</td><td><strong>104</strong></td><td class="cpl-good">R$ 7.1</td><td>3.19%</td></tr><tr><td>ads papo de homem</td><td>22/01 [leads] [wpp] [rmk] [nov</td><td>R$ 427</td><td><strong>42</strong></td><td class="cpl-good">R$ 10.2</td><td>2.82%</td></tr><tr><td>ads pastor maringa</td><td>08/03 [leads] [wpp] [rmk] [35+</td><td>R$ 104</td><td><strong>9</strong></td><td class="cpl-good">R$ 11.6</td><td>3.52%</td></tr><tr><td>ads paulo santo amaro</td><td>22/01 [leads] [wpp] [rmk] [nov</td><td>R$ 350</td><td><strong>30</strong></td><td class="cpl-good">R$ 11.7</td><td>5.02%</td></tr><tr><td>ads prova social cely</td><td>09/01 - [vendas] [wpp] [40+] [</td><td>R$ 634</td><td><strong>50</strong></td><td class="cpl-good">R$ 12.7</td><td>1.69%</td></tr><tr><td>ads sulfoniureias</td><td>01/03 - [vendas] [wpp] [35+] [</td><td>R$ 156</td><td><strong>12</strong></td><td class="cpl-good">R$ 13.0</td><td>2.16%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-red">💸 Criativos sem conversão (gasto > R$ 26)</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Campanha</th><th>Gasto</th><th>Clicks</th></tr></thead><tbody><tr><td>ads celio</td><td>08/03 [leads] [wpp] [rmk] [35+</td><td class="cpl-bad">R$ 59</td><td>59</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-yellow">⚠️ Criativos com CPL alto (> R$ 26)</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Gasto</th><th>Conv</th><th>CPL</th></tr></thead><tbody><tr><td>ads pre diabetes</td><td>R$ 65</td><td>2</td><td class="cpl-bad">R$ 32.4</td></tr><tr><td>ads sulfoniureias</td><td>R$ 93</td><td>3</td><td class="cpl-bad">R$ 30.9</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title">📊 Evolução por Período</h4><table class="camp-table"><thead><tr><th>Período</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Tendência</th></tr></thead><tbody><tr><td><strong>30 dias</strong></td><td>R$ 5185</td><td><strong>403</strong></td><td>R$ 12.9</td><td>—</td></tr><tr><td><strong>14 dias</strong></td><td>R$ 2228</td><td><strong>131</strong></td><td>R$ 17.0</td><td><span style="color:#dc2626">▲ 32% pior</span></td></tr><tr><td><strong>3 dias</strong></td><td>R$ 360</td><td><strong>30</strong></td><td>R$ 12.0</td><td><span style="color:#16a34a">▼ 30% melhor</span></td></tr><tr><td><strong>Ontem</strong></td><td>R$ 60</td><td><strong>5</strong></td><td>R$ 11.9</td><td><span style="color:#6b7280">≈ estável</span></td></tr><tr><td><strong>Hoje</strong></td><td>R$ 99</td><td><strong>5</strong></td><td>R$ 19.7</td><td><span style="color:#dc2626">▲ 65% pior</span></td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-green">📈 Melhorando (CPL caiu nos últimos 3 dias)</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>CPL 14d</th><th>CPL 3d</th><th>Variação</th></tr></thead><tbody><tr><td>08/03 - [vendas] [wpp] [35+] [zona-sul] CBO</td><td>R$ 20.7</td><td class="cpl-good">R$ 11.2</td><td class="cpl-good">-46%</td></tr><tr><td>08/03 [leads] [wpp] [rmk] [35+] [90-180D] CBO</td><td>R$ 15.8</td><td class="cpl-good">R$ 11.6</td><td class="cpl-good">-26%</td></tr><tr><td>08/03 - [vendas] [wpp] [39+] [taboao-serra] [propr</td><td>R$ 19.3</td><td class="cpl-good">R$ 14.3</td><td class="cpl-good">-26%</td></tr></tbody></table></div>
+
     <div class="footer">
-        <div>seven midas · marketing digital · atualizado em 20/03/2026 18:39</div>
+        <div>seven midas · marketing digital · atualizado em 20/03/2026 23:38</div>
     </div>
 </div>
 
@@ -761,11 +334,11 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 new Chart(document.getElementById('dailyChart'),{
     type:'bar',
     data:{
-        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
+        labels:["03/06", "03/07", "03/08", "03/09", "03/10", "03/11", "03/12", "03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19"],
         datasets:[
-            {label:'Gasto (R$)',data:[78.47, 144.66, 90.12, 220.31, 168.69, 131.16, 59.73],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
-            {label:'Cliques',data:[94, 122, 70, 152, 149, 101, 72],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
-            {label:'Conversões',data:[4, 7, 8, 17, 16, 9, 5],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+            {label:'Gasto (R$)',data:[168.94, 228.86, 209.29, 262.86, 152.91, 184.81, 126.88, 78.47, 144.66, 90.12, 220.31, 168.69, 131.16, 59.73],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[128, 146, 136, 179, 122, 161, 134, 94, 122, 70, 152, 149, 101, 72],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[8, 19, 13, 10, 6, 7, 2, 4, 7, 8, 17, 16, 9, 5],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
         ]
     },
     options:{
