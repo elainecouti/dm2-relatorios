@@ -145,6 +145,26 @@ def get_ad_creative_info(ad):
     }
 
 
+def _fetch_insights(account_id, level, date_preset, extra_fields="", limit=200):
+    """Helper to fetch insights for a given period."""
+    base_fields = "campaign_name,campaign_id,impressions,reach,clicks,spend,ctr,cpc,actions"
+    if level == "ad":
+        base_fields = "ad_name,ad_id,campaign_name,campaign_id,impressions,reach,clicks,spend,ctr,cpc,actions"
+    elif level == "account":
+        base_fields = "spend,impressions,clicks,ctr,cpc,cpm,reach,frequency,actions"
+    if extra_fields:
+        base_fields += "," + extra_fields
+    result = meta_get(f"act_{account_id}/insights", {
+        "fields": base_fields,
+        "level": level,
+        "date_preset": date_preset,
+        "limit": str(limit),
+    })
+    if isinstance(result, dict):
+        return []
+    return result
+
+
 def fetch_all(account_id):
     print(f"  Buscando dados...")
     account_info = meta_get(f"act_{account_id}", {
@@ -157,10 +177,11 @@ def fetch_all(account_id):
     })
     if isinstance(campaigns, dict): campaigns = []
 
+    # Campaign insights — last 30 days (not maximum)
     camp_insights = meta_get(f"act_{account_id}/insights", {
         "fields": "campaign_name,campaign_id,impressions,reach,clicks,spend,ctr,cpc,cpm,frequency,actions",
         "level": "campaign",
-        "date_preset": "maximum",
+        "date_preset": "last_30d",
     })
     if isinstance(camp_insights, dict): camp_insights = []
 
@@ -170,28 +191,41 @@ def fetch_all(account_id):
     })
     if isinstance(ads, dict): ads = []
 
+    # Ad insights — last 30 days (not maximum)
     ad_insights = meta_get(f"act_{account_id}/insights", {
         "fields": "ad_name,ad_id,campaign_name,campaign_id,impressions,reach,clicks,spend,ctr,cpc,actions",
         "level": "ad",
-        "date_preset": "maximum",
+        "date_preset": "last_30d",
         "limit": 200,
     })
     if isinstance(ad_insights, dict): ad_insights = []
 
+    # Daily chart — last 14 days
     daily = meta_get(f"act_{account_id}/insights", {
         "fields": "spend,impressions,clicks,ctr,actions,date_start",
-        "date_preset": "last_7d",
+        "date_preset": "last_14d",
         "level": "account",
         "time_increment": "1",
     })
     if isinstance(daily, dict): daily = []
 
+    # Account totals — last 30 days
     total = meta_get(f"act_{account_id}/insights", {
         "fields": "spend,impressions,clicks,ctr,cpc,cpm,reach,frequency,actions",
-        "date_preset": "maximum",
+        "date_preset": "last_30d",
         "level": "account",
     })
     if isinstance(total, dict): total = []
+
+    # Multi-period insights for optimization analysis
+    # Campaign level: 30d, 14d, 3d, yesterday, today
+    periods = {}
+    for preset in ["last_14d", "last_3d", "yesterday", "today"]:
+        print(f"    Período: {preset}...")
+        periods[preset] = {
+            "campaigns": _fetch_insights(account_id, "campaign", preset),
+            "ads": _fetch_insights(account_id, "ad", preset),
+        }
 
     return {
         "account_info": account_info if isinstance(account_info, dict) else {},
@@ -201,6 +235,7 @@ def fetch_all(account_id):
         "ad_insights": ad_insights,
         "daily": daily,
         "total": total[0] if total else {},
+        "periods": periods,
     }
 
 
@@ -306,10 +341,50 @@ def process(data):
     balance = int(info.get("balance", 0)) / 100
     remaining = (spend_cap - amount_spent) if spend_cap > 0 else balance
 
+    # Process multi-period data for optimization
+    period_summaries = {}
+    for preset, pdata in data.get("periods", {}).items():
+        p_camps = []
+        for row in pdata.get("campaigns", []):
+            spend = float(row.get("spend", 0))
+            convs = extract_action(row.get("actions"), "onsite_conversion.messaging_conversation_started_7d")
+            p_camps.append({
+                "name": row.get("campaign_name", ""),
+                "campaign_id": row.get("campaign_id", ""),
+                "spend": spend,
+                "clicks": int(row.get("clicks", 0)),
+                "ctr": float(row.get("ctr", 0)),
+                "conversions": convs,
+                "cpl": spend / convs if convs > 0 else 0,
+            })
+        p_ads = []
+        for row in pdata.get("ads", []):
+            spend = float(row.get("spend", 0))
+            convs = extract_action(row.get("actions"), "onsite_conversion.messaging_conversation_started_7d")
+            p_ads.append({
+                "name": row.get("ad_name", ""),
+                "campaign": row.get("campaign_name", ""),
+                "spend": spend,
+                "clicks": int(row.get("clicks", 0)),
+                "ctr": float(row.get("ctr", 0)),
+                "conversions": convs,
+                "cpl": spend / convs if convs > 0 else 0,
+            })
+        total_spend_p = sum(c["spend"] for c in p_camps)
+        total_convs_p = sum(c["conversions"] for c in p_camps)
+        period_summaries[preset] = {
+            "campaigns": p_camps,
+            "ads": p_ads,
+            "spend": total_spend_p,
+            "conversions": total_convs_p,
+            "cpl": total_spend_p / total_convs_p if total_convs_p > 0 else 0,
+        }
+
     return {
         "campaigns": camp_rows,
         "ads": ad_rows,
         "daily_chart": daily_chart,
+        "periods": period_summaries,
         "balance": {
             "remaining": remaining, "spend_cap": spend_cap, "amount_spent": amount_spent,
             "pct_used": (amount_spent / spend_cap * 100) if spend_cap > 0 else 0,
@@ -330,11 +405,13 @@ def esc(text):
     return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;").replace("\n", "<br>")
 
 
-def generate_optimization_section(camps, ads, summary):
-    """Gera seção de análise e recomendações de otimização."""
+def generate_optimization_section(camps, ads, summary, periods=None):
+    """Gera seção de análise e recomendações de otimização com visão temporal."""
     avg_cpl = summary["cpl"]
     if avg_cpl <= 0:
         return ""
+
+    periods = periods or {}
 
     # --- Campanhas para escalar (CPL < 70% da média) ---
     scale = [c for c in camps if c["conversions"] >= 5 and c["cpl"] < avg_cpl * 0.7 and c["cpl"] > 0]
@@ -427,6 +504,88 @@ def generate_optimization_section(camps, ads, summary):
             html += f'<tr><td>{esc(a["name"][:40])}</td><td>R$ {a["spend"]:.0f}</td><td>{a["conversions"]}</td><td class="cpl-bad">R$ {a["cpl"]:.1f}</td></tr>'
         html += '</tbody></table></div>'
 
+    # --- Evolução temporal por período ---
+    if periods:
+        period_labels = {
+            "last_14d": "14 dias",
+            "last_3d": "3 dias",
+            "yesterday": "Ontem",
+            "today": "Hoje",
+        }
+        period_order = ["last_14d", "last_3d", "yesterday", "today"]
+
+        # 1. Resumo geral por período
+        html += '<div class="opt-block"><h4 class="opt-title">📊 Evolução por Período</h4>'
+        html += '<table class="camp-table"><thead><tr><th>Período</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Tendência</th></tr></thead><tbody>'
+        # Include 30d as first row
+        html += f'<tr><td><strong>30 dias</strong></td><td>R$ {summary["spend"]:.0f}</td><td><strong>{summary["conversions"]}</strong></td><td>R$ {avg_cpl:.1f}</td><td>—</td></tr>'
+        prev_cpl = avg_cpl
+        for preset in period_order:
+            ps = periods.get(preset)
+            if not ps:
+                continue
+            label = period_labels.get(preset, preset)
+            cpl = ps["cpl"]
+            if cpl > 0 and prev_cpl > 0:
+                delta = ((cpl - prev_cpl) / prev_cpl) * 100
+                if delta < -10:
+                    trend = f'<span style="color:#16a34a">▼ {abs(delta):.0f}% melhor</span>'
+                elif delta > 10:
+                    trend = f'<span style="color:#dc2626">▲ {delta:.0f}% pior</span>'
+                else:
+                    trend = f'<span style="color:#6b7280">≈ estável</span>'
+            else:
+                trend = "—"
+            cpl_str = f"R$ {cpl:.1f}" if cpl > 0 else "—"
+            html += f'<tr><td><strong>{label}</strong></td><td>R$ {ps["spend"]:.0f}</td><td><strong>{ps["conversions"]}</strong></td><td>{cpl_str}</td><td>{trend}</td></tr>'
+            if cpl > 0:
+                prev_cpl = cpl
+        html += '</tbody></table></div>'
+
+        # 2. Campanhas por período — mostrar quais estão melhorando/piorando
+        # Comparar CPL de cada campanha no last_3d vs last_14d
+        p14 = periods.get("last_14d", {})
+        p3 = periods.get("last_3d", {})
+        if p14.get("campaigns") and p3.get("campaigns"):
+            camp14 = {c["campaign_id"]: c for c in p14["campaigns"] if c.get("campaign_id")}
+            camp3 = {c["campaign_id"]: c for c in p3["campaigns"] if c.get("campaign_id")}
+
+            improving = []
+            worsening = []
+            for cid, c3 in camp3.items():
+                c14 = camp14.get(cid)
+                if not c14 or c14["cpl"] <= 0 or c3["cpl"] <= 0:
+                    continue
+                delta = ((c3["cpl"] - c14["cpl"]) / c14["cpl"]) * 100
+                entry = {
+                    "name": c3["name"],
+                    "cpl_14d": c14["cpl"],
+                    "cpl_3d": c3["cpl"],
+                    "conv_14d": c14["conversions"],
+                    "conv_3d": c3["conversions"],
+                    "delta": delta,
+                }
+                if delta < -15 and c3["conversions"] >= 2:
+                    improving.append(entry)
+                elif delta > 20 and c14["conversions"] >= 3:
+                    worsening.append(entry)
+
+            if improving:
+                improving.sort(key=lambda x: x["delta"])
+                html += '<div class="opt-block"><h4 class="opt-title opt-title-green">📈 Melhorando (CPL caiu nos últimos 3 dias)</h4>'
+                html += '<table class="camp-table"><thead><tr><th>Campanha</th><th>CPL 14d</th><th>CPL 3d</th><th>Variação</th></tr></thead><tbody>'
+                for c in improving[:5]:
+                    html += f'<tr><td>{esc(c["name"][:50])}</td><td>R$ {c["cpl_14d"]:.1f}</td><td class="cpl-good">R$ {c["cpl_3d"]:.1f}</td><td class="cpl-good">{c["delta"]:.0f}%</td></tr>'
+                html += '</tbody></table></div>'
+
+            if worsening:
+                worsening.sort(key=lambda x: -x["delta"])
+                html += '<div class="opt-block"><h4 class="opt-title opt-title-red">📉 Piorando (CPL subiu nos últimos 3 dias)</h4>'
+                html += '<table class="camp-table"><thead><tr><th>Campanha</th><th>CPL 14d</th><th>CPL 3d</th><th>Variação</th></tr></thead><tbody>'
+                for c in worsening[:5]:
+                    html += f'<tr><td>{esc(c["name"][:50])}</td><td>R$ {c["cpl_14d"]:.1f}</td><td class="cpl-bad">R$ {c["cpl_3d"]:.1f}</td><td class="cpl-bad">+{c["delta"]:.0f}%</td></tr>'
+                html += '</tbody></table></div>'
+
     return html
 
 
@@ -443,7 +602,7 @@ def generate_html(slug, client_info, p):
 
     # Campaign + ad rows for optimization section (need before HTML)
     camps_sorted = sorted(camps, key=lambda x: x["spend"], reverse=True)
-    opt_html = generate_optimization_section(camps_sorted, ads, s)
+    opt_html = generate_optimization_section(camps_sorted, ads, s, p.get("periods", {}))
 
     chart_labels = json.dumps([d["date"] for d in daily])
     chart_spend = json.dumps([d["spend"] for d in daily])
