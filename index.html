@@ -49,8 +49,10 @@ h1{font-size:28px;font-weight:800;margin-bottom:8px}
 <body>
 <div id="auth-gate">
   <div class="auth-box">
-    <svg viewBox="0 0 24 24" width="48" height="48" style="margin-bottom:16px"><defs><linearGradient id="lg-auth" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E87B"/><stop offset="100%" stop-color="#00B8D4"/></linearGradient></defs><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="url(#lg-auth)"/></svg>
-    <h2>Seven Midas</h2>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+      <svg viewBox="0 0 24 24" width="40" height="40"><defs><linearGradient id="lg-auth" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E87B"/><stop offset="100%" stop-color="#00B8D4"/></linearGradient></defs><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="url(#lg-auth)"/></svg>
+      <span style="font-family:'Outfit',sans-serif;font-size:28px;font-weight:800;color:#184341;letter-spacing:-0.5px">seven <span style="font-weight:700;background:linear-gradient(135deg,#00E87B,#00B8D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">midas</span></span>
+    </div>
     <p>Digite a senha para acessar os relatórios</p>
     <form id="auth-form">
       <input type="password" id="auth-input" placeholder="Senha" autocomplete="off">
