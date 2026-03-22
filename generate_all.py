@@ -56,6 +56,8 @@ CLIENTS = [
     {"slug": "dra-chris", "account_id": "1182463057290047", "nome": "Dra. Chris Barros", "subtitle": "Tráfego Médico"},
     # Cibelly
     {"slug": "cibelly", "account_id": "893001683526806", "nome": "Cibelly Cordeiro", "subtitle": "Expert / Eventos"},
+    # Workshop Empresarial
+    {"slug": "workshop", "account_id": "936068075436670", "nome": "Workshop Empresarial", "subtitle": "Diego Vieira — Infoproduto"},
 ]
 
 
