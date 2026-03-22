@@ -4,16 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Seven · Dra. Alessandra</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-serif}
 
 .topbar{background:#184341;display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:60px;position:sticky;top:0;z-index:10}
-.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
-.logo svg{width:28px;height:28px}
-.logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{display:flex;align-items:center;gap:5px;text-decoration:none}
+.logo svg{width:34px;height:34px}
+.logo-text{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px}
+.logo-midas{font-weight:700;background:linear-gradient(135deg,#00E87B,#00B8D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .topbar-right{display:flex;align-items:center;gap:12px}
 .live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
@@ -96,12 +97,12 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 
 <div class="topbar">
     <div class="logo">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
-        <span class="logo-text">seven</span>
+        <svg viewBox="0 0 24 24" fill="none"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E87B"/><stop offset="100%" stop-color="#00B8D4"/></linearGradient></defs><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="url(#lg)"/></svg>
+        <span class="logo-text">seven <span class="logo-midas">midas</span></span>
     </div>
     <div class="topbar-right">
         <div class="live-dot"></div>
-        <span class="topbar-label">Atualizado 21/03/2026 18:45</span>
+        <span class="topbar-label">Atualizado 22/03/2026 00:05</span>
     </div>
 </div>
 
@@ -112,7 +113,7 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
         <p class="info">1 campanhas (1 ativas) · Conta: DRA ALESSANDRA </p>
     </div>
 
-    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 1,383.53</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">76,224</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">3,909</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.53%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.35</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 5.42</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">0</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">—</span><span class="kpi-l">Custo/Conv</span></div></div>
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 1,461.92</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">78,582</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">4,133</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.53%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.35</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 5.40</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">0</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">—</span><span class="kpi-l">Custo/Conv</span></div></div>
 
     
 
@@ -130,9 +131,9 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
             <tbody><tr>
             <td><span class="dot active"></span>03/12 [trafego-perfil] [35+] [palmas] [intere</td>
             <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 1383.53</td>
-            <td>76,224</td>
-            <td>3,909</td>
+            <td>R$ 1461.92</td>
+            <td>78,582</td>
+            <td>4,133</td>
             <td>1.53%</td>
             <td><strong>0</strong></td>
             <td>—</td>
@@ -144,84 +145,84 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
     <div class="creatives-grid">
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQL2hFMNp77B9Fw5m93wpPScFze0NtBvRirmYv_5TZqJKg9oTD6Y2foJCr7Hhgz3vRLK9-llQueRwe5Y7hdnKUyk4lG4Bp0L01dbAYuMSHRZ-axgpN83NOIkZe5_y1C2Tzkk-chk6JjCqDv8A-plRGCg" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKVpG-Nu5LVL3fBkIKKB-HVkOMOURd5Qw0yImqooMEb20x8Fxch45cHp8yZK9qV78H7L1upx74TYSaBA356m3o1ek7rU3Y5EQeUeYqh7r4SAEXSsTJ6GfxeeLyUKKOlw6quMbHCX9J0zXJXHclQ2p0c" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads cancer de mama</div>
-                    <div class="ad-meta">R$ 864.24 · 2467 cliques · 0 conv · CTR 2.52%</div>
+                    <div class="ad-meta">R$ 913.43 · 2593 cliques · 0 conv · CTR 2.50%</div>
                     
-                    <a class="ad-link" href="https://fb.me/1TE6IEzwi7cq56h" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <a class="ad-link" href="https://fb.me/2nwcYTNPLlbx3o0" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">➡️ “Cuidar de si também é um ato de amor. Agende sua mamografia e coloque sua saúde em primeiro lugar.”<br><br>Dra. Alessandra</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/648100137_903648775850770_87000867674138270_n.jpg?_nc_cat=111&ccb=1-7&_nc_eui2=AeHUzPk61GnsOqK44JEG56FB-NVwiUvDs7P41XCJS8Ozs2__GlbFMgXVYZrJIAOfyzyrmC7Xa2NpgSo5IHHHbtdw&_nc_ohc=GWET-C0QY5UQ7kNvwGMBAvD&_nc_oc=Adp6nUEn-gOb3xWdkKoOxh6Ehs99M058GPY8rpPqwbE_BwnqsDRoM1FrYlUWNrDgPOQ&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=SijvHlxUxg6X8Nvirrg7jg&_nc_tpa=Q5bMBQGX_XDx5Ut1krtqlAc3QEBNw36p3MWE5VvelYi3iFzTHLppmxegwvFmw7o59jFlFtloOL631lHibA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfwBUBtpYbcVvLvWcVUcA4nFBBd6ARBtaJXQfkBiMwOIYw&oe=69C4D566&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-1.xx.fbcdn.net/v/t15.5256-10/648100137_903648775850770_87000867674138270_n.jpg?_nc_cat=111&ccb=1-7&_nc_eui2=AeHUzPk61GnsOqK44JEG56FB-NVwiUvDs7P41XCJS8Ozs2__GlbFMgXVYZrJIAOfyzyrmC7Xa2NpgSo5IHHHbtdw&_nc_ohc=GWET-C0QY5UQ7kNvwGp7PV8&_nc_oc=AdqynbKKv77CJixe7FB0I-sf1L4eTboFpGV13_luDXkAXf6l_PyBDR2m855MJMfeX-Q&_nc_zt=23&_nc_ht=scontent-ord5-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=PUeTgTuJ4rGJ2C4CJdUR0Q&_nc_tpa=Q5bMBQEtaIw1PQJjoSmBeggG5CCJvSh7UNjHQTJ96_Aq9ZMrgmmE8sVPfHpqi7H_waVrK_ga33UfhgEdog&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfxC0iGH-aqVc4yd4-nPl5HRrGrsu0snOlapcnWtkQZc2w&oe=69C545E6&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads publi post</div>
-                    <div class="ad-meta">R$ 258.87 · 795 cliques · 0 conv · CTR 0.94%</div>
+                    <div class="ad-meta">R$ 287.44 · 891 cliques · 0 conv · CTR 0.94%</div>
                     
-                    <a class="ad-link" href="https://fb.me/348EIs5gJBOA4Qt" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <a class="ad-link" href="https://fb.me/23xjI2i2SlmCP4O" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">A ultrassonografia é, sem dúvida, uma das extensões do exame físico mais poderosas na medicina moderna. Mas a pergunta é</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLU8FN1q9iL6aOKbM4AifdWJi4j-HQwxZvguQG2KnyhORCrZwm-4FTkZvZVPgwq9iKY-lnZ-yujrpuVOlQRMBJ5L2zKXDYQ2_E1JWIsTAs27sIr4wqcrRt39A2TFoYQ7jKM6mynRPuOJFCf00H3fH5R" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQI5XtVK3L1ipqBXEWuVAuBLpx_9_ypFxMZZEExp8i5nPvEBy1WzLOYS8IF3zW00c6dGGLXvF7AUYeyKcbJFUoLHK9BQaTgIWmk02h2Zz90Gzd3xPilJXQhKNLCSIAsJkWPCjyS1VxcMuX8UXvyWnpW_" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads cedrus</div>
                     <div class="ad-meta">R$ 135.54 · 388 cliques · 0 conv · CTR 0.79%</div>
                     
-                    <a class="ad-link" href="https://fb.me/1PdpVQyt5REB85z" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <a class="ad-link" href="https://fb.me/1SToZXd2vLqslx2" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">A ultrassonografia é, sem dúvida, uma das extensões do exame físico mais poderosas na medicina moderna. Mas a pergunta é</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/610676409_875668261507039_5478851077284451845_n.jpg?_nc_cat=100&ccb=1-7&_nc_eui2=AeHaaCzRekgbpvC1de4LoLLb3ktHA3CxzbTeS0cDcLHNtN7NjtKHutNC2dxxNC8cFVCX5J6b8Nvdl0nqHLFMUK2V&_nc_ohc=RQcArdWUnioQ7kNvwGdLbRw&_nc_oc=AdpVe5OaWon3_MyumHzYiVOfzAgKQ9zKly_dsNKJ9Q7BR4dk1HeXT5G4FmZhX3gDEbo&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=SijvHlxUxg6X8Nvirrg7jg&_nc_tpa=Q5bMBQF1o5mO7p-4H6u_-v1inLpv6_dbZW77JdsA2w5Ca3pSNZK50K9YGqYfGE_9cqWcMmcdF-LUhHEZOQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfyaOPMdh2XysZGDLiKPGcvVpbnNjEj3MVASTbkT2lsZdA&oe=69C4DB0F&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-3.xx.fbcdn.net/v/t15.5256-10/610676409_875668261507039_5478851077284451845_n.jpg?_nc_cat=100&ccb=1-7&_nc_eui2=AeHaaCzRekgbpvC1de4LoLLb3ktHA3CxzbTeS0cDcLHNtN7NjtKHutNC2dxxNC8cFVCX5J6b8Nvdl0nqHLFMUK2V&_nc_ohc=RQcArdWUnioQ7kNvwFyMqKN&_nc_oc=AdqBZvVP3KbDzOTvwawybcg8pM86X8xHd_436t9XfDWOve4b0qJ1ndUOTZG5DfQRCUM&_nc_zt=23&_nc_ht=scontent-ord5-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=PUeTgTuJ4rGJ2C4CJdUR0Q&_nc_tpa=Q5bMBQF-vX7UAgrX7neYXwdvxrJcVIB1miYOBSSMGPcCjfpYE6WwG0S2idh6H4CGT4imxZRW8JNNYhEr7w&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afy90KwQW871otFyxkahHiNtaFOe0urHKTF5UhWAv4-oMw&oe=69C5134F&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads prevencao</div>
                     <div class="ad-meta">R$ 99.54 · 206 cliques · 0 conv · CTR 1.07%</div>
                     
-                    <a class="ad-link" href="https://fb.me/26E17b9PW1X0kzw" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <a class="ad-link" href="https://fb.me/2kbYolQD4A0Fezd" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">Mamografia em dia salva vidas. Exame rápido, desconforto leve e enorme chance de detectar o câncer de mama ainda no iníc</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/610655495_874523095312227_8814005390836848861_n.jpg?_nc_cat=100&ccb=1-7&_nc_eui2=AeFrJ6Uwrma1UgQNdJjBHLsLFaD8531eGNMVoPznfV4Y09-b6BsLhnSwlcX4dvLcAVRVsb05Iw2ToDADLL1pz7My&_nc_ohc=hmUq_5_o7eUQ7kNvwHAwDD5&_nc_oc=AdrXj0vrnDr9b7pVyJ8rExQBPPBF_NjHcs5nZYHOZ584MBQ_JyUEQRSUnW3MVai1htw&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=SijvHlxUxg6X8Nvirrg7jg&_nc_tpa=Q5bMBQFGFpf9pNXRUxIj-MJ9d_WtKj6BOBnhfUZU2mgzsjRE1KgMr60Ch84vKNLKM1JzZSikKsF4w4MwTA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfzzcjRenB4thTIg6VsldNyEwqjNtZiVcYnctZxg40j6Iw&oe=69C4FF64&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-3.xx.fbcdn.net/v/t15.5256-10/610655495_874523095312227_8814005390836848861_n.jpg?_nc_cat=100&ccb=1-7&_nc_eui2=AeFrJ6Uwrma1UgQNdJjBHLsLFaD8531eGNMVoPznfV4Y09-b6BsLhnSwlcX4dvLcAVRVsb05Iw2ToDADLL1pz7My&_nc_ohc=hmUq_5_o7eUQ7kNvwGMlkWj&_nc_oc=Adqm9ApHvdKL_4xq2FFiIhB_f-F2-cZbb2YcOGC7Nb7mb61ORipsvRp69mRl268VjMY&_nc_zt=23&_nc_ht=scontent-ord5-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=PUeTgTuJ4rGJ2C4CJdUR0Q&_nc_tpa=Q5bMBQFCSZU-Y1nzxrRIYaXHMzKyTi9wXWoX1Ua8QFxRmJa4DdC_AAlBZxmndulbdFTmmrn11zdxMdz9bw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afz3kYCPGMa1YBgAhcQ2B7fr5QZgDXhQxxA7bll5JEWSEQ&oe=69C537A4&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads radiografia faz mal?</div>
-                    <div class="ad-meta">R$ 10.01 · 18 cliques · 0 conv · CTR 1.10%</div>
+                    <div class="ad-meta">R$ 10.16 · 18 cliques · 0 conv · CTR 1.08%</div>
                     
-                    <a class="ad-link" href="https://fb.me/2hHa4Cq9uJEYr1s" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <a class="ad-link" href="https://fb.me/27aFcMHB21HLldV" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">Radiografia faz mal? Esse é um dos maiores mitos da medicina — e você precisa saber a verdade.<br><br>A radiografia é um exame</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/616027531_1268521215117838_5371359503969680145_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeFMKdbnqo4T42BONoxo3c1-01XYSD4opafTVdhIPiilp0eP5YEnW_HoWGg5aJbQ_NKMEarHOEkhctfpnpVEWZ0N&_nc_ohc=P0Yly_nHPLgQ7kNvwFp6d3D&_nc_oc=Adq5wjpa4-qO6ZoPYbPB49-C5Mhs8CoPJnyEuieQGnvIHijyviBEt5l1ACoAVoXNeBg&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=SijvHlxUxg6X8Nvirrg7jg&_nc_tpa=Q5bMBQGaoJ-QiT_eU4D52Lboj6FGGZkWSOhRgu6Y_BB9OQ4czq9oc5huDZpbJ_QW1uxex_6WPcui8kQbtw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfxpIi5yF3wI4EjfJzM_u3i8XSBJ3e45azLwDHPBnYUhLA&oe=69C4FCD4&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-1.xx.fbcdn.net/v/t15.5256-10/616027531_1268521215117838_5371359503969680145_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeFMKdbnqo4T42BONoxo3c1-01XYSD4opafTVdhIPiilp0eP5YEnW_HoWGg5aJbQ_NKMEarHOEkhctfpnpVEWZ0N&_nc_ohc=P0Yly_nHPLgQ7kNvwEHYXoz&_nc_oc=Adqyj8CfGEVpABG6kZrzgL4kL9hcKEhirV7xQuki9mahHdSxq4tjNZZSuJoDi95kTpk&_nc_zt=23&_nc_ht=scontent-ord5-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=PUeTgTuJ4rGJ2C4CJdUR0Q&_nc_tpa=Q5bMBQHXmQ3GBSNA41YvW1s-KX_4XjZf5qUW_jGyQJDYLuxnd7OijW4w5faOsg6glI_eAn9IogINz0ys-g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfxSCicpIzgAR7mtvdbrKsPs5zSW6SL88HoQujF9jKyvjQ&oe=69C53514&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads sua saude</div>
                     <div class="ad-meta">R$ 9.52 · 12 cliques · 0 conv · CTR 0.66%</div>
                     
-                    <a class="ad-link" href="https://fb.me/2xp2xh5CTM0lO7M" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <a class="ad-link" href="https://fb.me/27kPvZRL7AaHOYQ" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">Você só lembra da sua saúde quando sente algo?<br>A maioria das doenças não dá sinais no começo — e é justamente aí que mor</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/607713658_2391607444593857_7949431004419362776_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeG0DVHP9U5h_Hzili9EgbIGzM65mtuuOLLMzrma2644stJbDWgkSnWV_M3Rl0uDbOJckPMe79RYvlcKrdLL1D4a&_nc_ohc=stc0B5cSzasQ7kNvwGGjx-7&_nc_oc=AdpPJnIXm7Sq_zOl5s_ydpCrTAcv4OiibmTuxxldqWRdjjBU2gOr6ybkBSoHMfn6kd4&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=SijvHlxUxg6X8Nvirrg7jg&_nc_tpa=Q5bMBQEAUzBx3BG9jke4GgGSra3RDet5BUoJBxsl0ETdAeMxNidNX_1a_3Yq5IeAoAF8PqQaBaYnMgeuhw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfyW-1adMThpggC9SDgR9D8bi_U7Fhm36eNJ57kVBekg1A&oe=69C4F31E&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-1.xx.fbcdn.net/v/t15.5256-10/607713658_2391607444593857_7949431004419362776_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeG0DVHP9U5h_Hzili9EgbIGzM65mtuuOLLMzrma2644stJbDWgkSnWV_M3Rl0uDbOJckPMe79RYvlcKrdLL1D4a&_nc_ohc=stc0B5cSzasQ7kNvwHF5PD6&_nc_oc=AdoOQlFocG0figR9BQeiEDjax3po0OBt46zEWZQoj0_RpWT_RLnEzbwEp_LzKIRvtOU&_nc_zt=23&_nc_ht=scontent-ord5-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=PUeTgTuJ4rGJ2C4CJdUR0Q&_nc_tpa=Q5bMBQHL1zDP11sJBxri-r-jiFFsjWkvHpPuBzzp7M0eSnyyPAEPgTdpDGOn2YDvLgr3L8_YtcPGPj3u-g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfzdPWhgPB35YpIaFPVB1PO897kDPmXmewA7_ucEh_ddFQ&oe=69C52B5E&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads rastreamento</div>
-                    <div class="ad-meta">R$ 5.81 · 23 cliques · 0 conv · CTR 2.79%</div>
+                    <div class="ad-meta">R$ 6.29 · 25 cliques · 0 conv · CTR 2.83%</div>
                     
-                    <a class="ad-link" href="https://fb.me/26LG7BjsvqjP5vK" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <a class="ad-link" href="https://fb.me/27ZJnYUNT9yYkq4" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">O diagnóstico precoce do câncer de mama salva vidas.<br>Fazer os exames no tempo certo é um gesto de cuidado e responsabili</div>
@@ -230,7 +231,7 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
     
 
     <div class="footer">
-        <div>seven midas · marketing digital · atualizado em 21/03/2026 18:45</div>
+        <div>seven midas · marketing digital · atualizado em 22/03/2026 00:05</div>
     </div>
 </div>
 
@@ -238,10 +239,10 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 new Chart(document.getElementById('dailyChart'),{
     type:'bar',
     data:{
-        labels:["03/07", "03/08", "03/09", "03/10", "03/11", "03/12", "03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19", "03/20"],
+        labels:["03/08", "03/09", "03/10", "03/11", "03/12", "03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19", "03/20", "03/21"],
         datasets:[
-            {label:'Gasto (R$)',data:[32.15, 80.49, 92.31, 76.66, 77.46, 77.48, 78.72, 76.84, 88.58, 75.26, 81.32, 79.18, 78.98, 78.22],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
-            {label:'Cliques',data:[89, 208, 221, 219, 199, 223, 223, 226, 289, 229, 239, 235, 232, 260],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Gasto (R$)',data:[80.49, 92.31, 76.66, 77.46, 77.48, 78.72, 76.84, 88.58, 75.26, 81.32, 79.18, 78.98, 78.22, 78.39],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[208, 221, 219, 199, 223, 223, 226, 289, 229, 239, 235, 232, 260, 224],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
             {label:'Conversões',data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
         ]
     },

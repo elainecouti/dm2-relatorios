@@ -4,16 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Seven · Dr. Leandro Maia</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-serif}
 
 .topbar{background:#184341;display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:60px;position:sticky;top:0;z-index:10}
-.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
-.logo svg{width:28px;height:28px}
-.logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{display:flex;align-items:center;gap:5px;text-decoration:none}
+.logo svg{width:34px;height:34px}
+.logo-text{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px}
+.logo-midas{font-weight:700;background:linear-gradient(135deg,#00E87B,#00B8D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .topbar-right{display:flex;align-items:center;gap:12px}
 .live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
@@ -96,12 +97,12 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 
 <div class="topbar">
     <div class="logo">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
-        <span class="logo-text">seven</span>
+        <svg viewBox="0 0 24 24" fill="none"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E87B"/><stop offset="100%" stop-color="#00B8D4"/></linearGradient></defs><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="url(#lg)"/></svg>
+        <span class="logo-text">seven <span class="logo-midas">midas</span></span>
     </div>
     <div class="topbar-right">
         <div class="live-dot"></div>
-        <span class="topbar-label">Atualizado 21/03/2026 18:45</span>
+        <span class="topbar-label">Atualizado 22/03/2026 00:05</span>
     </div>
 </div>
 
@@ -112,7 +113,7 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
         <p class="info">1 campanhas (1 ativas) · Conta: CA 01 - LEANDRO MAIA</p>
     </div>
 
-    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 378.73</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">27,743</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">1,112</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.67%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.34</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 5.68</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">3</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 126.24</span><span class="kpi-l">Custo/Conv</span></div></div>
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 424.72</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">30,005</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">1,236</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.62%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.34</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 5.57</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">4</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 106.18</span><span class="kpi-l">Custo/Conv</span></div></div>
 
     
 
@@ -130,12 +131,12 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
             <tbody><tr>
             <td><span class="dot active"></span>13/03 [trafego-perfil] [palmas-porto nacional</td>
             <td><span class="obj-tag" style="background:#1D71B8">Tráfego</span></td>
-            <td>R$ 378.73</td>
-            <td>27,743</td>
-            <td>1,112</td>
-            <td>1.67%</td>
-            <td><strong>3</strong></td>
-            <td>R$ 126.24</td>
+            <td>R$ 424.72</td>
+            <td>30,005</td>
+            <td>1,236</td>
+            <td>1.62%</td>
+            <td><strong>4</strong></td>
+            <td>R$ 106.18</td>
         </tr></tbody>
         </table>
     </div>
@@ -144,72 +145,72 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
     <div class="creatives-grid">
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/651553441_3853310528303973_6470341202389681731_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeEG-q0jpAl6nXOXlUaILGems6LWKCP6gvizotYoI_qC-JYkt0uGURpF3MdaSJWHp1-snGV02z5wCArli_4_bdiX&_nc_ohc=0XSSw7ffP4QQ7kNvwECapdY&_nc_oc=Adrd2qyAUKKi6ymXwgOVMTRk3cYQQUnnFE9TscRtifYNjKEL_9QYERtpfesOX_2LQ9Y&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aD3axRNZpPB1e8ZzteLT7Q&_nc_tpa=Q5bMBQHNo6wnBCqg8NXXmN25XbWBDn78bJ4XKWXZp3WriJCoNsDeqWJi7cEJHxbNB_cDNxFfwov7VWyXQA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfzfIRFNcHwgM1kkywlEpFgw8A-KMvcjzUqit6eqXfnHsQ&oe=69C4D4F2&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-3.xx.fbcdn.net/v/t15.5256-10/651553441_3853310528303973_6470341202389681731_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeEG-q0jpAl6nXOXlUaILGems6LWKCP6gvizotYoI_qC-JYkt0uGURpF3MdaSJWHp1-snGV02z5wCArli_4_bdiX&_nc_ohc=0XSSw7ffP4QQ7kNvwE0NqQX&_nc_oc=Adrz1RH3XHZ3ALSU_lVgv6417KE6spimotW8jJT-ucvDdiUfP8OPvndkry_u7IycFiE&_nc_zt=23&_nc_ht=scontent-ord5-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=cPGfFeqDFyv3lOsdPGFb-A&_nc_tpa=Q5bMBQHtM8n67PJtFNrFpl1Aqxzq6c3czbW6Ap_TmrG2m-RwYwRVKTtVS-rSmsq57MXBgP1ZggbxaAO2vg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afwhw4bTj9w2hqy1eNmWdSHHvbludbDdpyxzwytN6uXMXg&oe=69C54572&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads transplante long hair</div>
-                    <div class="ad-meta">R$ 123.11 · 324 cliques · 0 conv · CTR 1.69%</div>
-                    
-                    <a class="ad-link" href="https://fb.me/1ScRzXpG0RDz9PH" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 140.69 · 358 cliques · 1 conv · CTR 1.62%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 140.69</div>
+                    <a class="ad-link" href="https://fb.me/374cLl0XKa8sjjh" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">Transplante Long Hair de Sobrancelhas <br>#longhairtransplant #fuelonghair #sobrancelhas</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/649692145_1572951483782727_4906277608071100878_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeHdu_8C6qaak5IPu7tGbQcGGP44ypBeizsY_jjKkF6LO_plWLIycj6mg26faU0yAPxAE_ogkFH49WapGYo9PFOw&_nc_ohc=BDHNhBtSbJ4Q7kNvwFGi8Hw&_nc_oc=AdpGvzX5M15eV6qYrFS02639dPW8i7LMhs7Eev8y4TlBzuX51hMp55AFOpCeJcYFbEY&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aD3axRNZpPB1e8ZzteLT7Q&_nc_tpa=Q5bMBQFQkSvjfwo3VNPV-rmeqZzwntt_ziWmkrBsjpxiN7gnwhMTms5L8FTUpTnoZdRFAoe_fxxqm607ng&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfwL285FJdx9USXGBgTWWRfT0P305zMU00rKkhJAqls_oA&oe=69C4D502&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-3.xx.fbcdn.net/v/t15.5256-10/649692145_1572951483782727_4906277608071100878_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeHdu_8C6qaak5IPu7tGbQcGGP44ypBeizsY_jjKkF6LO_plWLIycj6mg26faU0yAPxAE_ogkFH49WapGYo9PFOw&_nc_ohc=BDHNhBtSbJ4Q7kNvwHAppM4&_nc_oc=Adpksqcojj9Qkj1swyN-sSlQXLilwzDtqz0kJIWewGzr1UMRDbWMbmEU5FwNcuTYhTk&_nc_zt=23&_nc_ht=scontent-ord5-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=cPGfFeqDFyv3lOsdPGFb-A&_nc_tpa=Q5bMBQGIDFZ7f66HowpiTAV61eFxaThkPZmwuCoc4jSBEfgr-O7VxqZ5mol-EZFMmFlU2Q8DeigwY-L9Sg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afx_MTD1rLgJ8YgOKGiH2edD4OQfD8buByDhuPhf_GnLRg&oe=69C54582&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads atendimento palmas</div>
-                    <div class="ad-meta">R$ 117.24 · 373 cliques · 2 conv · CTR 1.99%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 58.62</div>
-                    <a class="ad-link" href="https://fb.me/25Pg69TiMe65aDC" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 127.93 · 412 cliques · 2 conv · CTR 1.96%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 63.97</div>
+                    <a class="ad-link" href="https://fb.me/1NTyZjpVHfB9AS4" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">Depois de muitas pessoas me pedirem e perguntarem, vou começar meus atendimentos no Tocantins 🤍<br><br>Serão atendimentos em D</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/651098282_26440403402316702_1488756755943562565_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeGclSeIQUI1GdE3rlXV7fT9nbT5MmhODBadtPkyaE4MFr-RmIlVsL9DSEIDUKHuxz1bpzHKW0JDsx95CcTAwD43&_nc_ohc=g-zZ4zs6L2QQ7kNvwG502FM&_nc_oc=AdrRCU5ae4GF8LJiMjFtFQXlTRhO2m0aUNrDaczkEKXoMb9CHxf70Ly6sNSCKIwRxHM&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aD3axRNZpPB1e8ZzteLT7Q&_nc_tpa=Q5bMBQEO1oqSJwbCN-yzZLRumKDtQCDRbwaN52PuDC051HkfnJCP2IS5g_Vz_R0ZKciyl0E5NZ8M9q4tuA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afx_PBtxThB4Zfq4rP6h14yagjWGdx8E48veitjZPJUqOQ&oe=69C4F9C1&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-2.xx.fbcdn.net/v/t15.5256-10/651098282_26440403402316702_1488756755943562565_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeGclSeIQUI1GdE3rlXV7fT9nbT5MmhODBadtPkyaE4MFr-RmIlVsL9DSEIDUKHuxz1bpzHKW0JDsx95CcTAwD43&_nc_ohc=g-zZ4zs6L2QQ7kNvwFB-F3u&_nc_oc=AdqRVG7FfmFxeoZn4vqSFoBCxE5yKTUmnLd8uq5e_nciDEQ-_Epp86RnNKSEx1Cgh3A&_nc_zt=23&_nc_ht=scontent-ord5-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=cPGfFeqDFyv3lOsdPGFb-A&_nc_tpa=Q5bMBQHl-s2OxEtCVGupVFd9HIHk6CIJvSS-AbTsAR9kdGim08EhH3Ta3nH5EYZw8yMzJVFAFDUNuIxoCg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afxxg-WJYHuxQUpdWYTRgazPcU4wxJ18rJaScZ7WNwKL8Q&oe=69C53201&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads V-Lift</div>
-                    <div class="ad-meta">R$ 66.20 · 172 cliques · 0 conv · CTR 1.46%</div>
+                    <div class="ad-meta">R$ 76.14 · 203 cliques · 0 conv · CTR 1.41%</div>
                     
-                    <a class="ad-link" href="https://fb.me/23ozGoOBA2d9obP" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <a class="ad-link" href="https://fb.me/1PErWVBit62v3Ze" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">Você já ouviu falar no V-Lift? <br>Um procedimento que melhora o contorno do rosto, promove efeito lifting e deixa a face m</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/648058766_1467077311572839_1986115914469062623_n.jpg?_nc_cat=102&ccb=1-7&_nc_eui2=AeHrHXcCKkHlxoKlNtQsqYXFMt9uV1hoNKgy325XWGg0qMa__FdKjYaSbffMCK60e5vyzD-Bt1aooGhb8MIzkSfD&_nc_ohc=jB8_pbuwEE0Q7kNvwH01imE&_nc_oc=AdorqT-UW-pwJI_3LrNeQfPzGwhOiCkniK7LcLQP-x555PRvxsEcSgh1Qrmcv0gDfrg&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aD3axRNZpPB1e8ZzteLT7Q&_nc_tpa=Q5bMBQHl5PJqjhLXwiqPkPmzQza3sFMi277_tvOm9I-fH81Q4bJ4vUiPw6_uSfpyDpa8kiigobCU50_KwQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afy5jbTWSMxTiwNw-Tdd9Ccy2HsbGYPPEJWPv2xP8wq4og&oe=69C4F14E&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-2.xx.fbcdn.net/v/t15.5256-10/648058766_1467077311572839_1986115914469062623_n.jpg?_nc_cat=102&ccb=1-7&_nc_eui2=AeHrHXcCKkHlxoKlNtQsqYXFMt9uV1hoNKgy325XWGg0qMa__FdKjYaSbffMCK60e5vyzD-Bt1aooGhb8MIzkSfD&_nc_ohc=jB8_pbuwEE0Q7kNvwGk7Rv3&_nc_oc=AdrPJ8JvIOm548i3M9i1fN6Q6vtjFwZu8bqlxsG1gsMm0DeoODhTquVH9pD6QkkdM3M&_nc_zt=23&_nc_ht=scontent-ord5-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=cPGfFeqDFyv3lOsdPGFb-A&_nc_tpa=Q5bMBQFf58_ka9q-gyyiSeH9Hi23QHH6e6UY3H6aRXND3k8N7ZpvlRTN_Ad9aRo23dCXiVEHqq09m9-g5g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfwAlkl1UA_mld4HWkxduGjygA7FUKjxpFqwdvE_6lyVjw&oe=69C5298E&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads queda de cabelo</div>
-                    <div class="ad-meta">R$ 65.10 · 228 cliques · 1 conv · CTR 1.47%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 65.10</div>
-                    <a class="ad-link" href="https://fb.me/1YEV4XGEgJAsNgL" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 71.48 · 243 cliques · 1 conv · CTR 1.43%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 71.48</div>
+                    <a class="ad-link" href="https://fb.me/1S6Y9Bw2s7uVlER" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">Queda de cabelo ou falhas não devem ser avaliadas apenas “no olho”.<br><br>A tricoscopia é um exame que permite analisar o cou</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/651244029_3573250116163259_8998268817533023741_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeEz5FIcseWCR_MWdW1Wte8D6TqYovdrSknpOpii92tKSRyDguI9nAVtMjBeMRNUzy9rur59-AIhxAOx-UEnYqNW&_nc_ohc=SeajbUbLcN4Q7kNvwEU8BKU&_nc_oc=Adrs1wRs0uTBy7oJ6X8KpGVdmqzl3ahTb_SLMaMdoV0tArwdFjDfmGydn481lc7zdRU&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aD3axRNZpPB1e8ZzteLT7Q&_nc_tpa=Q5bMBQH3tLsXRIPfxbAvxbF5nMBnQRn1kqmib3h4m98fYgRqnkWs08O8LkXW1AW3C1ktaXIhXIi98VDHQQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfzGQF1aKBzGxJ5BNbwLZtUbv4oAkgxpghCogto6WQUwNQ&oe=69C4E741&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-3.xx.fbcdn.net/v/t15.5256-10/651244029_3573250116163259_8998268817533023741_n.jpg?_nc_cat=109&ccb=1-7&_nc_eui2=AeEz5FIcseWCR_MWdW1Wte8D6TqYovdrSknpOpii92tKSRyDguI9nAVtMjBeMRNUzy9rur59-AIhxAOx-UEnYqNW&_nc_ohc=SeajbUbLcN4Q7kNvwFlr6qp&_nc_oc=AdrDuvHcQqmKtmf8-anyUFMEqhmm0l6XkyKUj94jjDgPFk4AvkbtVgunqY0HNm8G_ao&_nc_zt=23&_nc_ht=scontent-ord5-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=cPGfFeqDFyv3lOsdPGFb-A&_nc_tpa=Q5bMBQGnMPbPUUoTBoH1-Xjo_kgX1U1qWu6atQvdtZYWmsBnDxmlLp4E9wZ0a1r74YkqJjOQhvsFGl4jOw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfxeXA9uGtQR_9O5m3AvFs-p2zgLoyiFjPrr7oBYtze9qw&oe=69C51F81&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads fios retirados</div>
-                    <div class="ad-meta">R$ 3.76 · 10 cliques · 0 conv · CTR 1.36%</div>
+                    <div class="ad-meta">R$ 4.99 · 15 cliques · 0 conv · CTR 1.52%</div>
                     
-                    <a class="ad-link" href="https://fb.me/21QzxKhcjKscllP" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <a class="ad-link" href="https://fb.me/29OcEpDf38KLOjO" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">Os fios retirados da parte de trás da cabeça costumam ser mais grossos e rígidos do que os da frente. Isso acontece porq</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/649693228_1444154014168497_5201124323692929926_n.jpg?_nc_cat=107&ccb=1-7&_nc_eui2=AeF6rtqY6ghVrjwJPe8-AGGdrr2TgifokUGuvZOCJ-iRQerX_Pf5w2KqskBc3r6U9A3v_3G7ysD3rlhPS0i_wUzm&_nc_ohc=flDrSDcMZz0Q7kNvwG-kE-5&_nc_oc=AdqZh80G0yMOe6lGqSxLGp-Z-pGYGfU-FjIc_wUZDMDIJ6fv6bG1UmDc60ybx74M5u0&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aD3axRNZpPB1e8ZzteLT7Q&_nc_tpa=Q5bMBQFOrQkWmcnkCOmLAouslyDhTGw4UFsPIxsTc28qutnfLJfc-3SaPph58iJhiddOSfWIOeWSVsdW8A&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfwSTINPK5k45ZKcYHStYEcDkl3yn9YRs-iMkofrlLvXVA&oe=69C4C8B7&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-3.xx.fbcdn.net/v/t15.5256-10/649693228_1444154014168497_5201124323692929926_n.jpg?_nc_cat=107&ccb=1-7&_nc_eui2=AeF6rtqY6ghVrjwJPe8-AGGdrr2TgifokUGuvZOCJ-iRQerX_Pf5w2KqskBc3r6U9A3v_3G7ysD3rlhPS0i_wUzm&_nc_ohc=flDrSDcMZz0Q7kNvwFaP-ed&_nc_oc=AdrdN9G_RJbSnSRG8JTpZvY2wnBCneDwptpBk9k_NfWZyfNBrEvOGiWT6rJpb5ySsIg&_nc_zt=23&_nc_ht=scontent-ord5-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=cPGfFeqDFyv3lOsdPGFb-A&_nc_tpa=Q5bMBQEguhCRM-Hvn9PdJP8ntPHNqArBCFwrpGcBA6t5R_kvquAldpXbpaiLlyuMaT_NtW3bPHDr70jv_g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfyNgPdbkzdTn9pURIGzRD_UtdGARNGS-csDOEsFKoEXlQ&oe=69C53937&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads 4 meses de evolucao</div>
-                    <div class="ad-meta">R$ 3.32 · 5 cliques · 0 conv · CTR 0.79%</div>
+                    <div class="ad-meta">R$ 3.49 · 5 cliques · 0 conv · CTR 0.75%</div>
                     
-                    <a class="ad-link" href="https://fb.me/1Rx4yQXtPaMTNIN" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <a class="ad-link" href="https://fb.me/1RQIZ42C9dmX2E2" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">Apenas 4 meses de evolução da cirurgia FUE 😍</div>
@@ -217,14 +218,14 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 
     <h3 class="section-header">Análise &amp; Otimizações</h3>
     <div class="opt-summary">
-        <div class="opt-card opt-green"><span class="opt-v">R$ 126.2</span><span class="opt-l">CPL Médio</span></div>
+        <div class="opt-card opt-green"><span class="opt-v">R$ 106.2</span><span class="opt-l">CPL Médio</span></div>
         <div class="opt-card opt-green"><span class="opt-v">R$ 0.0</span><span class="opt-l">Melhor CPL</span></div>
         <div class="opt-card opt-red"><span class="opt-v">R$ 0</span><span class="opt-l">Gasto sem conversão</span></div>
         <div class="opt-card opt-red"><span class="opt-v">0.0%</span><span class="opt-l">% desperdiçado</span></div>
-    </div><div class="opt-block"><h4 class="opt-title">📊 Evolução por Período</h4><table class="camp-table"><thead><tr><th>Período</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Tendência</th></tr></thead><tbody><tr><td><strong>30 dias</strong></td><td>R$ 379</td><td><strong>3</strong></td><td>R$ 126.2</td><td>—</td></tr><tr><td><strong>14 dias</strong></td><td>R$ 379</td><td><strong>3</strong></td><td>R$ 126.2</td><td><span style="color:#6b7280">≈ estável</span></td></tr><tr><td><strong>3 dias</strong></td><td>R$ 151</td><td><strong>1</strong></td><td>R$ 150.7</td><td><span style="color:#dc2626">▲ 19% pior</span></td></tr><tr><td><strong>Ontem</strong></td><td>R$ 51</td><td><strong>0</strong></td><td>—</td><td>—</td></tr><tr><td><strong>Hoje</strong></td><td>R$ 29</td><td><strong>1</strong></td><td>R$ 29.1</td><td><span style="color:#16a34a">▼ 81% melhor</span></td></tr></tbody></table></div>
+    </div><div class="opt-block"><h4 class="opt-title">📊 Evolução por Período</h4><table class="camp-table"><thead><tr><th>Período</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Tendência</th></tr></thead><tbody><tr><td><strong>30 dias</strong></td><td>R$ 425</td><td><strong>4</strong></td><td>R$ 106.2</td><td>—</td></tr><tr><td><strong>14 dias</strong></td><td>R$ 425</td><td><strong>4</strong></td><td>R$ 106.2</td><td><span style="color:#6b7280">≈ estável</span></td></tr><tr><td><strong>3 dias</strong></td><td>R$ 148</td><td><strong>1</strong></td><td>R$ 148.0</td><td><span style="color:#dc2626">▲ 39% pior</span></td></tr><tr><td><strong>Ontem</strong></td><td>R$ 46</td><td><strong>1</strong></td><td>R$ 46.0</td><td><span style="color:#16a34a">▼ 69% melhor</span></td></tr><tr><td><strong>Hoje</strong></td><td>R$ 0</td><td><strong>0</strong></td><td>—</td><td>—</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-red">📉 Piorando (CPL subiu nos últimos 3 dias)</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>CPL 14d</th><th>CPL 3d</th><th>Variação</th></tr></thead><tbody><tr><td>13/03 [trafego-perfil] [palmas-porto nacional] [in</td><td>R$ 106.2</td><td class="cpl-bad">R$ 148.0</td><td class="cpl-bad">+39%</td></tr></tbody></table></div>
 
     <div class="footer">
-        <div>seven midas · marketing digital · atualizado em 21/03/2026 18:45</div>
+        <div>seven midas · marketing digital · atualizado em 22/03/2026 00:05</div>
     </div>
 </div>
 
@@ -232,11 +233,11 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 new Chart(document.getElementById('dailyChart'),{
     type:'bar',
     data:{
-        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19", "03/20"],
+        labels:["03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19", "03/20", "03/21"],
         datasets:[
-            {label:'Gasto (R$)',data:[34.35, 40.37, 54.55, 46.48, 52.24, 48.76, 50.52, 51.46],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
-            {label:'Cliques',data:[81, 140, 205, 150, 137, 125, 137, 137],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
-            {label:'Conversões',data:[0, 0, 1, 1, 0, 1, 0, 0],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+            {label:'Gasto (R$)',data:[34.35, 40.37, 54.55, 46.48, 52.24, 48.76, 50.52, 51.46, 45.99],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[81, 140, 205, 150, 137, 125, 137, 137, 124],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[0, 0, 1, 1, 0, 1, 0, 0, 1],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
         ]
     },
     options:{

@@ -4,16 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Seven · Emagrecentro Cariacica</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-serif}
 
 .topbar{background:#184341;display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:60px;position:sticky;top:0;z-index:10}
-.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
-.logo svg{width:28px;height:28px}
-.logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{display:flex;align-items:center;gap:5px;text-decoration:none}
+.logo svg{width:34px;height:34px}
+.logo-text{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px}
+.logo-midas{font-weight:700;background:linear-gradient(135deg,#00E87B,#00B8D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .topbar-right{display:flex;align-items:center;gap:12px}
 .live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
@@ -96,12 +97,12 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 
 <div class="topbar">
     <div class="logo">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
-        <span class="logo-text">seven</span>
+        <svg viewBox="0 0 24 24" fill="none"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E87B"/><stop offset="100%" stop-color="#00B8D4"/></linearGradient></defs><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="url(#lg)"/></svg>
+        <span class="logo-text">seven <span class="logo-midas">midas</span></span>
     </div>
     <div class="topbar-right">
         <div class="live-dot"></div>
-        <span class="topbar-label">Atualizado 21/03/2026 18:42</span>
+        <span class="topbar-label">Atualizado 22/03/2026 00:02</span>
     </div>
 </div>
 
@@ -112,7 +113,7 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
         <p class="info">9 campanhas (2 ativas) · Conta: CA CARIACICA EMAGRECENTRO</p>
     </div>
 
-    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 20,634.32</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">190,366</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">24,034</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.84%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.86</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 15.80</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">3,148</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 6.55</span><span class="kpi-l">Custo/Conv</span></div></div>
+    <div class="kpis"><div class="kpi"><span class="kpi-v">R$ 21,100.17</span><span class="kpi-l">Investido</span></div><div class="kpi"><span class="kpi-v">197,049</span><span class="kpi-l">Alcance</span></div><div class="kpi"><span class="kpi-v">24,794</span><span class="kpi-l">Cliques</span></div><div class="kpi"><span class="kpi-v">1.87%</span><span class="kpi-l">CTR</span></div><div class="kpi"><span class="kpi-v">R$ 0.85</span><span class="kpi-l">CPC</span></div><div class="kpi"><span class="kpi-v">R$ 15.92</span><span class="kpi-l">CPM</span></div><div class="kpi"><span class="kpi-v">3,204</span><span class="kpi-l">Conversões</span></div><div class="kpi"><span class="kpi-v">R$ 6.59</span><span class="kpi-l">Custo/Conv</span></div></div>
 
     
 
@@ -130,12 +131,12 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
             <tbody><tr>
             <td><span class="dot active"></span>03/02 - [vendas] [wpp] [cariacica-campogrande</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
-            <td>R$ 18475.16</td>
-            <td>188,995</td>
-            <td>21,025</td>
-            <td>1.79%</td>
-            <td><strong>2501</strong></td>
-            <td>R$ 7.39</td>
+            <td>R$ 18918.53</td>
+            <td>195,927</td>
+            <td>21,776</td>
+            <td>1.83%</td>
+            <td><strong>2556</strong></td>
+            <td>R$ 7.40</td>
         </tr><tr>
             <td><span class="dot paused"></span>12/03 - [feirão] [vendas] [wpp] [cariacica-ca</td>
             <td><span class="obj-tag" style="background:#22c55e">Vendas</span></td>
@@ -148,12 +149,12 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
         </tr><tr>
             <td><span class="dot active"></span>24/02 [vaga] [vendedor] [cariacica] [22-39]</td>
             <td><span class="obj-tag" style="background:#9333ea">Engajamento</span></td>
-            <td>R$ 604.69</td>
-            <td>6,765</td>
-            <td>294</td>
-            <td>0.69%</td>
-            <td><strong>25</strong></td>
-            <td>R$ 24.19</td>
+            <td>R$ 627.17</td>
+            <td>7,052</td>
+            <td>303</td>
+            <td>0.68%</td>
+            <td><strong>26</strong></td>
+            <td>R$ 24.12</td>
         </tr></tbody>
         </table>
     </div>
@@ -162,123 +163,123 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
     <div class="creatives-grid">
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/623838818_1586383319243355_618346330475415987_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeHGiE4HoSUHBLNhkquTQVTVgwydORxkN16DDJ05HGQ3XpVCC0Z_gZz4tvDCfxqELrbuq7WSRAsjUWbZ-vsDeId7&_nc_ohc=26AkEZp4nvcQ7kNvwFQNbjw&_nc_oc=Adq0t83zVIl0rehSHRo_BxCO_0RZ4vzTxG4Xynb7mk3-fP2PK5Ab63pTYIGjKPTdtn0&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=cLNcRPakAPt8Sz0evm316A&_nc_tpa=Q5bMBQFg-H0IW4N7UpYQf9xjq7pOCdOHagzt1hW0sQ7v3gJFFpVYYfmX-KTuuuLY-bkyM2BWZciSQCMt5Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afxnymf6QQcLTpKtxQh9YmUSusF5QxmkpYtGTAI1ZxWa5g&oe=69C4D08C&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-2.xx.fbcdn.net/v/t15.5256-10/623838818_1586383319243355_618346330475415987_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeHGiE4HoSUHBLNhkquTQVTVgwydORxkN16DDJ05HGQ3XpVCC0Z_gZz4tvDCfxqELrbuq7WSRAsjUWbZ-vsDeId7&_nc_ohc=26AkEZp4nvcQ7kNvwFy1Mri&_nc_oc=AdrqwtLwnqbzSs2AD0c-OuswuosDigS6dCvCXUutfeZZDEUGlzRIpvdz6YEio353qEc&_nc_zt=23&_nc_ht=scontent-ord5-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=N1JTxihcZq5OFAbENZkK0Q&_nc_tpa=Q5bMBQHRmaavHrDlumPd0cbEhSGqVyJsaqyvOp6o4CY1ldFmuzLG4sjhYDgp1-YbZA0gt6F2mI1OMYOeFw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyoYhg5prpRQRJhnyv_oBcLKtM3X_HLNQxQH_dVSBCjFg&oe=69C5410C&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads marla antes e depois EDITADO</div>
-                    <div class="ad-meta">R$ 1290.13 · 1315 cliques · 145 conv · CTR 1.44%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 8.90</div>
-                    <a class="ad-link" href="https://fb.me/1ZgZYYdp2liAdsE" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 1269.44 · 1286 cliques · 139 conv · CTR 1.44%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 9.13</div>
+                    <a class="ad-link" href="https://fb.me/34xkde7Y1q1YSaG" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🚨 ATENÇÃO CARIACICA, VIANA E REGIÃO! 🚨<br><br>A Emagrecentro tem mudado vidas como a da Marla, que buscava reduzir medidas sem</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/577828561_816711327655332_6309436839842996568_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeFvN65XUQZBUasfgn69P4nwUEpqPDSMcJ5QSmo8NIxwnr_amlu7YaU8koOwTm-xfHQoD5ydgwyZFQJsX7aZ42hk&_nc_ohc=vA3SSdb1TR0Q7kNvwFrRobv&_nc_oc=AdpNPwqvzBEuruN0KuFgJ6xv7I-mbzbQpM0eFG9IZbppSyo5qJoI7NoJ2IHralYcJSk&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=cLNcRPakAPt8Sz0evm316A&_nc_tpa=Q5bMBQFNieDAlrnr_jBIZ2Lwzl8ujWFZQdwTJda3cXkpWsnaWZiQmsIMh2IJuqDJ3ubkNjEbR_M8HtzeJw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afy9gQ35csFiCpJEdBj5Mv4xibh60AcZA2mo3g00EwECJg&oe=69C4D434&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-2.xx.fbcdn.net/v/t15.5256-10/577828561_816711327655332_6309436839842996568_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeFvN65XUQZBUasfgn69P4nwUEpqPDSMcJ5QSmo8NIxwnr_amlu7YaU8koOwTm-xfHQoD5ydgwyZFQJsX7aZ42hk&_nc_ohc=vA3SSdb1TR0Q7kNvwHcVwnY&_nc_oc=AdqoJXvEdX97B9bvjVVVo7AzUs2C10Mp56CHebAKDtidF4oGrlluLiZccerpE858ytY&_nc_zt=23&_nc_ht=scontent-ord5-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=N1JTxihcZq5OFAbENZkK0Q&_nc_tpa=Q5bMBQH94N5ZBcytMDwO0Vd5pD9YhhDrXRqgVgjzHU77NrL5LrUL3FRETnd4FxwoLiXcIToqsQA8140mLQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afw8PuFgcOWArictyYjjhayqLiZS-0cX427FrRTQZzFYMg&oe=69C544B4&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads lipo sem corte</div>
-                    <div class="ad-meta">R$ 999.34 · 908 cliques · 154 conv · CTR 1.67%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 6.49</div>
-                    <a class="ad-link" href="https://fb.me/27Q8ItNcmDS41YN" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 997.29 · 905 cliques · 154 conv · CTR 1.67%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 6.48</div>
+                    <a class="ad-link" href="https://fb.me/1T209h7459NPG7U" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🚨 ATENÇÃO CARIACICA, VIANA E REGIÃO! 🚨<br><br>✨ A LIPO SEM CORTE QUE ESTÁ TRANSFORMANDO CORPOS! ✨<br><br>Chegou o tratamento queridi</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLhT-LsEomd-CP3HhpMh44XmUW7MAc0SCLI8LSp-R7mqaeA5_TPmUWEdzSnyfULlyljql0lwZdJwrLvCLfdgKisYp2VisLVvKAv7TCluDp6OfwMtvS3Dfn7qdcH1qVMvoYGLtqDxwV4xS3rkoP9eCo9" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJURkVF3EEHBHempEj4dbhdAkvAX5JD_eBTMi5qRbFDx7kxawmGcKljDqqbmh6ybJ-uZOgRgyjgRCwkecYE0g2B0lTe8lm9h7_HxFl-fTZRaqFBlcDq8TiDa16966DFNcxEFlbbU9m_tCoLosbmJ_zH" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads janeiro</div>
-                    <div class="ad-meta">R$ 988.53 · 861 cliques · 104 conv · CTR 1.20%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 9.51</div>
-                    <a class="ad-link" href="https://fb.me/1ZEPLKQNJ12EKsY" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 962.23 · 848 cliques · 102 conv · CTR 1.21%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 9.43</div>
+                    <a class="ad-link" href="https://fb.me/27JtCU65NZuViwS" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🎯 Quer emagrecer em 2026, mas sem começar o ano sofrendo com dieta maluca?<br><br>Então essa condição é pra você.<br><br>✔️ Tratamen</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-2.xx.fbcdn.net/v/t15.5256-10/578715808_1144160467875540_7318900053364766602_n.jpg?_nc_cat=111&ccb=1-7&_nc_eui2=AeE4yyFbAn_IM6woI_2adZ1Hs-TEyiBP5dez5MTKIE_l1yPu-mAXq0kHTCW-Fk3gm5ycC3LHkP3kQlOBlY3p5816&_nc_ohc=F_by-8jQCYoQ7kNvwFkk0hO&_nc_oc=AdoJmQvvsL3ST4jkrlQijxnIMFzmIEdDTcZk6xcQFjC43qRTgwVJuxp88qqiuXX14DA&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=MbqU0Dd3skW3HbhUoIXW4Q&_nc_tpa=Q5bMBQFs6OHkAn0HAutrRYTE8zAIjjzEl4DxwdIBiR5BXXa0WB3xtR2_Xw8lWoHxVkCCH5VfvKAL9U2AeQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwyLY6Ku78kNuXmF_XCPPmYHuYIsfv3a-nxOM4iG_lKJQ&oe=69C4FAFE&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-1.xx.fbcdn.net/v/t15.5256-10/578715808_1144160467875540_7318900053364766602_n.jpg?_nc_cat=111&ccb=1-7&_nc_eui2=AeE4yyFbAn_IM6woI_2adZ1Hs-TEyiBP5dez5MTKIE_l1yPu-mAXq0kHTCW-Fk3gm5ycC3LHkP3kQlOBlY3p5816&_nc_ohc=F_by-8jQCYoQ7kNvwEtdWFS&_nc_oc=AdpffOE27NpvTVH0OJxE7geNlMN9tTN6A14ORgRd16WDSyLZwxcidBKRD2QJe-bVCU8&_nc_zt=23&_nc_ht=scontent-ord5-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=eU0ni9YEYBVihIxEdMFfiw&_nc_tpa=Q5bMBQGasKq7RdsZWUdDtpFlbH0QwZZoDP89l_RRqHSJlOtWDD23kJqZPeid_dEjMeWpTDd67qem9m0Feg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afxbb4gjVaFWRaWKw2PhXc4aTkDYzDERtdi40G4q0WRhSw&oe=69C5333E&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads lipo sem corte 2</div>
-                    <div class="ad-meta">R$ 828.02 · 630 cliques · 105 conv · CTR 1.30%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 7.89</div>
-                    <a class="ad-link" href="https://fb.me/y1MaUWTNfL7fRfv" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 746.48 · 579 cliques · 97 conv · CTR 1.35%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 7.70</div>
+                    <a class="ad-link" href="https://fb.me/1Ts38Ov00ecI8gR" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🚨 ATENÇÃO CARIACICA, VIANA E REGIÃO! 🚨<br><br>✨ A LIPO SEM CORTE QUE ESTÁ TRANSFORMANDO CORPOS! ✨<br><br>Chegou o tratamento queridi</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIUZRJlJiTzCUULPQm1xIW8-Tl2VYtk4ZMP98pDEukgVsS0BfNvHp2YM3nmjUt5MW0C_oRE77Kmga6kha3QjnLG88eqnlh8tbpwGYkEsCbG2OcTd1wF4bLE5lLJx_q9NENDHmhBe7nNaGyiZ9EMpBGv" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJynV9TxVIDe8llFJOmH-2f-d8Jp6H1r_E6bkRmoGbMBT0e9UVF8OOeHBlW7OXbloQa-Na5N--33h8VcbncLR0VT6JR2qrwH-e47wE9Tl3XKtzwLiM3OFI6jkOaY6fYIyuhgVpkWlmEp4njqyVrHbXx" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads vendedora</div>
-                    <div class="ad-meta">R$ 604.69 · 294 cliques · 25 conv · CTR 0.69%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 24.19</div>
-                    <a class="ad-link" href="https://fb.me/1SkZdQTNJL7h2kU" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 627.17 · 303 cliques · 26 conv · CTR 0.68%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 24.12</div>
+                    <a class="ad-link" href="https://fb.me/1ZI0LeOmR3xCuvL" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🎯 VAGA ABERTA | CONTRATAÇÃO IMEDIATA – VENDEDORA EM CARIACICA<br>📍 Clínica de Emagrecimento e Estética | Emagrecentro Vitór</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/623838818_1586383319243355_618346330475415987_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeHGiE4HoSUHBLNhkquTQVTVgwydORxkN16DDJ05HGQ3XpVCC0Z_gZz4tvDCfxqELrbuq7WSRAsjUWbZ-vsDeId7&_nc_ohc=26AkEZp4nvcQ7kNvwFQNbjw&_nc_oc=Adq0t83zVIl0rehSHRo_BxCO_0RZ4vzTxG4Xynb7mk3-fP2PK5Ab63pTYIGjKPTdtn0&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=cLNcRPakAPt8Sz0evm316A&_nc_tpa=Q5bMBQFg-H0IW4N7UpYQf9xjq7pOCdOHagzt1hW0sQ7v3gJFFpVYYfmX-KTuuuLY-bkyM2BWZciSQCMt5Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afxnymf6QQcLTpKtxQh9YmUSusF5QxmkpYtGTAI1ZxWa5g&oe=69C4D08C&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-2.xx.fbcdn.net/v/t15.5256-10/623838818_1586383319243355_618346330475415987_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeHGiE4HoSUHBLNhkquTQVTVgwydORxkN16DDJ05HGQ3XpVCC0Z_gZz4tvDCfxqELrbuq7WSRAsjUWbZ-vsDeId7&_nc_ohc=26AkEZp4nvcQ7kNvwFy1Mri&_nc_oc=AdrqwtLwnqbzSs2AD0c-OuswuosDigS6dCvCXUutfeZZDEUGlzRIpvdz6YEio353qEc&_nc_zt=23&_nc_ht=scontent-ord5-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=N1JTxihcZq5OFAbENZkK0Q&_nc_tpa=Q5bMBQHRmaavHrDlumPd0cbEhSGqVyJsaqyvOp6o4CY1ldFmuzLG4sjhYDgp1-YbZA0gt6F2mI1OMYOeFw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyoYhg5prpRQRJhnyv_oBcLKtM3X_HLNQxQH_dVSBCjFg&oe=69C5410C&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads marla antes e depois EDITADO</div>
-                    <div class="ad-meta">R$ 603.27 · 644 cliques · 78 conv · CTR 1.65%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 7.73</div>
-                    <a class="ad-link" href="https://fb.me/1ZgZYYdp2liAdsE" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 603.70 · 647 cliques · 79 conv · CTR 1.66%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 7.64</div>
+                    <a class="ad-link" href="https://fb.me/34xkde7Y1q1YSaG" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🚨 ATENÇÃO CARIACICA, VIANA E REGIÃO! 🚨<br><br>A Emagrecentro tem mudado vidas como a da Marla, que buscava reduzir medidas sem</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/623838818_1586383319243355_618346330475415987_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeHGiE4HoSUHBLNhkquTQVTVgwydORxkN16DDJ05HGQ3XpVCC0Z_gZz4tvDCfxqELrbuq7WSRAsjUWbZ-vsDeId7&_nc_ohc=26AkEZp4nvcQ7kNvwFQNbjw&_nc_oc=Adq0t83zVIl0rehSHRo_BxCO_0RZ4vzTxG4Xynb7mk3-fP2PK5Ab63pTYIGjKPTdtn0&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=cLNcRPakAPt8Sz0evm316A&_nc_tpa=Q5bMBQFg-H0IW4N7UpYQf9xjq7pOCdOHagzt1hW0sQ7v3gJFFpVYYfmX-KTuuuLY-bkyM2BWZciSQCMt5Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afxnymf6QQcLTpKtxQh9YmUSusF5QxmkpYtGTAI1ZxWa5g&oe=69C4D08C&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-3.xx.fbcdn.net/v/t15.5256-10/651328834_1709718263325497_3213276806460438985_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeF_Y_mVsnfKbYvI9SG3DEBtObwUn0WENr45vBSfRYQ2vqvnsNGHMSRzuJQVWtQGUG42I7DNbqtzAvnoHVFiaQqE&_nc_ohc=sSvpNi1DGLUQ7kNvwHqVgji&_nc_oc=AdomwEcmrKJpGdeewRCDRSS5qnaQ5t1gQ7T-i8xtEb8WarThV9ncnPGy2V9LivZJGiM&_nc_zt=23&_nc_ht=scontent-ord5-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=N1JTxihcZq5OFAbENZkK0Q&_nc_tpa=Q5bMBQGXb5md3odS9B1eroSJrX6doIcWab8SMTUf2nfD1eA7iA792CAQ3szXEYaCSqoAlJQwoMkfwhGKRQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzJyb2i0tqTQEXzFzPU2YUFvRIC0Lv6bEhr_RyjHHu-Hg&oe=69C52678&width=480" alt="" loading="lazy">
                 <div class="ad-info">
-                    <div class="ad-name">ads marla antes e depois EDITADO</div>
-                    <div class="ad-meta">R$ 506.46 · 641 cliques · 77 conv · CTR 1.82%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 6.58</div>
-                    <a class="ad-link" href="https://fb.me/1ZgZYYdp2liAdsE" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-name">ads video marla 1 — Cópia — Cópia</div>
+                    <div class="ad-meta">R$ 518.41 · 909 cliques · 129 conv · CTR 2.55%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 4.02</div>
+                    <a class="ad-link" href="https://fb.me/27EuQRbTuaZPQNa" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
-            <div class="ad-body">🚨 ATENÇÃO CARIACICA, VIANA E REGIÃO! 🚨<br><br>A Emagrecentro tem mudado vidas como a da Marla, que buscava reduzir medidas sem</div>
+            <div class="ad-body">🚨 VITÓRIA, VILA VELHA E CARIACICA (CAMPO GRANDE) 🚨<br><br>Você já deixou de fazer coisas simples por causa do peso?<br><br>Amarrar o</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLUytWel-1wjbm3vmVDEsj_Iqo-HCCmIP2oflp2n4amwo9e6R7j27iRQEepUpq8Cy8EDKKo4A7axDCLetzTUJd26v1H80BWZmOsvZzpgndmW5vs1Z-adf36BXXz_c1ALZamOCRAb_Pk5AMrmkTtSx41" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-3.xx.fbcdn.net/v/t15.5256-10/651328834_1709718263325497_3213276806460438985_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeF_Y_mVsnfKbYvI9SG3DEBtObwUn0WENr45vBSfRYQ2vqvnsNGHMSRzuJQVWtQGUG42I7DNbqtzAvnoHVFiaQqE&_nc_ohc=sSvpNi1DGLUQ7kNvwHqVgji&_nc_oc=AdomwEcmrKJpGdeewRCDRSS5qnaQ5t1gQ7T-i8xtEb8WarThV9ncnPGy2V9LivZJGiM&_nc_zt=23&_nc_ht=scontent-ord5-3.xx&edm=AOgd6ZUEAAAA&_nc_gid=N1JTxihcZq5OFAbENZkK0Q&_nc_tpa=Q5bMBQGXb5md3odS9B1eroSJrX6doIcWab8SMTUf2nfD1eA7iA792CAQ3szXEYaCSqoAlJQwoMkfwhGKRQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzJyb2i0tqTQEXzFzPU2YUFvRIC0Lv6bEhr_RyjHHu-Hg&oe=69C52678&width=480" alt="" loading="lazy">
+                <div class="ad-info">
+                    <div class="ad-name">ads video marla 1 — Cópia — Cópia</div>
+                    <div class="ad-meta">R$ 518.37 · 839 cliques · 100 conv · CTR 2.69%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 5.18</div>
+                    <a class="ad-link" href="https://fb.me/27EuQRbTuaZPQNa" target="_blank" rel="noopener">Ver publicação ↗</a>
+                </div>
+            </div>
+            <div class="ad-body">🚨 VITÓRIA, VILA VELHA E CARIACICA (CAMPO GRANDE) 🚨<br><br>Você já deixou de fazer coisas simples por causa do peso?<br><br>Amarrar o</div>
+        </div>
+        <div class="ad-card">
+            <div class="ad-top">
+                <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIDUrqwXx4owK5w97Eik89bGtuZcfgJW2JvAD4eWds_JsLSFlPBy0egwWEUT5Ej0FCJQgyenPVhBzvNZw4d_lLcdcwEmFegdcZvf34bTUkI4uk3MugB1XY5eaXegT1utDI2dskRaB9_2IvTnXmoJOtK" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads prova social 3</div>
                     <div class="ad-meta">R$ 491.69 · 456 cliques · 37 conv · CTR 1.35%</div>
                     <div class="ad-cpl">Custo/conv: R$ 13.29</div>
-                    <a class="ad-link" href="https://fb.me/2efAXpsyyN1Wt4b" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <a class="ad-link" href="https://fb.me/2d9DwMNEhRI4OPh" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🎯 Quer emagrecer em 2026, mas sem começar o ano sofrendo com dieta maluca?<br><br>Então essa condição é pra você.<br><br>✔️ Tratamen</div>
         </div>
         <div class="ad-card">
             <div class="ad-top">
-                <img class="ad-thumb" src="https://scontent-iad3-1.xx.fbcdn.net/v/t15.5256-10/623838818_1586383319243355_618346330475415987_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeHGiE4HoSUHBLNhkquTQVTVgwydORxkN16DDJ05HGQ3XpVCC0Z_gZz4tvDCfxqELrbuq7WSRAsjUWbZ-vsDeId7&_nc_ohc=26AkEZp4nvcQ7kNvwFQNbjw&_nc_oc=Adq0t83zVIl0rehSHRo_BxCO_0RZ4vzTxG4Xynb7mk3-fP2PK5Ab63pTYIGjKPTdtn0&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=cLNcRPakAPt8Sz0evm316A&_nc_tpa=Q5bMBQFg-H0IW4N7UpYQf9xjq7pOCdOHagzt1hW0sQ7v3gJFFpVYYfmX-KTuuuLY-bkyM2BWZciSQCMt5Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afxnymf6QQcLTpKtxQh9YmUSusF5QxmkpYtGTAI1ZxWa5g&oe=69C4D08C&width=480" alt="" loading="lazy">
+                <img class="ad-thumb" src="https://scontent-ord5-2.xx.fbcdn.net/v/t15.5256-10/623838818_1586383319243355_618346330475415987_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeHGiE4HoSUHBLNhkquTQVTVgwydORxkN16DDJ05HGQ3XpVCC0Z_gZz4tvDCfxqELrbuq7WSRAsjUWbZ-vsDeId7&_nc_ohc=26AkEZp4nvcQ7kNvwFy1Mri&_nc_oc=AdrqwtLwnqbzSs2AD0c-OuswuosDigS6dCvCXUutfeZZDEUGlzRIpvdz6YEio353qEc&_nc_zt=23&_nc_ht=scontent-ord5-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=N1JTxihcZq5OFAbENZkK0Q&_nc_tpa=Q5bMBQHRmaavHrDlumPd0cbEhSGqVyJsaqyvOp6o4CY1ldFmuzLG4sjhYDgp1-YbZA0gt6F2mI1OMYOeFw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyoYhg5prpRQRJhnyv_oBcLKtM3X_HLNQxQH_dVSBCjFg&oe=69C5410C&width=480" alt="" loading="lazy">
                 <div class="ad-info">
                     <div class="ad-name">ads marla antes e depois EDITADO</div>
-                    <div class="ad-meta">R$ 477.03 · 488 cliques · 41 conv · CTR 1.53%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 11.63</div>
-                    <a class="ad-link" href="https://fb.me/1ZgZYYdp2liAdsE" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    <div class="ad-meta">R$ 485.30 · 497 cliques · 41 conv · CTR 1.54%</div>
+                    <div class="ad-cpl">Custo/conv: R$ 11.84</div>
+                    <a class="ad-link" href="https://fb.me/34xkde7Y1q1YSaG" target="_blank" rel="noopener">Ver publicação ↗</a>
                 </div>
             </div>
             <div class="ad-body">🚨 ATENÇÃO CARIACICA, VIANA E REGIÃO! 🚨<br><br>A Emagrecentro tem mudado vidas como a da Marla, que buscava reduzir medidas sem</div>
-        </div>
-        <div class="ad-card">
-            <div class="ad-top">
-                <img class="ad-thumb" src="https://external-iad3-2.xx.fbcdn.net/emg1/v/t13/9001676390551551924?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKSicdPNFpHdQWVQ2AADOgdzYFuw2Z4hWaxl3hmHeDhgJ577TMlmlmlr-51covvgnRuY8EFQnXTR-BXLixlavq_6dOqS0x3mhM5Qz7A-lYuPz-1MWfYfdLQ1bOwEm44qtrZNPI4HcjKY313dQO6JDZE&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=cLNcRPakAPt8Sz0evm316A&_nc_eui2=AeHOXFLVnJuLVLcw3BZloFcY3aH6HlxvvAHdofoeXG-8AY7MJVVs5QnE_dnxq--WjLZsm8ttgllsq95ZkUsIjH6u&_nc_oc=AdrCJZDMqvJGwX2E2S42HExVOXiu9vA-ldfk7dNLBE6dFzJtrhIOwsBiIqKTNxIRDec&ccb=13-1&oh=06_Q3-9AW7zwDqqnJXtxah8ILkKC4308buUHmMxPSqvbfX2CICk&oe=69C0F5A0&_nc_sid=58080a&width=480" alt="" loading="lazy">
-                <div class="ad-info">
-                    <div class="ad-name">ads lipo sem corte imagem</div>
-                    <div class="ad-meta">R$ 474.63 · 323 cliques · 42 conv · CTR 1.23%</div>
-                    <div class="ad-cpl">Custo/conv: R$ 11.30</div>
-                    <a class="ad-link" href="https://fb.me/23lrzcx8Hmqdw1U" target="_blank" rel="noopener">Ver publicação ↗</a>
-                </div>
-            </div>
-            <div class="ad-body">🚨 ATENÇÃO CARIACICA, VIANA E REGIÃO! 🚨<br>✨ A LIPO SEM CORTE QUE ESTÁ TRANSFORMANDO CORPOS! ✨<br><br>Chegou o tratamento queridin</div>
         </div></div>
 
     <h3 class="section-header">Análise &amp; Otimizações</h3>
@@ -287,10 +288,10 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
         <div class="opt-card opt-green"><span class="opt-v">R$ 1.9</span><span class="opt-l">Melhor CPL</span></div>
         <div class="opt-card opt-red"><span class="opt-v">R$ 0</span><span class="opt-l">Gasto sem conversão</span></div>
         <div class="opt-card opt-red"><span class="opt-v">0.0%</span><span class="opt-l">% desperdiçado</span></div>
-    </div><div class="opt-block"><h4 class="opt-title opt-title-green">🟢 Escalar — CPL abaixo da média</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>CTR</th></tr></thead><tbody><tr><td>12/03 - [feirão] [vendas] [wpp] [cariacica-campogr</td><td>R$ 1554</td><td><strong>622</strong></td><td class="cpl-good">R$ 2.5</td><td>3.06%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-red">🔴 Pausar — CPL muito alto ou sem conversão</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Motivo</th></tr></thead><tbody><tr><td>24/02 [vaga] [vendedor] [cariacica] [22-39]</td><td>R$ 605</td><td>25</td><td class="cpl-bad">R$ 24.2</td><td>CPL 3.7x a média</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-green">🏆 Top Criativos — Menor CPL</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>CTR</th></tr></thead><tbody><tr><td>ads 04 - video 1 — Cópia</td><td>12/03 - [feirão] [vendas] [wpp</td><td>R$ 39</td><td><strong>20</strong></td><td class="cpl-good">R$ 1.9</td><td>4.21%</td></tr><tr><td>ads 05 - video 2 — Cópia</td><td>12/03 - [feirão] [vendas] [wpp</td><td>R$ 16</td><td><strong>8</strong></td><td class="cpl-good">R$ 2.0</td><td>2.68%</td></tr><tr><td>ads 07 - video 4 — Cópia</td><td>12/03 - [feirão] [vendas] [wpp</td><td>R$ 356</td><td><strong>166</strong></td><td class="cpl-good">R$ 2.1</td><td>3.09%</td></tr><tr><td>ads 07 - video 4 — Cópia</td><td>12/03 - [feirão] [vendas] [wpp</td><td>R$ 69</td><td><strong>32</strong></td><td class="cpl-good">R$ 2.2</td><td>2.82%</td></tr><tr><td>ads 06 - video 3 — Cópia</td><td>12/03 - [feirão] [vendas] [wpp</td><td>R$ 263</td><td><strong>119</strong></td><td class="cpl-good">R$ 2.2</td><td>2.95%</td></tr><tr><td>ads video marla 1 — Cópia — Cópia</td><td>03/02 - [vendas] [wpp] [cariac</td><td>R$ 51</td><td><strong>23</strong></td><td class="cpl-good">R$ 2.2</td><td>3.61%</td></tr><tr><td>ads 07 - video 4</td><td>12/03 - [feirão] [vendas] [wpp</td><td>R$ 63</td><td><strong>28</strong></td><td class="cpl-good">R$ 2.3</td><td>2.82%</td></tr><tr><td>ads video marla 3 — Cópia — Cópia</td><td>03/02 - [vendas] [wpp] [cariac</td><td>R$ 14</td><td><strong>6</strong></td><td class="cpl-good">R$ 2.4</td><td>3.22%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-yellow">⚠️ Criativos com CPL alto (> R$ 13)</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Gasto</th><th>Conv</th><th>CPL</th></tr></thead><tbody><tr><td>ads vendedora</td><td>R$ 605</td><td>25</td><td class="cpl-bad">R$ 24.2</td></tr><tr><td>ads lipo sem corte</td><td>R$ 48</td><td>2</td><td class="cpl-bad">R$ 24.0</td></tr><tr><td>ads prova social 3</td><td>R$ 183</td><td>9</td><td class="cpl-bad">R$ 20.4</td></tr><tr><td>ads resultado maiane</td><td>R$ 90</td><td>5</td><td class="cpl-bad">R$ 18.1</td></tr><tr><td>ads ilton antes e depois</td><td>R$ 99</td><td>6</td><td class="cpl-bad">R$ 16.5</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title">📊 Evolução por Período</h4><table class="camp-table"><thead><tr><th>Período</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Tendência</th></tr></thead><tbody><tr><td><strong>30 dias</strong></td><td>R$ 20634</td><td><strong>3148</strong></td><td>R$ 6.6</td><td>—</td></tr><tr><td><strong>14 dias</strong></td><td>R$ 12683</td><td><strong>2156</strong></td><td>R$ 5.9</td><td><span style="color:#16a34a">▼ 10% melhor</span></td></tr><tr><td><strong>3 dias</strong></td><td>R$ 2425</td><td><strong>428</strong></td><td>R$ 5.7</td><td><span style="color:#6b7280">≈ estável</span></td></tr><tr><td><strong>Ontem</strong></td><td>R$ 733</td><td><strong>130</strong></td><td>R$ 5.6</td><td><span style="color:#6b7280">≈ estável</span></td></tr><tr><td><strong>Hoje</strong></td><td>R$ 706</td><td><strong>81</strong></td><td>R$ 8.7</td><td><span style="color:#dc2626">▲ 54% pior</span></td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-green">📈 Melhorando (CPL caiu nos últimos 3 dias)</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>CPL 14d</th><th>CPL 3d</th><th>Variação</th></tr></thead><tbody><tr><td>24/02 [vaga] [vendedor] [cariacica] [22-39]</td><td>R$ 29.2</td><td class="cpl-good">R$ 22.9</td><td class="cpl-good">-21%</td></tr><tr><td>03/02 - [vendas] [wpp] [cariacica-campogrande] [al</td><td>R$ 7.1</td><td class="cpl-good">R$ 5.6</td><td class="cpl-good">-20%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-red">📉 Piorando (CPL subiu nos últimos 3 dias)</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>CPL 14d</th><th>CPL 3d</th><th>Variação</th></tr></thead><tbody><tr><td>12/03 - [feirão] [vendas] [wpp] [cariacica-campogr</td><td>R$ 2.5</td><td class="cpl-bad">R$ 4.1</td><td class="cpl-bad">+64%</td></tr></tbody></table></div>
+    </div><div class="opt-block"><h4 class="opt-title opt-title-green">🟢 Escalar — CPL abaixo da média</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>CTR</th></tr></thead><tbody><tr><td>12/03 - [feirão] [vendas] [wpp] [cariacica-campogr</td><td>R$ 1554</td><td><strong>622</strong></td><td class="cpl-good">R$ 2.5</td><td>3.06%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-red">🔴 Pausar — CPL muito alto ou sem conversão</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Motivo</th></tr></thead><tbody><tr><td>24/02 [vaga] [vendedor] [cariacica] [22-39]</td><td>R$ 627</td><td>26</td><td class="cpl-bad">R$ 24.1</td><td>CPL 3.7x a média</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-green">🏆 Top Criativos — Menor CPL</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Campanha</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>CTR</th></tr></thead><tbody><tr><td>ads 04 - video 1 — Cópia</td><td>12/03 - [feirão] [vendas] [wpp</td><td>R$ 39</td><td><strong>20</strong></td><td class="cpl-good">R$ 1.9</td><td>4.21%</td></tr><tr><td>ads 05 - video 2 — Cópia</td><td>12/03 - [feirão] [vendas] [wpp</td><td>R$ 16</td><td><strong>8</strong></td><td class="cpl-good">R$ 2.0</td><td>2.68%</td></tr><tr><td>ads 07 - video 4 — Cópia</td><td>12/03 - [feirão] [vendas] [wpp</td><td>R$ 356</td><td><strong>166</strong></td><td class="cpl-good">R$ 2.1</td><td>3.09%</td></tr><tr><td>ads 07 - video 4 — Cópia</td><td>12/03 - [feirão] [vendas] [wpp</td><td>R$ 69</td><td><strong>32</strong></td><td class="cpl-good">R$ 2.2</td><td>2.82%</td></tr><tr><td>ads 06 - video 3 — Cópia</td><td>12/03 - [feirão] [vendas] [wpp</td><td>R$ 263</td><td><strong>119</strong></td><td class="cpl-good">R$ 2.2</td><td>2.95%</td></tr><tr><td>ads video marla 1 — Cópia — Cópia</td><td>03/02 - [vendas] [wpp] [cariac</td><td>R$ 51</td><td><strong>23</strong></td><td class="cpl-good">R$ 2.2</td><td>3.61%</td></tr><tr><td>ads 07 - video 4</td><td>12/03 - [feirão] [vendas] [wpp</td><td>R$ 63</td><td><strong>28</strong></td><td class="cpl-good">R$ 2.3</td><td>2.82%</td></tr><tr><td>ads video marla 3 — Cópia — Cópia</td><td>03/02 - [vendas] [wpp] [cariac</td><td>R$ 14</td><td><strong>6</strong></td><td class="cpl-good">R$ 2.4</td><td>3.22%</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-yellow">⚠️ Criativos com CPL alto (> R$ 13)</h4><table class="camp-table"><thead><tr><th>Criativo</th><th>Gasto</th><th>Conv</th><th>CPL</th></tr></thead><tbody><tr><td>ads vendedora</td><td>R$ 627</td><td>26</td><td class="cpl-bad">R$ 24.1</td></tr><tr><td>ads lipo sem corte</td><td>R$ 48</td><td>2</td><td class="cpl-bad">R$ 24.0</td></tr><tr><td>ads prova social 3</td><td>R$ 183</td><td>9</td><td class="cpl-bad">R$ 20.4</td></tr><tr><td>ads janeiro</td><td>R$ 37</td><td>2</td><td class="cpl-bad">R$ 18.6</td></tr><tr><td>ads resultado maiane</td><td>R$ 90</td><td>5</td><td class="cpl-bad">R$ 18.1</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title">📊 Evolução por Período</h4><table class="camp-table"><thead><tr><th>Período</th><th>Gasto</th><th>Conv</th><th>CPL</th><th>Tendência</th></tr></thead><tbody><tr><td><strong>30 dias</strong></td><td>R$ 21100</td><td><strong>3204</strong></td><td>R$ 6.6</td><td>—</td></tr><tr><td><strong>14 dias</strong></td><td>R$ 12716</td><td><strong>2215</strong></td><td>R$ 5.7</td><td><span style="color:#16a34a">▼ 13% melhor</span></td></tr><tr><td><strong>3 dias</strong></td><td>R$ 2380</td><td><strong>358</strong></td><td>R$ 6.6</td><td><span style="color:#dc2626">▲ 16% pior</span></td></tr><tr><td><strong>Ontem</strong></td><td>R$ 843</td><td><strong>104</strong></td><td>R$ 8.1</td><td><span style="color:#dc2626">▲ 22% pior</span></td></tr><tr><td><strong>Hoje</strong></td><td>R$ 0</td><td><strong>0</strong></td><td>—</td><td>—</td></tr></tbody></table></div><div class="opt-block"><h4 class="opt-title opt-title-green">📈 Melhorando (CPL caiu nos últimos 3 dias)</h4><table class="camp-table"><thead><tr><th>Campanha</th><th>CPL 14d</th><th>CPL 3d</th><th>Variação</th></tr></thead><tbody><tr><td>24/02 [vaga] [vendedor] [cariacica] [22-39]</td><td>R$ 26.6</td><td class="cpl-good">R$ 21.7</td><td class="cpl-good">-18%</td></tr></tbody></table></div>
 
     <div class="footer">
-        <div>seven midas · marketing digital · atualizado em 21/03/2026 18:42</div>
+        <div>seven midas · marketing digital · atualizado em 22/03/2026 00:02</div>
     </div>
 </div>
 
@@ -298,11 +299,11 @@ body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-se
 new Chart(document.getElementById('dailyChart'),{
     type:'bar',
     data:{
-        labels:["03/07", "03/08", "03/09", "03/10", "03/11", "03/12", "03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19", "03/20"],
+        labels:["03/08", "03/09", "03/10", "03/11", "03/12", "03/13", "03/14", "03/15", "03/16", "03/17", "03/18", "03/19", "03/20", "03/21"],
         datasets:[
-            {label:'Gasto (R$)',data:[810.46, 599.49, 778.72, 1205.93, 827.51, 886.25, 1189.6, 963.18, 926.32, 925.53, 1145.38, 887.46, 803.74, 733.44],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
-            {label:'Cliques',data:[739, 460, 504, 1001, 670, 881, 1845, 1530, 1424, 1218, 1907, 1515, 1293, 1098],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
-            {label:'Conversões',data:[45, 1, 74, 106, 107, 111, 358, 274, 260, 167, 225, 174, 124, 130],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
+            {label:'Gasto (R$)',data:[599.49, 778.72, 1205.93, 827.51, 886.25, 1189.6, 963.18, 926.32, 925.53, 1145.38, 887.46, 803.74, 733.71, 842.74],backgroundColor:'rgba(0,161,154,0.2)',borderColor:'#00A19A',borderWidth:2,borderRadius:6,order:2},
+            {label:'Cliques',data:[460, 504, 1001, 670, 881, 1845, 1530, 1424, 1218, 1907, 1515, 1293, 1098, 1125],type:'line',borderColor:'#1D71B8',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:1},
+            {label:'Conversões',data:[1, 74, 106, 107, 111, 358, 274, 260, 167, 225, 174, 124, 130, 104],type:'line',borderColor:'#22c55e',backgroundColor:'transparent',borderWidth:2,pointRadius:3,tension:.3,yAxisID:'y1',order:0}
         ]
     },
     options:{

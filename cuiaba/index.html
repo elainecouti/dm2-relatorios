@@ -4,18 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Seven · Cuiabá — Inauguração</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-serif;-webkit-font-smoothing:antialiased;position:relative}
-body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Cpath d='M28 4L8 32h18l-2 18 20-28H26l2-18z' fill='%2300A19A' opacity='0.04'/%3E%3Ctext x='52' y='38' font-family='Montserrat,sans-serif' font-weight='800' font-size='32' fill='%2300A19A' opacity='0.04'%3Eseven%3C/text%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:contain;pointer-events:none;z-index:0}
+body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Cpath d='M28 4L8 32h18l-2 18 20-28H26l2-18z' fill='%2300E87B' opacity='0.04'/%3E%3Ctext x='52' y='38' font-family='Outfit,sans-serif' font-weight='800' font-size='32' fill='%2300E87B' opacity='0.04'%3Eseven%3C/text%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:contain;pointer-events:none;z-index:0}
 
 /* ── Topbar ── */
 .topbar{background:#184341;display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:60px;position:sticky;top:0;z-index:10}
-.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
-.logo svg{width:30px;height:30px;filter:drop-shadow(0 0 6px rgba(56,189,248,.4))}
-.logo-text{font-size:22px;font-weight:800;letter-spacing:.02em;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{display:flex;align-items:center;gap:5px;text-decoration:none}
+.logo svg{width:34px;height:34px;filter:drop-shadow(0 0 6px rgba(0,232,123,.3))}
+.logo-text{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px}
+.logo-midas{font-weight:700;background:linear-gradient(135deg,#00E87B,#00B8D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .topbar-right{display:flex;align-items:center;gap:12px}
 .live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
@@ -37,7 +38,7 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
 .bal-val{font-size:28px;font-weight:800;color:#22c55e;letter-spacing:-.02em;margin-top:2px}
 .bal-det{font-size:11px;color:#5a5a5a;margin-top:2px}
 .bal-bar{height:6px;border-radius:3px;background:#eee;margin-top:8px;overflow:hidden}
-.bal-bar-fill{height:100%;border-radius:3px;background:#22c55e;width:41%}
+.bal-bar-fill{height:100%;border-radius:3px;background:#22c55e;width:45%}
 
 /* ── Tabs ── */
 .tabs{max-width:1200px;margin:0 auto;padding:16px 32px 0;display:flex;gap:8px}
@@ -175,9 +176,10 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
 
 /* ── Footer ── */
 .footer{max-width:1200px;margin:0 auto;text-align:center;padding:32px;font-size:11px;color:#5a5a5a;border-top:1px solid #eee}
-.footer-logo{display:inline-flex;align-items:center;gap:6px;margin-bottom:4px}
+.footer-logo{display:inline-flex;align-items:center;gap:4px;margin-bottom:4px}
 .footer-logo svg{width:18px;height:18px}
-.footer-logo span{font-size:14px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.footer-logo .ft-name{font-family:'Outfit',sans-serif;font-size:14px;font-weight:800;color:#184341}
+.footer-logo .ft-midas{font-weight:700;background:linear-gradient(135deg,#00E87B,#00B8D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /* ── Mobile ── */
 @media(max-width:768px){
@@ -258,12 +260,12 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
 <body>
 <div class="topbar">
     <div class="logo">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
-        <span class="logo-text">seven</span>
+        <svg viewBox="0 0 24 24" fill="none"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E87B"/><stop offset="100%" stop-color="#00B8D4"/></linearGradient></defs><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="url(#lg)"/></svg>
+        <span class="logo-text">seven <span class="logo-midas">midas</span></span>
     </div>
     <div class="topbar-right">
         <div class="live-dot"></div>
-        <span class="topbar-label">Atualizado 21/03/2026 18:32</span>
+        <span class="topbar-label">Atualizado 21/03/2026 23:53</span>
         <select class="period-select" onchange="location.search='?period='+this.value">
             <option value="maximum" selected>Desde o início</option>
             <option value="last_7d">Últimos 7 dias</option>
@@ -282,7 +284,7 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
         </div>
         <div class="bal">
             <div class="bal-label">Saldo disponível</div>
-            <div class="bal-val">R$ 779.51</div>
+            <div class="bal-val">R$ 726.35</div>
             <div class="bal-det">Budget R$ 185/dia · ~4 dias</div>
             <div class="bal-bar"><div class="bal-bar-fill"></div></div>
         </div>
@@ -304,12 +306,12 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
 <div id="tab-dashboard" class="tab-content active">
 <div class="content">
     <div class="kpi-row">
-        <div class="kpi"><div class="kpi-l">Investido</div><div class="kpi-v cy">R$ 538.28</div></div>
-        <div class="kpi"><div class="kpi-l">Alcance</div><div class="kpi-v">8,916</div></div>
-        <div class="kpi"><div class="kpi-l">Cliques</div><div class="kpi-v">755</div></div>
-        <div class="kpi"><div class="kpi-l">CTR</div><div class="kpi-v">3.60%</div></div>
-        <div class="kpi"><div class="kpi-l">Conversas WPP</div><div class="kpi-v gr">145</div></div>
-        <div class="kpi"><div class="kpi-l">CPL</div><div class="kpi-v">R$ 3.71</div></div>
+        <div class="kpi"><div class="kpi-l">Investido</div><div class="kpi-v cy">R$ 592.38</div></div>
+        <div class="kpi"><div class="kpi-l">Alcance</div><div class="kpi-v">10,103</div></div>
+        <div class="kpi"><div class="kpi-l">Cliques</div><div class="kpi-v">858</div></div>
+        <div class="kpi"><div class="kpi-l">CTR</div><div class="kpi-v">3.58%</div></div>
+        <div class="kpi"><div class="kpi-l">Conversas WPP</div><div class="kpi-v gr">163</div></div>
+        <div class="kpi"><div class="kpi-l">CPL</div><div class="kpi-v">R$ 3.63</div></div>
     </div>
 
     <div class="sh">Funil de Inauguração</div>
@@ -318,24 +320,24 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
         <div class="fv-step" style="width:100%">
             <div class="fv-inner topo ">
                 <span class="fv-tag">TOPO</span>
-                <span class="fv-mid">3,720 alcance · 177 visitas ao perfil</span>
-                <span class="fv-val">R$ 87.75</span>
+                <span class="fv-mid">4,274 alcance · 199 visitas ao perfil</span>
+                <span class="fv-val">R$ 100.60</span>
             </div>
         </div>
         <div class="fv-arrow-line"></div>
         <div class="fv-step" style="width:82%">
             <div class="fv-inner meio ">
                 <span class="fv-tag">MEIO</span>
-                <span class="fv-mid">130 conversas WPP · 505 cli</span>
-                <span class="fv-val">R$ 373.20</span>
+                <span class="fv-mid">146 conversas WPP · 567 cli</span>
+                <span class="fv-val">R$ 406.21</span>
             </div>
         </div>
         <div class="fv-arrow-line"></div>
         <div class="fv-step" style="width:64%">
             <div class="fv-inner fundo ">
                 <span class="fv-tag">FUNDO</span>
-                <span class="fv-mid">11 conversas RMK · 73 cli</span>
-                <span class="fv-val">R$ 77.33</span>
+                <span class="fv-mid">12 conversas RMK · 92 cli</span>
+                <span class="fv-val">R$ 85.57</span>
             </div>
         </div>
     </div>
@@ -357,11 +359,11 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
                 <p class="stage-desc">Tráfego para perfil — fazer a cidade conhecer a DM2</p>
                 
                 <div class="stage-kpis">
-                    <div class="sk"><span class="sk-v" style="color:#1D71B8">R$ 87.75</span><span class="sk-l">Investido (16%)</span></div>
-                    <div class="sk"><span class="sk-v">3,720</span><span class="sk-l">Alcance</span></div>
-                    <div class="sk"><span class="sk-v">5,970</span><span class="sk-l">Impressões</span></div>
-                    <div class="sk"><span class="sk-v">177</span><span class="sk-l">Visitas ao Perfil</span></div>
-                    <div class="sk"><span class="sk-v">R$ 0.50</span><span class="sk-l">Custo/Visita</span></div>
+                    <div class="sk"><span class="sk-v" style="color:#1D71B8">R$ 100.60</span><span class="sk-l">Investido (17%)</span></div>
+                    <div class="sk"><span class="sk-v">4,274</span><span class="sk-l">Alcance</span></div>
+                    <div class="sk"><span class="sk-v">7,006</span><span class="sk-l">Impressões</span></div>
+                    <div class="sk"><span class="sk-v">199</span><span class="sk-l">Visitas ao Perfil</span></div>
+                    <div class="sk"><span class="sk-v">R$ 0.51</span><span class="sk-l">Custo/Visita</span></div>
                 </div>
 
                 <div class="camps-section">
@@ -374,11 +376,11 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
                     <span class="budget-tag">R$ 30/dia</span>
                 </div>
                 <div class="camp-nums">
-                    <span>R$ 87.75</span>
-                    <span>3,720 alc</span>
-                    <span>144 visitas</span>
-                    <span>2.96% CTR</span>
-                    <span>R$ 0.61 c/visita</span></div>
+                    <span>R$ 100.60</span>
+                    <span>4,274 alc</span>
+                    <span>162 visitas</span>
+                    <span>2.84% CTR</span>
+                    <span>R$ 0.62 c/visita</span></div>
             </div>
                 </div>
 
@@ -387,92 +389,92 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
                     <div class="ad-grid">
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJbvXvMFahMRF2u764bD7qfttUYHaf7I-y1Y-moDIBrff_knFVY0rc_KcwG2lHl1IZqxa6E3KdYYuD9pY5VfhcyfcZzqKSDOAK7-9MzfKVlBs6fsuHUVSbn1KIBdkzxoulndVk8k92GcyY1wVQodpbT" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQK-J_FHBzv8qazTQ4J4JtEr9tILwW4QFJ5G9WsRvQuPgrO0djQrtHKepGFzEdI4kRLzq3E2purei3-0vZNr0tOuAypDlfTA0kaEYMsU0kx1ZecOj3DSDdkbf70LbCZ13KF-swZAWG5zBaqeEmDjrNzb" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads metformina</div>
                         
                         
-                        <a class="ad-link" href="https://fb.me/289pMyAqs2gAWHM" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/27zjFn4j3kVbHk1" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">A DIABETES TIPO 2 NÃO PRECISA SER PRA SEMPRE!<br>A Doutor DM2 chegou a Cuiabá-MT, com o único protocolo focado em REMISSÃO.<br>Menos remédio. Mais liberdade. Resultados comprovados em semanas.<br><br>📲 Agende ago...</div>
                 <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 54.84</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">3,034</span><span class="am-l">Alcance</span></div>
-                    <div class="am"><span class="am-v">3,931</span><span class="am-l">Impressões</span></div>
-                    <div class="am"><span class="am-v highlight">97</span><span class="am-l">Visitas Perfil</span></div>
-                    <div class="am"><span class="am-v">2.87%</span><span class="am-l">CTR</span></div>
-                    <div class="am"><span class="am-v">R$ 0.57</span><span class="am-l">Custo/Visita</span></div></div>
+                    <div class="am"><span class="am-v">R$ 62.04</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">3,342</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">4,451</span><span class="am-l">Impressões</span></div>
+                    <div class="am"><span class="am-v highlight">107</span><span class="am-l">Visitas Perfil</span></div>
+                    <div class="am"><span class="am-v">2.79%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v">R$ 0.58</span><span class="am-l">Custo/Visita</span></div></div>
                 <div class="ad-bar"><div class="ad-bar-fill" style="width:100%;background:#1D71B8"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJHofaelFM4db8CF2MBekCrYNtWXBcFXq8Iy3ifiE5V4FbpijAzqklLzBDY2vSEOUVmwKrcacwcq8c2Oe8udxznruy3pIN351YRPgRxyzPXHIJ3S5jvQJJQB--9GAh8-2cggiXQZWGkGOwe3Px4Ple6" alt="" loading="lazy">
-                    <div class="ad-info">
-                        <div class="ad-name">ads cansaço</div>
-                        
-                        
-                        <a class="ad-link" href="https://fb.me/25vTvldXFnO7a44" target="_blank" rel="noopener">Ver publicação ↗</a>
-                    </div>
-                </div>
-                <div class="ad-body">A DIABETES TIPO 2 NÃO PRECISA SER PRA SEMPRE!<br>A Doutor DM2 chegou a Cuiabá-MT, com o único protocolo focado em REMISSÃO.<br>Menos remédio. Mais liberdade. Resultados comprovados em semanas.<br><br>📲 Agende ago...</div>
-                <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 11.55</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">632</span><span class="am-l">Alcance</span></div>
-                    <div class="am"><span class="am-v">729</span><span class="am-l">Impressões</span></div>
-                    <div class="am"><span class="am-v highlight">14</span><span class="am-l">Visitas Perfil</span></div>
-                    <div class="am"><span class="am-v">2.33%</span><span class="am-l">CTR</span></div>
-                    <div class="am"><span class="am-v">R$ 0.83</span><span class="am-l">Custo/Visita</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:21%;background:#1D71B8"></div></div>
-            </div>
-            <div class="ad-card">
-                <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKmgMgo1DilM0kK_7H6ri5gtHUINRXzWoZyk-jXo6xF5mAmuOZRRJeeto3zq-saF3NJS9HfbYfT60CBeah-pdhwY4SUvfG1nqd189XgEhsdeyDLnNv3YfaNbm9BqTWuvcdTEkJ49A_gpTVxkQpMaj_-" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKQmfCXF0a3zbTGpq9jcWOGwWbbI2D2GosD6B24MGqfWR4A1AxFP9EKeHkJgKa56amBqfOjAr1BOHE971LYEScLrT54iUB0rrohWl6l9dO1EW0xOqoAMeG9tZjC_kU0GSLbsHj13CKYMlDzXd1wldI-" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads glicazida</div>
                         
                         
-                        <a class="ad-link" href="https://fb.me/218sjGBgpT7eWOH" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/1ZhJsA7Ceq7c6UR" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">A DIABETES TIPO 2 NÃO PRECISA SER PRA SEMPRE!<br>A Doutor DM2 chegou a Cuiabá-MT, com o único protocolo focado em REMISSÃO.<br>Menos remédio. Mais liberdade. Resultados comprovados em semanas.<br><br>📲 Agende ago...</div>
                 <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 10.55</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">509</span><span class="am-l">Alcance</span></div>
-                    <div class="am"><span class="am-v">663</span><span class="am-l">Impressões</span></div>
-                    <div class="am"><span class="am-v highlight">20</span><span class="am-l">Visitas Perfil</span></div>
-                    <div class="am"><span class="am-v">3.77%</span><span class="am-l">CTR</span></div>
-                    <div class="am"><span class="am-v">R$ 0.53</span><span class="am-l">Custo/Visita</span></div></div>
+                    <div class="am"><span class="am-v">R$ 15.93</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">903</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">1,158</span><span class="am-l">Impressões</span></div>
+                    <div class="am"><span class="am-v highlight">28</span><span class="am-l">Visitas Perfil</span></div>
+                    <div class="am"><span class="am-v">3.11%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v">R$ 0.57</span><span class="am-l">Custo/Visita</span></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:26%;background:#1D71B8"></div></div>
+            </div>
+            <div class="ad-card">
+                <div class="ad-top">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJicQFD21QRQH8EJA741jJST2cZPObq1t2jPl_mGLr0jOmw6umk1-SQw6Z2c_JQBhSifzp3gg0dTikZXedMwu6FhOqw1QnS8JU45g-hPaBomLTN56-uR9s0993-7LPOVGjaUlV-szJqosmnfav6cDyX" alt="" loading="lazy">
+                    <div class="ad-info">
+                        <div class="ad-name">ads cansaço</div>
+                        
+                        
+                        <a class="ad-link" href="https://fb.me/1SUMQfa9IEGxVWf" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    </div>
+                </div>
+                <div class="ad-body">A DIABETES TIPO 2 NÃO PRECISA SER PRA SEMPRE!<br>A Doutor DM2 chegou a Cuiabá-MT, com o único protocolo focado em REMISSÃO.<br>Menos remédio. Mais liberdade. Resultados comprovados em semanas.<br><br>📲 Agende ago...</div>
+                <div class="ad-metrics">
+                    <div class="am"><span class="am-v">R$ 11.77</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">646</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">746</span><span class="am-l">Impressões</span></div>
+                    <div class="am"><span class="am-v highlight">14</span><span class="am-l">Visitas Perfil</span></div>
+                    <div class="am"><span class="am-v">2.28%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v">R$ 0.84</span><span class="am-l">Custo/Visita</span></div></div>
                 <div class="ad-bar"><div class="ad-bar-fill" style="width:19%;background:#1D71B8"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJDcs1-tEMG3SL8JsWOQl4F-2lSEV0PN1CTMze9HEcyjP1luRMGjPhmCFJVWieJAVG59GMlvFq5gAV5Z2dP-MR6LdWuBfhl_xmgskcTYA5tk47ijvPzP1VoRJxw2J8QzdIxitCdEwklF9LVb7ucDQNO" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKI4nQaPsCHYAxi7yarsBpARU1s2tNtnivnA-tqCOLi6_VzlUt4ciD-xYHK9_ee7ireOK_FDa8_dNW1bA3e3dOt7_jlgcjt-73y7M6sLP-vOs_tsKDlp3bezGKDlg9H8GTbbA8gaiDLNrDd1I9GqOHc" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads insulina</div>
                         
                         
-                        <a class="ad-link" href="https://fb.me/1SSxdUSq7J62avZ" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/1Zk3nvhNoaw3RVN" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">A DIABETES TIPO 2 NÃO PRECISA SER PRA SEMPRE!<br>A Doutor DM2 chegou a Cuiabá-MT, com o único protocolo focado em REMISSÃO.<br>Menos remédio. Mais liberdade. Resultados comprovados em semanas.<br><br>📲 Agende ago...</div>
                 <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 6.10</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">286</span><span class="am-l">Alcance</span></div>
-                    <div class="am"><span class="am-v">345</span><span class="am-l">Impressões</span></div>
+                    <div class="am"><span class="am-v">R$ 6.15</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">288</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">349</span><span class="am-l">Impressões</span></div>
                     <div class="am"><span class="am-v highlight">8</span><span class="am-l">Visitas Perfil</span></div>
-                    <div class="am"><span class="am-v">3.77%</span><span class="am-l">CTR</span></div>
-                    <div class="am"><span class="am-v">R$ 0.76</span><span class="am-l">Custo/Visita</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:11%;background:#1D71B8"></div></div>
+                    <div class="am"><span class="am-v">3.72%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v">R$ 0.77</span><span class="am-l">Custo/Visita</span></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:10%;background:#1D71B8"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQK4Z5cDg5reMlgcs2vg52U4I4V3_iCUCgOsx9DY1fpYGjMRYsxqUbkAXWu1EK_Nm8w9EGmdAOFXMAj0J0KfT6Hepn4DkMY-NuRLmZi-wPz6nmKNyxIUZgwVdl4lZcEd0ULuowsIZGbPNA1iFf_Eo8x5" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLYPXukaGmQUdfaZK3YoE5LDT6DXPBN9Bbzy7isDf5dkRSP_tbMG29Y2Rtp4180S76f_YraBhJBjX9XhjRYl01bJiikQqPP5uF10roMe9VXVc1ZupTjccVWcgJcTzGe6PmxRVpq5qjVXX0P6FSAY2Na" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads visão 2</div>
                         
                         
-                        <a class="ad-link" href="https://fb.me/21rb4RIwj96MmhH" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/2nGW6g4aapAI4nr" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">A DIABETES TIPO 2 NÃO PRECISA SER PRA SEMPRE!<br>A Doutor DM2 chegou a Cuiabá-MT, com o único protocolo focado em REMISSÃO.<br>Menos remédio. Mais liberdade. Resultados comprovados em semanas.<br><br>📲 Agende ago...</div>
@@ -487,12 +489,12 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKSS5YIcAnp52WucfaMQRiXv8d36ykOw1v9fPy61bDQnl44mqRZ5JfoBV_kL01Xvi0G68rTDYwyMrYp52M6Uxk1BqGqSgSHmju8ENb55Solf3rp9zrg_tUf7ymlCjvcIkOwrMUGyKjucII1ERxHJYBW" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLdbHYbq6-ksh6chu678eEIuAJc6TVv3-0UErxIY4QemDxKstSRcknj4R079CA8DGZ78Gs_LcHaTcjbgXc6wIJ35tI7G2zw46YBOgn-NciGTwJUWbOwX_56qQi1ZKW40vOS3GpjKETxxamyBazwNEE2" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads cansaço 2</div>
                         
                         
-                        <a class="ad-link" href="https://fb.me/2eDkNS56Y1PdCVv" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/1ZwUFl2gfzXnurd" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">A DIABETES TIPO 2 NÃO PRECISA SER PRA SEMPRE!<br>A Doutor DM2 chegou a Cuiabá-MT, com o único protocolo focado em REMISSÃO.<br>Menos remédio. Mais liberdade. Resultados comprovados em semanas.<br><br>📲 Agende ago...</div>
@@ -503,16 +505,16 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
                     <div class="am"><span class="am-v highlight">2</span><span class="am-l">Visitas Perfil</span></div>
                     <div class="am"><span class="am-v">3.57%</span><span class="am-l">CTR</span></div>
                     <div class="am"><span class="am-v">R$ 0.74</span><span class="am-l">Custo/Visita</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:3%;background:#1D71B8"></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:2%;background:#1D71B8"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLq6GO3JbnbHdm5iGOXX-zQk69joTXSML0JgjzmKQPZPpNyeqF7RuAKFaCyBjYxcYWINKlLOPI7MgKmniVsaRd1BWi4oPwKDjuFCL7ExpZ23KDcbEaTudWmMoeWrdOQC-xOTPPwuImKIzUBdkMELMi-" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIoG55eRYnBM9pWT2iXGMBe5dS5CZAh3dK2KHeCKkFZ95RqMIVIK2vphD1NHAIlK30uWmbACL3968xncT0oV1xDTj7nI3NrwdQvnFkB2i1A8LieLJo6OcZs_Wq5H8eWudWFqSshNe9ecG0UKtTLcN9c" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads visão</div>
                         
                         
-                        <a class="ad-link" href="https://fb.me/1RjgebNcs5NUzv7" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/1SE09F9UgTFyKBv" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">A DIABETES TIPO 2 NÃO PRECISA SER PRA SEMPRE!<br>A Doutor DM2 chegou a Cuiabá-MT, com o único protocolo focado em REMISSÃO.<br>Menos remédio. Mais liberdade. Resultados comprovados em semanas.<br><br>📲 Agende ago...</div>
@@ -523,16 +525,16 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
                     <div class="am"><span class="am-v highlight">0</span><span class="am-l">Visitas Perfil</span></div>
                     <div class="am"><span class="am-v">0.00%</span><span class="am-l">CTR</span></div>
                     <div class="am"><span class="am-v">—</span><span class="am-l">Custo/Visita</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:2%;background:#1D71B8"></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:1%;background:#1D71B8"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKIgyZ1xiVc3hs4zDNx_JAaWUyACetoloa1aCpLezcVyTpfJ14OJ1Mbl1AM8jhXgpoqUPoUexqufdyVE04p7LvcfEJvx9W37OcLlKWlhI0oN6sEuQi2JPfQWP-iU_6_QH3eB-PcX8yVYBIKbtxwW06j" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKgeja8iYMXLGhCmA-pAL_C29ZIeuEA3I7HpIWeSUTaQ54cPP_mCmZo4nvFVpUmx-44Hr5cdLwsOrdLLfVHUz8IS3SNZUf_D_I37qbqSzI4IxK1FenbcLHVDPp9ncKriXswp-_1dvzHoeCn0xDoDuvp" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads formigamento</div>
                         
                         
-                        <a class="ad-link" href="https://fb.me/1T27ODLi7ngYtEo" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/26NxxtLFAltWu9b" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">A DIABETES TIPO 2 NÃO PRECISA SER PRA SEMPRE!<br>A Doutor DM2 chegou a Cuiabá-MT, com o único protocolo focado em REMISSÃO.<br>Menos remédio. Mais liberdade. Resultados comprovados em semanas.<br><br>📲 Agende ago...</div>
@@ -558,11 +560,11 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
                 <p class="stage-desc">Vendas WPP (público frio) — iniciar conversa no WhatsApp</p>
                 
                 <div class="stage-kpis">
-                    <div class="sk"><span class="sk-v" style="color:#00A19A">R$ 373.20</span><span class="sk-l">Investido (69%)</span></div>
-                    <div class="sk"><span class="sk-v">5,770</span><span class="sk-l">Alcance</span></div>
-                    <div class="sk"><span class="sk-v">505</span><span class="sk-l">Cliques</span></div>
-                    <div class="sk"><span class="sk-v">130</span><span class="sk-l">Conversas WPP</span></div>
-                    <div class="sk"><span class="sk-v">R$ 2.87</span><span class="sk-l">Custo/Conversa</span></div>
+                    <div class="sk"><span class="sk-v" style="color:#00A19A">R$ 406.21</span><span class="sk-l">Investido (69%)</span></div>
+                    <div class="sk"><span class="sk-v">6,446</span><span class="sk-l">Alcance</span></div>
+                    <div class="sk"><span class="sk-v">567</span><span class="sk-l">Cliques</span></div>
+                    <div class="sk"><span class="sk-v">146</span><span class="sk-l">Conversas WPP</span></div>
+                    <div class="sk"><span class="sk-v">R$ 2.78</span><span class="sk-l">Custo/Conversa</span></div>
                 </div>
 
                 <div class="camps-section">
@@ -575,11 +577,11 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
                     
                 </div>
                 <div class="camp-nums">
-                    <span>R$ 373.20</span>
-                    <span>5,770 alc</span>
-                    <span>505 cli</span>
-                    <span>130 conv</span>
-                    <span>R$ 2.87 cpl</span></div>
+                    <span>R$ 406.21</span>
+                    <span>6,446 alc</span>
+                    <span>567 cli</span>
+                    <span>146 conv</span>
+                    <span>R$ 2.78 cpl</span></div>
             </div>
                 </div>
 
@@ -588,172 +590,172 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
                     <div class="ad-grid">
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLj5FLZ7IOxtaVJpdIM4RTkp0iV_kBZ9PftCB1LiArJlRMcfzqTYoIYJgzRM4PDFwSHgWiTphvMoCJJ1JsQxs5gd4hZPhBSZ-NTIzBTehW5YCBeRyfa9B1bRzT4pELUaI-FKHYNQn5zMwTdUt_CUFwv" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLMENqR_zmxSTHw15pR9LuNcwDq9tdsojyqB6EmmN-UfSH6RDcJe1WwM8v_8KKcqtkzicXBCBxCdbsUMzfgQmNVFA7-GlJa2sOhgdyFGdL2yNDKBWrKzuEGUT9f4Uc-67nVe9YrLYkqybmHKeUZVlzb" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads voce tem dm2</div>
                         <div class="ad-title">7 em Cada 10 em Remissão | Doutor DM2</div>
                         <div class="ad-desc">Chegamos em Cuiabá-MT</div>
-                        <a class="ad-link" href="https://fb.me/2iDAQB0MnkTY1Dr" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/26n0ivQhlWeijga" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">A DOUTOR DM2 CHEGOU EM CUIABÁ.<br>Você já ouviu que diabetes tipo 2 é &quot;pra sempre&quot;?<br><br>Eu também ouvia isso. Até ver os resultados: 7 em cada 10 pacientes da Doutor DM2 já alcançaram a remissão do diabetes...</div>
                 <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 72.73</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">2,081</span><span class="am-l">Alcance</span></div>
-                    <div class="am"><span class="am-v">106</span><span class="am-l">Cliques</span></div>
-                    <div class="am"><span class="am-v">3.88%</span><span class="am-l">CTR</span></div>
-                    <div class="am"><span class="am-v highlight">29</span><span class="am-l">Conversas</span></div>
-                    <div class="am"><span class="am-v">R$ 2.51</span><span class="am-l">CPL</span></div></div>
+                    <div class="am"><span class="am-v">R$ 85.62</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">2,461</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">130</span><span class="am-l">Cliques</span></div>
+                    <div class="am"><span class="am-v">3.91%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v highlight">35</span><span class="am-l">Conversas</span></div>
+                    <div class="am"><span class="am-v">R$ 2.45</span><span class="am-l">CPL</span></div></div>
                 <div class="ad-bar"><div class="ad-bar-fill" style="width:100%;background:#00A19A"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLX4WdkUXTitlM8RyuIILf4_1szgFY-_OAyf4QBr2uW7GRVcjZ0aMSDfdz596JsPZepSwu8ljP0cywMd8G-Q7uP_mAKUusE6CrxH457YP83ki_HvizOmlwy2UELtSHUcuaFW2D_rWCRM4kaalhujehD" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKI5tuM3ciaR08oHarXkTJ1QkWXr4jrInmABFn-7-RSB-eIllmQ-dWMvmheHJz6RrmftEXQBvFwuzqZw0BdaF6wD3NAm0caovzXVaSzRFgeFFfwTtSiCEcdt1u5x72eR9TM9154vBfB_ui2aTpWoEV5" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads controlar sintomas</div>
                         <div class="ad-title">7 em Cada 10 em Remissão | Doutor DM2</div>
                         <div class="ad-desc">Chegamos em Cuiabá-MT</div>
-                        <a class="ad-link" href="https://fb.me/1S4QcK2tFFR4MPK" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/252CWWSIzaR0qoT" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">Você já ouviu que diabetes tipo 2 é &quot;pra sempre&quot;?<br><br>Eu também ouvia isso. Até ver os resultados: 7 em cada 10 pacientes da Doutor DM2 já alcançaram a remissão do diabetes tipo 2.<br><br>Remissão = glicada no...</div>
                 <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 61.43</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">1,626</span><span class="am-l">Alcance</span></div>
-                    <div class="am"><span class="am-v">95</span><span class="am-l">Cliques</span></div>
-                    <div class="am"><span class="am-v">4.33%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v">R$ 64.35</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">1,664</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">98</span><span class="am-l">Cliques</span></div>
+                    <div class="am"><span class="am-v">4.25%</span><span class="am-l">CTR</span></div>
                     <div class="am"><span class="am-v highlight">18</span><span class="am-l">Conversas</span></div>
-                    <div class="am"><span class="am-v">R$ 3.41</span><span class="am-l">CPL</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:84%;background:#00A19A"></div></div>
+                    <div class="am"><span class="am-v">R$ 3.57</span><span class="am-l">CPL</span></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:75%;background:#00A19A"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLbpI7Ydu7xWJjrXbUDqWI-i4KiS9AynXXJv7FLjFNlwBjvWQmwAejjhlvDIADxo5J_tya2BTkXtGgSebC36glJ-AaCzeb15A7lKRrQoCVFgwMRLIwV7lMrDzHXrX3YdwHtQcLzxdC0vuEiVu0Q73pZ" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKHYNdmOpCETUY09KcfCzb-Lqk-ohUKjfjO7c9wATttxxiTKTw9ftyoG1Ff87jbA5ssb5ysKboxMUkme-TU5us_cFpBjD-vZdmKrPDzEmkPtgCv6yyyrYuQ-EC8OBrnY8dOiBkIVFIwAmT-v6Fg64N5" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads essas é a Doutor DM2</div>
                         <div class="ad-title">7 em Cada 10 em Remissão | Doutor DM2</div>
                         <div class="ad-desc">Chegamos em Cuiabá-MT</div>
-                        <a class="ad-link" href="https://fb.me/2vp7RWco4XYNGlb" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/2zdCu4v7Y48HwaO" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">Você sente formigamento nos pés? Cansaço fora do normal? Visão embaçada?<br><br>Esses são sinais de que o diabetes tipo 2 está PROGREDINDO mesmo tomando remédio.<br><br>O que a maioria das pessoas não sabe: a ciê...</div>
                 <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 60.99</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">1,353</span><span class="am-l">Alcance</span></div>
-                    <div class="am"><span class="am-v">67</span><span class="am-l">Cliques</span></div>
-                    <div class="am"><span class="am-v">3.57%</span><span class="am-l">CTR</span></div>
-                    <div class="am"><span class="am-v highlight">18</span><span class="am-l">Conversas</span></div>
-                    <div class="am"><span class="am-v">R$ 3.39</span><span class="am-l">CPL</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:84%;background:#00A19A"></div></div>
+                    <div class="am"><span class="am-v">R$ 62.85</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">1,394</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">69</span><span class="am-l">Cliques</span></div>
+                    <div class="am"><span class="am-v">3.55%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v highlight">20</span><span class="am-l">Conversas</span></div>
+                    <div class="am"><span class="am-v">R$ 3.14</span><span class="am-l">CPL</span></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:73%;background:#00A19A"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLbpI7Ydu7xWJjrXbUDqWI-i4KiS9AynXXJv7FLjFNlwBjvWQmwAejjhlvDIADxo5J_tya2BTkXtGgSebC36glJ-AaCzeb15A7lKRrQoCVFgwMRLIwV7lMrDzHXrX3YdwHtQcLzxdC0vuEiVu0Q73pZ" alt="" loading="lazy">
-                    <div class="ad-info">
-                        <div class="ad-name">ads essas é a Doutor DM2</div>
-                        <div class="ad-title">7 em Cada 10 em Remissão | Doutor DM2</div>
-                        <div class="ad-desc">Chegamos em Cuiabá-MT</div>
-                        <a class="ad-link" href="https://fb.me/2vp7RWco4XYNGlb" target="_blank" rel="noopener">Ver publicação ↗</a>
-                    </div>
-                </div>
-                <div class="ad-body">Você sente formigamento nos pés? Cansaço fora do normal? Visão embaçada?<br><br>Esses são sinais de que o diabetes tipo 2 está PROGREDINDO mesmo tomando remédio.<br><br>O que a maioria das pessoas não sabe: a ciê...</div>
-                <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 53.51</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">1,166</span><span class="am-l">Alcance</span></div>
-                    <div class="am"><span class="am-v">64</span><span class="am-l">Cliques</span></div>
-                    <div class="am"><span class="am-v">3.95%</span><span class="am-l">CTR</span></div>
-                    <div class="am"><span class="am-v highlight">24</span><span class="am-l">Conversas</span></div>
-                    <div class="am"><span class="am-v">R$ 2.23</span><span class="am-l">CPL</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:74%;background:#00A19A"></div></div>
-            </div>
-            <div class="ad-card">
-                <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLj5FLZ7IOxtaVJpdIM4RTkp0iV_kBZ9PftCB1LiArJlRMcfzqTYoIYJgzRM4PDFwSHgWiTphvMoCJJ1JsQxs5gd4hZPhBSZ-NTIzBTehW5YCBeRyfa9B1bRzT4pELUaI-FKHYNQn5zMwTdUt_CUFwv" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLMENqR_zmxSTHw15pR9LuNcwDq9tdsojyqB6EmmN-UfSH6RDcJe1WwM8v_8KKcqtkzicXBCBxCdbsUMzfgQmNVFA7-GlJa2sOhgdyFGdL2yNDKBWrKzuEGUT9f4Uc-67nVe9YrLYkqybmHKeUZVlzb" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads voce tem dm2</div>
                         <div class="ad-title">7 em Cada 10 em Remissão | Doutor DM2</div>
                         <div class="ad-desc">Chegamos em Cuiabá-MT</div>
-                        <a class="ad-link" href="https://fb.me/2iDAQB0MnkTY1Dr" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/26n0ivQhlWeijga" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">A DOUTOR DM2 CHEGOU EM CUIABÁ.<br>Você já ouviu que diabetes tipo 2 é &quot;pra sempre&quot;?<br><br>Eu também ouvia isso. Até ver os resultados: 7 em cada 10 pacientes da Doutor DM2 já alcançaram a remissão do diabetes...</div>
                 <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 42.74</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">1,368</span><span class="am-l">Alcance</span></div>
-                    <div class="am"><span class="am-v">59</span><span class="am-l">Cliques</span></div>
-                    <div class="am"><span class="am-v">3.52%</span><span class="am-l">CTR</span></div>
-                    <div class="am"><span class="am-v highlight">17</span><span class="am-l">Conversas</span></div>
-                    <div class="am"><span class="am-v">R$ 2.51</span><span class="am-l">CPL</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:59%;background:#00A19A"></div></div>
+                    <div class="am"><span class="am-v">R$ 54.91</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">1,908</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">82</span><span class="am-l">Cliques</span></div>
+                    <div class="am"><span class="am-v">3.46%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v highlight">22</span><span class="am-l">Conversas</span></div>
+                    <div class="am"><span class="am-v">R$ 2.50</span><span class="am-l">CPL</span></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:64%;background:#00A19A"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLX4WdkUXTitlM8RyuIILf4_1szgFY-_OAyf4QBr2uW7GRVcjZ0aMSDfdz596JsPZepSwu8ljP0cywMd8G-Q7uP_mAKUusE6CrxH457YP83ki_HvizOmlwy2UELtSHUcuaFW2D_rWCRM4kaalhujehD" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKHYNdmOpCETUY09KcfCzb-Lqk-ohUKjfjO7c9wATttxxiTKTw9ftyoG1Ff87jbA5ssb5ysKboxMUkme-TU5us_cFpBjD-vZdmKrPDzEmkPtgCv6yyyrYuQ-EC8OBrnY8dOiBkIVFIwAmT-v6Fg64N5" alt="" loading="lazy">
+                    <div class="ad-info">
+                        <div class="ad-name">ads essas é a Doutor DM2</div>
+                        <div class="ad-title">7 em Cada 10 em Remissão | Doutor DM2</div>
+                        <div class="ad-desc">Chegamos em Cuiabá-MT</div>
+                        <a class="ad-link" href="https://fb.me/2zdCu4v7Y48HwaO" target="_blank" rel="noopener">Ver publicação ↗</a>
+                    </div>
+                </div>
+                <div class="ad-body">Você sente formigamento nos pés? Cansaço fora do normal? Visão embaçada?<br><br>Esses são sinais de que o diabetes tipo 2 está PROGREDINDO mesmo tomando remédio.<br><br>O que a maioria das pessoas não sabe: a ciê...</div>
+                <div class="ad-metrics">
+                    <div class="am"><span class="am-v">R$ 54.76</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">1,194</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">67</span><span class="am-l">Cliques</span></div>
+                    <div class="am"><span class="am-v">3.96%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v highlight">24</span><span class="am-l">Conversas</span></div>
+                    <div class="am"><span class="am-v">R$ 2.28</span><span class="am-l">CPL</span></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:64%;background:#00A19A"></div></div>
+            </div>
+            <div class="ad-card">
+                <div class="ad-top">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKI5tuM3ciaR08oHarXkTJ1QkWXr4jrInmABFn-7-RSB-eIllmQ-dWMvmheHJz6RrmftEXQBvFwuzqZw0BdaF6wD3NAm0caovzXVaSzRFgeFFfwTtSiCEcdt1u5x72eR9TM9154vBfB_ui2aTpWoEV5" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads controlar sintomas</div>
                         <div class="ad-title">7 em Cada 10 em Remissão | Doutor DM2</div>
                         <div class="ad-desc">Chegamos em Cuiabá-MT</div>
-                        <a class="ad-link" href="https://fb.me/1S4QcK2tFFR4MPK" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/252CWWSIzaR0qoT" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">Você já ouviu que diabetes tipo 2 é &quot;pra sempre&quot;?<br><br>Eu também ouvia isso. Até ver os resultados: 7 em cada 10 pacientes da Doutor DM2 já alcançaram a remissão do diabetes tipo 2.<br><br>Remissão = glicada no...</div>
                 <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 40.06</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">1,074</span><span class="am-l">Alcance</span></div>
-                    <div class="am"><span class="am-v">64</span><span class="am-l">Cliques</span></div>
-                    <div class="am"><span class="am-v">4.44%</span><span class="am-l">CTR</span></div>
-                    <div class="am"><span class="am-v highlight">15</span><span class="am-l">Conversas</span></div>
-                    <div class="am"><span class="am-v">R$ 2.67</span><span class="am-l">CPL</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:55%;background:#00A19A"></div></div>
+                    <div class="am"><span class="am-v">R$ 41.45</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">1,119</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">69</span><span class="am-l">Cliques</span></div>
+                    <div class="am"><span class="am-v">4.52%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v highlight">17</span><span class="am-l">Conversas</span></div>
+                    <div class="am"><span class="am-v">R$ 2.44</span><span class="am-l">CPL</span></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:48%;background:#00A19A"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKSt8RmCAg33IkRShGRxvDLs6kWqXXrwKe6uRsW-_gu5w6PaW14cWf2HYffVtYY06GAqH2wJ7Wmw99407ESlq0PV9DwhJnWRZC8_6YywR_vUqIlcjPRyv3J1XoaWZ2mXSoQK2F9Ly-pX7Lt6LN70H5R" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKeJbhbxJGZI7xGlweBb6IX5hrOhHJWn7fsETxWpdTOCgqZuL6ytVqmAJjkOlkbSYVo82kvcPcD6rWNSskHN4qv9k32k5jFMc3W8DMY-wlcYes441AUSgR11l1lV-5vWSCwKSc_RiPhuW4k6rXlpn6_" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads controle nao funciona</div>
                         <div class="ad-title">7 em Cada 10 em Remissão | Doutor DM2</div>
                         <div class="ad-desc">Chegamos em Cuiabá-MT</div>
-                        <a class="ad-link" href="https://fb.me/26cVTzS1c6mZVU2" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/20IEygaH2B9LWbe" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">A DOUTOR DM2 CHEGOU EM CUIABÁ.<br>Você já ouviu que diabetes tipo 2 é &quot;pra sempre&quot;?<br><br>Eu também ouvia isso. Até ver os resultados: 7 em cada 10 pacientes da Doutor DM2 já alcançaram a remissão do diabetes...</div>
                 <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 20.62</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">550</span><span class="am-l">Alcance</span></div>
-                    <div class="am"><span class="am-v">30</span><span class="am-l">Cliques</span></div>
-                    <div class="am"><span class="am-v">4.22%</span><span class="am-l">CTR</span></div>
-                    <div class="am"><span class="am-v highlight">5</span><span class="am-l">Conversas</span></div>
-                    <div class="am"><span class="am-v">R$ 4.12</span><span class="am-l">CPL</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:28%;background:#00A19A"></div></div>
+                    <div class="am"><span class="am-v">R$ 21.03</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">553</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">32</span><span class="am-l">Cliques</span></div>
+                    <div class="am"><span class="am-v">4.42%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v highlight">6</span><span class="am-l">Conversas</span></div>
+                    <div class="am"><span class="am-v">R$ 3.51</span><span class="am-l">CPL</span></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:25%;background:#00A19A"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKSt8RmCAg33IkRShGRxvDLs6kWqXXrwKe6uRsW-_gu5w6PaW14cWf2HYffVtYY06GAqH2wJ7Wmw99407ESlq0PV9DwhJnWRZC8_6YywR_vUqIlcjPRyv3J1XoaWZ2mXSoQK2F9Ly-pX7Lt6LN70H5R" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKeJbhbxJGZI7xGlweBb6IX5hrOhHJWn7fsETxWpdTOCgqZuL6ytVqmAJjkOlkbSYVo82kvcPcD6rWNSskHN4qv9k32k5jFMc3W8DMY-wlcYes441AUSgR11l1lV-5vWSCwKSc_RiPhuW4k6rXlpn6_" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads controle nao funciona</div>
                         <div class="ad-title">7 em Cada 10 em Remissão | Doutor DM2</div>
                         <div class="ad-desc">Chegamos em Cuiabá-MT</div>
-                        <a class="ad-link" href="https://fb.me/26cVTzS1c6mZVU2" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/20IEygaH2B9LWbe" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">A DOUTOR DM2 CHEGOU EM CUIABÁ.<br>Você já ouviu que diabetes tipo 2 é &quot;pra sempre&quot;?<br><br>Eu também ouvia isso. Até ver os resultados: 7 em cada 10 pacientes da Doutor DM2 já alcançaram a remissão do diabetes...</div>
                 <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 12.42</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">327</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">R$ 12.54</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">329</span><span class="am-l">Alcance</span></div>
                     <div class="am"><span class="am-v">15</span><span class="am-l">Cliques</span></div>
-                    <div class="am"><span class="am-v">3.90%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v">3.87%</span><span class="am-l">CTR</span></div>
                     <div class="am"><span class="am-v highlight">4</span><span class="am-l">Conversas</span></div>
-                    <div class="am"><span class="am-v">R$ 3.10</span><span class="am-l">CPL</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:17%;background:#00A19A"></div></div>
+                    <div class="am"><span class="am-v">R$ 3.13</span><span class="am-l">CPL</span></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:15%;background:#00A19A"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLqUO_pknewNQ6uul8zMfc0yRBjIMYc4u0-OcvIk3pdyIqqqFb8FU9t90boOrN23ON6QANIEEY9d9AONnvEod6Vegn9WEVH-lqsGMtBltJ0ztdCnqVM1DBZt6I0xadrn2Y4U-68-6cBljrB0KcuDxlD" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIciYDQPcrRdyKN6dEVrz67tUrUfKRQlIYQQKuLLFkhpQQgZrEdaHrEbrjuKidiJIwMB04souZVQqJGF7rCbg29kCH1Nxx5Tpi60ULRhLSPMdaqvKa8QeACkbNSOGlW50c2h0tbwYh9kIFZSCkD3N0S" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads controlar nao é tratar</div>
                         <div class="ad-title">7 em Cada 10 em Remissão | Doutor DM2</div>
                         <div class="ad-desc">Chegamos em Cuiabá-MT</div>
-                        <a class="ad-link" href="https://fb.me/1TfNC6xe6ZQdqjl" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/1SWQfnAxijjaUyt" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">Você já ouviu que diabetes tipo 2 é &quot;pra sempre&quot;?<br><br>Eu também ouvia isso. Até ver os resultados: 7 em cada 10 pacientes da Doutor DM2 já alcançaram a remissão do diabetes tipo 2.<br><br>Remissão = glicada no...</div>
@@ -764,16 +766,16 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
                     <div class="am"><span class="am-v">2.96%</span><span class="am-l">CTR</span></div>
                     <div class="am"><span class="am-v highlight">0</span><span class="am-l">Conversas</span></div>
                     <div class="am"><span class="am-v">—</span><span class="am-l">CPL</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:11%;background:#00A19A"></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:9%;background:#00A19A"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLqUO_pknewNQ6uul8zMfc0yRBjIMYc4u0-OcvIk3pdyIqqqFb8FU9t90boOrN23ON6QANIEEY9d9AONnvEod6Vegn9WEVH-lqsGMtBltJ0ztdCnqVM1DBZt6I0xadrn2Y4U-68-6cBljrB0KcuDxlD" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIciYDQPcrRdyKN6dEVrz67tUrUfKRQlIYQQKuLLFkhpQQgZrEdaHrEbrjuKidiJIwMB04souZVQqJGF7rCbg29kCH1Nxx5Tpi60ULRhLSPMdaqvKa8QeACkbNSOGlW50c2h0tbwYh9kIFZSCkD3N0S" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads controlar nao é tratar</div>
                         <div class="ad-title">7 em Cada 10 em Remissão | Doutor DM2</div>
                         <div class="ad-desc">Chegamos em Cuiabá-MT</div>
-                        <a class="ad-link" href="https://fb.me/1TfNC6xe6ZQdqjl" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/1SWQfnAxijjaUyt" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">Você já ouviu que diabetes tipo 2 é &quot;pra sempre&quot;?<br><br>Eu também ouvia isso. Até ver os resultados: 7 em cada 10 pacientes da Doutor DM2 já alcançaram a remissão do diabetes tipo 2.<br><br>Remissão = glicada no...</div>
@@ -799,11 +801,11 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
                 <p class="stage-desc">Remarketing WPP — converter público quente em agendamentos</p>
                 
                 <div class="stage-kpis">
-                    <div class="sk"><span class="sk-v" style="color:#22c55e">R$ 77.33</span><span class="sk-l">Investido (14%)</span></div>
-                    <div class="sk"><span class="sk-v">803</span><span class="sk-l">Alcance</span></div>
-                    <div class="sk"><span class="sk-v">73</span><span class="sk-l">Cliques</span></div>
-                    <div class="sk"><span class="sk-v">11</span><span class="sk-l">Conversas RMK</span></div>
-                    <div class="sk"><span class="sk-v">R$ 7.03</span><span class="sk-l">Custo/Conversa</span></div>
+                    <div class="sk"><span class="sk-v" style="color:#22c55e">R$ 85.57</span><span class="sk-l">Investido (14%)</span></div>
+                    <div class="sk"><span class="sk-v">896</span><span class="sk-l">Alcance</span></div>
+                    <div class="sk"><span class="sk-v">92</span><span class="sk-l">Cliques</span></div>
+                    <div class="sk"><span class="sk-v">12</span><span class="sk-l">Conversas RMK</span></div>
+                    <div class="sk"><span class="sk-v">R$ 7.13</span><span class="sk-l">Custo/Conversa</span></div>
                 </div>
 
                 <div class="camps-section">
@@ -816,11 +818,11 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
                     <span class="budget-tag">R$ 35/dia</span>
                 </div>
                 <div class="camp-nums">
-                    <span>R$ 77.33</span>
-                    <span>803 alc</span>
-                    <span>73 cli</span>
-                    <span>11 conv</span>
-                    <span>R$ 7.03 cpl</span></div>
+                    <span>R$ 85.57</span>
+                    <span>896 alc</span>
+                    <span>92 cli</span>
+                    <span>12 conv</span>
+                    <span>R$ 7.13 cpl</span></div>
             </div>
                 </div>
 
@@ -829,123 +831,123 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
                     <div class="ad-grid">
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJsSzKKJGSvRJNBx0XFSEoZRqC5MqS_FUON6F-IJ8lC1os-4gXqp4DUGNV_t8V-WM9Mblvb0FDsPkGY31fOltufGcjYWLC36rQ--GcdKt2HkValzkYflncqOrjR9zv3izzGmn06hnhJAqzppHZyrf_a" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLq7L3CvPpHNAD3l_MlZdcgTar_Z7gIoT1MmWaECj-8-AB51Fs9JG6S3B9P4H8IqIzLan4tjz8dw4b8Cy0sCDj4oHT7taEA4NNDI_G-GZWHtciXpAso0pDgz0WaR3ziUT2MusU6hUs9t6IPzd21Nq-7" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads metformina/glifage</div>
                         <div class="ad-title">Clique aqui, agende sua avaliação metábolica.</div>
                         <div class="ad-desc">Chegamos em Cuiabá</div>
-                        <a class="ad-link" href="https://fb.me/y1urC2Jm1UjkaaS" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/27BWcH8EtIjO6cb" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">🚨 Diabetes Tipo 2? Descubra Como Reduzir a Glicose Sem Depender Apenas de Remédios!<br><br>Sofrendo com diabetes tipo 2? Formigamentos, dores, cansaço constante e noites mal dormidas?<br><br>Mesmo com dietas e re...</div>
                 <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 27.88</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">503</span><span class="am-l">Alcance</span></div>
-                    <div class="am"><span class="am-v">34</span><span class="am-l">Cliques</span></div>
-                    <div class="am"><span class="am-v">4.28%</span><span class="am-l">CTR</span></div>
-                    <div class="am"><span class="am-v highlight">7</span><span class="am-l">Conversas</span></div>
-                    <div class="am"><span class="am-v">R$ 3.98</span><span class="am-l">CPL</span></div></div>
+                    <div class="am"><span class="am-v">R$ 34.85</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">631</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">49</span><span class="am-l">Cliques</span></div>
+                    <div class="am"><span class="am-v">4.76%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v highlight">9</span><span class="am-l">Conversas</span></div>
+                    <div class="am"><span class="am-v">R$ 3.87</span><span class="am-l">CPL</span></div></div>
                 <div class="ad-bar"><div class="ad-bar-fill" style="width:100%;background:#22c55e"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLAk8wYrJQJbHGHZUU6tM1VqcmAv4J_ohqQTw5-YwEs2EtDEtegVxP6PHb1-e9njParBU9zRVwLKweda4ArLZO57k4PW0pnUHSQKQwgebu8ysfSF0qe_BicqFd2sqMJAVoo_Sv13xWYicr9Euw336CK" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLgpK3wqj6UW18u8JdzNhsMxCIflgr8dRAx3QWukDByL5EG4EERUdiDKKMftVQPCeyyuJQJjCnh044wCWw051hG78wifYrkU12PzS0sB9E4xUsSXptsjqHfYXqo_SCLdCzcCmFgjxDsM8VlziMe2VsA" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads uso de insulina</div>
                         <div class="ad-title">Clique aqui, agende sua avaliação metábolica.</div>
                         <div class="ad-desc">Chegamos em Cuiabá</div>
-                        <a class="ad-link" href="https://fb.me/23JZrHtPm2pGv4Z" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/1PTCXCO6sN1ELpB" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">Uma glicada de 9% não é leve.<br>É diabetes descompensado.<br><br>Nessa fase, muitos pacientes já precisam intensificar tratamento às vezes até usar insulina.<br><br>Mas existe uma diferença entre controlar e piorar...</div>
                 <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 24.03</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">397</span><span class="am-l">Alcance</span></div>
-                    <div class="am"><span class="am-v">19</span><span class="am-l">Cliques</span></div>
-                    <div class="am"><span class="am-v">2.88%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v">R$ 24.48</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">404</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">20</span><span class="am-l">Cliques</span></div>
+                    <div class="am"><span class="am-v">2.92%</span><span class="am-l">CTR</span></div>
                     <div class="am"><span class="am-v highlight">2</span><span class="am-l">Conversas</span></div>
-                    <div class="am"><span class="am-v">R$ 12.02</span><span class="am-l">CPL</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:86%;background:#22c55e"></div></div>
+                    <div class="am"><span class="am-v">R$ 12.24</span><span class="am-l">CPL</span></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:70%;background:#22c55e"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKSRkaSdyeWRd4TUld0q8V6VYG7DNhpyDI75GCeJGVD2s_eJQom3bFVIuWG8955xkJMv35erdfxSitffsqKBTsoRwTkap6hLb4S8HhF8OqVPpspy1toTnycUd1LVE0EPWYtjq4kbYAZg1Sn43JRAI4f" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLBTgqiMcbxwbxJx7FqAKESyBZBM5XQWdeUPvQMfkzfph9YkKMyWR51e5W0MPypdfSTmhrvmTf-oWPPWClnWzm2qDwhc4NfWx54eAnjE9nZAnlGmil8-RxvBFk9QiMNtD3TLfD3lKOpvbtHvN1x_-OI" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads pre-diabetes</div>
                         <div class="ad-title">Clique aqui, agende sua avaliação metábolica.</div>
                         <div class="ad-desc">Chegamos em Cuiabá</div>
-                        <a class="ad-link" href="https://fb.me/27kKL4kwDhHvE63" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/1ZAZKyihQ5wA2Su" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">Pré-diabetes não é o começo da doença.<br>É o último aviso antes dela se instalar.<br><br>Antes da glicose subir, seu corpo já estava resistente à insulina.<br><br>Primeiro vem a resistência.<br>Depois a pré-diabetes.<br>...</div>
                 <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 7.67</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">147</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">R$ 7.74</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">149</span><span class="am-l">Alcance</span></div>
                     <div class="am"><span class="am-v">2</span><span class="am-l">Cliques</span></div>
-                    <div class="am"><span class="am-v">0.93%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v">0.90%</span><span class="am-l">CTR</span></div>
                     <div class="am"><span class="am-v highlight">0</span><span class="am-l">Conversas</span></div>
                     <div class="am"><span class="am-v">—</span><span class="am-l">CPL</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:28%;background:#22c55e"></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:22%;background:#22c55e"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQIDS2Ieb02Sh5Y1IrxPLr5B5sq3FpGNnOTSzLfWB-lnQZGG8_zSA7LBaxvwqp_vSidUkZXJCvg8gzpWIjrQsE4XUPslceO3x8WbAygW0jqF2R8j7VeD1RfHZ1_hX495m63YwnRZSVKGaqMz74Ja9HH8" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQKiBT91eGR7cxSae_jUBNrqgiA56EnjTv7WYy1vrrmXRbwK-PobSoNcVHgrcFNdPYTZ2J0aWFlj8XahMcFaUk1jcGJ5KczpIJ_Ie6-MdClymqmCrkdf8fgoEFiNzLyCAuAPnWmL2YkoReTcZUl9zne_" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads glicada de 9</div>
                         <div class="ad-title">Clique aqui, agende sua avaliação metábolica.</div>
                         <div class="ad-desc">Chegamos em Cuiabá</div>
-                        <a class="ad-link" href="https://fb.me/2D8EK0NJSqZwhuO" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/28WYsuqHldWehfe" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">🚨 Diabetes Tipo 2? Descubra Como Reduzir a Glicose Sem Depender Apenas de Remédios!<br><br>Sofrendo com diabetes tipo 2? Formigamentos, dores, cansaço constante e noites mal dormidas?<br><br>Mesmo com dietas e re...</div>
                 <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 6.68</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">141</span><span class="am-l">Alcance</span></div>
-                    <div class="am"><span class="am-v">8</span><span class="am-l">Cliques</span></div>
-                    <div class="am"><span class="am-v">4.08%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v">R$ 7.31</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">148</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">11</span><span class="am-l">Cliques</span></div>
+                    <div class="am"><span class="am-v">5.07%</span><span class="am-l">CTR</span></div>
                     <div class="am"><span class="am-v highlight">0</span><span class="am-l">Conversas</span></div>
                     <div class="am"><span class="am-v">—</span><span class="am-l">CPL</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:24%;background:#22c55e"></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:21%;background:#22c55e"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQLkMltrBA3bYpi7v6uP8CGKzbd2XA1n12PSOZK39sqe3Cw0IevRckKsZiSq62M8ZI1QzijcBMLysas8Snvz3gcjOL2sUnkR_J3Hwe79OX6YU7BQKngyXpGDdzfA18RODdhWj3m1JCMMXIvbfnrlZ5PY" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJQHCkUo3nYmxzTzzb7pkRWLtm5ehaNtkQ5W1NtWJx3NgiN2DWxxXP1D4mYUluJmDOiY2vzmPlXppmE9h2l_Icf__d6eyZ8d7wAyeVQHBAkyHO353SWJvM9PJv5HMLI04gM3M1gXyRYULeGueYIeHaH" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads sulfonuireias</div>
                         <div class="ad-title">Clique aqui, agende sua avaliação metábolica.</div>
                         <div class="ad-desc">Chegamos em Cuiabá</div>
-                        <a class="ad-link" href="https://fb.me/2fQI94JliZCUMXb" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/29DxmfVW5edOscm" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">🚨 Diabetes Tipo 2? Descubra Como Reduzir a Glicose Sem Depender Apenas de Remédios!<br><br>Sofrendo com diabetes tipo 2? Formigamentos, dores, cansaço constante e noites mal dormidas?<br><br>Mesmo com dietas e re...</div>
                 <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 5.70</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">R$ 5.74</span><span class="am-l">Gasto</span></div>
                     <div class="am"><span class="am-v">70</span><span class="am-l">Alcance</span></div>
                     <div class="am"><span class="am-v">3</span><span class="am-l">Cliques</span></div>
-                    <div class="am"><span class="am-v">2.70%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v">2.68%</span><span class="am-l">CTR</span></div>
                     <div class="am"><span class="am-v highlight">0</span><span class="am-l">Conversas</span></div>
                     <div class="am"><span class="am-v">—</span><span class="am-l">CPL</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:20%;background:#22c55e"></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:16%;background:#22c55e"></div></div>
             </div>
             <div class="ad-card">
                 <div class="ad-top">
-                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQJtWW4vRj4x_TQywWaou9_nlUKHHZCLL4WizfkrlyI1XcXwq5ZxEj0O2rRUcyiPYNn-DtpPWgjKR2Z50G026zBmkvrUCB4q7MzqC9J57PX8CuzxmCnqtRYvbF3UxBtM8V7iQHjXx4Bc--OSgJ8kEbaq" alt="" loading="lazy">
+                    <img class="ad-thumb" src="https://www.facebook.com/ads/image/?d=AQI2SOaaXwXJBQRN_eLlt8J83A1R1hYTIh3aK_EmV9JVdFLAOXkYdHo3TKynuP-32eAVhRs2wJir7MxGK9JCnEAlZEBLzNu1rDd2NmDVD5DAbAfK7y1NOVhjMWl8kBxWEZaIjJcBDR8eaBCwcPBB2ZZq" alt="" loading="lazy">
                     <div class="ad-info">
                         <div class="ad-name">ads exames paty</div>
                         <div class="ad-title">Clique aqui, agende sua avaliação metábolica.</div>
                         <div class="ad-desc">Chegamos em Cuiabá</div>
-                        <a class="ad-link" href="https://fb.me/321bueKi6QHwXp8" target="_blank" rel="noopener">Ver publicação ↗</a>
+                        <a class="ad-link" href="https://fb.me/1S60OYTvdWXJXDK" target="_blank" rel="noopener">Ver publicação ↗</a>
                     </div>
                 </div>
                 <div class="ad-body">Quantos remédios você vai tomar antes de buscar solução de verdade?<br><br>Quantos remédios você ainda vai tomar…antes de admitir que isso não tá resolvendo?<br>Um?Dois?Cinco por dia?<br><br>Você não nasceu pra depe...</div>
                 <div class="ad-metrics">
-                    <div class="am"><span class="am-v">R$ 5.37</span><span class="am-l">Gasto</span></div>
-                    <div class="am"><span class="am-v">142</span><span class="am-l">Alcance</span></div>
+                    <div class="am"><span class="am-v">R$ 5.45</span><span class="am-l">Gasto</span></div>
+                    <div class="am"><span class="am-v">143</span><span class="am-l">Alcance</span></div>
                     <div class="am"><span class="am-v">7</span><span class="am-l">Cliques</span></div>
-                    <div class="am"><span class="am-v">3.55%</span><span class="am-l">CTR</span></div>
+                    <div class="am"><span class="am-v">3.43%</span><span class="am-l">CTR</span></div>
                     <div class="am"><span class="am-v highlight">2</span><span class="am-l">Conversas</span></div>
-                    <div class="am"><span class="am-v">R$ 2.69</span><span class="am-l">CPL</span></div></div>
-                <div class="ad-bar"><div class="ad-bar-fill" style="width:19%;background:#22c55e"></div></div>
+                    <div class="am"><span class="am-v">R$ 2.73</span><span class="am-l">CPL</span></div></div>
+                <div class="ad-bar"><div class="ad-bar-fill" style="width:16%;background:#22c55e"></div></div>
             </div></div>
                 </div>
             </div>
@@ -973,18 +975,18 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
         </ul>
 
         <h3>Resultados Gerais</h3>
-        <p>Desde o início das campanhas, investimos <strong>R$ 538.28</strong> com os seguintes resultados:</p>
+        <p>Desde o início das campanhas, investimos <strong>R$ 592.38</strong> com os seguintes resultados:</p>
         <ul>
-            <li><strong>Alcance total:</strong> 8,916 pessoas</li>
-            <li><strong>Impressões:</strong> 20,967</li>
-            <li><strong>Visitas ao perfil (Topo):</strong> 177 — Custo por visita: R$ 0.50</li>
-            <li><strong>Conversas no WhatsApp (Meio):</strong> 130 — Custo por conversa: R$ 2.87</li>
-            <li><strong>Conversas Remarketing (Fundo):</strong> 11 conversas de público quente</li>
-            <li><strong>Total de conversas:</strong> 145</li>
+            <li><strong>Alcance total:</strong> 10,103 pessoas</li>
+            <li><strong>Impressões:</strong> 23,936</li>
+            <li><strong>Visitas ao perfil (Topo):</strong> 199 — Custo por visita: R$ 0.51</li>
+            <li><strong>Conversas no WhatsApp (Meio):</strong> 146 — Custo por conversa: R$ 2.78</li>
+            <li><strong>Conversas Remarketing (Fundo):</strong> 12 conversas de público quente</li>
+            <li><strong>Total de conversas:</strong> 163</li>
         </ul>
 
         <h3>Saldo e Projeção</h3>
-        <p>O saldo atual da conta é de <strong style="color:#22c55e">R$ 779.51</strong>.
+        <p>O saldo atual da conta é de <strong style="color:#22c55e">R$ 726.35</strong>.
         Com o budget diário atual de R$ 185, estimamos aproximadamente 4 dias restantes de veiculação.</p>
         
 
@@ -994,27 +996,27 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
         <div class="health-card" style="border-left-color:#1D71B8">
             <h4>Topo de Funil — Tráfego para Perfil</h4>
             <table class="health-table">
-                <tr><td>Custo por Visita</td><td>R$ 0.50</td><td>< R$ 0,60</td><td class="good">Excelente</td></tr>
-                <tr><td>CTR</td><td>2.96%</td><td>> 3%</td><td class="ok">Aceitável</td></tr>
-                <tr><td>CPM</td><td>R$ 14.70</td><td>Referência</td><td class="ok">—</td></tr>
-                <tr><td>Alcance</td><td>3,720</td><td>—</td><td class="ok">—</td></tr>
+                <tr><td>Custo por Visita</td><td>R$ 0.51</td><td>< R$ 0,60</td><td class="good">Excelente</td></tr>
+                <tr><td>CTR</td><td>2.84%</td><td>> 3%</td><td class="ok">Aceitável</td></tr>
+                <tr><td>CPM</td><td>R$ 14.36</td><td>Referência</td><td class="ok">—</td></tr>
+                <tr><td>Alcance</td><td>4,274</td><td>—</td><td class="ok">—</td></tr>
             </table>
         </div>
         <div class="health-card" style="border-left-color:#00A19A">
             <h4>Meio de Funil — Conversas WPP (Público Frio)</h4>
             <table class="health-table">
-                <tr><td>Custo por Conversa</td><td>R$ 2.87</td><td>< R$ 5</td><td class="good">Excelente</td></tr>
+                <tr><td>Custo por Conversa</td><td>R$ 2.78</td><td>< R$ 5</td><td class="good">Excelente</td></tr>
                 <tr><td>Taxa de Conversão</td><td>25.7%</td><td>> 25%</td><td class="good">Excelente</td></tr>
-                <tr><td>CTR</td><td>3.94%</td><td>> 1.5%</td><td class="good">Bom</td></tr>
-                <tr><td>Conversas</td><td>130</td><td>—</td><td class="good">—</td></tr>
+                <tr><td>CTR</td><td>3.92%</td><td>> 1.5%</td><td class="good">Bom</td></tr>
+                <tr><td>Conversas</td><td>146</td><td>—</td><td class="good">—</td></tr>
             </table>
         </div>
         <div class="health-card" style="border-left-color:#22c55e">
             <h4>Fundo de Funil — Remarketing WPP</h4>
             <table class="health-table">
-                <tr><td>Custo por Conversa</td><td>R$ 7.03</td><td>< R$ 10</td><td class="good">Excelente</td></tr>
-                <tr><td>Conversas</td><td>11</td><td>—</td><td class="ok">—</td></tr>
-                <tr><td>Alcance RMK</td><td>803</td><td>—</td><td class="ok">—</td></tr>
+                <tr><td>Custo por Conversa</td><td>R$ 7.13</td><td>< R$ 10</td><td class="good">Excelente</td></tr>
+                <tr><td>Conversas</td><td>12</td><td>—</td><td class="ok">—</td></tr>
+                <tr><td>Alcance RMK</td><td>896</td><td>—</td><td class="ok">—</td></tr>
             </table>
         </div></div>
 
@@ -1024,31 +1026,31 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
             <tbody>
             <tr>
                 <td>ads metformina</td>
-                <td>R$ 54.84</td>
-                <td>3,034</td>
-                <td><strong style="color:#1D71B8">97</strong></td>
-                <td>R$ 0.57</td>
+                <td>R$ 62.04</td>
+                <td>3,342</td>
+                <td><strong style="color:#1D71B8">107</strong></td>
+                <td>R$ 0.58</td>
             </tr>
             <tr>
                 <td>ads glicazida</td>
-                <td>R$ 10.55</td>
-                <td>509</td>
-                <td><strong style="color:#1D71B8">20</strong></td>
-                <td>R$ 0.53</td>
+                <td>R$ 15.93</td>
+                <td>903</td>
+                <td><strong style="color:#1D71B8">28</strong></td>
+                <td>R$ 0.57</td>
             </tr>
             <tr>
                 <td>ads cansaço</td>
-                <td>R$ 11.55</td>
-                <td>632</td>
+                <td>R$ 11.77</td>
+                <td>646</td>
                 <td><strong style="color:#1D71B8">14</strong></td>
-                <td>R$ 0.83</td>
+                <td>R$ 0.84</td>
             </tr>
             <tr>
                 <td>ads insulina</td>
-                <td>R$ 6.10</td>
-                <td>286</td>
+                <td>R$ 6.15</td>
+                <td>288</td>
                 <td><strong style="color:#1D71B8">8</strong></td>
-                <td>R$ 0.76</td>
+                <td>R$ 0.77</td>
             </tr>
             <tr>
                 <td>ads formigamento</td>
@@ -1065,47 +1067,47 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
             <tbody>
         <tr>
             <td>ads essas é a Doutor DM2</td>
-            <td>R$ 53.51</td>
+            <td>R$ 54.76</td>
             <td>24</td>
-            <td><strong style="color:#22c55e">R$ 2.23</strong></td>
-            <td>3.95%</td>
-            <td>Escalar</td>
-        </tr>
-        <tr>
-            <td>ads voce tem dm2</td>
-            <td>R$ 72.73</td>
-            <td>29</td>
-            <td><strong style="color:#22c55e">R$ 2.51</strong></td>
-            <td>3.88%</td>
-            <td>Escalar</td>
-        </tr>
-        <tr>
-            <td>ads voce tem dm2</td>
-            <td>R$ 42.74</td>
-            <td>17</td>
-            <td><strong style="color:#22c55e">R$ 2.51</strong></td>
-            <td>3.52%</td>
+            <td><strong style="color:#22c55e">R$ 2.28</strong></td>
+            <td>3.96%</td>
             <td>Escalar</td>
         </tr>
         <tr>
             <td>ads controlar sintomas</td>
-            <td>R$ 40.06</td>
-            <td>15</td>
-            <td><strong style="color:#22c55e">R$ 2.67</strong></td>
-            <td>4.44%</td>
+            <td>R$ 41.45</td>
+            <td>17</td>
+            <td><strong style="color:#22c55e">R$ 2.44</strong></td>
+            <td>4.52%</td>
+            <td>Escalar</td>
+        </tr>
+        <tr>
+            <td>ads voce tem dm2</td>
+            <td>R$ 85.62</td>
+            <td>35</td>
+            <td><strong style="color:#22c55e">R$ 2.45</strong></td>
+            <td>3.91%</td>
+            <td>Escalar</td>
+        </tr>
+        <tr>
+            <td>ads voce tem dm2</td>
+            <td>R$ 54.91</td>
+            <td>22</td>
+            <td><strong style="color:#22c55e">R$ 2.50</strong></td>
+            <td>3.46%</td>
             <td>Escalar</td>
         </tr>
         <tr>
             <td>ads exames paty</td>
-            <td>R$ 5.37</td>
+            <td>R$ 5.45</td>
             <td>2</td>
-            <td><strong style="color:#22c55e">R$ 2.69</strong></td>
-            <td>3.55%</td>
+            <td><strong style="color:#22c55e">R$ 2.73</strong></td>
+            <td>3.43%</td>
             <td>Escalar</td>
         </tr></tbody>
         </table>
 
-        <h3>Desperdício Detectado</h3><p>Criativos com gasto mas <strong>zero conversas</strong> nas campanhas de WhatsApp — total de <strong style="color:#ef4444">R$ 27.80</strong> (5% do investimento):</p><table class="analysis-table"><thead><tr><th>Criativo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>Conversas</th><th>Ação</th></tr></thead><tbody>
+        <h3>Desperdício Detectado</h3><p>Criativos com gasto mas <strong>zero conversas</strong> nas campanhas de WhatsApp — total de <strong style="color:#ef4444">R$ 28.54</strong> (5% do investimento):</p><table class="analysis-table"><thead><tr><th>Criativo</th><th>Gasto</th><th>Alcance</th><th>Cliques</th><th>Conversas</th><th>Ação</th></tr></thead><tbody>
         <tr>
             <td>ads controlar nao é tratar</td>
             <td>R$ 7.75</td>
@@ -1116,23 +1118,23 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
         </tr>
         <tr>
             <td>ads pre-diabetes</td>
-            <td>R$ 7.67</td>
-            <td>147</td>
+            <td>R$ 7.74</td>
+            <td>149</td>
             <td>2</td>
             <td>0</td>
             <td style="color:#ef4444">Pausar/Revisar</td>
         </tr>
         <tr>
             <td>ads glicada de 9</td>
-            <td>R$ 6.68</td>
-            <td>141</td>
-            <td>8</td>
+            <td>R$ 7.31</td>
+            <td>148</td>
+            <td>11</td>
             <td>0</td>
             <td style="color:#ef4444">Pausar/Revisar</td>
         </tr>
         <tr>
             <td>ads sulfonuireias</td>
-            <td>R$ 5.70</td>
+            <td>R$ 5.74</td>
             <td>70</td>
             <td>3</td>
             <td>0</td>
@@ -1143,7 +1145,7 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
         <div class="action-plan">
             <div class="action-group">
                 <h4>Imediato</h4>
-                <ul><li>Pausar criativo <strong>ads controlar nao é tratar</strong> — R$ 7.75 gasto sem conversão</li><li>Pausar criativo <strong>ads pre-diabetes</strong> — R$ 7.67 gasto sem conversão</li><li>Pausar criativo <strong>ads glicada de 9</strong> — R$ 6.68 gasto sem conversão</li><li>Escalar criativo <strong>ads essas é a Doutor DM2</strong> — melhor CPL R$ 2.23</li></ul>
+                <ul><li>Pausar criativo <strong>ads controlar nao é tratar</strong> — R$ 7.75 gasto sem conversão</li><li>Pausar criativo <strong>ads pre-diabetes</strong> — R$ 7.74 gasto sem conversão</li><li>Pausar criativo <strong>ads glicada de 9</strong> — R$ 7.31 gasto sem conversão</li><li>Escalar criativo <strong>ads essas é a Doutor DM2</strong> — melhor CPL R$ 2.28</li></ul>
             </div>
             <div class="action-group">
                 <h4>Esta Semana</h4>
@@ -1233,7 +1235,7 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
         <div class="signature">
             <strong>Elainë Cóutinho</strong><br>
             Head de Marketing · Seven Marketing Digital<br>
-            21/03/2026 18:32
+            21/03/2026 23:53
         </div>
     </div>
 </div>
@@ -1241,10 +1243,10 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
 
 <div class="footer">
     <div class="footer-logo">
-        <svg viewBox="0 0 24 24" fill="none" style="width:18px;height:18px;vertical-align:middle;filter:drop-shadow(0 0 4px rgba(56,189,248,.3))"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg3)"/><defs><linearGradient id="lg3" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
-        <span>seven</span>
+        <svg viewBox="0 0 24 24" fill="none" style="width:18px;height:18px;vertical-align:middle;filter:drop-shadow(0 0 4px rgba(0,232,123,.3))"><defs><linearGradient id="lg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E87B"/><stop offset="100%" stop-color="#00B8D4"/></linearGradient></defs><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="url(#lg3)"/></svg>
+        <span class="ft-name">seven <span class="ft-midas">midas</span></span>
     </div>
-    <div>marketing digital · atualizado em 21/03/2026 18:32</div>
+    <div>marketing digital · atualizado em 21/03/2026 23:53</div>
 </div>
 
 <script>
