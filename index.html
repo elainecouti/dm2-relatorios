@@ -4,14 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Seven Midas — Relatórios</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Montserrat',sans-serif;background:#F7F8FA;color:#184341;min-height:100vh}
 .topbar{background:#184341;display:flex;align-items:center;padding:0 32px;height:60px}
-.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
-.logo svg{width:28px;height:28px}
-.logo-text{font-size:20px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{display:flex;align-items:center;gap:5px;text-decoration:none}
+.logo svg{width:34px;height:34px}
+.logo-text{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px}
+.logo-midas{font-weight:700;background:linear-gradient(135deg,#00E87B,#00B8D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .container{max-width:1100px;margin:0 auto;padding:40px 24px}
 h1{font-size:28px;font-weight:800;margin-bottom:8px}
 .subtitle{color:#7a7a7a;font-size:14px;margin-bottom:40px}
@@ -48,7 +49,7 @@ h1{font-size:28px;font-weight:800;margin-bottom:8px}
 <body>
 <div id="auth-gate">
   <div class="auth-box">
-    <svg viewBox="0 0 40 40" width="48" height="48" style="margin-bottom:16px"><path d="M20 4L8 24h10l-2 12 14-20H20l2-12z" fill="#00A19A"/></svg>
+    <svg viewBox="0 0 24 24" width="48" height="48" style="margin-bottom:16px"><defs><linearGradient id="lg-auth" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E87B"/><stop offset="100%" stop-color="#00B8D4"/></linearGradient></defs><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="url(#lg-auth)"/></svg>
     <h2>Seven Midas</h2>
     <p>Digite a senha para acessar os relatórios</p>
     <form id="auth-form">
@@ -60,8 +61,8 @@ h1{font-size:28px;font-weight:800;margin-bottom:8px}
 <div id="main-content">
 <div class="topbar">
   <a class="logo" href="/">
-    <svg viewBox="0 0 40 40"><path d="M20 4L8 24h10l-2 12 14-20H20l2-12z" fill="#38bdf8"/></svg>
-    <span class="logo-text">seven</span>
+    <svg viewBox="0 0 24 24" fill="none"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E87B"/><stop offset="100%" stop-color="#00B8D4"/></linearGradient></defs><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="url(#lg)"/></svg>
+    <span class="logo-text">seven <span class="logo-midas">midas</span></span>
   </a>
 </div>
 <div class="container">

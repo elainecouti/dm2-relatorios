@@ -914,18 +914,19 @@ def generate_html(slug, unit, p):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Seven · {unit['nome']} — Inauguração</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <style>
 *{{margin:0;padding:0;box-sizing:border-box}}
 body{{background:#F7F8FA;color:#184341;font-family:'Montserrat',system-ui,sans-serif;-webkit-font-smoothing:antialiased;position:relative}}
-body::before{{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Cpath d='M28 4L8 32h18l-2 18 20-28H26l2-18z' fill='%2300A19A' opacity='0.04'/%3E%3Ctext x='52' y='38' font-family='Montserrat,sans-serif' font-weight='800' font-size='32' fill='%2300A19A' opacity='0.04'%3Eseven%3C/text%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:contain;pointer-events:none;z-index:0}}
+body::before{{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Cpath d='M28 4L8 32h18l-2 18 20-28H26l2-18z' fill='%2300E87B' opacity='0.04'/%3E%3Ctext x='52' y='38' font-family='Outfit,sans-serif' font-weight='800' font-size='32' fill='%2300E87B' opacity='0.04'%3Eseven%3C/text%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:contain;pointer-events:none;z-index:0}}
 
 /* ── Topbar ── */
 .topbar{{background:#184341;display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:60px;position:sticky;top:0;z-index:10}}
-.logo{{display:flex;align-items:center;gap:8px;text-decoration:none}}
-.logo svg{{width:30px;height:30px;filter:drop-shadow(0 0 6px rgba(56,189,248,.4))}}
-.logo-text{{font-size:22px;font-weight:800;letter-spacing:.02em;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}}
+.logo{{display:flex;align-items:center;gap:5px;text-decoration:none}}
+.logo svg{{width:34px;height:34px;filter:drop-shadow(0 0 6px rgba(0,232,123,.3))}}
+.logo-text{{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px}}
+.logo-midas{{font-weight:700;background:linear-gradient(135deg,#00E87B,#00B8D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}}
 .topbar-right{{display:flex;align-items:center;gap:12px}}
 .live-dot{{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}}
 @keyframes blink{{0%,100%{{opacity:1}}50%{{opacity:.3}}}}
@@ -1085,9 +1086,10 @@ body::before{{content:'';position:fixed;top:50%;left:50%;transform:translate(-50
 
 /* ── Footer ── */
 .footer{{max-width:1200px;margin:0 auto;text-align:center;padding:32px;font-size:11px;color:#5a5a5a;border-top:1px solid #eee}}
-.footer-logo{{display:inline-flex;align-items:center;gap:6px;margin-bottom:4px}}
+.footer-logo{{display:inline-flex;align-items:center;gap:4px;margin-bottom:4px}}
 .footer-logo svg{{width:18px;height:18px}}
-.footer-logo span{{font-size:14px;font-weight:800;background:linear-gradient(135deg,#38bdf8,#2dd4bf);-webkit-background-clip:text;-webkit-text-fill-color:transparent}}
+.footer-logo .ft-name{{font-family:'Outfit',sans-serif;font-size:14px;font-weight:800;color:#184341}}
+.footer-logo .ft-midas{{font-weight:700;background:linear-gradient(135deg,#00E87B,#00B8D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}}
 
 /* ── Mobile ── */
 @media(max-width:768px){{
@@ -1168,8 +1170,8 @@ body::before{{content:'';position:fixed;top:50%;left:50%;transform:translate(-50
 <body>
 <div class="topbar">
     <div class="logo">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
-        <span class="logo-text">seven</span>
+        <svg viewBox="0 0 24 24" fill="none"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E87B"/><stop offset="100%" stop-color="#00B8D4"/></linearGradient></defs><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="url(#lg)"/></svg>
+        <span class="logo-text">seven <span class="logo-midas">midas</span></span>
     </div>
     <div class="topbar-right">
         <div class="live-dot"></div>
@@ -1243,8 +1245,8 @@ body::before{{content:'';position:fixed;top:50%;left:50%;transform:translate(-50
 
 <div class="footer">
     <div class="footer-logo">
-        <svg viewBox="0 0 24 24" fill="none" style="width:18px;height:18px;vertical-align:middle;filter:drop-shadow(0 0 4px rgba(56,189,248,.3))"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#lg3)"/><defs><linearGradient id="lg3" x1="3" y1="2" x2="21" y2="22"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs></svg>
-        <span>seven</span>
+        <svg viewBox="0 0 24 24" fill="none" style="width:18px;height:18px;vertical-align:middle;filter:drop-shadow(0 0 4px rgba(0,232,123,.3))"><defs><linearGradient id="lg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E87B"/><stop offset="100%" stop-color="#00B8D4"/></linearGradient></defs><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="url(#lg3)"/></svg>
+        <span class="ft-name">seven <span class="ft-midas">midas</span></span>
     </div>
     <div>marketing digital · atualizado em {now}</div>
 </div>
